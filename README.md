@@ -11,3 +11,4 @@
 - [doc](doc) conté la documentació demanada en format PDF (diagrama de
   classes, proves efectuades i manual d'usuari)
 - [doc/html](doc/html) conté la documentació en format html generada amb [Doxygen](http://www.doxygen.nl/)
+

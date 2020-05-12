@@ -1,6 +1,7 @@
 package Partida;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class TipusPeca {
     private String _nom;
@@ -11,9 +12,10 @@ public class TipusPeca {
     private boolean _promocio;
     private boolean _invulnerabilitat;
     private ArrayList<Moviment> _llistaMoviments;
-    private int _n;
+    private ArrayList<Moviment> _llistaMovimentsInicials;
 
-    public TipusPeca(String nom, char simbol, String blanca, String negra, int valor, boolean promocio, boolean invulnerabilitat ){
+
+    public TipusPeca(String nom, char simbol, String blanca, String negra, int valor, ArrayList<Moviment> listMov,ArrayList<Moviment> listIini, boolean promocio, boolean invulnerabilitat ){
         _nom = nom;
         _simbol = simbol;
         _imgBlanca = blanca;
@@ -21,15 +23,29 @@ public class TipusPeca {
         _valor = valor;
         _promocio = promocio;
         _invulnerabilitat = invulnerabilitat;
-        _llistaMoviments = new ArrayList<>();
-        _n=0;
+        _llistaMoviments = listMov;
+        _llistaMovimentsInicials = listIini;
+
 
     }
 
-    public void afegirMoviment(Moviment m){
-        _llistaMoviments.set(_n,m);
-        _n++;
+    public boolean tipusPecaValida(TiradaSimple t, boolean primerMov){
+        boolean trobat = false;
+        Iterator<Moviment> it;
+        if(primerMov == false){
+            it = _llistaMovimentsInicials.iterator(); //Recorrec la llista de moviments inicials
+        }
+        else{
+            it = _llistaMoviments.iterator(); // Recorrec la llista de moviments
+        }
+        while(it.hasNext() && !trobat){
+            if(it.next().movimentvalid(t)){
+                trobat = true;
+            }
+        }
+        return trobat;
     }
+
 }
 
 

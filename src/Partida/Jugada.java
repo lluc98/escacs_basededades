@@ -1,4 +1,6 @@
 package Partida;
 
-public class Jugada {
+public interface Jugada {
+
+    void realitzarJugada();
 }

@@ -44,14 +44,23 @@ public class Taulell {
 
     }
 
-    public boolean tiradaValida(Tirada t){
+    public boolean tiradaValida(TiradaSimple t){
         Posicio origen = t.get_origen();
         Posicio desti = t.get_desti();
         Peca p = _tauler.get(origen);
-        if(p != null){
-            if((desti.get_fila() > 0) && (desti.get_fila() <= _fila) && (desti.get_columna() > 0) && (desti.get_columna() <= _columna)){
+        if(p != null && p.get_equip()==t.get_equip()){ //Miro que a la posicio origen hi ha un peça i es del equip correcte
+            if((desti.get_fila() > 0) && (desti.get_fila() <= _fila) && (desti.get_columna() > 0) && (desti.get_columna() <= _columna)){ //miro si la posicio desti esta dins del taulell
+                Peca c = _tauler.get(desti);
+                if(c != null && c.get_equip()==t.get_equip()){ //miro si hi ha peça a la posicio desti i de quin equip es
+                    return false;
+                }
                 if(p.movimentValid(t)){
-
+                    if(validMatar(t,c) && validVolar(t)){
+                        return true;
+                    }
+                    else{
+                        return false;
+                    }
                 }
                 else{
                     return false;
@@ -60,10 +69,108 @@ public class Taulell {
             else{
                 return false;
             }
+
         }
         else{
             return false;
         }
 
     }
+
+    private boolean validMatar(TiradaSimple t, Peca p){
+        if(t.get_matar() == 0 && p==null){
+            return true;
+        }
+        else if(t.get_matar() == 1){
+            return true;
+        }
+        else if(t.get_matar() == 2 && p!=null){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    private boolean validVolar(TiradaSimple t){
+        if(t.get_volar() == 0 && !hiHaPecesEntremig(t)){
+            return true;
+        }
+        else if(t.get_volar() == 1 || t.get_volar()==2){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    private boolean hiHaPecesEntremig(TiradaSimple t){
+        int x, y;
+        x = 0;
+        y = 0;
+        while(x!= t.get_desplaçamentX() && y!= t.get_desplacamentY()){
+            Posicio pos = new Posicio(x,y);
+            Peca pec = _tauler.get(pos);
+            if(pec!=null){
+                return true;
+            }
+            if(x!=t.get_desplaçamentX()){
+                if(t.get_desplaçamentX()>0){
+                    x++;
+                }
+                else{
+                    x--;
+                }
+
+            }
+            if(y!=t.get_desplacamentY()){
+                if(y<t.get_desplacamentY()){
+                    y++;
+                }
+                else{
+                    y--;
+                }
+            }
+        }
+        return false;
+    }
+
+    public void realitzarTirada(TiradaSimple t){
+        Peca p = _tauler.get(t.get_origen());
+        if(t.get_volar() == 2){
+            eliminarPecesEntremig(t);
+        }
+        _tauler.put(t.get_desti(),p);
+        _tauler.remove(t.get_origen());
+        p.primerMovFet();
+    }
+
+    private void eliminarPecesEntremig(TiradaSimple t){
+        int x, y;
+        x = 0;
+        y = 0;
+        while(x!= t.get_desplaçamentX() && y!= t.get_desplacamentY()) {
+            Posicio pos = new Posicio(x, y);
+            Peca pec = _tauler.get(pos);
+            if (pec != null) {
+                _tauler.remove(pos);
+            }
+            if (x != t.get_desplaçamentX()) {
+                if (t.get_desplaçamentX() > 0) {
+                    x++;
+                } else {
+                    x--;
+                }
+
+            }
+            if (y != t.get_desplacamentY()) {
+                if (y < t.get_desplacamentY()) {
+                    y++;
+                } else {
+                    y--;
+                }
+            }
+        }
+    }
+
 }

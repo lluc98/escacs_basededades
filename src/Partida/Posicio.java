@@ -1,6 +1,6 @@
 package Partida;
 
-public class Posicio {
+public class Posicio implements Comparable<Posicio>{
     private int _fila;
     private int _columna;
     private String _posicio;
@@ -12,15 +12,49 @@ public class Posicio {
         _fila = lletra.charAt(0) - 'a' + 1;
         _columna = Integer.parseInt(numero);
     }
-    public int fila(){
+
+    public Posicio(int fila, int columna){
+        _fila = fila;
+        _columna = columna;
+        fila = fila + 64;
+        char letra = (char)(fila);
+        _posicio = String.valueOf(letra);
+        _posicio = _posicio+columna;
+    }
+
+
+    public int get_fila(){
         return _fila;
     }
 
-    public int columna(){
-        return _fila;
+    public int get_columna(){
+        return _columna;
     }
 
-    public String posicio(){
+    public String get_posicio(){
         return _posicio;
+    }
+
+    @Override
+    // Compara per edat i, en cas d'empat, per pes.
+    public int compareTo(Posicio o) {
+        int r = _fila - o._fila;
+        if (r == 0)
+            if (_columna > o._columna)
+                r = 1;
+            else if(_columna < o._columna)
+                r = -1;
+        return r;
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        boolean r = false;
+        if (o != null && (o instanceof Posicio)){
+            Posicio m = (Posicio)o;
+            r = this._fila == m._fila && this._columna == m._columna;
+        }
+        return r;
     }
 }

@@ -1,5 +1,6 @@
 package Partida;
 
+import java.util.Map;
 import java.util.SortedMap;
 import java.util.TreeMap;
 import java.util.Iterator;
@@ -77,6 +78,27 @@ public class Taulell {
 
     }
 
+    public boolean hihaJaque(TiradaSimple t){
+        Iterator<Map.Entry<Posicio, Peca>> it = _tauler.entrySet().iterator();
+        Posicio posRei = buscaRei(t);
+        Peca pRei = _tauler.get(posRei);
+        Posicio pos = null;
+        Peca p = null;
+        boolean trobat = false;
+        while(it.hasNext() && !trobat){
+            Map.Entry<Posicio, Peca> entry = it.next();
+            pos = entry.getKey();
+            p = entry.getValue();
+            TiradaSimple tirada = new TiradaSimple(pos, posRei, t.get_equip());
+            if(p.movimentValid(tirada)){
+                if(validMatar(tirada,pRei) && validVolar(tirada)){
+                    trobat = true;
+                }
+            }
+        }
+        return trobat;
+    }
+
     private boolean validMatar(TiradaSimple t, Peca p){
         if(t.get_matar() == 0 && p==null){
             return true;
@@ -104,7 +126,7 @@ public class Taulell {
         }
     }
 
-    private boolean hiHaPecesEntremig(TiradaSimple t){
+    public boolean hiHaPecesEntremig(TiradaSimple t){
         int x, y;
         x = 0;
         y = 0;
@@ -124,7 +146,7 @@ public class Taulell {
 
             }
             if(y!=t.get_desplacamentY()){
-                if(y<t.get_desplacamentY()){
+                if(t.get_desplacamentY() > 0){
                     y++;
                 }
                 else{
@@ -164,13 +186,53 @@ public class Taulell {
 
             }
             if (y != t.get_desplacamentY()) {
-                if (y < t.get_desplacamentY()) {
+                if (t.get_desplacamentY() > 0) {
                     y++;
                 } else {
                     y--;
                 }
             }
         }
+    }
+
+    public Posicio buscaRei(TiradaSimple t){
+        Iterator<Map.Entry<Posicio, Peca>> it = _tauler.entrySet().iterator();
+        boolean trobat = false;
+        Posicio pos = null;
+        Peca p = null;
+        while(it.hasNext() && !trobat){
+            Map.Entry<Posicio, Peca> entry = it.next();
+            pos = entry.getKey();
+            p = entry.getValue();
+            if(p.esRei(t.get_equip())){
+                trobat = true;
+            }
+        }
+        return pos;
+    }
+
+    public boolean validarEnrroc(Enrroc e){
+        Posicio a = e.get_p1();
+        Posicio b = e.get_p2();
+        Peca p = _tauler.get(a);
+        Peca p2 = _tauler.get(b);
+        if(p != null && p.get_equip() == e.get_equip() && p2 != null && p2.get_equip() == e.get_equip() && a.get_fila() == b.get_fila()){
+            if(p.enrrocValid(e, p2)){
+
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+        else{
+            return false;
+        }
+    }
+
+    public boolean contePeçaCasella(Posicio p){
+        Peca peca = _tauler.get(p);
+        return peca !=  null;
     }
 
 }

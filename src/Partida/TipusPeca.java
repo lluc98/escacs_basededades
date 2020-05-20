@@ -13,6 +13,7 @@ public class TipusPeca {
     private boolean _invulnerabilitat;
     private ArrayList<Moviment> _llistaMoviments;
     private ArrayList<Moviment> _llistaMovimentsInicials;
+    private ArrayList<CaracteristiquesEnroc> _llistaEnrocs;
 
 
     public TipusPeca(String nom, char simbol, String blanca, String negra, int valor, ArrayList<Moviment> listMov,ArrayList<Moviment> listIini, boolean promocio, boolean invulnerabilitat ){
@@ -25,6 +26,7 @@ public class TipusPeca {
         _invulnerabilitat = invulnerabilitat;
         _llistaMoviments = listMov;
         _llistaMovimentsInicials = listIini;
+        _llistaEnrocs = null;
 
 
     }
@@ -44,6 +46,29 @@ public class TipusPeca {
             }
         }
         return trobat;
+    }
+
+    public String get_nom(){
+        return _nom;
+    }
+
+    public void afegirEnrroc(CaracteristiquesEnroc c){
+        _llistaEnrocs.add(c);
+    }
+
+    public boolean validarEnrroc(Enrroc e, Peca b){
+        boolean trobat = false;
+        Iterator<CaracteristiquesEnroc> it;
+        if(_llistaEnrocs != null){
+            it = _llistaEnrocs.iterator();
+            while(it.hasNext() && !trobat){
+                if(it.next().enrrocValid(e, b)){
+                    trobat = true;
+                }
+            }
+        }
+        return false;
+
     }
 
 }

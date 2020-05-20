@@ -47,4 +47,26 @@ public class Peca {
             _primerMoviment = true;
         }
     }
+
+    public boolean esRei(boolean equip){
+        return (_tipus.get_nom().equals("REI") && _equip != equip);
+    }
+
+    public boolean enrrocValid(Enrroc e, Peca b){
+        if(_tipus.validarEnrroc(e, b)){
+            if(e.getQuiets()==true && _primerMoviment==true){
+                return false;
+            }
+            else{
+                return true;
+            }
+        }
+        else{
+            return false;
+        }
+    }
+
+    public  boolean esPecaNom(String nom){
+        return(_tipus.get_nom().equals(nom));
+    }
 }

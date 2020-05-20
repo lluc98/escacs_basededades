@@ -17,6 +17,16 @@ public class TiradaSimple {
         _equip = equip;
     }
 
+    public TiradaSimple(Posicio origen, Posicio desti, boolean equip, int matar, int volar){
+        _origen = origen;
+        _desti = desti;
+        _desplacamentX = _desti.get_fila() - _origen.get_fila();
+        _desplacamentY = _desti.get_columna() - _origen.get_columna();
+        _equip = equip;
+        _matar = matar;
+        _volar = volar;
+    }
+
     public Posicio get_origen(){
         return _origen;
     }
@@ -55,4 +65,5 @@ public class TiradaSimple {
     public int get_volar(){
         return _volar;
     }
+
 }

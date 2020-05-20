@@ -1,5 +1,4 @@
 package Partida;
-import java.util.Scanner
 public class Jugador {
     private String _nom;
     boolean _equip;
@@ -9,11 +8,24 @@ public class Jugador {
         _equip = equip;
     }
 
-    public void ferJugada(){
-        System.out.println("Quina jugada vols realitzar(Tirada, Enroc, Rendirse o Taules)");
-        Scanner s = new Scanner(System.in);
-        String jugada = s.nextLine();
-        
+    public boolean ferTirada(Taulell taulell, Posicio origen, Posicio desti){
+        TiradaSimple t = new TiradaSimple(origen, desti, _equip);
+        if(taulell.tiradaValida(t)){
+            taulell.realitzarTirada(t);
+            return true;
+        }
+        else return false;
+    }
+
+    public boolean ferEnrroc(Taulell taulell, Posicio p1, Posicio p2){
+        Enrroc enrroc = new Enrroc(p1,p2, _equip);
+        if(taulell.validarEnrroc(enrroc)){
+            if(enrroc.realitzarEnroc(taulell)){
+                return true;
+            }
+            else return false;
+        }
+        else return false;
     }
 }
 

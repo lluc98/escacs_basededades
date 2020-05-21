@@ -1,5 +1,7 @@
 package Partida;
 
+import com.sun.corba.se.spi.activation.RepositoryOperations;
+
 import java.util.Map;
 import java.util.SortedMap;
 import java.util.TreeMap;
@@ -45,6 +47,10 @@ public class Taulell {
 
     }
 
+    public void assignarPecaTauler(Peca peca, Posicio pos){
+        _tauler.put(pos,peca);
+    }
+
     public boolean tiradaValida(TiradaSimple t){
         Posicio origen = t.get_origen();
         Posicio desti = t.get_desti();
@@ -52,7 +58,7 @@ public class Taulell {
         if(p != null && p.get_equip()==t.get_equip()){ //Miro que a la posicio origen hi ha un peça i es del equip correcte
             if((desti.get_fila() > 0) && (desti.get_fila() <= _fila) && (desti.get_columna() > 0) && (desti.get_columna() <= _columna)){ //miro si la posicio desti esta dins del taulell
                 Peca c = _tauler.get(desti);
-                if(c != null && c.get_equip()==t.get_equip()){ //miro si hi ha peça a la posicio desti i de quin equip es
+                if((c != null && c.get_equip()==t.get_equip()) || c!=null && c.esInvulnerable()){ //miro si hi ha peça a la posicio desti i de quin equip es
                     return false;
                 }
                 if(p.movimentValid(t)){
@@ -78,9 +84,9 @@ public class Taulell {
 
     }
 
-    public boolean hihaJaque(TiradaSimple t){
+    public boolean hihaJaque(boolean equip){
         Iterator<Map.Entry<Posicio, Peca>> it = _tauler.entrySet().iterator();
-        Posicio posRei = buscaRei(t);
+        Posicio posRei = buscaRei(equip);
         Peca pRei = _tauler.get(posRei);
         Posicio pos = null;
         Peca p = null;
@@ -89,7 +95,7 @@ public class Taulell {
             Map.Entry<Posicio, Peca> entry = it.next();
             pos = entry.getKey();
             p = entry.getValue();
-            TiradaSimple tirada = new TiradaSimple(pos, posRei, t.get_equip());
+            TiradaSimple tirada = new TiradaSimple(pos, posRei, equip);
             if(p.movimentValid(tirada)){
                 if(validMatar(tirada,pRei) && validVolar(tirada)){
                     trobat = true;
@@ -195,7 +201,7 @@ public class Taulell {
         }
     }
 
-    public Posicio buscaRei(TiradaSimple t){
+    public Posicio buscaRei(boolean equip){
         Iterator<Map.Entry<Posicio, Peca>> it = _tauler.entrySet().iterator();
         boolean trobat = false;
         Posicio pos = null;
@@ -204,7 +210,7 @@ public class Taulell {
             Map.Entry<Posicio, Peca> entry = it.next();
             pos = entry.getKey();
             p = entry.getValue();
-            if(p.esRei(t.get_equip())){
+            if(p.esRei(equip)){
                 trobat = true;
             }
         }
@@ -233,6 +239,22 @@ public class Taulell {
     public boolean contePeçaCasella(Posicio p){
         Peca peca = _tauler.get(p);
         return peca !=  null;
+    }
+
+    public boolean hiHaPromocio(Posicio p, boolean _equip){
+        if(p.get_fila() == _columna && _equip == true){ //si esta dalt de tot  i es una peça blanca
+            return true;
+        }
+        else if(p.get_fila() == 1 && _equip == false){ //si esta baix de tot i es una peça negra
+            return false;
+        }
+        else{
+            return false;
+        }
+    }
+
+    public void realitzarPromocio(Posicio pos, Peca pec){
+        _tauler.put(pos,pec);
     }
 
 }

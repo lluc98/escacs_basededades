@@ -18,6 +18,17 @@ public class Peca {
         }
     }
 
+    public Peca(String s, boolean equip, TreeMap<String,TipusPeca> m, boolean moguda){
+        _tipus = m.get(s);
+        if(_tipus != null){
+            _primerMoviment = moguda;
+            _equip = equip;
+        }
+        else{
+            throw new RuntimeException("Tipus de peça no trobada");
+        }
+    }
+
     public boolean movimentValid(TiradaSimple t){
         boolean valid;
         if(!_equip){
@@ -69,4 +80,6 @@ public class Peca {
     public  boolean esPecaNom(String nom){
         return(_tipus.get_nom().equals(nom));
     }
+
+    public  boolean esInvulnerable(){ return _tipus.get_invulnerabilitat();}
 }

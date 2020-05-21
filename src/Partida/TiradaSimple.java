@@ -17,6 +17,14 @@ public class TiradaSimple {
         _equip = equip;
     }
 
+    public int get_desplacamentX() {
+        return _desplacamentX;
+    }
+
+    public boolean is_equip() {
+        return _equip;
+    }
+
     public TiradaSimple(Posicio origen, Posicio desti, boolean equip, int matar, int volar){
         _origen = origen;
         _desti = desti;

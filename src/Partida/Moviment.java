@@ -6,6 +6,22 @@ public class Moviment {
     private int _movMatar;
     private int _movSaltar;
 
+    public String get_horitzontal() {
+        return _horitzontal;
+    }
+
+    public String get_vertical() {
+        return _vertical;
+    }
+
+    public int get_movMatar() {
+        return _movMatar;
+    }
+
+    public int get_movSaltar() {
+        return _movSaltar;
+    }
+
     public Moviment(String horitzontal, String vertical, int matar, int saltar){
         _horitzontal = horitzontal;
         _vertical = vertical;

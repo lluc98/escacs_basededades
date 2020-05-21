@@ -241,6 +241,10 @@ public class Taulell {
         return peca !=  null;
     }
 
+    public Peca getPeca(Posicio p) {
+        return _tauler.get(p);
+    }
+
     public boolean hiHaPromocio(Posicio p, boolean _equip){
         if(p.get_fila() == _columna && _equip == true){ //si esta dalt de tot  i es una peça blanca
             return true;

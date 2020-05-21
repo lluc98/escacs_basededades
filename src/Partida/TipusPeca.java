@@ -16,7 +16,35 @@ public class TipusPeca {
     private ArrayList<CaracteristiquesEnroc> _llistaEnrocs;
 
 
-    public TipusPeca(String nom, String simbol, String blanca, String negra, int valor, ArrayList<Moviment> listMov,ArrayList<Moviment> listIini, boolean promocio, boolean invulnerabilitat ){
+    public String get_simbol() {
+        return _simbol;
+    }
+
+    public String get_imgBlanca() {
+        return _imgBlanca;
+    }
+
+    public String get_imgNegra() {
+        return _imgNegra;
+    }
+
+    public int get_valor() {
+        return _valor;
+    }
+
+    public ArrayList<Moviment> get_llistaMoviments() {
+        return _llistaMoviments;
+    }
+
+    public ArrayList<Moviment> get_llistaMovimentsInicials() {
+        return _llistaMovimentsInicials;
+    }
+
+    public ArrayList<CaracteristiquesEnroc> get_llistaEnrocs() {
+        return _llistaEnrocs;
+    }
+
+    public TipusPeca(String nom, String simbol, String blanca, String negra, int valor, ArrayList<Moviment> listMov, ArrayList<Moviment> listIini, boolean promocio, boolean invulnerabilitat ){
         _nom = nom;
         _simbol = simbol;
         _imgBlanca = blanca;

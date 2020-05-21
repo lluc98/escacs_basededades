@@ -157,5 +157,4 @@ public class PartidaGrafica extends Application{
 
         return root;
     }
-
 }

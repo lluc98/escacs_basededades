@@ -82,4 +82,6 @@ public class Peca {
     }
 
     public  boolean esInvulnerable(){ return _tipus.get_invulnerabilitat();}
+
+    public TipusPeca get_tipus() { return _tipus; }
 }

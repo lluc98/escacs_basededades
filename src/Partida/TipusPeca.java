@@ -5,7 +5,7 @@ import java.util.Iterator;
 
 public class TipusPeca {
     private String _nom;
-    private char _simbol;
+    private String _simbol;
     private String _imgBlanca;
     private String _imgNegra;
     private int _valor;
@@ -16,7 +16,7 @@ public class TipusPeca {
     private ArrayList<CaracteristiquesEnroc> _llistaEnrocs;
 
 
-    public TipusPeca(String nom, char simbol, String blanca, String negra, int valor, ArrayList<Moviment> listMov,ArrayList<Moviment> listIini, boolean promocio, boolean invulnerabilitat ){
+    public TipusPeca(String nom, String simbol, String blanca, String negra, int valor, ArrayList<Moviment> listMov,ArrayList<Moviment> listIini, boolean promocio, boolean invulnerabilitat ){
         _nom = nom;
         _simbol = simbol;
         _imgBlanca = blanca;

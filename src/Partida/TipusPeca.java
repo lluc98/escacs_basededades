@@ -51,6 +51,7 @@ public class TipusPeca {
     public String get_nom(){
         return _nom;
     }
+    public boolean get_invulnerabilitat() {return _invulnerabilitat;}
 
     public void afegirEnrroc(CaracteristiquesEnroc c){
         _llistaEnrocs.add(c);

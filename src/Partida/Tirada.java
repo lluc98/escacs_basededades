@@ -1,8 +1,8 @@
 package Partida;
 
-public interface Tirada implements Jugada {
+//public interface Tirada implements Jugada {
 
-}
+//}
 
 
 

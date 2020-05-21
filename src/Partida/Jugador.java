@@ -17,6 +17,19 @@ public class Jugador {
         else return false;
     }
 
+    public boolean observarPromocio(Posicio desti, Taulell taulell){
+        return taulell.hiHaPromocio(desti, _equip);
+    }
+
+    public void ferPromocio(Posicio posicio, Taulell taulell, Peca p){
+        taulell.realitzarPromocio(posicio, p);
+    }
+
+    public boolean ObservarJaque(Taulell taulell){
+        return taulell.hihaJaque(_equip);
+    }
+
+
     public boolean ferEnrroc(Taulell taulell, Posicio p1, Posicio p2){
         Enrroc enrroc = new Enrroc(p1,p2, _equip);
         if(taulell.validarEnrroc(enrroc)){

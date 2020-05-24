@@ -21,7 +21,7 @@ public class Taulell {
     public Taulell(int c, int f){
         _fila = f;
         _columna = c;
-        n_peces = 0;
+        n_peces = 2;
         nTorns = 1;
         if(_columna < 4 || _columna > 16 || _fila <4 || _fila > 16)
             throw new RuntimeException("Error en el parametres");
@@ -32,19 +32,23 @@ public class Taulell {
     public void afegirPeca(Peca b, Peca n){
         if(n_peces < (_fila*_columna)-_columna) {
             int x, y, y2;
-            if ((n_peces / 2) < _columna) {
+            if ((n_peces / 2) <= _columna) {
                 y = 1;
                 x = n_peces / 2;
-                y2 = _columna;
+                y2 = _fila;
             } else {
-                y = (n_peces / (_columna + 1)) + 1;
+                y = ((n_peces /2)/ (_columna + 1)) + 1;
                 x = (n_peces / 2) % _columna;
-                y2 = _columna - (y - 1);
+                if(x == 0){
+                    x = _columna;
+                }
+                y2 = _fila - (y - 1);
             }
             Posicio p = new Posicio(x, y);
             Posicio p2 = new Posicio(x, y2);
             _tauler.put(p, b);
             _tauler.put(p2, n);
+            n_peces = n_peces + 2;
         }
         else
             throw new RuntimeException("NO CABEN MÉS PECES AL TAULELL");
@@ -170,11 +174,11 @@ public class Taulell {
 
     public int realitzarTirada(TiradaSimple t){
         TreeMap<Posicio,Peca> eli = new TreeMap<>();
-        int res = 0;
+        int res = 1;
         Peca p = _tauler.get(t.get_origen());
         Peca d = _tauler.get(t.get_desti());
         if(d!=null){
-            res = 1;
+            res ++;
             eli.put(t.get_desti(),d);
         }
         if(t.get_volar() == 2){

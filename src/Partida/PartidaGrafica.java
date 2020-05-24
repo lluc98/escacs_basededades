@@ -6,9 +6,11 @@ import javafx.beans.property.ReadOnlyDoubleProperty;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
+import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
@@ -22,16 +24,14 @@ public class PartidaGrafica extends Application{
     private static Scene escenaPrincipal, escenaSec;
     private static Stage window; //aqui hi posarem el primaryStage, s'ha de fer per a l'hora de fer el canvi d'escena des d'un botó
     private static Partida _partida;
+    private static Group _rajoles = new Group();
+    private static Group _fitxes = new Group();
+    private static int _pixelsRajola;
 
     public static void main(){
         launch(); //crida init+start
     }
 
-    /*@Override
-    public void init(){
-        super.init();
-    }
-    */
     @Override
     public void start(Stage primaryStage){
         crearEscenaPrincipal();
@@ -87,13 +87,13 @@ public class PartidaGrafica extends Application{
         }
         root.setBottom(botoInferior("Cancelar"));
 
-        root.setCenter(prepararCentre());
+        root.setCenter(prepararCentre(opcio));
 
         escenaSec = new Scene(root, 600d,500d);
 
     }
 
-    private Node prepararCentre() {
+    private Node prepararCentre(int opcio) {
         TextField nomFitxer = new TextField();
         nomFitxer.setPromptText("Ex: nomFitxer.json");
         Label lbl = new Label("Nom fitxer:");
@@ -104,6 +104,10 @@ public class PartidaGrafica extends Application{
         VBox vb = new VBox(10);
         Button subBtn = new Button("Submit");
         Button rmvBtn = new Button("Cancelar");
+        ChoiceBox cb = new ChoiceBox();
+        cb.getItems().addAll(0,1,2);
+        vb.getChildren().add(hb);
+        if(opcio==1){ vb.getChildren().add(cb); }
         subBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -112,8 +116,17 @@ public class PartidaGrafica extends Application{
                 if(s.isEmpty() || s == null){
                     missatge.setText("Entre un fitxer vàlid");
                 }
+                else if(opcio == 1 && cb.getValue()==null){
+                    missatge.setText("Entre un nombre de jugadors");
+                }
                 else{
-                    System.out.println(nomFitxer.getText());
+                    if(opcio == 1){
+                        _partida = new Partida(s, (int) cb.getValue());
+                    }
+                    else{
+                        _partida = new Partida(s);
+                    }
+                    crearEscenaPartida();
                 }
             }
         });
@@ -124,7 +137,7 @@ public class PartidaGrafica extends Application{
             }
         });
 
-        vb.getChildren().addAll(hb,subBtn, missatge);
+        vb.getChildren().addAll(subBtn, missatge);
         vb.setAlignment(Pos.CENTER);
         return vb;
     }
@@ -157,4 +170,9 @@ public class PartidaGrafica extends Application{
 
         return root;
     }
+
+    private static void crearEscenaPartida(){
+
+    }
+
 }

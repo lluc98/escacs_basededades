@@ -18,10 +18,19 @@ public abstract class PartidaText {
                 opcio = null;
             }
         }
-        if(opcio == "Començar"){System.out.println("Entra el fitxer de regles: (nomFitxer.json)"); }
-        else{System.out.println("Entra el fitxer de la partida que vols carregar:");}
-        String nomFitxer = teclat.nextLine();
-        _partida = new Partida(nomFitxer); //un metode que carrega el fitxer.
+        if(opcio.equals("Començar")){
+            System.out.println("Entra el fitxer de regles: (nomFitxer.json)");
+            String nomFitxer = teclat.nextLine();
+            int nJug = 0;
+            System.out.println("Entre el nombre de jugadors reals (0, 1, 2)");
+            nJug = teclat.nextInt();
+            _partida = new Partida(nomFitxer, nJug);
+        }
+        else{
+            System.out.println("Entra el fitxer de la partida que vols carregar:");
+            String nomFitxer = teclat.nextLine();
+            _partida = new Partida(nomFitxer); //un metode que carrega el fitxer.
+        }
         jugar();
     }
 
@@ -31,12 +40,15 @@ public abstract class PartidaText {
         String colorTorn = _partida.getProperTorn();
         String posInici = null; //encara que es digui posInici, potser hi ha "taules" o "rendirse"
         String posFinal = null;
-        String res = null;
+        String res = "";
+        System.out.println("Comencen les " + colorTorn);
         do{
+            System.out.println("Torn del jugador de peces " + colorTorn);
+            //_partida.mostrarTaulell();
             if(res.equals("taules")){
-                System.out.println("Acceptes les taules? (Si/No)");
                 boolean correcte = false;
                 do {
+                    System.out.println("Acceptes les taules? (Si/No)");
                     posInici = teclat.nextLine();
                     if(posInici.equals("Si") || posInici.equals("No")){ correcte = true; }
                 }while(!correcte);
@@ -44,27 +56,34 @@ public abstract class PartidaText {
                     //_partida.taules();
                     continuar = false;
                 }
+                res = "";
             }else{
+                System.out.println("Entra el que vols fer. (Rendirse/Taules/Ajornar/(o escrius la posició de la peça que vols moure");
                 posInici = llegirPosicioInici();
                 if(posInici.equals("Rendirse")){
                     System.out.println("El jugador amb les peces " + colorTorn + " es rendeix");
                     continuar = false;
                     //_partida.rendirse();
                 }else if(posInici.equals("Taules")){
+                    System.out.println("El jugador amb les peces " + colorTorn + " demana taules");
                     res = "taules";
                 }else if(posInici.equals("Ajornar")){
-                    //res = _partida.ajornar();
+                    System.out.println("El jugador amb les peces " + colorTorn + " ajorna la partida");
+                    continuar = false;
+                    //_partida.ajornar();
                 }else{
+                    System.out.println("Pots moure aquesta peça, a on la vols moure? O escriu " + "no" + " si prefereixes moure una altre peça");
                     posInici = posInici+ " ";
                     posFinal = llegirPosicioDesti();
-                    //res = _partida.ferTirada(posInici+posInici);
+                    if(!posFinal.equals("no")){
+                        res = _partida.ferTirada(posInici+posInici);
+                        processarMissatge(res);
+                    }
                 }
-
-                processarMissatge(res);
             }
             if(res.equals("Tirada feta")){
-                //colorTorn = _partida.canviarTorn();
-                //_partida.mostrarTaulell();
+                colorTorn = _partida.canviarTorn();
+                res = "";
             }
         }while(continuar);
     }
@@ -103,6 +122,8 @@ public abstract class PartidaText {
             }else if(s.equals("  ")){ //ha entrat una posició
                 correcte = posicioCorrecte(s);
                 res = res + s;
+            }else if(s.equals("no")){
+                return s;
             }
         } while(!correcte);
         return res;
@@ -110,17 +131,17 @@ public abstract class PartidaText {
 
     private static boolean posicioCorrecte(String s){
         boolean correcte = false;
-        /*String res = _partida.posCorrecte(s);
+        String res = _partida.posCorrecte(s);
         if(res.equals("NO")){ //no es una posicio
-
+            System.out.println("El que has entrat no és una posició");
         }else if(res.equals("Posició invàlida")) { //posicio sense peça
-
+            System.out.println("La posició que has entrat no té cap peça");
         }else if(res.equals("Posició amb una peça")){ //la peça no es del teu color
-
+            System.out.println("La peça que hi ha en aquesta posició no és del teu color");
         }
         else{
             correcte = true;
-        }*/
+        }
         return correcte;
     }
 }

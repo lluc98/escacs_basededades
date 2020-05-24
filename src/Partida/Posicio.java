@@ -18,6 +18,7 @@ public class Posicio implements Comparable<Posicio>{
         _columna = columna;
         fila = fila + 64;
         char letra = (char)(fila);
+        letra = Character.toLowerCase(letra);
         _posicio = String.valueOf(letra);
         _posicio = _posicio+columna;
     }

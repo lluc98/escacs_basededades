@@ -54,7 +54,8 @@ public class TipusPeca {
         _invulnerabilitat = invulnerabilitat;
         _llistaMoviments = listMov;
         _llistaMovimentsInicials = listIini;
-        _llistaEnrocs = null;
+        _llistaEnrocs = new ArrayList<>();
+
 
 
     }

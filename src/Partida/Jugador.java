@@ -1,7 +1,13 @@
 package Partida;
 public class Jugador {
 
+
     boolean _equip;
+
+    public boolean get_equip() {
+        return _equip;
+    }
+
     Jugador(boolean equip){
         _equip = equip;
     }

@@ -29,6 +29,17 @@ public class Taulell {
         _eliminats = new Vector<>();
     }
 
+    public void constru(int c, int f){
+        _fila = f;
+        _columna = c;
+        n_peces = 2;
+        nTorns = 1;
+        if(_columna < 4 || _columna > 16 || _fila <4 || _fila > 16)
+            throw new RuntimeException("Error en el parametres");
+        _tauler = new TreeMap<>();
+        _eliminats = new Vector<>();
+    }
+
     public void afegirPeca(Peca b, Peca n){
         if(n_peces < (_fila*_columna)-_columna) {
             int x, y, y2;
@@ -44,8 +55,8 @@ public class Taulell {
                 }
                 y2 = _fila - (y - 1);
             }
-            Posicio p = new Posicio(x, y);
-            Posicio p2 = new Posicio(x, y2);
+            Posicio p = new Posicio(y, x);
+            Posicio p2 = new Posicio(y2, x);
             _tauler.put(p, b);
             _tauler.put(p2, n);
             n_peces = n_peces + 2;
@@ -300,17 +311,17 @@ public class Taulell {
         _tauler.remove(t.get_desti());
     }
 
-    public String toString() {
+    public String mostra() {
         String s = "";
-        for(int i = 0; i<_fila; i++){
-            for(int j=0; i< _columna; j++){
+        for(int i = 1; i<=_fila; i++){
+            for(int j=0; j< _columna; j++){
                 s = s + " " + "-";
             }
 
             s = s + "\n";
+            s = s + "|";
+            for(int j=1; j<= _columna; j++){
 
-            for(int j=0; i< _columna; j++){
-                s = s + "|";
                 Posicio p = new Posicio(i,j);
                 if(contePeçaCasella(p)){
                     s = s + _tauler.get(p).toString();
@@ -321,13 +332,13 @@ public class Taulell {
                 s = s + "|";
             }
             s = s + "\n";
-            for(int j=0; i< _columna; j++){
-                s = s + " " + "-";
-            }
 
-            s = s + "\n";
+        }
+        for(int j=0; j< _columna; j++){
+            s = s + " " + "-";
         }
 
+        s = s + "\n";
         return s;
     }
 

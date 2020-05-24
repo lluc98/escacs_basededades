@@ -6,12 +6,11 @@ public class Jugador {
         _equip = equip;
     }
 
-    public int ferTirada(Taulell taulell, Posicio origen, Posicio desti, Historial h){
+    public int ferTirada(Taulell taulell, Posicio origen, Posicio desti){ //0 si tirada no valida, 1 tirada valida, res>1 tirada valida i hi ha morts
         int res = 0;
         TiradaSimple t = new TiradaSimple(origen, desti, _equip);
         if(taulell.tiradaValida(t)){
             res= res + taulell.realitzarTirada(t);
-            //h.guardar
         }
 
         return res;

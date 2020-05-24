@@ -1,20 +1,20 @@
 package Partida;
 public class Jugador {
-    private String _nom;
-    boolean _equip;
 
-    Jugador(String nom, boolean equip){
-        _nom = nom;
+    boolean _equip;
+    Jugador(boolean equip){
         _equip = equip;
     }
 
-    public boolean ferTirada(Taulell taulell, Posicio origen, Posicio desti){
+    public int ferTirada(Taulell taulell, Posicio origen, Posicio desti, Historial h){
+        int res = 0;
         TiradaSimple t = new TiradaSimple(origen, desti, _equip);
         if(taulell.tiradaValida(t)){
-            taulell.realitzarTirada(t);
-            return true;
+            res= res + taulell.realitzarTirada(t);
+            //h.guardar
         }
-        else return false;
+
+        return res;
     }
 
     public boolean observarPromocio(Posicio desti, Taulell taulell){
@@ -28,6 +28,8 @@ public class Jugador {
     public boolean ObservarJaque(Taulell taulell){
         return taulell.hihaJaque(_equip);
     }
+
+    public boolean ShaProvocatJaque(Taulell taulell){ return taulell.hihaJaque(!_equip); }
 
 
     public boolean ferEnrroc(Taulell taulell, Posicio p1, Posicio p2){

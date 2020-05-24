@@ -1,27 +1,32 @@
 package Partida;
 
 import com.sun.corba.se.spi.activation.RepositoryOperations;
+import javafx.geometry.Pos;
 
 import java.util.Map;
 import java.util.SortedMap;
 import java.util.TreeMap;
 import java.util.Iterator;
+import java.util.Vector;
 
 public class Taulell {
 
     private int _fila;
     private int _columna;
     private SortedMap<Posicio, Peca> _tauler;
+    private Vector<TreeMap<Posicio, Peca>> _eliminats;
     private int n_peces;
+    private int nTorns;
 
     public Taulell(int c, int f){
         _fila = f;
         _columna = c;
         n_peces = 0;
+        nTorns = 1;
         if(_columna < 4 || _columna > 16 || _fila <4 || _fila > 16)
             throw new RuntimeException("Error en el parametres");
         _tauler = new TreeMap<>();
-
+        _eliminats = new Vector<>();
     }
 
     public void afegirPeca(Peca b, Peca n){
@@ -163,25 +168,38 @@ public class Taulell {
         return false;
     }
 
-    public void realitzarTirada(TiradaSimple t){
+    public int realitzarTirada(TiradaSimple t){
+        TreeMap<Posicio,Peca> eli = new TreeMap<>();
+        int res = 0;
         Peca p = _tauler.get(t.get_origen());
+        Peca d = _tauler.get(t.get_desti());
+        if(d!=null){
+            res = 1;
+            eli.put(t.get_desti(),d);
+        }
         if(t.get_volar() == 2){
-            eliminarPecesEntremig(t);
+            res = res + eliminarPecesEntremig(t, eli);
         }
         _tauler.put(t.get_desti(),p);
         _tauler.remove(t.get_origen());
         p.primerMovFet();
+        _eliminats.add(nTorns,eli);
+        nTorns ++;
+        return  res;
     }
 
-    private void eliminarPecesEntremig(TiradaSimple t){
-        int x, y;
+    private int eliminarPecesEntremig(TiradaSimple t, TreeMap<Posicio, Peca> eli){
+        int x, y, res;
         x = 0;
         y = 0;
+        res = 0;
         while(x!= t.get_desplaçamentX() && y!= t.get_desplacamentY()) {
             Posicio pos = new Posicio(x, y);
             Peca pec = _tauler.get(pos);
             if (pec != null) {
+                eli.put(pos,pec);
                 _tauler.remove(pos);
+                res++;
             }
             if (x != t.get_desplaçamentX()) {
                 if (t.get_desplaçamentX() > 0) {
@@ -199,6 +217,7 @@ public class Taulell {
                 }
             }
         }
+        return res;
     }
 
     public Posicio buscaRei(boolean equip){
@@ -259,6 +278,53 @@ public class Taulell {
 
     public void realitzarPromocio(Posicio pos, Peca pec){
         _tauler.put(pos,pec);
+    }
+
+    public void desferTirada(TiradaSimple t){
+        nTorns--;
+        TreeMap<Posicio,Peca> eli = _eliminats.get(nTorns);
+        Iterator<Map.Entry<Posicio, Peca>> it = eli.entrySet().iterator();
+        while(it.hasNext()) { //fico les peces mortes (si hi havia) de la tirada anterior
+
+            Map.Entry<Posicio, Peca> entry = it.next();
+            Posicio pos = entry.getKey();
+            Peca peca = entry.getValue();
+            assignarPecaTauler(peca,pos);
+        }
+        Peca p = _tauler.get(t.get_desti());
+        _tauler.put(t.get_origen(),p);
+        _tauler.remove(t.get_desti());
+    }
+
+    public String toString() {
+        String s = "";
+        for(int i = 0; i<_fila; i++){
+            for(int j=0; i< _columna; j++){
+                s = s + " " + "-";
+            }
+
+            s = s + "\n";
+
+            for(int j=0; i< _columna; j++){
+                s = s + "|";
+                Posicio p = new Posicio(i,j);
+                if(contePeçaCasella(p)){
+                    s = s + _tauler.get(p).toString();
+                }
+                else{
+                    s = s + " ";
+                }
+                s = s + "|";
+            }
+            s = s + "\n";
+            for(int j=0; i< _columna; j++){
+                s = s + " " + "-";
+            }
+
+            s = s + "\n";
+        }
+
+        return s;
     }
 
 }

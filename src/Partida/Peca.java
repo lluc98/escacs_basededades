@@ -84,4 +84,18 @@ public class Peca {
     public  boolean esInvulnerable(){ return _tipus.get_invulnerabilitat();}
 
     public TipusPeca get_tipus() { return _tipus; }
+
+    public String toString(){
+        String s = "";
+        String p = _tipus.get_simbol();
+        char c = p.charAt(0);
+        if(_equip == false){
+            c = Character.toLowerCase(c);
+        }
+
+        s = s + c;
+
+        return s;
+
+    }
 }

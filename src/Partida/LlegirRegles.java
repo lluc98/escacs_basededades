@@ -10,8 +10,38 @@ import java.util.ArrayList;
 import java.util.TreeMap;
 
 public class LlegirRegles {
+    TreeMap<String, TipusPeca> conjuntPeces = new TreeMap<String, TipusPeca>();
+    Taulell taulell = new Taulell(9,9);
+    int limitEscacsSeguits = 0;
+    int limitTornsInaccio = 0;
+    String resultatFinal = "";
+    String properTorn = "BLANQUES";
 
-    public static void llegirRegles(String path, TreeMap<String, TipusPeca> conjuntPeces, Taulell taulell, int limitEscacsSeguits, int limitTornsInaccio ) {
+    public TreeMap<String, TipusPeca> getConjuntPeces() {
+        return conjuntPeces;
+    }
+
+    public Taulell getTaulell() {
+        return taulell;
+    }
+
+    public int getLimitEscacsSeguits() {
+        return limitEscacsSeguits;
+    }
+
+    public int getLimitTornsInaccio() {
+        return limitTornsInaccio;
+    }
+
+    public String getResultatFinal() {
+        return resultatFinal;
+    }
+
+    public String getProperTorn() {
+        return properTorn;
+    }
+
+    public void llegirRegles(String path) {
         try {
             String contingut = new String((Files.readAllBytes((Paths.get(path)))));
             JSONObject regles = new JSONObject(contingut);
@@ -104,13 +134,13 @@ public class LlegirRegles {
         }
     }
 
-    public static void llegirPartidaAcabada (String path, TreeMap<String, TipusPeca> conjuntPeces, Taulell taulell, String properTorn, int limitEscacsSeguits, int limitTornsInaccio) {
+    public void llegirPartidaAcabada (String path) {
         try {
             String contingut = new String((Files.readAllBytes(Paths.get(path))));
             JSONObject partidaN =  new JSONObject(contingut);
             String pathRegles = partidaN.getString("fitxerRegles");
 
-            llegirRegles(pathRegles, conjuntPeces, taulell, limitEscacsSeguits, limitTornsInaccio);
+            llegirRegles(pathRegles);
 
             JSONArray posIniBlanques = partidaN.getJSONArray("posIniBlanques");
 
@@ -162,13 +192,13 @@ public class LlegirRegles {
         }
     }
 
-    public static void llegirPartidaComencada (String path, TreeMap<String, TipusPeca> conjuntPeces, Taulell taulell, String properTorn, int limitTornsInaccio, int limitEscacsSeguits ) {
+    public void llegirPartidaComencada (String path) {
         try {
             String contingut = new String((Files.readAllBytes(Paths.get(path))));
             JSONObject partidaN =  new JSONObject(contingut);
             String pathRegles = partidaN.getString("fitxerRegles");
 
-            llegirRegles(pathRegles, conjuntPeces, taulell, limitEscacsSeguits, limitTornsInaccio);
+            llegirRegles(pathRegles);
 
             JSONArray posIniBlanques = partidaN.getJSONArray("posIniBlanques");
 
@@ -214,7 +244,7 @@ public class LlegirRegles {
             }
 
             //Això ens diferencia de una partida que no esta acabada
-            String resultatFinal = partidaN.getString("resultat_final");
+            resultatFinal = partidaN.getString("resultat_final");
         } catch (IOException e) {
             e.printStackTrace();
         }

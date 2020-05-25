@@ -4,8 +4,6 @@ package Partida;
 import java.util.StringTokenizer;
 import java.util.TreeMap;
 
-import static Partida.LlegirRegles.llegirPartidaComencada;
-import static Partida.LlegirRegles.llegirRegles;
 
 
 public class Partida {
@@ -19,14 +17,24 @@ public class Partida {
     Jugador jugadorNegres = new Jugador (false);
     int nJugadors;
     Historial historial = new Historial();
+    LlegirRegles fitxerEntradaPartida = new LlegirRegles();
 
     public Partida (String fitxerPartida) {
         //Hauriem de posar condicions per a saber quina partida començarem
-        llegirPartidaComencada(fitxerPartida, conjuntPeces, taulell, properTorn, limitEscacsSeguits, limitTornsInaccio);
+        fitxerEntradaPartida.llegirPartidaComencada(fitxerPartida);
+        conjuntPeces = fitxerEntradaPartida.getConjuntPeces();
+        taulell = fitxerEntradaPartida.getTaulell();
+        properTorn = fitxerEntradaPartida.getProperTorn();
+        limitEscacsSeguits = fitxerEntradaPartida.getLimitEscacsSeguits();
+        limitTornsInaccio = fitxerEntradaPartida.getLimitTornsInaccio();
     }
 
     public Partida (String fitxerRegles, int jugadors) {
-        llegirRegles(fitxerRegles, conjuntPeces, taulell, limitEscacsSeguits, limitTornsInaccio);
+        fitxerEntradaPartida.llegirRegles(fitxerRegles);
+        conjuntPeces = fitxerEntradaPartida.getConjuntPeces();
+        taulell = fitxerEntradaPartida.getTaulell();
+        limitEscacsSeguits = fitxerEntradaPartida.getLimitEscacsSeguits();
+        limitTornsInaccio = fitxerEntradaPartida.getLimitTornsInaccio();
         properTorn = "BLANQUES";
         nJugadors= jugadors;
     }

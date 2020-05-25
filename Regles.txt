@@ -1,7 +1,6 @@
 {
   "nFiles": 8,
   "nCols": 8,
-  "Test": "abc",
   "peces": [
     {
       "nom": "REI",

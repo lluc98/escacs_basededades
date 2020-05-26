@@ -65,7 +65,6 @@ public abstract class PartidaText {
                     continuar = false;
                     //_partida.rendirse();
                 }else if(posInici.equals("Taules")){
-                    System.out.println("El jugador amb les peces " + colorTorn + " demana taules");
                     res = "taules";
                 }else if(posInici.equals("Ajornar")){
                     System.out.println("El jugador amb les peces " + colorTorn + " ajorna la partida");
@@ -77,13 +76,25 @@ public abstract class PartidaText {
                     posFinal = llegirPosicioDesti();
                     if(!posFinal.equals("no")){
                         res = _partida.ferTirada(posInici+posInici);
-                        processarMissatge(res);
+                    }
+                    else{
+                        System.out.println("Pots tornar a entrar la posició Inicial");
                     }
                 }
             }
-            if(res.equals("Tirada feta")){
+            if(res.equals("tirada vàlida")){
+                System.out.println(res);
                 colorTorn = _partida.canviarTorn();
                 res = "";
+            }else if(res.equals("taules")){
+                System.out.println("El jugador amb les peces " + colorTorn + " demana taules");
+                colorTorn = _partida.canviarTorn();
+            }else if(res.equals("return tirada vàlida i s'ha matat")){
+                System.out.println(res);
+            }else if(res.equals("no s'ha realitzat la tirada")){
+                System.out.println(res);
+            }else{
+                System.out.println("Alguna cosa ha sortit malament");
             }
         }while(continuar);
     }
@@ -114,19 +125,29 @@ public abstract class PartidaText {
     private static String llegirPosicioDesti(){
         boolean correcte = false;
         String s;
-        String res = "";
+        String res;
         Scanner teclat = new Scanner(System.in);
         do{
+            res = "";
+            System.out.println("Entra la següent posició. Si vols fer un enrroc entra ( '-' seguit de la posició)");
             s = teclat.nextLine();
-            if(s.equals("-")){ //vol dir que vol fer enroc
+            if(s.charAt(0) == '-'){ //vol dir que vol fer enroc
+                String array[] = s.split("-");
                 res = "- ";
-            }else if(s.equals("no")){
+                correcte = posicioCorrecte(array[1]); //comprovem que la posició sigui correcte.
+                if(!correcte){
+                    System.out.println("Entra una posició correcte");
+                }else{
+                    res = res + array[1];
+                }
+            }else if(s.contains("no")){ //fem contains per d'aquesta manera l'usuari pot entrar una string amb caràcters random, però si  conté "no", entra aqui
                 return s;
             }else{ //ha entrat una suposada posició
                 correcte = posicioCorrecte(s);
-                res = res + s;
                 if(!correcte){
                     System.out.println("Entra una posició correcte");
+                }else{
+                    res = res + s;
                 }
             }
         } while(!correcte);

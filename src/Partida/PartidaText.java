@@ -113,17 +113,21 @@ public abstract class PartidaText {
 
     private static String llegirPosicioDesti(){
         boolean correcte = false;
-        String s = null;
+        String s;
         String res = "";
         Scanner teclat = new Scanner(System.in);
         do{
+            s = teclat.nextLine();
             if(s.equals("-")){ //vol dir que vol fer enroc
                 res = "- ";
-            }else if(s.equals("  ")){ //ha entrat una posició
-                correcte = posicioCorrecte(s);
-                res = res + s;
             }else if(s.equals("no")){
                 return s;
+            }else{ //ha entrat una suposada posició
+                correcte = posicioCorrecte(s);
+                res = res + s;
+                if(!correcte){
+                    System.out.println("Entra una posició correcte");
+                }
             }
         } while(!correcte);
         return res;

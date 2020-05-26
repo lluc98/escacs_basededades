@@ -1,5 +1,7 @@
 package Partida;
 
+import javafx.event.EventHandler;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 
@@ -14,12 +16,36 @@ public class PecaGrafica extends StackPane {
         _fitxa = fitxa;
         _pixels = pixels;
         move(x,y);
-        Pane formaPeca = crearFitxa();
+        Pane formaPeca = crearFitxa(_pixels * 0.3d, _pixels * 0.3d);
+        getChildren().add(formaPeca);
+        setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                _mouseY = event.getSceneY();
+                _mouseX = event.getSceneX();
+            }
+        });
+        setOnMouseDragged(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                relocate(_oldX + event.getSceneX() - _mouseX, _oldY + event.getSceneY() - _mouseY);
+            }
+        });
     }
 
-    private static Pane crearFitxa(){
-        //String tipus = _fitxa.get_tipus().get;
-        return null;
+    private Pane crearFitxa(double ample, double alt){
+        boolean equip = _fitxa.get_equip();
+        String strImg;
+        if(equip){
+            strImg = _fitxa.get_tipus().get_imgBlanca();
+        }
+        else{
+            strImg = _fitxa.get_tipus().get_imgNegra();
+        }
+        Pane root = new Pane();
+        root.setStyle("-fx-background-image: url(" + "/Images/" + strImg + ");-fx-background-size: stretch;");
+        root.setPrefSize(ample, alt);
+        return root;
     }
 
     public void move(int x, int y){

@@ -17,7 +17,7 @@ public class Partida {
     Jugador jugadorNegres = new Jugador (false);
     int nJugadors;
     Historial historial = new Historial();
-    LlegirRegles fitxerEntradaPartida = new LlegirRegles();
+    LlegirFitxers fitxerEntradaPartida = new LlegirFitxers();
 
     public Partida (String fitxerPartida) {
         //Hauriem de posar condicions per a saber quina partida començarem
@@ -36,7 +36,7 @@ public class Partida {
         limitEscacsSeguits = fitxerEntradaPartida.getLimitEscacsSeguits();
         limitTornsInaccio = fitxerEntradaPartida.getLimitTornsInaccio();
         properTorn = "BLANQUES";
-        nJugadors= jugadors;
+        nJugadors = jugadors;
     }
 
     public String canviarTorn() {
@@ -49,7 +49,6 @@ public class Partida {
     }
 
     public String posCorrecte (String posicioIndefinida) {
-        boolean correcte = false;
         boolean colorTorn = "BLANQUES" == properTorn;
         Posicio p = new Posicio(posicioIndefinida);
 
@@ -105,6 +104,31 @@ public class Partida {
         return "Alguna cosa ha sortit malament";
     }
 
+    public void rendirse () {
+        if (properTorn == "BLANQUES") {
+            Historial.guardarPartida("NEGRES");
+        }
+        else {
+            Historial.guardarPartida("BLANQUES");
+        }
+    }
+
+    public void taules () {
+        Historial.guardarPartida("TAULES");
+    }
+
+    public void ajornar () {
+        Historial.guardarPartida("");
+    }
+
+    public void mostrarTaulell () {
+        System.out.println(taulell.mostra());
+    }
+
+    public Peca getPeca ( Posicio p) {
+        return taulell.getPeca(p);
+    }
+
     public Taulell getTaulell() {return taulell; }
 
     public String getProperTorn() { return properTorn; }
@@ -112,4 +136,8 @@ public class Partida {
     public int getLimitTornsInaccio() { return limitTornsInaccio; }
 
     public int getLimitEscacsSeguits () { return limitEscacsSeguits; }
+
+//   public int getFiles () { return taulell.getFiles(); }
+
+//   public int getColumnes () { return taulell.getColumnes(); }
 }

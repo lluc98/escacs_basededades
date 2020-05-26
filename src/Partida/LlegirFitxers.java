@@ -9,7 +9,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.TreeMap;
 
-public class LlegirRegles {
+public class LlegirFitxers {
     TreeMap<String, TipusPeca> conjuntPeces = new TreeMap<String, TipusPeca>();
     Taulell taulell = new Taulell(9,9);
     int limitEscacsSeguits = 0;
@@ -83,15 +83,15 @@ public class LlegirRegles {
                 JSONArray movimentsInicials = peca.getJSONArray("movimentsInicials");
 
                 for (int j=0; j<movimentsInicials.length(); j++){
-                    JSONArray moviment = moviments.getJSONArray(j);
+                    JSONArray moviment = movimentsInicials.getJSONArray(j);
                     String horitzontal = String.valueOf(moviment.get(0));
                     String vertical = String.valueOf(moviment.get(1));
                     int movMatar = moviment.getInt(2);
                     int movSaltar = moviment.getInt(3);
 
-                    Moviment m = new Moviment(horitzontal,vertical,movMatar,movSaltar);
+                    Moviment mIni = new Moviment(horitzontal,vertical,movMatar,movSaltar);
 
-                    movimentInicial.add(m);
+                    movimentInicial.add(mIni);
                 }
 
                 boolean promocio = peca.getBoolean("promocio");

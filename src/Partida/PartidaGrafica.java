@@ -21,7 +21,7 @@ import javafx.stage.Stage;
 
 public class PartidaGrafica extends Application{
 
-    private static Scene escenaPrincipal, escenaSec;
+    private static Scene escenaPrincipal, escenaSec, escenaPartida;
     private static Stage window; //aqui hi posarem el primaryStage, s'ha de fer per a l'hora de fer el canvi d'escena des d'un botó
     private static Partida _partida;
     private static Group _rajoles = new Group();
@@ -126,7 +126,8 @@ public class PartidaGrafica extends Application{
                     else{
                         _partida = new Partida(s);
                     }
-                    crearEscenaPartida();
+                    //crearEscenaPartida();
+                    window.setScene(escenaPartida);
                 }
             }
         });
@@ -170,9 +171,28 @@ public class PartidaGrafica extends Application{
 
         return root;
     }
-
+/*
     private static void crearEscenaPartida(){
-
+        int files = _partida.getFiles();
+        int columnes = _partida.getColumnes();
+        Rectangle2D r = Screen.getPrimary().getVisualBounds();
+        _pixelsRajola = Math.min((int)r.getHeight()/files, (int)r.getWidth()/columnes) - 10;
+        crearContEscPartida();
     }
 
+    private static void crearContEscPartida(){
+        //imatge de les rajoles
+
+        Pane root = new Pane();
+        root.setPrefSize(_partida.getColumnes() * _pixelsRajola, _partida.getFiles() * _pixelsRajola);
+        root.getChildren().addAll(_rajoles, _fitxes);
+        for(int i = 0; i < _partida.getFiles(); i++){
+            for(int j = 0; j < _partida.getColumnes(); j++){
+                Rajola rajola = new Rajola(img, _pixelsRajola);
+                rajola.setX(j * _pixelsRajola);
+                rajola.setY(i * _pixelsRajola);
+            }
+        }
+    }
+*/
 }

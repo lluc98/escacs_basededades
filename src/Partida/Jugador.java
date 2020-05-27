@@ -19,6 +19,8 @@ public class Jugador {
             res= res + taulell.realitzarTirada(t);
         }
 
+        taulell.reiniciaTiradesRefer();
+
         return res;
     }
 
@@ -30,18 +32,9 @@ public class Jugador {
         taulell.realitzarPromocio(posicio, p);
     }
 
-    public int ObservarJaque(Taulell taulell){ //res == 1 retorna jaque, res == 2 retorna jaque mate, res == 0 retorna no hi ha res
-        int res = 0;
+    public boolean ObservarJaque(Taulell taulell){ //res == 1 retorna jaque, res == 2 retorna jaque mate, res == 0 retorna no hi ha res
         TiradaSimple t = taulell.hihaJaque(_equip);
-        if(t != null){
-            if(taulell.hiHaJaqueMate(t)){
-                res = 2;
-            }
-            else{
-                res = 1;
-            }
-        }
-        return res;
+        return  t != null;
     }
 
     public boolean ShaProvocatJaque(Taulell taulell){

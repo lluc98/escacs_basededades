@@ -14,6 +14,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -177,13 +178,15 @@ public class PartidaGrafica extends Application{
 
     private static void crearEscenaPartida(){
         BorderPane root = new BorderPane();
-        root.setId("1");
-        //int files = _partida.getFiles();
-        //int columnes = _partida.getColumnes();
+        int files = _partida.getFiles();
+        int columnes = _partida.getColumnes();
         Rectangle2D r = Screen.getPrimary().getVisualBounds();
-       // _pixelsRajola = Math.min((int)r.getHeight()/files, (int)r.getWidth()/columnes) - 10;
-        //root.setCenter(crearContingutPartida(root));
+        _pixelsRajola = Math.min((int)r.getHeight()/files, (int)r.getWidth()/columnes) - 10;
+        System.out.println((int)r.getHeight()-10);
+        System.out.println((int)r.getHeight()-10);
+        root.setCenter(crearContingutPartida(root));
         root.setRight(crearOpcions(root));
+        escenaPartida = new Scene(root);
     }
 
     private static Node crearOpcions(BorderPane p){
@@ -214,7 +217,7 @@ public class PartidaGrafica extends Application{
         postpone.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                //_partida.ajornar();
+                _partida.ajornar();
                 VBox root = new VBox();
                 Label accept = new Label("El jugador " + _partida.getProperTorn() + " ha ajornat la partida.");
                 Label gg = new Label("Fins la pròxima");
@@ -275,28 +278,30 @@ public class PartidaGrafica extends Application{
         return root;
     }
 
-/*
-    private static Node crearContingutPartida(BorderPane p){
-        //imatge de les rajoles
 
+    private static Node crearContingutPartida(BorderPane p){
+        Image img;
+        img = new Image("/Images/fons.png");
         Pane root = new Pane();
         root.setPrefSize(_partida.getColumnes() * _pixelsRajola, _partida.getFiles() * _pixelsRajola);
         root.getChildren().addAll(_rajoles, _fitxes);
-        for(int i = 0; i < _partida.getFiles(); i++){
-            for(int j = 0; j < _partida.getColumnes(); j++){
+        for(int i = 0; i < _partida.getFiles(); ++i){
+            for(int j = 0; j < _partida.getColumnes(); ++j){
                 Rajola rajola = new Rajola(img, _pixelsRajola);
                 rajola.setX(j * _pixelsRajola);
                 rajola.setY(i * _pixelsRajola);
+                System.out.println(rajola.getX());
+                System.out.println(rajola.getY());
                 _rajoles.getChildren().add(rajola);
-                Peca f = _partida.getPeca(new Posicio(i, j));
+                Peca f = _partida.getPeca(new Posicio(i+1, j+1));
                 if(f!=null){
-                    PecaGrafica pGraf = crearFitxa(f, i, j, p);
+                    PecaGrafica pGraf = crearFitxa(f, j, i, p);
                     _fitxes.getChildren().add(pGraf);
                 }
             }
         }
         return root;
-    }*/
+    }
 
     private static PecaGrafica crearFitxa(Peca f, int i, int j,BorderPane pane){
         PecaGrafica p = new PecaGrafica(f, _pixelsRajola, i, j);
@@ -305,19 +310,21 @@ public class PartidaGrafica extends Application{
             public void handle(MouseEvent event) {
                 int newX = posTauler(p.getLayoutX());
                 int newY = posTauler(p.getLayoutY());
-                String mov = "";
-                mov = mov + newX + newY + " ";
+                String mov = null;
                 int oldX = posTauler(p.get_oldX());
                 int oldY = posTauler(p.get_oldY());
-                mov = mov + oldX + oldY;
+                StringBuilder s = new StringBuilder();
+                mov = s.append((char)(97+oldX)).append(oldY+1).append(' ').append((char)(97 + newX)).append(newY+1).toString();
                 String res = _partida.ferTirada(mov);
                 if(res.equals("return tirada vàlida i s'ha matat")){ //ha matat la peça que hi havia anteriorment a aquesta posició
                     eliminarPeca(new Posicio(newX, newY));
+                    p.move(newX, newY);
                     passarTorn(pane);
                 }else if(res.equals("tirada vàlida")){ //la tirada s'ha fet a nivell lògic, ara a gràfic
+                    p.move(newX, newY);
                     passarTorn(pane);
                 }else if(res.equals("no s'ha realitzat la tirada")){
-
+                    p.abortMove();
                 }else{
                     p.abortMove();
                 }
@@ -325,7 +332,7 @@ public class PartidaGrafica extends Application{
             }
         });
 
-        return null;
+        return p;
     }
 
     private static void passarTorn(BorderPane p){
@@ -343,6 +350,7 @@ public class PartidaGrafica extends Application{
                 break;
             }
         }
+        pg.setVisible(false);
         _fitxes.getChildren().remove(pg);
     }
 

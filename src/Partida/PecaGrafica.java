@@ -1,8 +1,8 @@
 package Partida;
 
 import javafx.event.EventHandler;
+import javafx.geometry.Pos;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 
 public class PecaGrafica extends StackPane {
@@ -16,8 +16,9 @@ public class PecaGrafica extends StackPane {
         _fitxa = fitxa;
         _pixels = pixels;
         move(x,y);
-        Pane formaPeca = crearFitxa(_pixels * 0.3d, _pixels * 0.3d);
+        StackPane formaPeca = crearFitxa(_pixels*0.6, _pixels*0.6);
         getChildren().add(formaPeca);
+        setAlignment(Pos.CENTER);
         setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -33,18 +34,20 @@ public class PecaGrafica extends StackPane {
         });
     }
 
-    private Pane crearFitxa(double ample, double alt){
+    private StackPane crearFitxa(double ample, double alt) {
         boolean equip = _fitxa.get_equip();
-        String strImg;
+        String strImg = "/Images/";
         if(equip){
-            strImg = _fitxa.get_tipus().get_imgBlanca();
+            strImg = strImg + _fitxa.get_tipus().get_imgBlanca();
         }
         else{
-            strImg = _fitxa.get_tipus().get_imgNegra();
+            strImg = strImg +  _fitxa.get_tipus().get_imgNegra();
         }
-        Pane root = new Pane();
-        root.setStyle("-fx-background-image: url(" + "/Images/" + strImg + ");-fx-background-size: stretch;");
+        StackPane root = new StackPane();
         root.setPrefSize(ample, alt);
+        root.setStyle("-fx-background-image: url(" + strImg + ");-fx-background-size: stretch;");
+        root.setTranslateX(_pixels * 0.19);
+        root.setTranslateY(_pixels * 0.19);
         return root;
     }
 
@@ -68,6 +71,14 @@ public class PecaGrafica extends StackPane {
 
     public double get_oldY(){
         return _oldY;
+    }
+
+    public void setOldX(int x){
+        _oldX = x;
+    }
+
+    public void setOldY(int y){
+        _oldY = y;
     }
 
 

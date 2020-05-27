@@ -321,7 +321,7 @@ public class Taulell {
         _tauler.put(pos,pec);
     }
 
-    public void desferTirada(TiradaSimple t){
+    public void desferTirada(TiradaSimple t) {
         nTorns--;
         TreeMap<Posicio,Peca> eli = _eliminats.get(nTorns);
         Iterator<Map.Entry<Posicio, Peca>> it = eli.entrySet().iterator();
@@ -342,9 +342,10 @@ public class Taulell {
         _tiradesRefer = new ArrayList<>();
     }
 
-    public void referTirada(){
+    public TiradaSimple referTirada(){
         TiradaSimple t = _tiradesRefer.get(0);
         realitzarTirada(t);
+        return t;
     }
 
 

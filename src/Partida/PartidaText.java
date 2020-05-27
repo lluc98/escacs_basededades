@@ -43,11 +43,10 @@ public abstract class PartidaText {
         String res = "";
         System.out.println("Comencen les " + colorTorn);
         do{
-            System.out.println("Torn del jugador de peces " + colorTorn);
             _partida.mostrarTaulell();
             if(res.equals("taules")){
                 boolean correcte = false;
-                do {
+                do{
                     System.out.println("Acceptes les taules? (Si/No)");
                     posInici = teclat.nextLine();
                     if(posInici.equals("Si") || posInici.equals("No")){ correcte = true; }
@@ -57,50 +56,103 @@ public abstract class PartidaText {
                     continuar = false;
                 }
                 res = "";
-            }else{
-                System.out.println("Entra el que vols fer. (Rendirse/Taules/Ajornar/(o escrius la posició de la peça que vols moure");
-                posInici = llegirPosicioInici();
-                if(posInici.equals("Rendirse")){
-                    System.out.println("El jugador amb les peces " + colorTorn + " es rendeix");
-                    continuar = false;
-                    _partida.rendirse();
-                }else if(posInici.equals("Taules")){
-                    res = "taules";
-                }else if(posInici.equals("Ajornar")){
-                    System.out.println("El jugador amb les peces " + colorTorn + " ajorna la partida");
-                    continuar = false;
-                    _partida.ajornar();
+            }else if(res.equalsIgnoreCase("promocio")){
+                String s = teclat.nextLine();
+                if(s.equalsIgnoreCase("si")){
+                    System.out.println("Per quina peça vols fer");
+                    String peca = teclat.nextLine();
+                    do{
+                        //res = _partida.ferPromocio(posInici+posFinal, peca);
+                        if(res.equalsIgnoreCase("no valid")){
+                            System.out.println("Peça no vàlida, entra'n una de vàlida");
+                        }
+                    }while(!res.equalsIgnoreCase("feta"));
+                    res = "si promocio";
                 }else{
-                    System.out.println("Pots moure aquesta peça, a on la vols moure? O escriu " + "no" + " si prefereixes moure una altre peça");
+                    res = "no promocio";
+                }
+
+            }else{
+                System.out.println("Torn del jugador de peces " + colorTorn);
+                System.out.println("Entra el que vols fer. (Rendirse/Taules/Ajornar/Desfer/Refer/(o escrius la posició de la peça que vols moure");
+                posInici = llegirPosicioInici();
+                if(posInici.equalsIgnoreCase("Rendirse")){
+                    continuar = false;
+                    res = "rendirse";
+                }else if(posInici.equalsIgnoreCase("Taules")){
+                    res = "taules";
+                }else if(posInici.equalsIgnoreCase("Ajornar")){
+                    continuar = false;
+                    res = "ajornar";
+                }else if(posInici.equalsIgnoreCase("desfer")){
+                    //_partida.desfer();
+                    res = "desfer fet";
+                }else if(posInici.equalsIgnoreCase("refer")){
+                    //_partida.refer();
+                    res = "refer fet";
+                }
+                else{
+                    System.out.println("Pots moure aquesta peça, a on la vols moure? O escriu 'no' si prefereixes moure una altre peça");
                     posInici = posInici+ " ";
                     posFinal = llegirPosicioDesti();
-                    if(!posFinal.equals("no")){
-                        res = _partida.ferTirada(posInici+posInici);
-                    }
-                    else{
+                    String[] tokens = posFinal.split(" ");
+                    if(tokens.length > 1){
+                        if(tokens[0].equalsIgnoreCase("correcte")) {
+                            res = _partida.ferTirada(posInici + tokens[1]);
+                        }else if(tokens[0].equalsIgnoreCase("enroc")){
+                            System.out.println("Segur que vols fer aquest enroc?");
+                            String s = teclat.nextLine();
+                            if(s.equalsIgnoreCase("si")){
+                                res = _partida.ferTirada(posInici + "- " + tokens[1]);
+                            }else if(s.equalsIgnoreCase("no")){
+                                res = "no enroc";
+                            }
+                        }else{
+                            System.out.println("Fail");
+                            System.exit(-1);
+                        }
+                    }else{//si entra aqui sabem segur que ha retornat "no", per tant, que no vol moure la peça que ha dit
                         System.out.println("Pots tornar a entrar la posició Inicial");
                     }
                 }
             }
-            if(res.equals("tirada vàlida")){
-                System.out.println(res);
-                colorTorn = _partida.canviarTorn();
-                res = "";
-            }else if(res.equals("taules")){
-                System.out.println("El jugador amb les peces " + colorTorn + " demana taules");
-                colorTorn = _partida.canviarTorn();
-            }else if(res.equals("return tirada vàlida i s'ha matat")){
-                System.out.println(res);
-            }else if(res.equals("no s'ha realitzat la tirada")){
-                System.out.println(res);
-            }
+
+            processarRes(res, colorTorn);
+
         }while(continuar);
     }
 
-    private static void processarMissatge(String s){
-        //mirar el que retorna "ferTirada"
-        //Podria ser que el moviment fos invalid ...................
-
+    private static void processarRes(String res, String colorTorn){
+        if(res.equals("tirada vàlida") || res.equalsIgnoreCase("return tirada vàlida i s'ha matat")){
+            System.out.println(res);
+            colorTorn = _partida.canviarTorn();
+            res = "";
+        }else if(res.equals("taules")){
+            System.out.println("El jugador amb les peces " + colorTorn + " demana taules");
+            colorTorn = _partida.canviarTorn();
+        }else if(res.equals("return tirada vàlida i s'ha matat")){
+            System.out.println(res);
+        }else if(res.equals("no s'ha realitzat la tirada")){
+            System.out.println(res);
+        }else if(res.equalsIgnoreCase("desfer fet")){
+            System.out.println(res);
+        }else if(res.equalsIgnoreCase("refer fet")){
+            System.out.println(res);
+        }else if(res.equalsIgnoreCase("promocio")){
+            System.out.println("Vols fer promoció d'alguna peça?");
+        }else if(res.equalsIgnoreCase("no promocio")){
+            System.out.println("No has volgut fer la promoció, canvi de torn");
+        }else if(res.equalsIgnoreCase("si promocio")){
+            System.out.println("Has fet la promoció!");
+        }else if(res.equalsIgnoreCase("ajornar")){
+            System.out.println("El jugador amb les peces " + colorTorn + " ajorna la partida");
+            _partida.ajornar();
+        }else if(res.equalsIgnoreCase("rendirse")){
+            System.out.println("El jugador amb les peces " + colorTorn + " es rendeix");
+            _partida.rendirse();
+        }else if(res.equalsIgnoreCase("no enroc")){
+            System.out.println("No has volgut fer l'enroc");
+        }
     }
 
     private static String llegirPosicioInici(){
@@ -110,12 +162,12 @@ public abstract class PartidaText {
         do{
             System.out.println("Entra una posició amb una peça del teu equip");
             s = teclat.nextLine();
-            if(s.equalsIgnoreCase("Rendirse") || s.equalsIgnoreCase("Taules") || s.equalsIgnoreCase("Ajornar")){
+            if(s.equalsIgnoreCase("Rendirse") || s.equalsIgnoreCase("Taules") || s.equalsIgnoreCase("Ajornar") || s.equalsIgnoreCase("desfer") || s.equalsIgnoreCase("refer")){
                 return s;
             }
             else{
                 //si entra aqui vol dir que ha entrat una posicio o aixo creiem
-                correcte = posicioCorrecte(s);
+                correcte = posicioCorrecteOrigen(s);
                 if(!correcte){
                     System.out.println("Entra una posició correcte");
                 }
@@ -125,25 +177,25 @@ public abstract class PartidaText {
     }
 
     private static String llegirPosicioDesti(){
-        boolean correcte = false;
+        String correcte = "";
         String s;
         Scanner teclat = new Scanner(System.in);
         do{
-            System.out.println("Entra la següent posició. Si vols fer un enrroc entra la posició on es troba la peça amb la que el vols fer");
+            System.out.println("Si vols fer un enrroc entra la posició on es troba la peça amb la que el vols fer");
             s = teclat.nextLine();
             if(s.contains("no")){ //fem contains per d'aquesta manera l'usuari pot entrar una string amb caràcters random, però si  conté "no", entra aqui
-                return s;
+                return "no";
             }else{ //ha entrat una suposada posició
-                correcte = posicioCorrecte(s);
-                if(!correcte){
+                correcte = posicioCorrecteDesti(s);
+                if(correcte.equalsIgnoreCase("no")){
                     System.out.println("Entra una posició correcte");
                 }
             }
-        } while(!correcte);
-        return s;
+        } while(correcte.equalsIgnoreCase("no"));
+        return correcte;
     }
 
-    private static boolean posicioCorrecte(String s){
+    private static boolean posicioCorrecteOrigen(String s){
         boolean correcte = false;
         String res = _partida.posCorrecte(s);
         if(res.equals("NO")){ //no es una posicio
@@ -155,6 +207,25 @@ public abstract class PartidaText {
         }
         else{
             correcte = true;
+        }
+        return correcte;
+    }
+
+    private static String posicioCorrecteDesti(String s){
+        String correcte = "";
+        String res = _partida.posCorrecte(s);
+        if(res.equals("NO")){ //no es una posicio
+            System.out.println("El que has entrat no és una posició");
+            correcte = "no";
+        }else if(res.equals("Posició invàlida")) { //posicio sense peça
+            System.out.println("La posició que has entrat no té cap peça");
+            correcte = "no";
+        }else if(res.equals("Enroc")){ //la peça no es del teu color
+            correcte = res + s;
+        }
+        else{
+            System.out.println("Posició correcte");
+            correcte = res + s;
         }
         return correcte;
     }

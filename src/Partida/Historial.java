@@ -76,14 +76,18 @@ public class Historial {
         tirades.put(infoTirada);
     }
 
-    public static void getUltimaTirada(String torn, String origen, String desti, String resultat) {
+    public static TiradaSimple getUltimaTirada() {
         JSONArray tirades = partida.getJSONArray("tirades");
         JSONObject tirada = tirades.getJSONObject(tirades.length() - 1);
 
-        torn = tirada.getString("torn");
-        origen = tirada.getString("origen");
-        desti = tirada.getString("desti");
-        resultat = tirada.getString("resultat");
+        String torn = tirada.getString("torn");
+        String origen = tirada.getString("origen");
+        String desti = tirada.getString("desti");
+
+        boolean equip = torn == "BLANQUES";
+        Posicio o = new Posicio(origen);
+        Posicio d = new Posicio(desti);
+        return new TiradaSimple(o, d, equip);
     }
 
     public static void eliminarUltimaTirada() {

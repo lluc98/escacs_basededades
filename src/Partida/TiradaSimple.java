@@ -48,7 +48,7 @@ public class TiradaSimple {
     }
 
     public int get_desplacamentY(){
-        return get_desplacamentY();
+        return _desplacamentY;
     }
 
     public void canviarSigneDesplacament(){

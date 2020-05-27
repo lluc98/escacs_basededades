@@ -7,6 +7,11 @@ public class Peca {
     private boolean _primerMoviment;
     private boolean _equip;
 
+    public Peca(){
+        _primerMoviment = false;
+        _equip = false;
+    }
+
     public Peca(String s, boolean equip, TreeMap<String,TipusPeca> m){
         _tipus = m.get(s);
         if(_tipus != null){

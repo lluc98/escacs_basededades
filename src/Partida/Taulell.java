@@ -7,16 +7,16 @@ import java.util.Map;
 import java.util.SortedMap;
 import java.util.TreeMap;
 import java.util.Iterator;
-import java.util.Vector;
+
 
 public class Taulell {
 
     private int _fila;
     private int _columna;
     private SortedMap<Posicio, Peca> _tauler;
-    private Vector<TreeMap<Posicio, Peca>> _eliminats;
+    private TreeMap<Integer,TreeMap<Posicio, Peca>> _eliminats;
     private int n_peces;
-    private int nTorns;
+    private Integer nTorns;
 
     public Taulell(int c, int f){
         _fila = f;
@@ -26,18 +26,18 @@ public class Taulell {
         if(_columna < 4 || _columna > 16 || _fila <4 || _fila > 16)
             throw new RuntimeException("Error en el parametres");
         _tauler = new TreeMap<>();
-        _eliminats = new Vector<>();
+        _eliminats = new TreeMap<>();
     }
 
-    public void constru(int c, int f){
-        _fila = f;
-        _columna = c;
-        n_peces = 2;
-        nTorns = 1;
-        if(_columna < 4 || _columna > 16 || _fila <4 || _fila > 16)
-            throw new RuntimeException("Error en el parametres");
-        _tauler = new TreeMap<>();
-        _eliminats = new Vector<>();
+
+    public int get_fila() {
+        return _fila;
+    }
+
+
+
+    public int get_columna() {
+        return _columna;
     }
 
     public void afegirPeca(Peca b, Peca n){
@@ -104,25 +104,29 @@ public class Taulell {
 
     }
 
-    public boolean hihaJaque(boolean equip){
+    public TiradaSimple hihaJaque(boolean equip){
         Iterator<Map.Entry<Posicio, Peca>> it = _tauler.entrySet().iterator();
         Posicio posRei = buscaRei(equip);
         Peca pRei = _tauler.get(posRei);
-        Posicio pos = null;
-        Peca p = null;
+        Posicio pos ;
+        Peca p;
         boolean trobat = false;
-        while(it.hasNext() && !trobat){
+        while(it.hasNext()){
             Map.Entry<Posicio, Peca> entry = it.next();
             pos = entry.getKey();
             p = entry.getValue();
             TiradaSimple tirada = new TiradaSimple(pos, posRei, equip);
             if(p.movimentValid(tirada)){
                 if(validMatar(tirada,pRei) && validVolar(tirada)){
-                    trobat = true;
+                    return tirada;
                 }
             }
         }
-        return trobat;
+        return null;
+    }
+
+    public boolean hiHaJaqueMate(TiradaSimple t){
+        return false;
     }
 
     private boolean validMatar(TiradaSimple t, Peca p){
@@ -156,11 +160,17 @@ public class Taulell {
         int x, y;
         x = 0;
         y = 0;
-        while(x!= t.get_desplaçamentX() && y!= t.get_desplacamentY()){
-            Posicio pos = new Posicio(x,y);
+        Posicio posOrigen = t.get_origen();
+        int f, c;
+        f = posOrigen.get_fila();
+        c = posOrigen.get_columna();
+        while(x!= t.get_desplaçamentX() || y!= t.get_desplacamentY()){
+            Posicio pos = new Posicio(f,c);
             Peca pec = _tauler.get(pos);
             if(pec!=null){
-                return true;
+                if(!pos.equals(t.get_origen()) && !pos.equals(t.get_desti())){
+                    return true;
+                }
             }
             if(x!=t.get_desplaçamentX()){
                 if(t.get_desplaçamentX()>0){
@@ -169,7 +179,7 @@ public class Taulell {
                 else{
                     x--;
                 }
-
+                f = f+x;
             }
             if(y!=t.get_desplacamentY()){
                 if(t.get_desplacamentY() > 0){
@@ -178,6 +188,7 @@ public class Taulell {
                 else{
                     y--;
                 }
+                c = c + y;
             }
         }
         return false;
@@ -198,23 +209,30 @@ public class Taulell {
         _tauler.put(t.get_desti(),p);
         _tauler.remove(t.get_origen());
         p.primerMovFet();
-        _eliminats.add(nTorns,eli);
+
+        _eliminats.put(nTorns,eli);
         nTorns ++;
+
         return  res;
     }
 
     private int eliminarPecesEntremig(TiradaSimple t, TreeMap<Posicio, Peca> eli){
-        int x, y, res;
+        int x, y, res, f, c;
+        res = 0;
         x = 0;
         y = 0;
-        res = 0;
-        while(x!= t.get_desplaçamentX() && y!= t.get_desplacamentY()) {
-            Posicio pos = new Posicio(x, y);
+        Posicio posOrigen = t.get_origen();
+        f = posOrigen.get_fila();
+        c = posOrigen.get_columna();
+        while(x!= t.get_desplaçamentX() || y!= t.get_desplacamentY()) {
+            Posicio pos = new Posicio(f, c);
             Peca pec = _tauler.get(pos);
             if (pec != null) {
-                eli.put(pos,pec);
-                _tauler.remove(pos);
-                res++;
+                if(!pos.equals(t.get_origen()) && !pos.equals(t.get_desti())) { //si troba un peça que no sigui ni desti ni origen
+                    eli.put(pos, pec);
+                    _tauler.remove(pos);
+                    res++;
+                }
             }
             if (x != t.get_desplaçamentX()) {
                 if (t.get_desplaçamentX() > 0) {
@@ -222,7 +240,7 @@ public class Taulell {
                 } else {
                     x--;
                 }
-
+                f = f+x;
             }
             if (y != t.get_desplacamentY()) {
                 if (t.get_desplacamentY() > 0) {
@@ -230,6 +248,7 @@ public class Taulell {
                 } else {
                     y--;
                 }
+                c = c +y;
             }
         }
         return res;
@@ -313,12 +332,20 @@ public class Taulell {
 
     public String mostra() {
         String s = "";
-        for(int i = 1; i<=_fila; i++){
+        Character x = 'a';
+        s = s + " ";
+        for(int j=0; j< _columna; j++){
+            s = s + " " + x;
+            x++;
+        }
+        s = s + "\n";
+        for(int i = _fila; i>0; i--){
+            s = s + " ";
             for(int j=0; j< _columna; j++){
                 s = s + " " + "-";
             }
-
             s = s + "\n";
+            s = s + i;
             s = s + "|";
             for(int j=1; j<= _columna; j++){
 
@@ -334,6 +361,7 @@ public class Taulell {
             s = s + "\n";
 
         }
+        s = s + " ";
         for(int j=0; j< _columna; j++){
             s = s + " " + "-";
         }

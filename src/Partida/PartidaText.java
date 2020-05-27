@@ -44,7 +44,7 @@ public abstract class PartidaText {
         System.out.println("Comencen les " + colorTorn);
         do{
             System.out.println("Torn del jugador de peces " + colorTorn);
-            //_partida.mostrarTaulell();
+            _partida.mostrarTaulell();
             if(res.equals("taules")){
                 boolean correcte = false;
                 do {
@@ -53,7 +53,7 @@ public abstract class PartidaText {
                     if(posInici.equals("Si") || posInici.equals("No")){ correcte = true; }
                 }while(!correcte);
                 if(posInici.equals("Si")){
-                    //_partida.taules();
+                    _partida.taules();
                     continuar = false;
                 }
                 res = "";
@@ -63,13 +63,13 @@ public abstract class PartidaText {
                 if(posInici.equals("Rendirse")){
                     System.out.println("El jugador amb les peces " + colorTorn + " es rendeix");
                     continuar = false;
-                    //_partida.rendirse();
+                    _partida.rendirse();
                 }else if(posInici.equals("Taules")){
                     res = "taules";
                 }else if(posInici.equals("Ajornar")){
                     System.out.println("El jugador amb les peces " + colorTorn + " ajorna la partida");
                     continuar = false;
-                    //_partida.ajornar();
+                    _partida.ajornar();
                 }else{
                     System.out.println("Pots moure aquesta peça, a on la vols moure? O escriu " + "no" + " si prefereixes moure una altre peça");
                     posInici = posInici+ " ";
@@ -93,8 +93,6 @@ public abstract class PartidaText {
                 System.out.println(res);
             }else if(res.equals("no s'ha realitzat la tirada")){
                 System.out.println(res);
-            }else{
-                System.out.println("Alguna cosa ha sortit malament");
             }
         }while(continuar);
     }
@@ -110,13 +108,17 @@ public abstract class PartidaText {
         String s;
         Scanner teclat = new Scanner(System.in);
         do{
+            System.out.println("Entra una posició amb una peça del teu equip");
             s = teclat.nextLine();
-            if(s.equals("Rendirse") || s.equals("Taules") || s.equals("Ajornar")){
+            if(s.equalsIgnoreCase("Rendirse") || s.equalsIgnoreCase("Taules") || s.equalsIgnoreCase("Ajornar")){
                 return s;
             }
             else{
                 //si entra aqui vol dir que ha entrat una posicio o aixo creiem
                 correcte = posicioCorrecte(s);
+                if(!correcte){
+                    System.out.println("Entra una posició correcte");
+                }
             }
         } while(!correcte);
         return s;
@@ -125,33 +127,20 @@ public abstract class PartidaText {
     private static String llegirPosicioDesti(){
         boolean correcte = false;
         String s;
-        String res;
         Scanner teclat = new Scanner(System.in);
         do{
-            res = "";
-            System.out.println("Entra la següent posició. Si vols fer un enrroc entra ( '-' seguit de la posició)");
+            System.out.println("Entra la següent posició. Si vols fer un enrroc entra la posició on es troba la peça amb la que el vols fer");
             s = teclat.nextLine();
-            if(s.charAt(0) == '-'){ //vol dir que vol fer enroc
-                String array[] = s.split("-");
-                res = "- ";
-                correcte = posicioCorrecte(array[1]); //comprovem que la posició sigui correcte.
-                if(!correcte){
-                    System.out.println("Entra una posició correcte");
-                }else{
-                    res = res + array[1];
-                }
-            }else if(s.contains("no")){ //fem contains per d'aquesta manera l'usuari pot entrar una string amb caràcters random, però si  conté "no", entra aqui
+            if(s.contains("no")){ //fem contains per d'aquesta manera l'usuari pot entrar una string amb caràcters random, però si  conté "no", entra aqui
                 return s;
             }else{ //ha entrat una suposada posició
                 correcte = posicioCorrecte(s);
                 if(!correcte){
                     System.out.println("Entra una posició correcte");
-                }else{
-                    res = res + s;
                 }
             }
         } while(!correcte);
-        return res;
+        return s;
     }
 
     private static boolean posicioCorrecte(String s){

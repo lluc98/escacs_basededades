@@ -9,18 +9,18 @@ public class Posicio implements Comparable<Posicio>{
         _posicio = p;
         String numero = p.substring(p.length()-1);
         String lletra = p.substring(0,1);
-        _fila = lletra.charAt(0) - 'a' + 1;
-        _columna = Integer.parseInt(numero);
+        _columna = lletra.charAt(0) - 'a' + 1;
+        _fila = Integer.parseInt(numero);
     }
 
     public Posicio(int fila, int columna){
         _fila = fila;
         _columna = columna;
-        fila = fila + 64;
-        char letra = (char)(fila);
+        columna = columna + 64;
+        char letra = (char)(columna);
         letra = Character.toLowerCase(letra);
         _posicio = String.valueOf(letra);
-        _posicio = _posicio+columna;
+        _posicio = _posicio+_fila;
     }
 
 

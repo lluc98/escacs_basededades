@@ -62,15 +62,21 @@ public class TipusPeca {
 
     public boolean tipusPecaValida(TiradaSimple t, boolean primerMov){
         boolean trobat = false;
-        Iterator<Moviment> it;
+        Iterator<Moviment> it1;
+        Iterator<Moviment> it2;
         if(primerMov == false){
-            it = _llistaMovimentsInicials.iterator(); //Recorrec la llista de moviments inicials
+            it1 = _llistaMovimentsInicials.iterator(); //Recorrec la llista de moviments inicials
+            while(it1.hasNext()){
+                if(it1.next().movimentvalid(t)){
+                    return true;
+                }
+            }
         }
-        else{
-            it = _llistaMoviments.iterator(); // Recorrec la llista de moviments
-        }
-        while(it.hasNext() && !trobat){
-            if(it.next().movimentvalid(t)){
+
+
+        it2 = _llistaMoviments.iterator(); // Recorrec la llista de moviments
+        while(it2.hasNext() && !trobat){
+            if(it2.next().movimentvalid(t)){
                 trobat = true;
             }
         }

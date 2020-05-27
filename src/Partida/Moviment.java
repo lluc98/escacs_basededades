@@ -70,14 +70,14 @@ public class Moviment {
         }
         else if(mov == 100){
             if(desp>=0){
-                if(s.equals(" a") || s.equals(" b") || s.equals(" m") || s.equals(" n") ){
+                if(s.equals(" a") || s.equals(" b") || s.equals(" m") || s.equals(" n") || s.equals(" - a") || s.equals(" - b") ){
                     return true;
                 }
                 else{
                     return false;
                 }
             }
-            else if(s.equals(" - a") || s.equals(" - b")){
+            else if(s.equals(" - a") || s.equals(" - b") || s.equals(" a") || s.equals(" b")){
                 return true;
             }
             else{

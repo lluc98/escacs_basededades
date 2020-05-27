@@ -3,10 +3,7 @@ package Partida;
 import com.sun.corba.se.spi.activation.RepositoryOperations;
 import javafx.geometry.Pos;
 
-import java.util.Map;
-import java.util.SortedMap;
-import java.util.TreeMap;
-import java.util.Iterator;
+import java.util.*;
 
 
 public class Taulell {
@@ -17,6 +14,7 @@ public class Taulell {
     private TreeMap<Integer,TreeMap<Posicio, Peca>> _eliminats;
     private int n_peces;
     private Integer nTorns;
+    private ArrayList<TiradaSimple> _tiradesRefer;
 
     public Taulell(int c, int f){
         _fila = f;
@@ -27,16 +25,17 @@ public class Taulell {
             throw new RuntimeException("Error en el parametres");
         _tauler = new TreeMap<>();
         _eliminats = new TreeMap<>();
+        _tiradesRefer = new ArrayList<>();
     }
 
 
-    public int get_fila() {
+    public int getFiles() {
         return _fila;
     }
 
 
 
-    public int get_columna() {
+    public int getColumnes() {
         return _columna;
     }
 
@@ -115,10 +114,12 @@ public class Taulell {
             Map.Entry<Posicio, Peca> entry = it.next();
             pos = entry.getKey();
             p = entry.getValue();
-            TiradaSimple tirada = new TiradaSimple(pos, posRei, equip);
-            if(p.movimentValid(tirada)){
-                if(validMatar(tirada,pRei) && validVolar(tirada)){
-                    return tirada;
+            if(p.get_equip()!=pRei.get_equip()) {
+                TiradaSimple tirada = new TiradaSimple(pos, posRei, equip);
+                if (p.movimentValid(tirada)) {
+                    if (validMatar(tirada, pRei) && validVolar(tirada)) {
+                        return tirada;
+                    }
                 }
             }
         }
@@ -161,9 +162,8 @@ public class Taulell {
         x = 0;
         y = 0;
         Posicio posOrigen = t.get_origen();
-        int f, c;
-        f = posOrigen.get_fila();
-        c = posOrigen.get_columna();
+        int f = posOrigen.get_fila();
+        int c = posOrigen.get_columna();
         while(x!= t.get_desplaçamentX() || y!= t.get_desplacamentY()){
             Posicio pos = new Posicio(f,c);
             Peca pec = _tauler.get(pos);
@@ -175,20 +175,25 @@ public class Taulell {
             if(x!=t.get_desplaçamentX()){
                 if(t.get_desplaçamentX()>0){
                     x++;
+                    f++;
                 }
                 else{
                     x--;
+                    f--;
+
                 }
-                f = f+x;
+
             }
             if(y!=t.get_desplacamentY()){
                 if(t.get_desplacamentY() > 0){
                     y++;
+                    c++;
                 }
                 else{
                     y--;
+                    c--;
                 }
-                c = c + y;
+
             }
         }
         return false;
@@ -237,18 +242,20 @@ public class Taulell {
             if (x != t.get_desplaçamentX()) {
                 if (t.get_desplaçamentX() > 0) {
                     x++;
+                    f++;
                 } else {
                     x--;
+                    f--;
                 }
-                f = f+x;
             }
             if (y != t.get_desplacamentY()) {
                 if (t.get_desplacamentY() > 0) {
                     y++;
+                    c++;
                 } else {
                     y--;
+                    c--;
                 }
-                c = c +y;
             }
         }
         return res;
@@ -328,7 +335,19 @@ public class Taulell {
         Peca p = _tauler.get(t.get_desti());
         _tauler.put(t.get_origen(),p);
         _tauler.remove(t.get_desti());
+        _tiradesRefer.add(t);
     }
+
+    public void reiniciaTiradesRefer(){
+        _tiradesRefer = new ArrayList<>();
+    }
+
+    public void referTirada(){
+        TiradaSimple t = _tiradesRefer.get(0);
+        realitzarTirada(t);
+    }
+
+
 
     public String mostra() {
         String s = "";

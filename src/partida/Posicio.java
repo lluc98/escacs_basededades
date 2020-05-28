@@ -1,4 +1,4 @@
-package Partida;
+package partida;
 
 public class Posicio implements Comparable<Posicio>{
     private int _fila;

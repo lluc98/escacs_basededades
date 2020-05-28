@@ -1,4 +1,4 @@
-package Partida;
+package partida;
 
 import org.json.JSONArray;
 import org.json.JSONObject;

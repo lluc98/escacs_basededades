@@ -1,4 +1,4 @@
-package Partida;
+package partida;
 
 public class Enrroc {
     private Posicio p1;

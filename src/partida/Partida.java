@@ -144,12 +144,14 @@ public class Partida {
             int resultatTirada = jugadorActual.ferTirada(taulell, origen, desti);
             if(resultatTirada > 0){
                 if(jugadorActual.ShaProvocatJaque(taulell)) {
+                    desferTirada();
                     return "no s'ha realitzat la tirada";
                 }
                 else if(jugadorActual.observarPromocio(desti,taulell)){
                     return "promocio";
                 }
                 else if(jugadorActual.ShaProvocatJaque(taulell)){
+                    modificarResultatUltimaTirada("ESCAC");
                     return "hi ha jaque";
                 }
             }
@@ -243,19 +245,22 @@ public class Partida {
             jugadorActual = jugadorNegres;
         }
 
-        if(nomPeça.equals("REI") || conjuntPeces.get(nomPeça) == null){
+        if(nomPeça.equalsIgnoreCase("REI") || conjuntPeces.get(nomPeça) == null){
             return "no valid";
         }
         else{
             Peca p = new Peca(nomPeça, jugadorActual.get_equip(),conjuntPeces);
+            Peca v;
             StringTokenizer defaultTokenizer = new StringTokenizer(tirada);
             Posicio origen = new Posicio((defaultTokenizer.nextToken())); //origen
             Posicio desti = new Posicio((defaultTokenizer.nextToken())); //destí
             jugadorActual.ferPromocio(desti,taulell,p);
+            v = taulell.getPeca(origen);
+            modificarResultatUltimaTirada("PROMOCIÓ: " + v.getNom() + " - " + p.getNom() );
             if(jugadorActual.ShaProvocatJaque(taulell)){
-                return "promocio feta i hi ha jaque";
+                return "feta jaque";
             }
-            else return "promocio feta";
+            else return "feta";
         }
     }
 
@@ -265,7 +270,8 @@ public class Partida {
      */
     public void desferTirada () {
         TiradaSimple ultimaTirada = getUltimaTirada();
-        taulell.desferTirada(ultimaTirada);
+        String res = getResultatUltimaTirada();
+        taulell.desferTirada(ultimaTirada, res, conjuntPeces);
         eliminarUltimaTirada();
     }
 
@@ -279,4 +285,12 @@ public class Partida {
        String r = resultat.toString();
        guardarTirada(ultimaTirada, r);
    }
+
+    public String [] getLlistaPeces() {
+        String [] peces = new String[conjuntPeces.size()];
+        for (int i = 0; i < conjuntPeces.size() ; i++) {
+            peces [i] = conjuntPeces.get(i).get_nom();
+        }
+        return peces;
+    }
 }

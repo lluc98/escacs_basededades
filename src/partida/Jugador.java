@@ -1,4 +1,6 @@
 package partida;
+import static partida.Historial.*;
+
 public class Jugador {
 
 
@@ -17,9 +19,9 @@ public class Jugador {
         TiradaSimple t = new TiradaSimple(origen, desti, _equip);
         if(taulell.tiradaValida(t)){
             res= res + taulell.realitzarTirada(t);
+            guardarTirada(t, "");
+            taulell.reiniciaTiradesRefer();
         }
-
-        taulell.reiniciaTiradesRefer();
 
         return res;
     }

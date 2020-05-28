@@ -1,5 +1,7 @@
 package partida;
 
+import sun.reflect.generics.tree.Tree;
+
 import java.util.*;
 
 
@@ -9,6 +11,7 @@ public class Taulell {
     private int _columna;
     private SortedMap<Posicio, Peca> _tauler;
     private TreeMap<Integer,TreeMap<Posicio, Peca>> _eliminats;
+    private ArrayList<Peca> _promocio;
     private int n_peces;
     private Integer nTorns;
     private ArrayList<TiradaSimple> _tiradesRefer;
@@ -23,6 +26,7 @@ public class Taulell {
         _tauler = new TreeMap<>();
         _eliminats = new TreeMap<>();
         _tiradesRefer = new ArrayList<>();
+        _promocio = new ArrayList<>();
     }
 
 
@@ -316,9 +320,10 @@ public class Taulell {
 
     public void realitzarPromocio(Posicio pos, Peca pec){
         _tauler.put(pos,pec);
+        _promocio.add(pec);
     }
 
-    public void desferTirada(TiradaSimple t){
+    public void desferTirada(TiradaSimple t, String resultat, TreeMap<String,TipusPeca> mapTipus){
         nTorns--;
         TreeMap<Posicio,Peca> eli = _eliminats.get(nTorns);
         Iterator<Map.Entry<Posicio, Peca>> it = eli.entrySet().iterator();
@@ -330,7 +335,20 @@ public class Taulell {
             assignarPecaTauler(peca,pos);
         }
         Peca p = _tauler.get(t.get_desti());
-        _tauler.put(t.get_origen(),p);
+
+        StringTokenizer defaultTokenizer = new StringTokenizer(resultat);
+        String s = defaultTokenizer.nextToken();
+        if(s.equalsIgnoreCase("PROMOCIÓ:")){
+            String vella = defaultTokenizer.nextToken();
+            defaultTokenizer.nextToken();
+            String nova = defaultTokenizer.nextToken();
+            Peca v = new Peca(vella,t.get_equip(),mapTipus);
+            Peca n = new Peca(nova,t.get_equip(),mapTipus);
+            _tauler.put(t.get_origen(),v);
+        }
+        else{
+            _tauler.put(t.get_origen(),p);
+        }
         _tauler.remove(t.get_desti());
         _tiradesRefer.add(t);
     }
@@ -339,9 +357,11 @@ public class Taulell {
         _tiradesRefer = new ArrayList<>();
     }
 
-    public TiradaSimple referTirada(){
+    public TiradaSimple referTirada(StringBuilder resultat){
         TiradaSimple t = _tiradesRefer.get(0);
+        _tiradesRefer.remove(0);
         realitzarTirada(t);
+        resultat.append("");
         return t;
     }
 

@@ -86,6 +86,10 @@ public class Peca {
         return(_tipus.get_nom().equals(nom));
     }
 
+    public String getNom(){
+        return _tipus.get_nom();
+    }
+
     public  boolean esInvulnerable(){ return _tipus.get_invulnerabilitat();}
 
     public TipusPeca get_tipus() { return _tipus; }

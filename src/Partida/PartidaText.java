@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public abstract class PartidaText {
 
-    private static Partida _partida;
+    private static partida _partida;
 
     public static void iniciaAplicacio() {
         Scanner teclat = new Scanner(System.in);
@@ -24,12 +24,12 @@ public abstract class PartidaText {
             int nJug;
             System.out.println("Entre el nombre de jugadors reals (0, 1, 2)");
             nJug = teclat.nextInt();
-            _partida = new Partida(nomFitxer, nJug);
+            _partida = new partida(nomFitxer, nJug);
         }
         else{
             System.out.println("Entra el fitxer de la partida que vols carregar:");
             String nomFitxer = teclat.nextLine();
-            _partida = new Partida(nomFitxer); //un metode que carrega el fitxer.
+            _partida = new partida(nomFitxer); //un metode que carrega el fitxer.
         }
         jugar();
     }

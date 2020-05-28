@@ -27,7 +27,7 @@ public class PartidaGrafica extends Application{
 
     private static Scene escenaPrincipal, escenaSec, escenaPartida;
     private static Stage window; //aqui hi posarem el primaryStage, s'ha de fer per a l'hora de fer el canvi d'escena des d'un botó
-    private static Partida _partida;
+    private static partida _partida;
     private static Group _rajoles = new Group();
     private static Group _fitxes = new Group();
     private static int _pixelsRajola;
@@ -125,10 +125,10 @@ public class PartidaGrafica extends Application{
                 }
                 else{
                     if(opcio == 1){
-                        _partida = new Partida(s, (int) cb.getValue());
+                        _partida = new partida(s, (int) cb.getValue());
                     }
                     else{
-                        _partida = new Partida(s);
+                        _partida = new partida(s);
                     }
                     crearEscenaPartida();
                     window.setScene(escenaPartida);

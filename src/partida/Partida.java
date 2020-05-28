@@ -1,6 +1,6 @@
 package partida;
 /** @file Partida.java
- * @brief Joc d'escacs.
+ * @brief Partida d'escacs.
  */
 
 import java.util.StringTokenizer;

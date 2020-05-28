@@ -176,4 +176,15 @@ public class Historial {
 
         tirada.put("resultat", resultat);
     }
+
+    /** @brief  Obté el resultat de l'última Tirada
+     * @pre --
+     * @post retorna el valor del resultat de l'última Tirada de la llista de Tirades
+     */
+    public static String getUltimResultat () {
+        JSONArray tirades = partida.getJSONArray("tirades");
+        JSONObject tirada = tirades.getJSONObject(tirades.length() - 1);
+
+        return tirada.getString("resultat");
+    }
 }

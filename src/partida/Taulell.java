@@ -339,7 +339,7 @@ public class Taulell {
         _tiradesRefer = new ArrayList<>();
     }
 
-    public TiradaSimple referTirada(){
+    public TiradaSimple referTirada(StringBuilder resultat){
         TiradaSimple t = _tiradesRefer.get(0);
         realitzarTirada(t);
         return t;

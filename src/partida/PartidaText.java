@@ -117,9 +117,10 @@ public abstract class PartidaText {
     private static String promocio(StringBuilder posInici, StringBuilder posFinal){
         Scanner teclat = new Scanner(System.in);
         String s = teclat.nextLine();
-        String res;
+        String res = "";
         if(s.equalsIgnoreCase("si")){
             System.out.println("Per quina peça vols fer");
+            menuPromocio();
             String peca;
             do{
                 peca = teclat.nextLine();
@@ -127,12 +128,24 @@ public abstract class PartidaText {
                 if(res.equalsIgnoreCase("no valid")){
                     System.out.println("Peça no vàlida, entra'n una de vàlida");
                 }
-            }while(!res.equalsIgnoreCase("feta"));
-            res = "si promocio";
+            }while(!res.contains("feta"));
+            String[] tokens = res.split(" ");
+            if(tokens.length > 1){
+                res = tokens[1];
+            }
+            res = res + "siProm";
         }else{
-            res = "no promocio";
+            res = res + "noProm";
         }
         return res;
+    }
+
+    private static void menuPromocio(){
+        /*String[] llsitaPeces = _partida.getLlistaPeces();
+        System.out.println("Pots fer promoció d'aquestes peces");
+        for(int i = 0; i<llsitaPeces.length; i++){
+            System.out.println(llsitaPeces[i]);
+        }*/
     }
 
     private static boolean taules(){
@@ -157,7 +170,7 @@ public abstract class PartidaText {
             System.out.println(res);
             return true;
         }else if(res.toString().equals("taules")){
-            System.out.println("El jugador amb les peces " + colorTorn + " demana taules");
+            System.out.println("El jugador amb les peces " + colorTorn.toString() + " demana taules");
             return true;
         }else if(res.toString().equals("return tirada vàlida i s'ha matat")){
             System.out.println(res);
@@ -168,16 +181,28 @@ public abstract class PartidaText {
         }else if(res.toString().equalsIgnoreCase("refer fet")){
             System.out.println(res);
         }else if(res.toString().equalsIgnoreCase("promocio")){
-            System.out.println("Vols fer promoció d'alguna peça?");
-        }else if(res.toString().equalsIgnoreCase("no promocio")){
+            System.out.println("Vols fer promoció per alguna peça?");
+            System.out.println("Si dius que no, no tornaràs a tenir la oportunitat");
+        }else if(res.toString().equalsIgnoreCase("noProm")){
             System.out.println("No has volgut fer la promoció, canvi de torn");
-        }else if(res.toString().equalsIgnoreCase("si promocio")){
+            return true;
+        }else if(res.toString().contains("siProm")){
             System.out.println("Has fet la promoció!");
+            String[] tokens = res.toString().split(" ");
+            if(tokens.length > 1){
+                System.out.println("Escac al rei ");
+                if(colorTorn.toString().equals("BLANQUES")){
+                    System.out.println("NEGRE");
+                }else{
+                    System.out.println("BLANC");
+                }
+            }
+            return true;
         }else if(res.toString().equalsIgnoreCase("ajornar")){
-            System.out.println("El jugador amb les peces " + colorTorn + " ajorna la partida");
+            System.out.println("El jugador amb les peces " + colorTorn.toString() + " ajorna la partida");
             _partida.ajornar();
         }else if(res.toString().equalsIgnoreCase("rendirse")){
-            System.out.println("El jugador amb les peces " + colorTorn + " es rendeix");
+            System.out.println("El jugador amb les peces " + colorTorn.toString() + " es rendeix");
             _partida.rendirse();
         }else if(res.toString().equalsIgnoreCase("no enroc")){
             System.out.println("No has volgut fer l'enroc");

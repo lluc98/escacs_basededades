@@ -103,7 +103,7 @@ public class TipusPeca {
                 }
             }
         }
-        return false;
+        return trobat;
 
     }
 

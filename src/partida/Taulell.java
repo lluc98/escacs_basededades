@@ -1,7 +1,4 @@
-package Partida;
-
-import com.sun.corba.se.spi.activation.RepositoryOperations;
-import javafx.geometry.Pos;
+package partida;
 
 import java.util.*;
 
@@ -310,7 +307,7 @@ public class Taulell {
             return true;
         }
         else if(p.get_fila() == 1 && _equip == false){ //si esta baix de tot i es una peça negra
-            return false;
+            return true;
         }
         else{
             return false;
@@ -342,9 +339,10 @@ public class Taulell {
         _tiradesRefer = new ArrayList<>();
     }
 
-    public void referTirada(){
+    public TiradaSimple referTirada(){
         TiradaSimple t = _tiradesRefer.get(0);
         realitzarTirada(t);
+        return t;
     }
 
 

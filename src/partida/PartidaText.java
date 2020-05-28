@@ -37,22 +37,26 @@ public abstract class PartidaText {
     private static void jugar(){
         boolean continuar = true;
         StringBuilder colorTorn = new StringBuilder(_partida.getProperTorn());
-        StringBuilder posInici = new StringBuilder();
-        StringBuilder posFinal = new StringBuilder();
+        StringBuilder posInici = null;
+        StringBuilder posFinal = null;
         StringBuilder res = new StringBuilder();
         System.out.println("Comencen les " + colorTorn);
         do{
             _partida.mostrarTaulell();
             if(res.toString().equals("taules")){
                 continuar = taules();
-                res = new StringBuilder();
+                res = new StringBuilder(); //entrarà al processarRes però no farà cap acció
             }else if(res.toString().equalsIgnoreCase("promocio")){
                 res = new StringBuilder(promocio(posInici, posFinal));
             }else{
+                posInici = new StringBuilder(); //fem això perquè a l'hora de fer append no es borra el que hi havia i si fem new dins del mètode, no es retorna el que se li ha posat
+                posFinal = new StringBuilder();
+                res = new StringBuilder();
                 continuar = tirada(res, posInici, posFinal, colorTorn);
             }
-
-            processarRes(res, colorTorn);
+            if(processarRes(res, colorTorn)){
+                colorTorn = new StringBuilder(_partida.canviarTorn());
+            }
 
         }while(continuar);
     }
@@ -63,21 +67,21 @@ public abstract class PartidaText {
         System.out.println("Torn del jugador de peces " + colorTorn.toString());
         System.out.println("Entra el que vols fer. (Rendirse/Taules/Ajornar/Desfer/Refer/(o escrius la posició de la peça que vols moure");
         String s = llegirPosicioInici();
-        posInici = new StringBuilder(s);
+        posInici.append(s);
         if(s.equalsIgnoreCase("Rendirse")){
             continuar = false;
-            res = new StringBuilder("rendirse"); //ens podem permetre anar fent "new" ja que gràcies al garbage collector, no ocuparem memòria extra pels new, la memòria que estava ocupada anteriorment s'alliberarà
+            res.append("rendirse"); //ens podem permetre anar fent "new" ja que gràcies al garbage collector, no ocuparem memòria extra pels new, la memòria que estava ocupada anteriorment s'alliberarà
         }else if(s.equalsIgnoreCase("Taules")){
-            res = new StringBuilder("taules");
+            res.append("taules");
         }else if(s.equalsIgnoreCase("Ajornar")){
             continuar = false;
-            res = new StringBuilder("ajornar");
+            res.append("ajornar");
         }else if(s.equalsIgnoreCase("desfer")){
-            //_partida.desfer();
-            res = new StringBuilder("desfer fet");
+            _partida.desferTirada();
+            res.append("desfer fet");
         }else if(s.equalsIgnoreCase("refer")){
-            //_partida.refer();
-            res = new StringBuilder("refer fet");
+            _partida.referTirada();
+            res.append("refer fet");
         }
         else{
             System.out.println("Pots moure aquesta peça, a on la vols moure? O escriu 'no' si prefereixes moure una altre peça");
@@ -89,13 +93,15 @@ public abstract class PartidaText {
                 if(tokens[0].equalsIgnoreCase("correcte")) {
                     System.out.println(posInici.toString() + tokens[1]);
                     res.append(_partida.ferTirada(posInici.toString() + tokens[1]));
+                    posFinal.append(tokens[1]);
                 }else if(tokens[0].equalsIgnoreCase("enroc")){
                     System.out.println("Segur que vols fer aquest enroc?");
                     String opcio = teclat.nextLine();
                     if(opcio.equalsIgnoreCase("si")){
-                        res = new StringBuilder(_partida.ferTirada(posInici.toString() + "- " + tokens[1]));
+                        res.append(_partida.ferTirada(posInici.toString() + "- " + tokens[1]));
+                        posFinal.append(tokens[1]);
                     }else if(opcio.equalsIgnoreCase("no")){
-                        res = new StringBuilder("no enroc");
+                        res.append("no enroc");
                     }
                 }else{
                     System.out.println("Fail");
@@ -146,14 +152,13 @@ public abstract class PartidaText {
     }
 
 
-    private static void processarRes(StringBuilder res, StringBuilder colorTorn){
+    private static boolean processarRes(StringBuilder res, StringBuilder colorTorn){
         if(res.toString().equals("tirada vàlida") || res.toString().equalsIgnoreCase("return tirada vàlida i s'ha matat")){
             System.out.println(res);
-            colorTorn = new StringBuilder(_partida.canviarTorn());
-            res = new StringBuilder("");
+            return true;
         }else if(res.toString().equals("taules")){
             System.out.println("El jugador amb les peces " + colorTorn + " demana taules");
-            colorTorn = new StringBuilder(_partida.canviarTorn());
+            return true;
         }else if(res.toString().equals("return tirada vàlida i s'ha matat")){
             System.out.println(res);
         }else if(res.toString().equals("no s'ha realitzat la tirada")){
@@ -177,6 +182,7 @@ public abstract class PartidaText {
         }else if(res.toString().equalsIgnoreCase("no enroc")){
             System.out.println("No has volgut fer l'enroc");
         }
+        return false;
     }
 
     private static String llegirPosicioInici(){

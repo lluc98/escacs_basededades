@@ -5,6 +5,7 @@ import javafx.application.Platform;
 import javafx.beans.property.ReadOnlyDoubleProperty;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Group;
@@ -190,12 +191,29 @@ public class PartidaGrafica extends Application{
     }
 
     private static Node crearOpcions(BorderPane p){
-        VBox root = new VBox();
+        BorderPane root = new BorderPane();
+        VBox opcionsGenerals = new VBox(15);
+        root.setPrefWidth(200);
+        Button redo = new Button("Refer");
+        Button undo = new Button("Desfer");
         Button surrender = new Button("Rendir-se");
         Button postpone = new Button("Ajornar");
         Button tie = new Button("Demanar taules");
-        Label lbl = new Label();
+        Button exit = new Button("Exit");
+        Label lbl = new Label("Torn de " + _partida.getProperTorn());
         lbl.setId("1");
+        redo.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+
+            }
+        });
+        undo.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+
+            }
+        });
         surrender.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -204,6 +222,8 @@ public class PartidaGrafica extends Application{
                 Label accept = new Label("El jugador " + _partida.getProperTorn() + " s'ha rendit.");
                 Label gg = new Label("Bona partida, fins la pròxima");
                 root.getChildren().addAll(accept, gg);
+                root.setPadding(new Insets(50));
+                root.setAlignment(Pos.CENTER);
                 Scene s = new Scene(root, 500d, 500d);
                 window.setScene(s);
                 try {
@@ -222,6 +242,8 @@ public class PartidaGrafica extends Application{
                 Label accept = new Label("El jugador " + _partida.getProperTorn() + " ha ajornat la partida.");
                 Label gg = new Label("Fins la pròxima");
                 root.getChildren().addAll(accept, gg);
+                root.setPadding(new Insets(50));
+                root.setAlignment(Pos.CENTER);
                 Scene s = new Scene(root, 500d, 500d);
                 window.setScene(s);
                 try {
@@ -239,8 +261,17 @@ public class PartidaGrafica extends Application{
                 _partida.canviarTorn();
             }
         });
-        root.setAlignment(Pos.CENTER);
-        root.getChildren().addAll(lbl, surrender, postpone, tie);
+        exit.setOnAction( e-> Platform.exit());
+        Label avisos = new Label();
+        HBox botoMarxar = new HBox(15);
+        botoMarxar.getChildren().add(exit);
+        botoMarxar.setAlignment(Pos.BOTTOM_CENTER);
+        opcionsGenerals.setAlignment(Pos.CENTER);
+        opcionsGenerals.getChildren().addAll(lbl, undo, redo, surrender, postpone, tie, botoMarxar);
+        root.setPadding(new Insets(20));
+        root.setTop(avisos);
+        root.setCenter(opcionsGenerals);
+        root.setBottom(botoMarxar);
         return root;
     }
 
@@ -314,16 +345,23 @@ public class PartidaGrafica extends Application{
                 StringBuilder s = new StringBuilder();
                 mov = s.append((char)(97+oldX)).append(oldY+1).append(' ').append((char)(97 + newX)).append(newY+1).toString();
                 String res = _partida.ferTirada(mov);
-                if(res.equals("return tirada vàlida i s'ha matat")){ //ha matat la peça que hi havia anteriorment a aquesta posició
+                if(res.equalsIgnoreCase("return tirada vàlida i s'ha matat")){ //ha matat la peça que hi havia anteriorment a aquesta posició
                     eliminarPeca(new Posicio(newX, newY));
                     p.move(newX, newY);
                     passarTorn(pane);
-                }else if(res.equals("tirada vàlida")){ //la tirada s'ha fet a nivell lògic, ara a gràfic
+                }else if(res.equalsIgnoreCase("tirada vàlida")){ //la tirada s'ha fet a nivell lògic, ara a gràfic
                     p.move(newX, newY);
                     passarTorn(pane);
-                }else if(res.equals("no s'ha realitzat la tirada")){
+                }else if(res.equalsIgnoreCase("no s'ha realitzat la tirada")){
                     p.abortMove();
-                }else{
+                }else if(res.equalsIgnoreCase("promocio")){
+
+                }else if(res.equalsIgnoreCase("enroc")){
+
+                }else if(res.equalsIgnoreCase("no ernoc")){
+                    p.abortMove();
+                }
+                else{
                     p.abortMove();
                 }
 
@@ -335,8 +373,9 @@ public class PartidaGrafica extends Application{
 
     private static void passarTorn(BorderPane p){
         _partida.canviarTorn();
-        VBox dreta = (VBox) p.getRight();
-        Label lbl = (Label) dreta.getChildren().get(0);
+        BorderPane dreta = (BorderPane) p.getRight();
+        VBox opcions = (VBox) dreta.getCenter();
+        Label lbl = (Label) opcions.getChildren().get(0);
         lbl.setText("Torn de " + _partida.getProperTorn());
     }
 

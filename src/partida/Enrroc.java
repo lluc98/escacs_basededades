@@ -1,14 +1,27 @@
 package partida;
+/** @file Enrroc.java
+ * @brief Enrroc
+ */
 
+/** @class Enrroc
+ * @brief Objecte que guarda un tipus d'enrroc vàlid de la Partida
+ */
 public class Enrroc {
-    private Posicio p1;
-    private Posicio p2;
-    private boolean _equip;
-    private boolean _quiets;
-    private boolean _buitAlmig;
-    private TiradaSimple _t1;
-    private TiradaSimple _t2;
+    private Posicio p1;                   ///< Posició de la primera Peça
+    private Posicio p2;                   ///< Posició de la segona Peça
+    private boolean _equip;               ///< Valor del equip que pot fer aquest enrroc
+    private boolean _quiets;              ///< Valor que avisa si s'han mogut la Peça A o la Peça B
+    private boolean _buitAlmig;           ///< Valor que avisa si hi ha espai per a realitzar l'Enrroc
+    private TiradaSimple _t1;             ///< Valor de la Tirada que ha de realitzar la Peça 1
+    private TiradaSimple _t2;             ///< Valor de la Tirada que ha de realitzar la Peca 2
 
+    /** @brief  Assigna els atributs de l'Enrroc
+     * @param a Valor de la Posició A
+     * @param b Valor de la Posició b
+     * @param equip Bándol del equip que pot realitzar aquest Enrroc
+     * @pre --
+     * @post Atributs assignats
+     */
     public Enrroc(Posicio a, Posicio b, boolean equip){
         p1 = a;
         p2 = b;
@@ -16,31 +29,47 @@ public class Enrroc {
 
     }
 
+    /** @brief Posició 1 */
     public Posicio get_p1(){
         return p1;
     }
 
+    /** @brief Posició 2 */
     public Posicio get_p2(){
         return p2;
     }
 
+    /** @brief Equip */
     public boolean get_equip(){
         return _equip;
     }
 
-    public  void assignaCaract(boolean quiets, boolean buit){
+    /** @brief Guarda les caracteristiques del enrroc
+     * @param quiets Valor que indica si s'han mogut les Peces del Enrroc
+     * @param buit Valor que indica si hi ha espai per a realitzar l'Enrroc
+     * @pre --
+     * @post S'han guardat les caracteristiques de quiets i buit.
+     */
+    public void assignaCaract(boolean quiets, boolean buit){
         _quiets = quiets;
         _buitAlmig = buit;
     }
 
+    /** @brief Quiets */
     public boolean getQuiets(){
         return _quiets;
     }
 
+    /** @brief Buit */
     public boolean getBuit(){
         return _buitAlmig;
     }
 
+    /** @brief Realitza l'acció de l'Enrroc
+     * @param t Valor del Taulell
+     * @pre --
+     * @post true s'ha realitzat l'Enrroc, false altrament.
+     */
     public boolean realitzarEnroc(Taulell t){
         int posCentral;
         int posCentral2;

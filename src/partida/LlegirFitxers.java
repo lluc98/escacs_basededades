@@ -1,4 +1,7 @@
 package partida;
+/** @file LlegirFitxers.java
+ * @brief Lectura dels fitxers de Regles i Partida
+ */
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -9,38 +12,53 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.TreeMap;
 
-public class LlegirFitxers {
-    private TreeMap<String, TipusPeca> conjuntPeces = new TreeMap<String, TipusPeca>();
-    private Taulell taulell = new Taulell(9,9);
-    private int limitEscacsSeguits = 0;
-    private int limitTornsInaccio = 0;
-    private String resultatFinal = "";
-    private String properTorn = "BLANQUES";
+/** @class LlegirFitxers
+ * @brief Classe de lectura de fitxers d'entrada
+ */
 
+public class LlegirFitxers {
+    private TreeMap<String, TipusPeca> conjuntPeces = new TreeMap<String, TipusPeca>();       ///< Contenidor de tots els conjunts de peces
+    private Taulell taulell = new Taulell(9,9);                         ///< Objecte que conté les dades de Taulell
+    private int limitEscacsSeguits = 0;                                       ///< Torns que es pot estar sense matar
+    private int limitTornsInaccio = 0;                                        ///< Limit d'escacs que es poden fer abans d'acabar la partida
+    private String resultatFinal = "";                                        ///< Valor de resultat en que queda una Partida
+    private String properTorn = "BLANQUES";                                   ///< Valor que diu qui comença el primer torn
+
+    /** @brief Contenidor del conjunt de Peces */
     public TreeMap<String, TipusPeca> getConjuntPeces() {
         return conjuntPeces;
     }
 
+    /** @brief Taulell */
     public Taulell getTaulell() {
         return taulell;
     }
 
+    /** @brief Escacs Seguits */
     public int getLimitEscacsSeguits() {
         return limitEscacsSeguits;
     }
 
+    /** @brief Limit de Torns d'Inaccio */
     public int getLimitTornsInaccio() {
         return limitTornsInaccio;
     }
 
+    /** @brief Resultat Final */
     public String getResultatFinal() {
         return resultatFinal;
     }
 
+    /** @brief Jugador que comença el Proper Torn */
     public String getProperTorn() {
         return properTorn;
     }
 
+    /** @brief  Llegeix el fitxer de Regles
+     * @param path drecera del fitxer de Regles
+     * @pre path és vàlid
+     * @post totes les variables del fitxer de Regles estan assignades.
+     */
     public void llegirRegles(String path) {
         try {
             String contingut = new String((Files.readAllBytes((Paths.get(path)))));
@@ -134,6 +152,11 @@ public class LlegirFitxers {
         }
     }
 
+    /** @brief  Llegeix el fitxer de Partida
+     * @param path drecera del fitxer de Partida
+     * @pre path és vàlid
+     * @post totes les variables del fitxer de Partida estan assignades. La Partida no està acabada.
+     */
     public void llegirPartidaAcabada (String path) {
         try {
             String contingut = new String((Files.readAllBytes(Paths.get(path))));
@@ -192,6 +215,11 @@ public class LlegirFitxers {
         }
     }
 
+    /** @brief  Llegeix el fitxer de Partida
+     * @param path drecera del fitxer de Partida
+     * @pre path és vàlid
+     * @post totes les variables del fitxer de Partida estan assignades. La Partida no està acabada.
+     */
     public void llegirPartidaComencada (String path) {
         try {
             String contingut = new String((Files.readAllBytes(Paths.get(path))));

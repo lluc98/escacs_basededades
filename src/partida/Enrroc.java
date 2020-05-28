@@ -21,7 +21,7 @@ public class Enrroc {
     }
 
     public Posicio get_p2(){
-        return p1;
+        return p2;
     }
 
     public boolean get_equip(){
@@ -50,7 +50,8 @@ public class Enrroc {
             posCentral2 = posCentral-1;
         }
         else{ //si la peça a enrrocar queda a la dreta
-            posCentral = p1.get_columna()/p2.get_columna();
+            posCentral = p1.get_columna()+p2.get_columna();
+            posCentral = (int) Math.ceil((double)posCentral/2d);
             posCentral2 = posCentral+1;
         }
 
@@ -59,11 +60,11 @@ public class Enrroc {
             return false;
         }
         else{
-            if(t.contePeçaCasella(p1) || t.contePeçaCasella(p2)){
-                return false;
-            }
             Posicio desti1 = new Posicio(p1.get_fila(),posCentral);
             Posicio desti2 = new Posicio(p2.get_fila(),posCentral2);
+            if(t.contePeçaCasella(desti1) || t.contePeçaCasella(desti2)){
+                return false;
+            }
             _t1 = new TiradaSimple(p1,desti1,_equip,0,1);
             _t2 = new TiradaSimple(p2,desti2,_equip,0,1);
             t.realitzarTirada(_t1);

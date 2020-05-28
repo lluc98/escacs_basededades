@@ -10,12 +10,12 @@ import java.util.ArrayList;
 import java.util.TreeMap;
 
 public class LlegirFitxers {
-    TreeMap<String, TipusPeca> conjuntPeces = new TreeMap<String, TipusPeca>();
-    Taulell taulell = new Taulell(9,9);
-    int limitEscacsSeguits = 0;
-    int limitTornsInaccio = 0;
-    String resultatFinal = "";
-    String properTorn = "BLANQUES";
+    private TreeMap<String, TipusPeca> conjuntPeces = new TreeMap<String, TipusPeca>();
+    private Taulell taulell = new Taulell(9,9);
+    private int limitEscacsSeguits = 0;
+    private int limitTornsInaccio = 0;
+    private String resultatFinal = "";
+    private String properTorn = "BLANQUES";
 
     public TreeMap<String, TipusPeca> getConjuntPeces() {
         return conjuntPeces;

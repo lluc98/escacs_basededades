@@ -13,17 +13,17 @@ import static partida.Historial.*;
  * taulells de mida variable.
  */
 public class Partida {
-    TreeMap<String, TipusPeca> conjuntPeces = new TreeMap<>();     ///< Englobem totes les peces d'entrada en aquesta variable
-    Taulell taulell = new Taulell(8,9);                      ///< Objecte que conté totes les dades de taulell
-    String properTorn = "BLANQUES";                                ///< BLANQUES o NEGRES
-    boolean colorTorn = true;                                      ///< true = BLANQUES, false = NEGRES
-    int limitTornsInaccio = 0;                                     ///< Torns que es pot estar sense matar
-    int limitEscacsSeguits = 0;                                    ///< Limit d'escacs que es poden fer abans d'acabar la partida
-    Jugador jugadorBlanques = new Jugador (true);           ///< Objecte que conté les dades del jugador de BLANQUES
-    Jugador jugadorNegres = new Jugador (false);            ///< Objecte que conté les dades del jugador de NEGRES
-    int nJugadors;                                                 ///< Nombre de jugadors humans
-    Historial historial = new Historial();                         ///< Modul que controla l'historial de tirades
-    LlegirFitxers fitxerEntradaPartida = new LlegirFitxers();      ///< Modul que llegeix els fitxers d'entrada
+    private TreeMap<String, TipusPeca> conjuntPeces = new TreeMap<>();     ///< Englobem totes les peces d'entrada en aquesta variable
+    private Taulell taulell = new Taulell(8,9);                      ///< Objecte que conté totes les dades de taulell
+    private String properTorn = "BLANQUES";                                ///< BLANQUES o NEGRES
+    private boolean colorTorn = true;                                      ///< true = BLANQUES, false = NEGRES
+    private int limitTornsInaccio = 0;                                     ///< Torns que es pot estar sense matar
+    private int limitEscacsSeguits = 0;                                    ///< Limit d'escacs que es poden fer abans d'acabar la partida
+    private Jugador jugadorBlanques = new Jugador (true);           ///< Objecte que conté les dades del jugador de BLANQUES
+    private Jugador jugadorNegres = new Jugador (false);            ///< Objecte que conté les dades del jugador de NEGRES
+    private int nJugadors;                                                 ///< Nombre de jugadors humans
+    private Historial historial = new Historial();                         ///< Modul que controla l'historial de tirades
+    private LlegirFitxers fitxerEntradaPartida = new LlegirFitxers();      ///< Modul que llegeix els fitxers d'entrada
 
     /** @brief  Genera una partida carregada
      * @param fitxerPartida nom del fitxer d'entrada
@@ -273,8 +273,10 @@ public class Partida {
      * @pre Hi ha alguna tirada per a refer
      * @post Desfet l'ultima tirada al taulell i al fitxer de partida
      */
-//   public void referTirada () {
-//       TiradaSimple ultimaTirada = taulell.referTirada();
-//       guardarTirada(ultimaTirada, "");
-//   }
+   public void referTirada () {
+       StringBuilder resultat = new StringBuilder();
+       TiradaSimple ultimaTirada = taulell.referTirada(resultat);
+       String r = resultat.toString();
+       guardarTirada(ultimaTirada, r);
+   }
 }

@@ -290,8 +290,6 @@ public class PartidaGrafica extends Application{
                 Rajola rajola = new Rajola(img, _pixelsRajola);
                 rajola.setX(j * _pixelsRajola);
                 rajola.setY(i * _pixelsRajola);
-                System.out.println(rajola.getX());
-                System.out.println(rajola.getY());
                 _rajoles.getChildren().add(rajola);
                 Peca f = _partida.getPeca(new Posicio(i+1, j+1));
                 if(f!=null){

@@ -4,6 +4,8 @@ import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 
 public class PecaGrafica extends StackPane {
     private int _pixels;
@@ -37,17 +39,35 @@ public class PecaGrafica extends StackPane {
     private StackPane crearFitxa(double ample, double alt) {
         boolean equip = _fitxa.get_equip();
         String strImg = "/Images/";
-        if(equip){
-            strImg = strImg + _fitxa.get_tipus().get_imgBlanca();
-        }
-        else{
-            strImg = strImg +  _fitxa.get_tipus().get_imgNegra();
-        }
+        String nomPeca = _fitxa.get_tipus().get_nom();
         StackPane root = new StackPane();
-        root.setPrefSize(ample, alt);
-        root.setStyle("-fx-background-image: url(" + strImg + ");-fx-background-size: stretch;");
-        root.setTranslateX(_pixels * 0.19);
-        root.setTranslateY(_pixels * 0.19);
+        if(nomPeca.equalsIgnoreCase("peo") || nomPeca.equalsIgnoreCase("rei") || nomPeca.equalsIgnoreCase("dama") || nomPeca.equalsIgnoreCase("torre")
+                || nomPeca.equalsIgnoreCase("alfil") || nomPeca.equalsIgnoreCase("cavall")){
+            if(equip){
+                strImg = strImg + _fitxa.get_tipus().get_imgBlanca();
+            }
+            else{
+                strImg = strImg +  _fitxa.get_tipus().get_imgNegra();
+            }
+            root.setPrefSize(ample, alt);
+            root.setStyle("-fx-background-image: url(" + strImg + ");-fx-background-size: stretch;");
+            root.setTranslateX(_pixels * 0.19);
+            root.setTranslateY(_pixels * 0.19);
+        }
+        else{ //és una peça customitzada
+            if(equip){
+                strImg = strImg + "customB.png";
+            }
+            else{
+                strImg = strImg + "customN.png";
+            }
+            Text text = new Text(nomPeca);
+            root.setPrefSize(ample, alt);
+            root.setStyle("-fx-background-image: url(" + strImg + ");-fx-background-size: stretch;");
+            root.getChildren().add(text);
+            root.setAlignment(Pos.CENTER);
+            text.setTextAlignment(TextAlignment.CENTER);
+        }
         return root;
     }
 

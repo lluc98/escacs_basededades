@@ -66,14 +66,12 @@ public class Historial {
         partida.put("proper_torn", properTorn);
     }
 
-    public static void guardarTirada(TiradaSimple t, String resultat) {
+    public static void guardarTirada(String[] args) {
         JSONObject infoTirada = new JSONObject();
-        String equip = "NEGRES";
-        if (t.get_equip()) equip = "BLANQUES";
-        infoTirada.put("torn", equip);
-        infoTirada.put("origen", t.get_origen().get_posicio());
-        infoTirada.put("desti", t.get_desti().get_posicio());
-        infoTirada.put("resultat", resultat);
+        infoTirada.put("torn", args[0]);
+        infoTirada.put("origen", args[1]);
+        infoTirada.put("desti", args[2]);
+        infoTirada.put("resultat", args[3]);
         JSONArray tirades = partida.getJSONArray("tirades");
         tirades.put(infoTirada);
     }
@@ -122,12 +120,5 @@ public class Historial {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    public static void modificarResultatUltimaTirada(String resultat) {
-        JSONArray tirades = partida.getJSONArray("tirades");
-        JSONObject tirada = tirades.getJSONObject(tirades.length() - 1);
-
-        tirada.put("resultat", resultat);
     }
 }

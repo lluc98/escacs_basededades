@@ -55,6 +55,9 @@ public class TipusPeca {
         _llistaMoviments = listMov;
         _llistaMovimentsInicials = listIini;
         _llistaEnrocs = new ArrayList<>();
+
+
+
     }
 
     public boolean tipusPecaValida(TiradaSimple t, boolean primerMov){

@@ -6,7 +6,7 @@ package Partida;
 import java.util.StringTokenizer;
 import java.util.TreeMap;
 
-import static Partida.Historial.*;
+import static Partida.Historial.getUltimaTirada;
 
 /** @class Partida
  * @brief Versió d'un joc d'escacs amb peces personalitzables i
@@ -66,11 +66,6 @@ public class Partida {
         return properTorn;
     }
 
-    /** @brief  Comprova si la posició selecionada al origen és correcte
-     * @param posicioIndefinida nom de la posició origen entrada per l'usuari
-     * @pre --
-     * @post Avisem del valor de la posició
-     */
     public String posCorrecteOrigen (String posicioIndefinida) {
         boolean colorTorn = "BLANQUES" == properTorn;
         Posicio p = new Posicio(posicioIndefinida);
@@ -89,11 +84,6 @@ public class Partida {
         }
     }
 
-    /** @brief  Comprova si la posició selecionada al destí és correcte
-     * @param posicioIndefinida nom de la posició origen entrada per l'usuari
-     * @pre --
-     * @post Avisem del valor de la posició
-     */
     public String posCorrecteDesti (String posicioIndefinida) {
         boolean colorTorn = "BLANQUES" == properTorn;
         Posicio p = new Posicio(posicioIndefinida);
@@ -113,11 +103,6 @@ public class Partida {
         }
     }
 
-    /** @brief  Funció principal del programa: realitza una tirada un jugador
-     * @param tirada posició origen i destí separats per un espai
-     * @pre Les posicions han estat validades
-     * @post S'ha realitzat una tirada
-     */
     public String ferTirada (String tirada) {
         boolean colorTorn = "BLANQUES" == properTorn;
         Jugador jugadorActual = jugadorBlanques;
@@ -167,10 +152,6 @@ public class Partida {
         return "Alguna cosa ha sortit malament";
     }
 
-    /** @brief  Acció de perdre la partida, cada jugador ho pot decidir en el seu torn
-     * @pre --
-     * @post Es tanca la partida amb el guanyador siguent l'equip contrari
-     */
     public void rendirse () {
         if (properTorn == "BLANQUES") {
             Historial.guardarPartida("NEGRES");
@@ -180,38 +161,21 @@ public class Partida {
         }
     }
 
-    /** @brief  Acció de empatar la partida, cada jugador ho pot decidir en el seu torn i l'altre hi ha d'estar d'acord.
-     * @pre --
-     * @post Es tanca la partida amb un empat
-     */
     public void taules () {
         Historial.guardarPartida("TAULES");
     }
 
-    /** @brief  Acció d'ajornar la partida
-     * @pre --
-     * @post Es tanca la partida, sense resultat, per a poder segui-la
-     */
     public void ajornar () {
         Historial.guardarPartida("");
     }
 
-    /** @brief  Acció de mostrar el taulell
-     * @pre --
-     * @post Es mostra el taulell en format text
-     */
     public void mostrarTaulell () {
         System.out.println(taulell.mostra());
     }
 
-    /** @brief  Peça de la posició p
-     * @pre Posició p té una peça
-     * @post Retorna la peça de la posició entrada
-     */
     public Peca getPeca ( Posicio p) {
         return taulell.getPeca(p);
     }
-
 
     /** @brief Taulell */
     public Taulell getTaulell() {return taulell; }
@@ -232,12 +196,8 @@ public class Partida {
     public int getColumnes () { return taulell.getColumnes(); }
 
 
-    /** @brief  Acció de promocionar una peça.
-     * @param tirada posició origen i destí separats per un espai
-     * @param nomPeça nom de la peça a la que s'hi vol promocionar
-     * @pre posicions origen i destí vàlides.
-     * @post S'ha promocinat la peça del jugador actual i s'avisa al principal si ha sortit bé o no.
-     */
+
+
     public String ferPromocio(String tirada, String nomPeça){
         boolean colorTorn = "BLANQUES" == properTorn;
         Jugador jugadorActual = jugadorBlanques;
@@ -259,24 +219,5 @@ public class Partida {
             }
             else return "promocio feta";
         }
-    }
-
-    /** @brief  Desfem l'última tirada
-     * @pre Hi ha alguna tirada per a desfer
-     * @post Desfet l'ultima tirada al taulell i al fitxer de partida
-     */
-    public void desferTirada () {
-        TiradaSimple ultimaTirada = getUltimaTirada();
-        taulell.desferTirada(ultimaTirada);
-        eliminarUltimaTirada();
-    }
-
-    /** @brief  Refem l'última tirada
-     * @pre Hi ha alguna tirada per a refer
-     * @post Desfet l'ultima tirada al taulell i al fitxer de partida
-     */
-    public void referTirada () {
-        TiradaSimple ultimaTirada = taulell.referTirada();
-        guardarTirada(ultimaTirada, "");
     }
 }

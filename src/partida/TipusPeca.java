@@ -1,4 +1,4 @@
-package Partida;
+package partida;
 
 import java.util.ArrayList;
 import java.util.Iterator;

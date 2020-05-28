@@ -1,4 +1,4 @@
-package Partida;
+package partida;
 
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;

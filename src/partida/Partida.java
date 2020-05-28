@@ -1,4 +1,4 @@
-package Partida;
+package partida;
 /** @file Partida.java
  * @brief Joc d'escacs.
  */
@@ -6,13 +6,13 @@ package Partida;
 import java.util.StringTokenizer;
 import java.util.TreeMap;
 
-import static Partida.Historial.*;
+import static partida.Historial.*;
 
 /** @class Partida
  * @brief Versió d'un joc d'escacs amb peces personalitzables i
  * taulells de mida variable.
  */
-public class partida {
+public class Partida {
     TreeMap<String, TipusPeca> conjuntPeces = new TreeMap<>();     ///< Englobem totes les peces d'entrada en aquesta variable
     Taulell taulell = new Taulell(8,9);                      ///< Objecte que conté totes les dades de taulell
     String properTorn = "BLANQUES";                                ///< BLANQUES o NEGRES
@@ -30,7 +30,7 @@ public class partida {
      * @pre fitxerPartida existeix i esta en un format correcte
      * @post totes les variables per a continuar una partida estan settejades.
      */
-    public partida(String fitxerPartida) {
+    public Partida(String fitxerPartida) {
         //Hauriem de posar condicions per a saber quina partida començarem
         fitxerEntradaPartida.llegirPartidaComencada(fitxerPartida);
         conjuntPeces = fitxerEntradaPartida.getConjuntPeces();
@@ -46,7 +46,7 @@ public class partida {
      * @pre fitxerRegles existeix i esta en un format correcte
      * @post totes les variables per a començar una partida estan settejades.
      */
-    public partida(String fitxerRegles, int jugadors) {
+    public Partida(String fitxerRegles, int jugadors) {
         fitxerEntradaPartida.llegirRegles(fitxerRegles);
         conjuntPeces = fitxerEntradaPartida.getConjuntPeces();
         taulell = fitxerEntradaPartida.getTaulell();

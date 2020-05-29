@@ -3,6 +3,7 @@ package partida;
  * @brief Partida d'escacs.
  */
 
+import java.io.IOException;
 import java.util.StringTokenizer;
 import java.util.TreeMap;
 
@@ -24,13 +25,15 @@ public class Partida {
     private int nJugadors;                                                 ///< Nombre de jugadors humans
     private Historial historial = new Historial();                         ///< Modul que controla l'historial de tirades
     private LlegirFitxers fitxerEntradaPartida = new LlegirFitxers();      ///< Modul que llegeix els fitxers d'entrada
+    private int TornsInaccio = 0;                                          ///< Contador de torns actual d'Inacció
+    private int EscacsSeguits = 0;                                         ///< Contador d'escacs seguits actual
 
     /** @brief  Genera una partida carregada
      * @param fitxerPartida nom del fitxer d'entrada
      * @pre fitxerPartida existeix i esta en un format correcte
      * @post totes les variables per a continuar una partida estan settejades.
      */
-    public Partida(String fitxerPartida) {
+    public Partida(String fitxerPartida) throws IOException {
         //Hauriem de posar condicions per a saber quina partida començarem
         fitxerEntradaPartida.llegirPartidaComencada(fitxerPartida);
         conjuntPeces = fitxerEntradaPartida.getConjuntPeces();
@@ -38,6 +41,7 @@ public class Partida {
         properTorn = fitxerEntradaPartida.getProperTorn();
         limitEscacsSeguits = fitxerEntradaPartida.getLimitEscacsSeguits();
         limitTornsInaccio = fitxerEntradaPartida.getLimitTornsInaccio();
+        carregarPartidaAnterior(fitxerPartida);
     }
 
     /** @brief  Genera una partida carregada
@@ -46,7 +50,7 @@ public class Partida {
      * @pre fitxerRegles existeix i esta en un format correcte
      * @post totes les variables per a començar una partida estan settejades.
      */
-    public Partida(String fitxerRegles, int jugadors) {
+    public Partida(String fitxerRegles, int jugadors) throws IOException {
         fitxerEntradaPartida.llegirRegles(fitxerRegles);
         conjuntPeces = fitxerEntradaPartida.getConjuntPeces();
         taulell = fitxerEntradaPartida.getTaulell();
@@ -54,6 +58,8 @@ public class Partida {
         limitTornsInaccio = fitxerEntradaPartida.getLimitTornsInaccio();
         properTorn = "BLANQUES";
         nJugadors = jugadors;
+        iniciarPartidaNova(fitxerRegles);
+        guardarFitxerRegles(fitxerRegles);
     }
 
     /** @brief Canvia de torn */
@@ -119,6 +125,12 @@ public class Partida {
      * @post S'ha realitzat una tirada
      */
     public String ferTirada (String tirada) {
+        if (limitEscacsSeguits <= EscacsSeguits) {
+            return "EscacsSeguits";
+        }
+        if (limitTornsInaccio <= TornsInaccio) {
+            return "TornsInaniccio";
+        }
         boolean colorTorn = "BLANQUES" == properTorn;
         Jugador jugadorActual = jugadorBlanques;
         if (colorTorn != jugadorBlanques.get_equip()) {
@@ -130,27 +142,30 @@ public class Partida {
             Posicio origen = new Posicio((defaultTokenizer.nextToken())); // origen
             defaultTokenizer.nextToken(); // -
             Posicio desti = new Posicio((defaultTokenizer.nextToken())); //destí
+            TornsInaccio++;
+            EscacsSeguits = 0;
 
             if (jugadorActual.ferEnrroc(taulell, origen, desti)) {
                 return "s'ha realitzat el enrroc correctament";
             } else {
                 return "no s'ha realitzat l'enrroc";
             }
-
         } else if (defaultTokenizer.countTokens() == 2) { //Tirada Normal
             Posicio origen = new Posicio((defaultTokenizer.nextToken())); //origen
             Posicio desti = new Posicio((defaultTokenizer.nextToken())); //destí
 
             int resultatTirada = jugadorActual.ferTirada(taulell, origen, desti);
-            if(resultatTirada > 0){
-                if(jugadorActual.ShaProvocatJaque(taulell)) {
+            if (resultatTirada > 0) {
+                if (jugadorActual.ShaProvocatJaque(taulell)) {
                     desferTirada();
                     return "no s'ha realitzat la tirada";
-                }
-                else if(jugadorActual.observarPromocio(desti,taulell)){
+                } else if (jugadorActual.observarPromocio(desti, taulell)) {
+                    TornsInaccio++;
+                    EscacsSeguits = 0;
                     return "promocio";
-                }
-                else if(jugadorActual.ShaProvocatJaque(taulell)){
+                } else if (jugadorActual.ShaProvocatJaque(taulell)) {
+                    TornsInaccio++;
+                    EscacsSeguits++;
                     modificarResultatUltimaTirada("ESCAC");
                     return "hi ha jaque";
                 }
@@ -159,8 +174,12 @@ public class Partida {
             //1 tirada valida
             //>1 tirada valida + morts;
             if (resultatTirada == 1) {
+                TornsInaccio++;
+                EscacsSeguits = 0;
                 return "tirada vàlida";
             } else if (resultatTirada > 1) {
+                TornsInaccio = 0;
+                EscacsSeguits = 0;
                 return "return tirada vàlida i s'ha matat";
             } else {
                 return "no s'ha realitzat la tirada";
@@ -169,11 +188,12 @@ public class Partida {
         return "Alguna cosa ha sortit malament";
     }
 
-    /** @brief  Acció de perdre la partida, cada jugador ho pot decidir en el seu torn
+    /** @brief Acció de perdre la partida, cada jugador ho pot decidir en el seu torn
      * @pre --
      * @post Es tanca la partida amb el guanyador siguent l'equip contrari
      */
     public void rendirse () {
+        guardarProperTorn(properTorn);
         if (properTorn == "BLANQUES") {
             Historial.guardarPartida("NEGRES");
         }
@@ -187,6 +207,7 @@ public class Partida {
      * @post Es tanca la partida amb un empat
      */
     public void taules () {
+        guardarProperTorn(properTorn);
         Historial.guardarPartida("TAULES");
     }
 
@@ -195,6 +216,7 @@ public class Partida {
      * @post Es tanca la partida, sense resultat, per a poder segui-la
      */
     public void ajornar () {
+        guardarProperTorn(properTorn);
         Historial.guardarPartida("");
     }
 
@@ -206,7 +228,7 @@ public class Partida {
         System.out.println(taulell.mostra());
     }
 
-    /** @brief  Peça de la posició p
+    /** @brief Peça de la posició p
      * @pre Posició p té una peça
      * @post Retorna la peça de la posició entrada
      */
@@ -268,22 +290,24 @@ public class Partida {
      * @pre Hi ha alguna tirada per a desfer
      * @post Desfet l'ultima tirada al taulell i al fitxer de partida
      */
-    public void desferTirada () {
+    public TiradaSimple desferTirada () {
         TiradaSimple ultimaTirada = getUltimaTirada();
-        String res = getResultatUltimaTirada();
-        taulell.desferTirada(ultimaTirada, res, conjuntPeces);
+        String res = getUltimResultat();
+        TiradaSimple tiradaDesfeta = taulell.desferTirada(ultimaTirada, res, conjuntPeces);
         eliminarUltimaTirada();
+        return tiradaDesfeta;
     }
 
     /** @brief  Refem l'última tirada
      * @pre Hi ha alguna tirada per a refer
      * @post Desfet l'ultima tirada al taulell i al fitxer de partida
      */
-   public void referTirada () {
+   public TiradaSimple referTirada () {
        StringBuilder resultat = new StringBuilder();
        TiradaSimple ultimaTirada = taulell.referTirada(resultat);
        String r = resultat.toString();
        guardarTirada(ultimaTirada, r);
+       return ultimaTirada;
    }
 
     public String [] getLlistaPeces() {

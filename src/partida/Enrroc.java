@@ -6,6 +6,8 @@ package partida;
 /** @class Enrroc
  * @brief Objecte que guarda un tipus d'enrroc vàlid de la Partida
  */
+import static partida.Historial.*;
+
 public class Enrroc {
     private Posicio p1;                   ///< Posició de la primera Peça
     private Posicio p2;                   ///< Posició de la segona Peça
@@ -27,6 +29,14 @@ public class Enrroc {
         p2 = b;
         _equip = equip;
 
+    }
+
+    public Enrroc(Posicio a, Posicio b, boolean equip, boolean quiets, boolean buitAlmig){
+        p1 = a;
+        p2 = b;
+        _equip = equip;
+        _quiets = quiets;
+        _buitAlmig = buitAlmig;
     }
 
     /** @brief Posició 1 */
@@ -70,9 +80,10 @@ public class Enrroc {
      * @pre --
      * @post true s'ha realitzat l'Enrroc, false altrament.
      */
-    public boolean realitzarEnroc(Taulell t){
+    public String realitzarEnroc(Taulell t){
         int posCentral;
         int posCentral2;
+        String res = "";
         if(p1.get_columna() < p2.get_columna()){ //si la peça a enrrocar queda a la esquerra
             posCentral = p1.get_columna()+p2.get_columna();
             posCentral = (int) Math.ceil((double)posCentral/2d);
@@ -86,19 +97,21 @@ public class Enrroc {
 
         TiradaSimple aux = new TiradaSimple(p1,p2,_equip);
         if(t.hiHaPecesEntremig(aux) && _buitAlmig){ //si hi ha peces entremig i ha destar buit entre mig retorna fals
-            return false;
+            return res;
         }
         else{
             Posicio desti1 = new Posicio(p1.get_fila(),posCentral);
             Posicio desti2 = new Posicio(p2.get_fila(),posCentral2);
             if(t.contePeçaCasella(desti1) || t.contePeçaCasella(desti2)){
-                return false;
+                return res;
             }
+
             _t1 = new TiradaSimple(p1,desti1,_equip,0,1);
             _t2 = new TiradaSimple(p2,desti2,_equip,0,1);
             t.realitzarTirada(_t1);
             t.realitzarTirada(_t2);
-            return true;
+            res = "ENROC: " + _t1.get_origen().get_posicio() + " " + _t2.get_origen().get_posicio() + " - " + _t1.get_desti().get_posicio() + " " + _t2.get_desti().get_posicio();
+            return res;
         }
     }
 }

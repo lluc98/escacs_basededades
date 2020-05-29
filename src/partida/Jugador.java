@@ -48,7 +48,11 @@ public class Jugador {
     public boolean ferEnrroc(Taulell taulell, Posicio p1, Posicio p2){
         Enrroc enrroc = new Enrroc(p1,p2, _equip);
         if(taulell.validarEnrroc(enrroc)){
-            if(enrroc.realitzarEnroc(taulell)){
+            String a = "";
+            a = enrroc.realitzarEnroc(taulell);
+            if(!a.equals("")){
+                TiradaSimple t= new TiradaSimple(p1,p2,_equip);
+                guardarTirada(t, a);
                 return true;
             }
             else return false;

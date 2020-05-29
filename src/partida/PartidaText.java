@@ -1,12 +1,13 @@
 package partida;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public abstract class PartidaText {
 
     private static Partida _partida;
 
-    public static void iniciaAplicacio() {
+    public static void iniciaAplicacio() throws IOException {
         Scanner teclat = new Scanner(System.in);
         System.out.println("Benvingut a l'aplicació!!");
         System.out.println("Vols començar una partida o carregar-ne una de començada? (Començar/Carregar)");
@@ -77,11 +78,23 @@ public abstract class PartidaText {
             continuar = false;
             res.append("ajornar");
         }else if(s.equalsIgnoreCase("desfer")){
-            _partida.desferTirada();
-            res.append("desfer fet");
+            /*StringBuilder result = new StringBuilder();
+            TiradaSimple tirada = _partida.desferTirada(result);
+            if(tirada == null){
+                res.append("noDesfer");
+            }
+            else{
+                res.append("desfer fet");
+            }*/
         }else if(s.equalsIgnoreCase("refer")){
-            _partida.referTirada();
-            res.append("refer fet");
+            /*StringBuilder result = new StringBuilder();
+            TiradaSimple tirada = _partida.referTirada(result);
+            if(tirada == null){
+                res.append("noRefer");
+            }
+            else{
+                res.append("refer fet");
+            }*/
         }
         else{
             System.out.println("Pots moure aquesta peça, a on la vols moure? O escriu 'no' si prefereixes moure una altre peça");
@@ -109,6 +122,9 @@ public abstract class PartidaText {
                 }
             }else{//si entra aqui sabem segur que ha retornat "no", per tant, que no vol moure la peça que ha dit
                 System.out.println("Pots tornar a entrar la posició Inicial");
+            }
+            if(res.toString().equalsIgnoreCase("EscacsSeguits") || res.toString().equalsIgnoreCase("TornsInaniccio")){
+                continuar = false;
             }
         }
         return continuar;
@@ -144,7 +160,9 @@ public abstract class PartidaText {
         String[] llsitaPeces = _partida.getLlistaPeces();
         System.out.println("Pots fer promoció d'aquestes peces");
         for(int i = 0; i<llsitaPeces.length; i++){
-            System.out.println(llsitaPeces[i]);
+            if(!llsitaPeces[i].equalsIgnoreCase("rei")){
+                System.out.println(llsitaPeces[i]);
+            }
         }
     }
 
@@ -174,6 +192,9 @@ public abstract class PartidaText {
             return true;
         }else if(res.toString().equals("return tirada vàlida i s'ha matat")){
             System.out.println(res);
+        }else if(res.toString().equalsIgnoreCase("s'ha realitzat el enrroc correctament")){
+            System.out.println("s'ha realitzat el enrroc correctament");
+            return true;
         }else if(res.toString().equals("no s'ha realitzat la tirada")){
             System.out.println(res);
         }else if(res.toString().equalsIgnoreCase("desfer fet")){
@@ -206,6 +227,15 @@ public abstract class PartidaText {
             _partida.rendirse();
         }else if(res.toString().equalsIgnoreCase("no enroc")){
             System.out.println("No has volgut fer l'enroc");
+        }else if(res.toString().equalsIgnoreCase("norefer")){
+            System.out.println("No queden tirades per refer");
+        }else if(res.toString().equalsIgnoreCase("EscacsSeguits")){
+            //_partida.taulesEscacsSeguits();
+            System.out.println("S'ha superat el nombre de torns que restulta amb 'Escac'. S'acaba la partida");
+
+        }else if(res.toString().equalsIgnoreCase("TornsInaniccio")){
+            //_partida.taulesTornsInaccio();
+            System.out.println("S'ha superat el nombre de torns sense matar cap peça. S'acaba la partida");
         }
         return false;
     }

@@ -21,9 +21,11 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.Iterator;
 
 public class PartidaGrafica extends Application{
@@ -128,10 +130,18 @@ public class PartidaGrafica extends Application{
                 }
                 else{
                     if(opcio == 1){
-                        _partida = new Partida(s, (int) cb.getValue());
+                        try {
+                            _partida = new Partida(s, (int) cb.getValue());
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
                     }
                     else{
-                        _partida = new Partida(s);
+                        try {
+                            _partida = new Partida(s);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
                     }
                     crearEscenaPartida();
                     window.setScene(escenaPartida);
@@ -158,7 +168,7 @@ public class PartidaGrafica extends Application{
         lbl.setStyle("-fx-font-weight: bolder; -fx-font-size: 25px; -fx-font-family: " + "Arial Black" + "; -fx-fill: #818181; " +
                 "-fx-effect: innershadow(three-pass-box, rgb(255,99,71), 6, 0.0, 0, 2);");
 
-       return lbl;
+        return lbl;
     }
 
     private static Node botoInferior(String s){
@@ -193,7 +203,7 @@ public class PartidaGrafica extends Application{
     private static Node crearOpcions(BorderPane p){
         BorderPane root = new BorderPane();
         VBox opcionsGenerals = new VBox(15);
-        root.setPrefWidth(200);
+        root.setPrefWidth(300);
         Button redo = new Button("Refer");
         Button undo = new Button("Desfer");
         Button surrender = new Button("Rendir-se");
@@ -214,13 +224,51 @@ public class PartidaGrafica extends Application{
             public void handle(ActionEvent event) {
                 StringBuilder resultat = new StringBuilder();
                 TiradaSimple tirada = _partida.desferTirada(resultat);
-                TreeMap<Posicio, Peca> eliminades = _partida.getTaulell().getEliminades();
-                Iterator<Map.Entry<Posicio, Peca>> it = eliminades.entrySet().iterator();
-                while(it.hasNext()){
-                    Map.Entry<Posicio, Peca> entry = it.next();
-                    Posicio pos = entry.getKey();
-                    Peca peca = entry.getValue();
+                Iterator<Node> itr = _fitxes.getChildren().iterator();
+                PecaGrafica pGraf = null;
+                String[] tokens = resultat.toString().split(" ");
+                if(tokens.length == 6){ //si és 6 vol dir que hi ha hagut enroc
+                    while(itr.hasNext()){
+                        pGraf = (PecaGrafica) itr.next();
+                        if(pGraf.get_oldX() == (int)(tokens[5].charAt(0))-1-96 && pGraf.get_oldY() == tokens[5].charAt(1)-1-48){ //resto 1 perquè en lluc no fa servir la posició 0 i jo si i després resto l'altre numero perquè retorna en codi ascii
+                            break;
+                        }
+                    }
+                    pGraf.move((int)(tokens[2].charAt(0)-1-96),tokens[2].charAt(1)-1-48);
+                    pGraf = null;
+                    itr = _fitxes.getChildren().iterator();
+                    while(itr.hasNext()){
+                        pGraf = (PecaGrafica) itr.next();
+                        if(pGraf.get_oldX() == (int)(tokens[4].charAt(0))-1-96 && pGraf.get_oldY() == tokens[4].charAt(1)-1-48){ //resto 1 perquè en lluc no fa servir la posició 0 i jo si i després resto l'altre numero perquè retorna en codi ascii
+                            break;
+                        }
+                    }
+                    pGraf.move((int)(tokens[1].charAt(0)-1-96),tokens[1].charAt(1)-1-48);
+                }else if(tokens.length == 4){
+
                 }
+                else{ //no hi ha hagut enrroc
+                    while(itr.hasNext()){
+                        pGraf = (PecaGrafica) itr.next();
+                        if(pGraf.get_oldX() == tirada.get_desti().get_columna()-1 && pGraf.get_oldY() == tirada.get_desti().get_fila()-1){ //resto 1 perquè en lluc no fa servir la posició 0 i jo si
+                            break;
+                        }
+                    }
+                    pGraf.move(tirada.get_origen().get_fila()-1, tirada.get_origen().get_columna()-1);
+
+                    TreeMap<Posicio, Peca> eliminades = _partida.getTaulell().getEliminades();
+                    Iterator<Map.Entry<Posicio, Peca>> it = eliminades.entrySet().iterator();
+                    while(it.hasNext()){
+                        Map.Entry<Posicio, Peca> entry = it.next();
+                        Posicio pos = entry.getKey();
+                        Peca peca = entry.getValue();
+                        if(peca!=null){
+                            PecaGrafica pGrafi = crearFitxa(peca, pos.get_columna(), pos.get_fila(), p);
+                            _fitxes.getChildren().add(pGrafi);
+                        }
+                    }
+                }
+
 
             }
         });*/
@@ -272,9 +320,12 @@ public class PartidaGrafica extends Application{
             }
         });
         exit.setOnAction( e-> Platform.exit());
-        Label avisos = new Label();
-        HBox botoMarxar = new HBox(15);
+        HBox avisos = new HBox(15);
+        Text av = new Text("No hi ha cap avís");
+        avisos.getChildren().add(av);
+        avisos.setAlignment(Pos.TOP_CENTER);
 
+        HBox botoMarxar = new HBox(15);
         botoMarxar.getChildren().add(exit);
         botoMarxar.setAlignment(Pos.BOTTOM_CENTER);
 
@@ -382,8 +433,9 @@ public class PartidaGrafica extends Application{
                 }else if(res.equalsIgnoreCase("no s'ha realitzat la tirada")){
                     p.abortMove();
                 }else if(res.equalsIgnoreCase("promocio")){
+                    p.move(newX, newY);
                     crearEscenaPromoció(pane, mov, newX, newY); //si no funciona d'aquesta manera, dins de l'eventHandler dels botons faig que es canviï la peça ia i aqui, despres de cridar aquest mètode, busco la peça que hi ha a la posició i li envio al ferpromocio.
-                    //res = _partida.ferPromocio(mov, s);
+                    res = "Escena promoció creada";
                 }else if(res.equalsIgnoreCase("s'ha realitzat el enrroc correctament")){
                     Iterator<Node> itr = _fitxes.getChildren().iterator();
                     PecaGrafica pGraf = null;
@@ -414,43 +466,54 @@ public class PartidaGrafica extends Application{
 
     private static void crearEscenaPromoció(BorderPane p, String mov, int x, int y){
         VBox root = new VBox(10);
-        Label lbl = new Label("Per quina peça vols fer la promoció");
+        Label lbl = new Label("Per quina peça vols fer la promoció.");
         Label lbl2 = new Label("Si no ho fas ara, no ho podras fer");
         root.getChildren().addAll(lbl, lbl2);
         String[] llsitaPeces = _partida.getLlistaPeces();
         for(String s : llsitaPeces){
-            Button btn = new Button(s);
-            btn.setOnAction(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent event) {
-                    _partida.ferPromocio(mov,s);
-                    Iterator<Node> itr = _fitxes.getChildren().iterator();
-                    PecaGrafica pGraf = null;
-                    while(itr.hasNext()){
-                        pGraf = (PecaGrafica) itr.next();
-                        if(pGraf.get_oldX() == x && pGraf.get_oldY() == y){
-                            break;
+            if(!s.equalsIgnoreCase("rei")){
+                Button btn = new Button(s);
+                btn.setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent event) {
+                        _partida.ferPromocio(mov,s);
+                        Iterator<Node> itr = _fitxes.getChildren().iterator();
+                        PecaGrafica pGraf = null;
+                        while(itr.hasNext()){
+                            pGraf = (PecaGrafica) itr.next();
+                            if(pGraf.get_oldX() == x && pGraf.get_oldY() == y){
+                                break;
+                            }
                         }
+                        _fitxes.getChildren().remove(pGraf);
+                        eliminarPeca(x, y);
+                        Peca f = _partida.getPeca(new Posicio(y+1, x+1)); //aixo retorna null perq....
+                        if(f!=null){
+                            PecaGrafica novaPeca = crearFitxa(f, x, y, p);
+                            _fitxes.getChildren().add(novaPeca);
+                        }
+                        p.setRight(crearOpcions(p));
                     }
-                    _fitxes.getChildren().remove(pGraf);
-                    Peca f = _partida.getPeca(new Posicio(x+1, y+1));
-                    if(f!=null){
-                        PecaGrafica novaPeca = crearFitxa(f, y, x, p);
-                        _fitxes.getChildren().add(novaPeca);
-                    }
-                    p.setRight(crearOpcions(p));
-                }
-            });
-            root.getChildren().add(btn);
+                });
+                btn.setAlignment(Pos.CENTER);
+                root.getChildren().add(btn);
+            }
+
         }
+        lbl.setAlignment(Pos.CENTER);
+        lbl2.setAlignment(Pos.CENTER);
         root.setAlignment(Pos.CENTER);
+        root.setPadding(new Insets(20));
         p.setRight(root);
     }
 
     private static void modificarLblAvisos(String s, BorderPane p){
-        BorderPane dreta = (BorderPane) p.getRight();
-        Label lbl = (Label) dreta.getTop();
-
+        if(!s.equalsIgnoreCase("Escena promoció creada")){
+            BorderPane dreta = (BorderPane) p.getRight();
+            HBox top = (HBox) dreta.getTop();
+            Text txt = (Text) top.getChildren().get(0);
+            txt.setText(s);
+        }
     }
 
     private static VBox crearPaneEnroc(BorderPane p, StringBuilder s){

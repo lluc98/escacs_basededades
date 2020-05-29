@@ -4,6 +4,8 @@ package partida;
  */
 
 import java.io.IOException;
+import java.util.Iterator;
+import java.util.Map;
 import java.util.StringTokenizer;
 import java.util.TreeMap;
 
@@ -164,7 +166,7 @@ public class Partida {
                     TornsInaccio++;
                     EscacsSeguits = 0;
                     return "promocio";
-                } else if (jugadorActual.ShaProvocatJaque(taulell)) {
+                } else if (jugadorActual.observarJaque(taulell)) {
                     TornsInaccio++;
                     EscacsSeguits++;
                     modificarResultatUltimaTirada("ESCAC");
@@ -313,11 +315,15 @@ public class Partida {
 
     public String [] getLlistaPeces() {
         String [] peces = new String[conjuntPeces.size()];
-        for (int i = 0; i < conjuntPeces.size() ; i++) {
-            peces [i] = conjuntPeces.get(i).get_nom();
+        Iterator<Map.Entry<String, TipusPeca>> it = conjuntPeces.entrySet().iterator();
+        String nom;
+        int i = 0;
+        while(it.hasNext()){
+            Map.Entry<String, TipusPeca> entry = it.next();
+            nom = entry.getKey();
+            peces[i] = nom;
+            i++;
         }
         return peces;
-
-
     }
 }

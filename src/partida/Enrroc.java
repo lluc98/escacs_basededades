@@ -110,6 +110,7 @@ public class Enrroc {
             _t2 = new TiradaSimple(p2,desti2,_equip,0,1);
             t.realitzarTirada(_t1);
             t.realitzarTirada(_t2);
+
             res = "ENROC: " + _t1.get_origen().get_posicio() + " " + _t2.get_origen().get_posicio() + " - " + _t1.get_desti().get_posicio() + " " + _t2.get_desti().get_posicio();
             return res;
         }

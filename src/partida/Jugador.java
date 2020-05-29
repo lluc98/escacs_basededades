@@ -36,7 +36,7 @@ public class Jugador {
         taulell.realitzarPromocio(posicio, p);
     }
 
-    public boolean ObservarJaque(Taulell taulell){ //res == 1 retorna jaque, res == 2 retorna jaque mate, res == 0 retorna no hi ha res
+    public boolean observarJaque(Taulell taulell){ //res == 1 retorna jaque, res == 2 retorna jaque mate, res == 0 retorna no hi ha res
         TiradaSimple t = taulell.hihaJaque(_equip);
         return  t != null;
     }

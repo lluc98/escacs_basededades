@@ -141,11 +141,11 @@ public abstract class PartidaText {
     }
 
     private static void menuPromocio(){
-        /*String[] llsitaPeces = _partida.getLlistaPeces();
+        String[] llsitaPeces = _partida.getLlistaPeces();
         System.out.println("Pots fer promoció d'aquestes peces");
         for(int i = 0; i<llsitaPeces.length; i++){
             System.out.println(llsitaPeces[i]);
-        }*/
+        }
     }
 
     private static boolean taules(){

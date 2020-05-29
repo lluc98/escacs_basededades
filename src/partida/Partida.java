@@ -81,20 +81,37 @@ public class Partida {
      */
     public String posCorrecteOrigen (String posicioIndefinida) {
         boolean colorTorn = "BLANQUES" == properTorn;
-        Posicio p = new Posicio(posicioIndefinida);
+        String lletra = posicioIndefinida.substring(0, 1);
+        int n = -1;
+        if (esEnter(posicioIndefinida.substring(1)))
+            n = Integer.parseInt(posicioIndefinida.substring(1));
+        if (lletra.matches("^[a-zA-Z]*$") && 0 <= n && n < 99) {
+            Posicio p = new Posicio(posicioIndefinida);
 
-        if (taulell.contePeçaCasella(p)) {
-            Peca pecaActual = taulell.getPeca(p);
-            if (pecaActual.get_equip() == colorTorn) {
-                return "Tot correcte";
+            if (taulell.contePeçaCasella(p)) {
+                Peca pecaActual = taulell.getPeca(p);
+                if (pecaActual.get_equip() == colorTorn) {
+                    return "Tot correcte";
+                } else {
+                    return "Peça del color incorrecte";
+                }
+            } else {
+                return "Posició invàlida";
             }
-            else {
-                return "Peça del color incorrecte";
-            }
-        }
-        else {
+        } else {
             return "Posició invàlida";
         }
+    }
+
+    public static boolean esEnter(String s) {
+        try {
+            Integer.parseInt(s);
+        } catch(NumberFormatException e) {
+            return false;
+        } catch(NullPointerException e) {
+            return false;
+        }
+        return true;
     }
 
     /** @brief  Comprova si la posició selecionada al destí és correcte
@@ -313,6 +330,10 @@ public class Partida {
        return ultimaTirada;
    }
 
+    /** @brief  Obtenim la llista de peces de la Partida
+     * @pre --
+     * @post Restorna un llista de String Peca de cada tipus de Peça de la partida
+     */
     public String [] getLlistaPeces() {
         String [] peces = new String[conjuntPeces.size()];
         Iterator<Map.Entry<String, TipusPeca>> it = conjuntPeces.entrySet().iterator();

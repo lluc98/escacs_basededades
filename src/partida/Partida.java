@@ -150,6 +150,7 @@ public class Partida {
             } else {
                 return "no s'ha realitzat l'enrroc";
             }
+
         } else if (defaultTokenizer.countTokens() == 2) { //Tirada Normal
             Posicio origen = new Posicio((defaultTokenizer.nextToken())); //origen
             Posicio desti = new Posicio((defaultTokenizer.nextToken())); //destí
@@ -267,17 +268,17 @@ public class Partida {
             jugadorActual = jugadorNegres;
         }
 
-        if(nomPeça.equalsIgnoreCase("REI") || conjuntPeces.get(nomPeça) == null){
+        if(nomPeça.equalsIgnoreCase("REI") || conjuntPeces.get(nomPeça.toUpperCase()) == null){
             return "no valid";
         }
         else{
-            Peca p = new Peca(nomPeça, jugadorActual.get_equip(),conjuntPeces);
+            Peca p = new Peca(nomPeça.toUpperCase(), jugadorActual.get_equip(),conjuntPeces);
             Peca v;
             StringTokenizer defaultTokenizer = new StringTokenizer(tirada);
             Posicio origen = new Posicio((defaultTokenizer.nextToken())); //origen
             Posicio desti = new Posicio((defaultTokenizer.nextToken())); //destí
+            v = taulell.getPeca(desti);
             jugadorActual.ferPromocio(desti,taulell,p);
-            v = taulell.getPeca(origen);
             modificarResultatUltimaTirada("PROMOCIÓ: " + v.getNom() + " - " + p.getNom() );
             if(jugadorActual.ShaProvocatJaque(taulell)){
                 return "feta jaque";
@@ -316,5 +317,7 @@ public class Partida {
             peces [i] = conjuntPeces.get(i).get_nom();
         }
         return peces;
+
+
     }
 }

@@ -127,6 +127,8 @@ public class Peca {
         }
     }
 
+
+
     /** @brief Comparació del nom de dues Peces
      * @pre --
      * @post true es diuen igual, false altrament.

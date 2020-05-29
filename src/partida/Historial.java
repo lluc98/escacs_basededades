@@ -6,8 +6,10 @@ package partida;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.zip.ZipFile;
 
 /** @class Historial
  * @brief Tirades i resultats que s'obtenen dirant la partida, també posicions inicials
@@ -18,26 +20,17 @@ public class Historial {
 
     public static JSONObject partida = new JSONObject();    ///< Objecte JSON on guardarem les dades de la Partida
 
-    /** @brief Try Catch per a comprovar excepcions del SO on s'executi el programa */
-    static {
-        try {
-            fitxerPartida = new FileWriter("PartidaNova.txt");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
     /** @brief  Inicialitzador de l'objecte JSON que guardarem
      * @pre --
      * @post Totes les variables estan inicialitzades
      */
-    public static void iniciarPartidaNova() {
+    public static void iniciarPartidaNova(String fitxerRegles) throws IOException {
         String contingutFitxer;
         //Hauriem de comprovar si ja existeix el fitxer
 
         partida.put("resultat_final", "");
 
-        partida.put("fitxerRegles", "");
+        partida.put("fitxerRegles", fitxerRegles);
 
         JSONArray posIniBlanques = new JSONArray();
         partida.put("posIniBlanques", posIniBlanques);
@@ -50,19 +43,34 @@ public class Historial {
         JSONArray tirades = new JSONArray();
         partida.put("tirades", tirades);
 
+        File carpeta = new File("/..");
+        File[] llistaDeFitxers = carpeta.listFiles();
+        int nPartida = 0;
+
+        for (int i = 0; i < llistaDeFitxers.length; i++ ) {
+            if (llistaDeFitxers[i].isFile()) {
+                if (Integer.parseInt(llistaDeFitxers[i].getName().substring("Partida".length())) >= nPartida) nPartida = (Integer.parseInt(llistaDeFitxers[i].getName().substring("Partida".length())));
+            }
+        }
+        fitxerPartida = new FileWriter("Partida" + nPartida + 1);
+    }
+
+    public static void carregarPartidaAnterior(String path) throws IOException {
+        fitxerPartida = new FileWriter(path);
     }
 
     /** @brief  Guarda una Posició Inicial d'una Peçá
-     * @param args [0] Posició on comença una Peça i [1]
+     * @param posicio Posició inicial de la Peça
+     * @param peca Peça que guardem
      * @param moguda Atribut de si s'ha mogut respecta la posició inicial de la Partida
      * @param equip Atribut de quin Equip és la Peça
      * @pre --
      * @post totes les variables han estat guardades al objecte JSON
      */
-    public static void guardarPosInicial(String [] args, boolean moguda, boolean equip) {
+    public static void guardarPosInicial(Posicio posicio, Peca peca, boolean moguda, boolean equip) {
         JSONObject infoPos = new JSONObject();
-        infoPos.put("pos",args[0]);
-        infoPos.put("tipus",args[1]);
+        infoPos.put("pos",posicio.get_posicio());
+        infoPos.put("tipus",peca.getNom());
         infoPos.put("moguda",moguda);
         if (equip == true) {
             JSONArray posIniBlanques = partida.getJSONArray("posIniBlanques");

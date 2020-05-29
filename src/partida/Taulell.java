@@ -332,6 +332,8 @@ public class Taulell {
         _promocio.add(pec);
     }
 
+
+
     public TiradaSimple desferTirada(TiradaSimple t, String resultat, TreeMap<String,TipusPeca> mapTipus){
         nTorns--;
         Peca p = _tauler.get(t.get_desti());

@@ -317,5 +317,7 @@ public class Partida {
             peces [i] = conjuntPeces.get(i).get_nom();
         }
         return peces;
+
+
     }
 }

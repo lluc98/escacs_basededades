@@ -10,6 +10,8 @@ public class Jugador {
         return _equip;
     }
 
+
+
     Jugador(boolean equip){
         _equip = equip;
     }

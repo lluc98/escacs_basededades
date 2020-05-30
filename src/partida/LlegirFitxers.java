@@ -17,12 +17,29 @@ import java.util.TreeMap;
  */
 
 public class LlegirFitxers {
+    private String fitxerRegles;
     private TreeMap<String, TipusPeca> conjuntPeces = new TreeMap<String, TipusPeca>();       ///< Contenidor de tots els conjunts de peces
     private Taulell taulell = new Taulell(9,9);                         ///< Objecte que conté les dades de Taulell
     private int limitEscacsSeguits = 0;                                       ///< Torns que es pot estar sense matar
     private int limitTornsInaccio = 0;                                        ///< Limit d'escacs que es poden fer abans d'acabar la partida
     private String resultatFinal = "";                                        ///< Valor de resultat en que queda una Partida
     private String properTorn = "BLANQUES";                                   ///< Valor que diu qui comença el primer torn
+    private String contingut;
+    private JSONArray posIniBlanques;
+    private JSONArray posIniNegres;
+    private JSONArray tirades;
+
+    public JSONArray getTirades() {
+        return tirades;
+    }
+
+    public JSONArray getPosIniBlanques() {
+        return posIniBlanques;
+    }
+
+    public JSONArray getPosIniNegres() {
+        return posIniNegres;
+    }
 
     /** @brief Contenidor del conjunt de Peces */
     public TreeMap<String, TipusPeca> getConjuntPeces() {
@@ -53,6 +70,8 @@ public class LlegirFitxers {
     public String getProperTorn() {
         return properTorn;
     }
+
+    public String getFitxerRegles () { return fitxerRegles; }
 
     /** @brief  Llegeix el fitxer de Regles
      * @param path drecera del fitxer de Regles
@@ -157,15 +176,15 @@ public class LlegirFitxers {
      * @pre path és vàlid
      * @post totes les variables del fitxer de Partida estan assignades. La Partida no està acabada.
      */
-    public void llegirPartidaAcabada (String path) {
+    public String llegirPartidaAcabada (String path) {
         try {
-            String contingut = new String((Files.readAllBytes(Paths.get(path))));
+            contingut = new String((Files.readAllBytes(Paths.get(path))));
             JSONObject partidaN =  new JSONObject(contingut);
             String pathRegles = partidaN.getString("fitxerRegles");
 
             llegirRegles(pathRegles);
 
-            JSONArray posIniBlanques = partidaN.getJSONArray("posIniBlanques");
+            posIniBlanques = partidaN.getJSONArray("posIniBlanques");
 
             for (int i=0; i<posIniBlanques.length(); i++) {
                 JSONObject posicio = posIniBlanques.getJSONObject(i);
@@ -179,7 +198,7 @@ public class LlegirFitxers {
                 taulell.assignarPecaTauler(p, posicioB);
             }
 
-            JSONArray posIniNegres = partidaN.getJSONArray("posIniBlanques");
+            posIniNegres = partidaN.getJSONArray("posIniBlanques");
 
             for (int i=0; i<posIniNegres.length(); i++) {
                 JSONObject posicio = posIniNegres.getJSONObject(i);
@@ -196,7 +215,7 @@ public class LlegirFitxers {
             //ens ho enduem a partida
             properTorn = partidaN.getString("proper_torn");
 
-            JSONArray tirades = partidaN.getJSONArray("tirades");
+            tirades = partidaN.getJSONArray("tirades");
             for (int i = 0; i<tirades.length(); i++) {
                 JSONObject tirada = tirades.getJSONObject(i);
 
@@ -213,6 +232,7 @@ public class LlegirFitxers {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return contingut;
     }
 
     /** @brief  Llegeix el fitxer de Partida
@@ -220,15 +240,15 @@ public class LlegirFitxers {
      * @pre path és vàlid
      * @post totes les variables del fitxer de Partida estan assignades. La Partida no està acabada.
      */
-    public void llegirPartidaComencada (String path) {
+    public String llegirPartidaComencada (String path) {
         try {
-            String contingut = new String((Files.readAllBytes(Paths.get(path))));
+            contingut = new String((Files.readAllBytes(Paths.get(path))));
             JSONObject partidaN =  new JSONObject(contingut);
-            String pathRegles = partidaN.getString("fitxerRegles");
+            fitxerRegles = partidaN.getString("fitxerRegles");
 
-            llegirRegles(pathRegles);
+            llegirRegles(fitxerRegles);
 
-            JSONArray posIniBlanques = partidaN.getJSONArray("posIniBlanques");
+            posIniBlanques = partidaN.getJSONArray("posIniBlanques");
 
             for (int i=0; i<posIniBlanques.length(); i++) {
                 JSONObject posicio = posIniBlanques.getJSONObject(i);
@@ -242,7 +262,7 @@ public class LlegirFitxers {
                 taulell.assignarPecaTauler(p, posicioB);
             }
 
-            JSONArray posIniNegres = partidaN.getJSONArray("posIniBlanques");
+            posIniNegres = partidaN.getJSONArray("posIniNegres");
 
             for (int i=0; i<posIniNegres.length(); i++) {
                 JSONObject posicio = posIniNegres.getJSONObject(i);
@@ -259,7 +279,7 @@ public class LlegirFitxers {
             //ens ho enduem a partida
             properTorn = partidaN.getString("proper_torn");
 
-            JSONArray tirades = partidaN.getJSONArray("tirades");
+            tirades = partidaN.getJSONArray("tirades");
             for (int i = 0; i<tirades.length(); i++) {
                 JSONObject tirada = tirades.getJSONObject(i);
 
@@ -276,6 +296,6 @@ public class LlegirFitxers {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return contingut;
     }
-
 }

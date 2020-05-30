@@ -144,12 +144,6 @@ public class Partida {
      * @post S'ha realitzat una tirada
      */
     public String ferTirada (String tirada) {
-        if (limitEscacsSeguits <= EscacsSeguits) {
-            return "EscacsSeguits";
-        }
-        if (limitTornsInaccio <= TornsInaccio) {
-            return "TornsInaniccio";
-        }
         boolean colorTorn = "BLANQUES" == properTorn;
         Jugador jugadorActual = jugadorBlanques;
         if (colorTorn != jugadorBlanques.get_equip()) {
@@ -164,6 +158,10 @@ public class Partida {
             TornsInaccio++;
             EscacsSeguits = 0;
 
+            if (limitTornsInaccio <= TornsInaccio) {
+                return "TornsInaniccio";
+            }
+
             if (jugadorActual.ferEnrroc(taulell, origen, desti)) {
                 return "s'ha realitzat el enrroc correctament";
             } else {
@@ -173,19 +171,29 @@ public class Partida {
         } else if (defaultTokenizer.countTokens() == 2) { //Tirada Normal
             Posicio origen = new Posicio((defaultTokenizer.nextToken())); //origen
             Posicio desti = new Posicio((defaultTokenizer.nextToken())); //destí
+            StringBuilder resultat = new StringBuilder();
 
             int resultatTirada = jugadorActual.ferTirada(taulell, origen, desti);
             if (resultatTirada > 0) {
                 if (jugadorActual.ShaProvocatJaque(taulell)) {
-                    desferTirada();
+                    desferTirada(resultat);
                     return "no s'ha realitzat la tirada";
                 } else if (jugadorActual.observarPromocio(desti, taulell)) {
                     TornsInaccio++;
                     EscacsSeguits = 0;
+                    if (limitTornsInaccio <= TornsInaccio) {
+                        return "TornsInaniccio";
+                    }
                     return "promocio";
                 } else if (jugadorActual.observarJaque(taulell)) {
                     TornsInaccio++;
                     EscacsSeguits++;
+                    if (limitTornsInaccio <= TornsInaccio) {
+                        return "TornsInaniccio";
+                    }
+                    if (limitEscacsSeguits <= EscacsSeguits) {
+                        return "EscacsSeguits";
+                    }
                     modificarResultatUltimaTirada("ESCAC");
                     return "hi ha jaque";
                 }
@@ -196,6 +204,9 @@ public class Partida {
             if (resultatTirada == 1) {
                 TornsInaccio++;
                 EscacsSeguits = 0;
+                if (limitTornsInaccio <= TornsInaccio) {
+                    return "TornsInaniccio";
+                }
                 return "tirada vàlida";
             } else if (resultatTirada > 1) {
                 TornsInaccio = 0;
@@ -206,6 +217,21 @@ public class Partida {
             }
         }
         return "Alguna cosa ha sortit malament";
+    }
+
+    public void taulesTornsInaccio() {
+        guardarProperTorn(properTorn);
+        Historial.guardarPartida("TAULES PER INACCIÓ");
+    }
+
+    public void taulesEscacsSeguits() {
+        guardarProperTorn(properTorn);
+        Historial.guardarPartida("TAULES PER ESCAC CONTINU");
+    }
+
+    public void taulesPerReiOfegat() {
+        guardarProperTorn(properTorn);
+        Historial.guardarPartida("TAULES PER REI OFEGAT");
     }
 
     /** @brief Acció de perdre la partida, cada jugador ho pot decidir en el seu torn
@@ -310,10 +336,10 @@ public class Partida {
      * @pre Hi ha alguna tirada per a desfer
      * @post Desfet l'ultima tirada al taulell i al fitxer de partida
      */
-    public TiradaSimple desferTirada () {
+    public TiradaSimple desferTirada (StringBuilder resultat) {
         TiradaSimple ultimaTirada = getUltimaTirada();
-        String res = getUltimResultat();
-        TiradaSimple tiradaDesfeta = taulell.desferTirada(ultimaTirada, res, conjuntPeces);
+        resultat.append(getUltimResultat());
+        TiradaSimple tiradaDesfeta = taulell.desferTirada(ultimaTirada, getUltimResultat(), conjuntPeces);
         eliminarUltimaTirada();
         return tiradaDesfeta;
     }
@@ -322,11 +348,13 @@ public class Partida {
      * @pre Hi ha alguna tirada per a refer
      * @post Desfet l'ultima tirada al taulell i al fitxer de partida
      */
-   public TiradaSimple referTirada () {
-       StringBuilder resultat = new StringBuilder();
-       TiradaSimple ultimaTirada = taulell.referTirada(resultat);
-       String r = resultat.toString();
-       guardarTirada(ultimaTirada, r);
+   public TiradaSimple referTirada (StringBuilder resultat) {
+       TiradaSimple ultimaTirada = null;
+       if (taulell.estaBuidaRefer()) {
+           ultimaTirada = taulell.referTirada(resultat);
+           String r = resultat.toString();
+           guardarTirada(ultimaTirada, r);
+       }
        return ultimaTirada;
    }
 

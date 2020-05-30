@@ -9,9 +9,6 @@ import org.json.JSONObject;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.net.URISyntaxException;
-
-import static partida.Partida.esEnter;
 
 /** @class Historial
  * @brief Tirades i resultats que s'obtenen dirant la partida, també posicions inicials
@@ -51,7 +48,7 @@ public class Historial {
         int nPartida = 0;
 
         if (!(llistaDeFitxers == null)) {
-            for (int i = 0; i <= llistaDeFitxers.length; i++) {
+            for (int i = 0; i <= llistaDeFitxers.length - 1; i++) {
                 if (llistaDeFitxers[i].isFile() && llistaDeFitxers[i].getName().substring(0, "Partida".length()).equalsIgnoreCase("Partida")) {
                     if (esEnter(llistaDeFitxers[i].getName().substring("Partida".length()).substring(0, 1))) {
                         if (Integer.parseInt(llistaDeFitxers[i].getName().substring("Partida".length()).substring(0, 1)) >= nPartida)
@@ -66,7 +63,7 @@ public class Historial {
                 }
             }
         }
-        fitxerPartida = new FileWriter("Partida" + (nPartida + 1));
+        fitxerPartida = new FileWriter("Partida" + (nPartida + 1) + ".json");
     }
 
     public static void carregarPartidaAnterior(String path) throws IOException {
@@ -186,7 +183,7 @@ public class Historial {
         } else if (resultat == "TAULES") {
             partida.put("resultat_final", "TAULES");
         } else {
-            partida.put("resultat_final", "");
+            partida.put("resultat_final", "AJORNAMENT");
         }
 
         String a = partida.toString();

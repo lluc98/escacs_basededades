@@ -4,6 +4,8 @@ package partida;
  */
 
 import java.io.IOException;
+import java.util.Iterator;
+import java.util.Map;
 import java.util.StringTokenizer;
 import java.util.TreeMap;
 
@@ -109,7 +111,7 @@ public class Partida {
                 if (pecaActual.get_equip() != colorTorn) {
                     return "Tot correcte";
                 } else {
-                    return "Enrroc";
+                    return "Enroc";
                 }
             }
             else{ return "Tot correcte";}
@@ -146,9 +148,9 @@ public class Partida {
             EscacsSeguits = 0;
 
             if (jugadorActual.ferEnrroc(taulell, origen, desti)) {
-                return "s'ha realitzat el enrroc correctament";
+                return "enrocFet";
             } else {
-                return "no s'ha realitzat l'enrroc";
+                return "enrocNo";
             }
 
         } else if (defaultTokenizer.countTokens() == 2) { //Tirada Normal
@@ -159,7 +161,7 @@ public class Partida {
             if (resultatTirada > 0) {
                 if (jugadorActual.ShaProvocatJaque(taulell)) {
                     desferTirada();
-                    return "no s'ha realitzat la tirada";
+                    return "noTirada";
                 } else if (jugadorActual.observarPromocio(desti, taulell)) {
                     TornsInaccio++;
                     EscacsSeguits = 0;
@@ -168,7 +170,7 @@ public class Partida {
                     TornsInaccio++;
                     EscacsSeguits++;
                     modificarResultatUltimaTirada("ESCAC");
-                    return "hi ha jaque";
+                    return "escac";
                 }
             }
             //0 no valid
@@ -177,13 +179,13 @@ public class Partida {
             if (resultatTirada == 1) {
                 TornsInaccio++;
                 EscacsSeguits = 0;
-                return "tirada vàlida";
+                return "tiradaV";
             } else if (resultatTirada > 1) {
                 TornsInaccio = 0;
                 EscacsSeguits = 0;
-                return "return tirada vàlida i s'ha matat";
+                return "tiradaMort";
             } else {
-                return "no s'ha realitzat la tirada";
+                return "noTirada";
             }
         }
         return "Alguna cosa ha sortit malament";
@@ -269,7 +271,7 @@ public class Partida {
         }
 
         if(nomPeça.equalsIgnoreCase("REI") || conjuntPeces.get(nomPeça.toUpperCase()) == null){
-            return "no valid";
+            return "noPromValid";
         }
         else{
             Peca p = new Peca(nomPeça.toUpperCase(), jugadorActual.get_equip(),conjuntPeces);
@@ -283,7 +285,7 @@ public class Partida {
             if(jugadorActual.ShaProvocatJaque(taulell)){
                 return "feta jaque";
             }
-            else return "feta";
+            else return "siProm";
         }
     }
 
@@ -313,11 +315,15 @@ public class Partida {
 
     public String [] getLlistaPeces() {
         String [] peces = new String[conjuntPeces.size()];
-        for (int i = 0; i < conjuntPeces.size() ; i++) {
-            peces [i] = conjuntPeces.get(i).get_nom();
+        Iterator<Map.Entry<String, TipusPeca>> it = conjuntPeces.entrySet().iterator();
+        String nom;
+        int i = 0;
+        while(it.hasNext()){
+            Map.Entry<String, TipusPeca> entry = it.next();
+            nom = entry.getKey();
+            peces[i] = nom;
+            i++;
         }
         return peces;
-
-
     }
 }

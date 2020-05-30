@@ -114,7 +114,7 @@ public abstract class PartidaText {
                         res.append(_partida.ferTirada(posInici.toString() + "- " + tokens[1]));
                         posFinal.append(tokens[1]);
                     }else if(opcio.equalsIgnoreCase("no")){
-                        res.append("no enroc");
+                        res.append("noEnroc");
                     }
                 }else{
                     System.out.println("Fail");
@@ -141,15 +141,15 @@ public abstract class PartidaText {
             do{
                 peca = teclat.nextLine();
                 res = _partida.ferPromocio(posInici.toString()+posFinal.toString(), peca);
-                if(res.equalsIgnoreCase("no valid")){
+                if(res.equalsIgnoreCase("noPromValid")){
                     System.out.println("Peça no vàlida, entra'n una de vàlida");
                 }
-            }while(!res.contains("feta"));
+            }while(!res.contains("siProm"));
             String[] tokens = res.split(" ");
             if(tokens.length > 1){
                 res = tokens[1];
             }
-            res = res + "siProm";
+            res = res + " " + "siProm";
         }else{
             res = res + "noProm";
         }
@@ -184,30 +184,39 @@ public abstract class PartidaText {
 
 
     private static boolean processarRes(StringBuilder res, StringBuilder colorTorn){
-        if(res.toString().equals("tirada vàlida") || res.toString().equalsIgnoreCase("return tirada vàlida i s'ha matat")){
-            System.out.println(res);
+        if(res.toString().equals("tiradaV")){ //S'ha realitzat la tirada i no ha passat res més
+            System.out.println("S'ha realitzat la tirada correctament");
             return true;
-        }else if(res.toString().equals("taules")){
+        }else if(res.toString().equalsIgnoreCase("tiradaMort")){ //S'ha realitzat una tirada i s'ha matat mínim una peça
+            System.out.println("S'ha realitzat la tirada i s'ha matat una peça");
+            return true;
+        } else if(res.toString().equals("taules")){ //L'usuari ha demanat taules
             System.out.println("El jugador amb les peces " + colorTorn.toString() + " demana taules");
             return true;
-        }else if(res.toString().equals("return tirada vàlida i s'ha matat")){
-            System.out.println(res);
-        }else if(res.toString().equalsIgnoreCase("s'ha realitzat el enrroc correctament")){
-            System.out.println("s'ha realitzat el enrroc correctament");
-            return true;
-        }else if(res.toString().equals("no s'ha realitzat la tirada")){
-            System.out.println(res);
-        }else if(res.toString().equalsIgnoreCase("desfer fet")){
-            System.out.println(res);
-        }else if(res.toString().equalsIgnoreCase("refer fet")){
-            System.out.println(res);
-        }else if(res.toString().equalsIgnoreCase("promocio")){
+        }else if(res.toString().equals("escac")){ //L'usuari ha fet la tirada, i amb aquesta, amenaça el rei enemic
+            System.out.println("Escac al rei ");
+            if(colorTorn.toString().equals("BLANQUES")){
+                System.out.println("NEGRE");
+            }else{
+                System.out.println("BLANC");
+            }
+        }else if(res.toString().equals("noTirada")){ //No s'ha pogut fer la tirada que diu el jugador
+            System.out.println("No s'ha realitzat la tirada");
+        }else if(res.toString().equalsIgnoreCase("desfer fet")){ //s'ha desfet un moviment
+            System.out.println("S'ha desfer l'ultim moviment");
+        }else if(res.toString().equalsIgnoreCase("noDesfer")){ //no queden moviments per desfer
+            System.out.println("No queden moviments per desfer");
+        }else if(res.toString().equalsIgnoreCase("refer fet")){ //s'ha refet un moviment
+            System.out.println("S'ha refet la tirada");
+        }else if(res.toString().equalsIgnoreCase("noRefer")){ //no queden moviments per refer
+            System.out.println("No queden moviments per refer.");
+        }else if(res.toString().equalsIgnoreCase("promocio")){ //L'usuari pot triar si fer o no promoció
             System.out.println("Vols fer promoció per alguna peça?");
             System.out.println("Si dius que no, no tornaràs a tenir la oportunitat");
-        }else if(res.toString().equalsIgnoreCase("noProm")){
+        }else if(res.toString().equalsIgnoreCase("noProm")){ //L'usuari no ha volgut fer la promoció
             System.out.println("No has volgut fer la promoció, canvi de torn");
             return true;
-        }else if(res.toString().contains("siProm")){
+        }else if(res.toString().contains("siProm")){ //s'ha fet la promoció
             System.out.println("Has fet la promoció!");
             String[] tokens = res.toString().split(" ");
             if(tokens.length > 1){
@@ -219,21 +228,24 @@ public abstract class PartidaText {
                 }
             }
             return true;
-        }else if(res.toString().equalsIgnoreCase("ajornar")){
+        }else if(res.toString().equalsIgnoreCase("ajornar")){ //l'usuari ajorna la partida
             System.out.println("El jugador amb les peces " + colorTorn.toString() + " ajorna la partida");
             _partida.ajornar();
-        }else if(res.toString().equalsIgnoreCase("rendirse")){
+        }else if(res.toString().equalsIgnoreCase("rendirse")){ //l'usuari es rendeix
             System.out.println("El jugador amb les peces " + colorTorn.toString() + " es rendeix");
             _partida.rendirse();
-        }else if(res.toString().equalsIgnoreCase("no enroc")){
-            System.out.println("No has volgut fer l'enroc");
-        }else if(res.toString().equalsIgnoreCase("norefer")){
-            System.out.println("No queden tirades per refer");
-        }else if(res.toString().equalsIgnoreCase("EscacsSeguits")){
+        }else if(res.toString().equalsIgnoreCase("noEnroc")){ //l'usuari no ha volgut fer l'enroc
+            System.out.println("No s'ha volgut fer l'enroc, pots tornar a entrar les posicions.");
+        }else if(res.toString().equalsIgnoreCase("enrocNo")){ //l'enroc no s'ha pogut fer
+            System.out.println("No s'ha fet l'enroc");
+        }else if(res.toString().equalsIgnoreCase("enrocFet")) { //s'ha fet l'enroc
+            System.out.println("S'ha fet l'enroc");
+            return true;
+        }else if(res.toString().equalsIgnoreCase("EscacsSeguits")){ //masses escacs seguits, s'acaba la partida
             //_partida.taulesEscacsSeguits();
             System.out.println("S'ha superat el nombre de torns que restulta amb 'Escac'. S'acaba la partida");
 
-        }else if(res.toString().equalsIgnoreCase("TornsInaniccio")){
+        }else if(res.toString().equalsIgnoreCase("TornsInaniccio")){ //masses torns sense que passi res, s'acaba la partida
             //_partida.taulesTornsInaccio();
             System.out.println("S'ha superat el nombre de torns sense matar cap peça. S'acaba la partida");
         }
@@ -300,7 +312,7 @@ public abstract class PartidaText {
         if(res.equalsIgnoreCase("Posició invàlida")) { //posicio sense peça
             System.out.println("La posició que has entrat no té cap peça");
             correcte = "no";
-        }else if(res.equals("Enrroc")){ //la peça no es del teu color
+        }else if(res.equalsIgnoreCase("Enroc")){ //la peça no es del teu color
             correcte = "enroc " + s;
         }
         else if(res.equalsIgnoreCase("tot correcte")){

@@ -18,7 +18,14 @@ public class Posicio implements Comparable<Posicio>{
      */
     public Posicio(String p){
         _posicio = p;
-        String numero = p.substring(p.length()-1);
+        String numero = "";
+        if(p.length()==3){
+            numero = p.substring(p.length()-2);
+        }
+        else{
+            numero = p.substring(p.length()-1);
+        }
+
         String lletra = p.substring(0,1);
         _columna = lletra.charAt(0) - 'a' + 1;
         _fila = Integer.parseInt(numero);

@@ -9,7 +9,6 @@ import org.json.JSONObject;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.zip.ZipFile;
 
 /** @class Historial
  * @brief Tirades i resultats que s'obtenen dirant la partida, també posicions inicials
@@ -43,20 +42,43 @@ public class Historial {
         JSONArray tirades = new JSONArray();
         partida.put("tirades", tirades);
 
-        File carpeta = new File("/..");
+
+        File carpeta = new File(System.getProperty("user.dir"));
         File[] llistaDeFitxers = carpeta.listFiles();
         int nPartida = 0;
 
-        for (int i = 0; i < llistaDeFitxers.length; i++ ) {
-            if (llistaDeFitxers[i].isFile()) {
-                if (Integer.parseInt(llistaDeFitxers[i].getName().substring("Partida".length())) >= nPartida) nPartida = (Integer.parseInt(llistaDeFitxers[i].getName().substring("Partida".length())));
+        if (!(llistaDeFitxers == null)) {
+            for (int i = 0; i <= llistaDeFitxers.length - 1; i++) {
+                if (llistaDeFitxers[i].isFile() && llistaDeFitxers[i].getName().substring(0, "Partida".length()).equalsIgnoreCase("Partida")) {
+                    if (esEnter(llistaDeFitxers[i].getName().substring("Partida".length()).substring(0, 1))) {
+                        if (Integer.parseInt(llistaDeFitxers[i].getName().substring("Partida".length()).substring(0, 1)) >= nPartida)
+                            nPartida = (Integer.parseInt(llistaDeFitxers[i].getName().substring("Partida".length()).substring(0, 1)));
+                    } else if (esEnter(llistaDeFitxers[i].getName().substring("Partida".length()).substring(0, 2))) {
+                        if (Integer.parseInt(llistaDeFitxers[i].getName().substring("Partida".length()).substring(0, 2)) >= nPartida)
+                            nPartida = (Integer.parseInt(llistaDeFitxers[i].getName().substring("Partida".length()).substring(0, 2)));
+                    } else if (esEnter(llistaDeFitxers[i].getName().substring("Partida".length()).substring(0, 3))) {
+                        if (Integer.parseInt(llistaDeFitxers[i].getName().substring("Partida".length()).substring(0, 3)) >= nPartida)
+                            nPartida = (Integer.parseInt(llistaDeFitxers[i].getName().substring("Partida".length()).substring(0, 3)));
+                    }
+                }
             }
         }
-        fitxerPartida = new FileWriter("Partida" + nPartida + 1);
+        fitxerPartida = new FileWriter("Partida" + (nPartida + 1) + ".json");
     }
 
     public static void carregarPartidaAnterior(String path) throws IOException {
         fitxerPartida = new FileWriter(path);
+    }
+
+    public static boolean esEnter(String s) {
+        try {
+            Integer.parseInt(s);
+        } catch(NumberFormatException e) {
+            return false;
+        } catch(NullPointerException e) {
+            return false;
+        }
+        return true;
     }
 
     /** @brief  Guarda una Posició Inicial d'una Peçá
@@ -161,7 +183,7 @@ public class Historial {
         } else if (resultat == "TAULES") {
             partida.put("resultat_final", "TAULES");
         } else {
-            partida.put("resultat_final", "");
+            partida.put("resultat_final", "AJORNAMENT");
         }
 
         String a = partida.toString();

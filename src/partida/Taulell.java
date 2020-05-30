@@ -1,11 +1,12 @@
 package partida;
 
+import javafx.geometry.Pos;
 import sun.reflect.generics.tree.Tree;
 
 import java.util.*;
+import java.util.Random;
 
-import static partida.Historial.guardarPosInicial;
-import static partida.Historial.modificarResultatUltimaTirada;
+import static partida.Historial.*;
 
 
 public class Taulell {
@@ -109,6 +110,21 @@ public class Taulell {
 
     }
 
+    public Posicio escollirPosPeca(boolean equip){
+        Random rand = new Random();
+        Posicio p;
+        int i1, i2;
+        while(true){
+            i1 = rand.nextInt(7)+1;
+            i2 = rand.nextInt(7)+1;
+            p = new Posicio(i1,i2);
+            Peca peca = _tauler.get(p);
+            if(peca != null && peca.get_equip()==equip){
+                return p;
+            }
+        }
+    }
+
     public TiradaSimple hihaJaque(boolean equip){
         Iterator<Map.Entry<Posicio, Peca>> it = _tauler.entrySet().iterator();
         Posicio posRei = buscaRei(equip);
@@ -203,6 +219,10 @@ public class Taulell {
             }
         }
         return false;
+    }
+
+    public void restarTorns(){
+        nTorns--;
     }
 
     public int realitzarTirada(TiradaSimple t){
@@ -332,11 +352,14 @@ public class Taulell {
         _promocio.add(pec);
     }
 
-
+    public boolean estaBuidaRefer(){
+        return _tiradesRefer.isEmpty();
+    }
 
     public TiradaSimple desferTirada(TiradaSimple t, String resultat, TreeMap<String,TipusPeca> mapTipus){
         nTorns--;
         Peca p = _tauler.get(t.get_desti());
+        boolean enroc = false;
         if(!resultat.isEmpty()){
             StringTokenizer defaultTokenizer = new StringTokenizer(resultat);
             String s = defaultTokenizer.nextToken();
@@ -347,7 +370,9 @@ public class Taulell {
                 Peca v = new Peca(vella,t.get_equip(),mapTipus);
                 Peca n = new Peca(nova,t.get_equip(),mapTipus);
                 _tauler.put(t.get_origen(),v);
+                _tauler.remove(t.get_desti());
             } else if (s.equalsIgnoreCase("ENROC:")){
+                enroc = true;
                 Posicio p1origen = new Posicio(defaultTokenizer.nextToken());
                 Posicio p2origen = new Posicio(defaultTokenizer.nextToken());
                 String guio = defaultTokenizer.nextToken();
@@ -357,27 +382,30 @@ public class Taulell {
                 TiradaSimple t2 = new TiradaSimple(p2desti,p2origen,t.get_equip());
                 realitzarTirada(t1);
                 realitzarTirada(t2);
+                nTorns = nTorns-3;
             }
             else {
                 _tauler.put(t.get_origen(), p);
+                _tauler.remove(t.get_desti());
             }
         }
         else {
             _tauler.put(t.get_origen(),p);
-        }
-        _tauler.remove(t.get_desti());
-
-
-        TreeMap<Posicio,Peca> eli = _eliminats.get(nTorns);
-        Iterator<Map.Entry<Posicio, Peca>> it = eli.entrySet().iterator();
-        while(it.hasNext()) { //fico les peces mortes (si hi havia) de la tirada anterior
-
-            Map.Entry<Posicio, Peca> entry = it.next();
-            Posicio pos = entry.getKey();
-            Peca peca = entry.getValue();
-            assignarPecaTauler(peca,pos);
+            _tauler.remove(t.get_desti());
         }
 
+
+        if(enroc == false) {
+            TreeMap<Posicio, Peca> eli = _eliminats.get(nTorns);
+            Iterator<Map.Entry<Posicio, Peca>> it = eli.entrySet().iterator();
+            while (it.hasNext()) { //fico les peces mortes (si hi havia) de la tirada anterior
+
+                Map.Entry<Posicio, Peca> entry = it.next();
+                Posicio pos = entry.getKey();
+                Peca peca = entry.getValue();
+                assignarPecaTauler(peca, pos);
+            }
+        }
         _tiradesRefer.add(t);
         return new TiradaSimple(t.get_desti(),t.get_origen(),t.get_equip());
     }
@@ -391,32 +419,71 @@ public class Taulell {
         _tiradesRefer.remove(_tiradesRefer.size()-1);
         Peca v = _tauler.get(t.get_origen());
         Peca d = _tauler.get(t.get_desti());
-        if(d != null){
+        if(d != null && v.get_equip() == d.get_equip()){
             Enrroc e = new Enrroc(t.get_origen(), t.get_desti(), t.get_equip(), false, false);
             resultat.append(e.realitzarEnroc(this));
         }
-        realitzarTirada(t);
-        if(hiHaPromocio(t.get_desti(),t.get_equip())){
-            Peca n = _promocio.get(_promocio.size()-1);
-            _promocio.remove(_promocio.size()-1);
-            n = _tauler.put(t.get_desti(),n);
-            resultat.append("PROMOCIÓ: " + v.getNom() + " - " + n.getNom());
-        }
         else{
-            TiradaSimple t2 = hihaJaque(t.get_equip());
-            if(t2 != null){
-                resultat.append("ESCAC");
+            realitzarTirada(t);
+            if(hiHaPromocio(t.get_desti(),t.get_equip())){
+                Peca n = _promocio.get(_promocio.size()-1);
+                _promocio.remove(_promocio.size()-1);
+                n = _tauler.put(t.get_desti(),n);
+                resultat.append("PROMOCIÓ: " + v.getNom() + " - " + n.getNom());
             }
             else{
-                resultat.append("");
+                TiradaSimple t2 = hihaJaque(t.get_equip());
+                if(t2 != null){
+                    resultat.append("ESCAC");
+                }
+                else{
+                    resultat.append("");
+                }
             }
         }
+
 
 
         return t;
     }
 
+    public TiradaSimple hiHaAlgunaAmenaça(boolean equip){
+        Iterator<Map.Entry<Posicio, Peca>> it = _tauler.entrySet().iterator();
+        Posicio pos = null;
+        Peca p = null;
+        while(it.hasNext()){
+            Map.Entry<Posicio, Peca> entry = it.next();
+            pos = entry.getKey();
+            p = entry.getValue();
+            if(p.get_equip()==equip){
+                TiradaSimple t = posAmenaçada(pos,p,equip);
+                if(t!=null){
+                    return  t;
+                }
+            }
+        }
+        return null;
+    }
 
+    public TiradaSimple posAmenaçada(Posicio p, Peca pObservada, boolean equip){
+        Iterator<Map.Entry<Posicio, Peca>> it = _tauler.entrySet().iterator();
+        Posicio pos ;
+        Peca peça;
+        while(it.hasNext()){
+            Map.Entry<Posicio, Peca> entry = it.next();
+            pos = entry.getKey();
+            peça = entry.getValue();
+            if(peça.get_equip()!=equip) {
+                TiradaSimple tirada = new TiradaSimple(pos, p, equip);
+                if (peça.movimentValid(tirada)) {
+                    if (validMatar(tirada, pObservada) && validVolar(tirada)) {
+                        return tirada;
+                    }
+                }
+            }
+        }
+        return null;
+    }
 
     public String mostra() {
         String s = "";

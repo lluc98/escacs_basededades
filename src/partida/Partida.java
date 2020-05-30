@@ -43,7 +43,16 @@ public class Partida {
         properTorn = fitxerEntradaPartida.getProperTorn();
         limitEscacsSeguits = fitxerEntradaPartida.getLimitEscacsSeguits();
         limitTornsInaccio = fitxerEntradaPartida.getLimitTornsInaccio();
-        carregarPartidaAnterior(fitxerPartida);
+        carregarPartidaAnterior(fitxerPartida, fitxerEntradaPartida);
+        carregarPartida();
+    }
+
+    public void carregarPartida(){
+        for(int i = 0; i<longTiradades(); i++){
+            TiradaSimple tirada = getTirada(i);
+            String res = getResultat(i);
+            taulell.carregarTirades(tirada,res,conjuntPeces);
+        }
     }
 
     /** @brief  Genera una partida carregada
@@ -265,7 +274,7 @@ public class Partida {
      */
     public void ajornar () {
         guardarProperTorn(properTorn);
-        Historial.guardarPartida("");
+        Historial.guardarPartida("PARTIDA AJORNADA");
     }
 
     /** @brief  Acció de mostrar el taulell

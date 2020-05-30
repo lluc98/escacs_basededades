@@ -82,6 +82,8 @@ public class Taulell {
             _tauler.put(p, b);
             _tauler.put(p2, n);
             n_peces = n_peces + 2;
+            guardarPosInicial(p, b, false, true);
+            guardarPosInicial(p2, n, false, false);
         }
         else
             throw new RuntimeException("NO CABEN MÉS PECES AL TAULELL");

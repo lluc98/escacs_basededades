@@ -12,6 +12,8 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.TreeMap;
 
+import static partida.Historial.*;
+
 /** @class LlegirFitxers
  * @brief Classe de lectura de fitxers d'entrada
  */
@@ -78,7 +80,7 @@ public class LlegirFitxers {
      * @pre path és vàlid
      * @post totes les variables del fitxer de Regles estan assignades.
      */
-    public void llegirRegles(String path) {
+    public void llegirRegles(String path, boolean comencada) {
         try {
             String contingut = new String((Files.readAllBytes((Paths.get(path)))));
             JSONObject regles = new JSONObject(contingut);
@@ -146,7 +148,8 @@ public class LlegirFitxers {
                 String pecaIni = posInicial.getString(i);
                 Peca pecaInicialBlanca = new Peca(pecaIni, true, conjuntPeces);
                 Peca pecaInicialNegre = new Peca(pecaIni, false, conjuntPeces);
-                taulell.afegirPeca(pecaInicialBlanca,pecaInicialNegre);
+                if (!comencada)
+                    taulell.afegirPeca(pecaInicialBlanca,pecaInicialNegre);
             }
 
 
@@ -182,7 +185,7 @@ public class LlegirFitxers {
             JSONObject partidaN =  new JSONObject(contingut);
             String pathRegles = partidaN.getString("fitxerRegles");
 
-            llegirRegles(pathRegles);
+            llegirRegles(pathRegles, true);
 
             posIniBlanques = partidaN.getJSONArray("posIniBlanques");
 
@@ -240,13 +243,13 @@ public class LlegirFitxers {
      * @pre path és vàlid
      * @post totes les variables del fitxer de Partida estan assignades. La Partida no està acabada.
      */
-    public String llegirPartidaComencada (String path) {
+    public String llegirPartidaComencada (String path, boolean comencada) {
         try {
             contingut = new String((Files.readAllBytes(Paths.get(path))));
             JSONObject partidaN =  new JSONObject(contingut);
             fitxerRegles = partidaN.getString("fitxerRegles");
 
-            llegirRegles(fitxerRegles);
+            llegirRegles(fitxerRegles, comencada);
 
             posIniBlanques = partidaN.getJSONArray("posIniBlanques");
 

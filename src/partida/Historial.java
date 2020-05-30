@@ -66,10 +66,6 @@ public class Historial {
         fitxerPartida = new FileWriter("Partida" + (nPartida + 1) + ".json");
     }
 
-    public static void iniciarPartidaComençada(String path) throws IOException {
-        fitxerPartida = new FileWriter(path);
-    }
-
     public static void carregarPartidaAnterior(String path, LlegirFitxers fitxerEntradaPartida) throws IOException {
 
         partida.put("resultat_final", fitxerEntradaPartida.getResultatFinal());
@@ -111,7 +107,7 @@ public class Historial {
         infoPos.put("pos",posicio.get_posicio());
         infoPos.put("tipus",peca.getNom());
         infoPos.put("moguda",moguda);
-        if (equip == true) {
+        if (equip) {
             JSONArray posIniBlanques = partida.getJSONArray("posIniBlanques");
             posIniBlanques.put(infoPos);
         } else {

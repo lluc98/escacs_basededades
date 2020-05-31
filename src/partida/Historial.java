@@ -9,6 +9,7 @@ import org.json.JSONObject;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.NoSuchFileException;
 
 /** @class Historial
  * @brief Tirades i resultats que s'obtenen dirant la partida, també posicions inicials
@@ -23,7 +24,7 @@ public class Historial {
      * @pre --
      * @post Totes les variables estan inicialitzades
      */
-    public static void iniciarPartidaNova(String fitxerRegles) throws IOException {
+    public static void iniciarPartidaNova(String fitxerRegles) throws Exception {
         String contingutFitxer;
         //Hauriem de comprovar si ja existeix el fitxer
 
@@ -53,10 +54,10 @@ public class Historial {
                     if (esEnter(llistaDeFitxers[i].getName().substring("Partida".length()).substring(0, 1))) {
                         if (Integer.parseInt(llistaDeFitxers[i].getName().substring("Partida".length()).substring(0, 1)) >= nPartida)
                             nPartida = (Integer.parseInt(llistaDeFitxers[i].getName().substring("Partida".length()).substring(0, 1)));
-                    } else if (esEnter(llistaDeFitxers[i].getName().substring("Partida".length()).substring(0, 2))) {
+                    } if (esEnter(llistaDeFitxers[i].getName().substring("Partida".length()).substring(0, 2))) {
                         if (Integer.parseInt(llistaDeFitxers[i].getName().substring("Partida".length()).substring(0, 2)) >= nPartida)
                             nPartida = (Integer.parseInt(llistaDeFitxers[i].getName().substring("Partida".length()).substring(0, 2)));
-                    } else if (esEnter(llistaDeFitxers[i].getName().substring("Partida".length()).substring(0, 3))) {
+                    } if (esEnter(llistaDeFitxers[i].getName().substring("Partida".length()).substring(0, 3))) {
                         if (Integer.parseInt(llistaDeFitxers[i].getName().substring("Partida".length()).substring(0, 3)) >= nPartida)
                             nPartida = (Integer.parseInt(llistaDeFitxers[i].getName().substring("Partida".length()).substring(0, 3)));
                     }

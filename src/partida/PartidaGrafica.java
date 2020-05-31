@@ -139,14 +139,22 @@ public class PartidaGrafica extends Application{
                         try {
                             _partida = new Partida(s, (int) cb.getValue());
                         } catch (IOException e) {
-                            e.printStackTrace();
+                            System.out.println(e);
+                            System.out.println("No s'ha trobat el fitxer de regles");
+                        } catch (Exception e){
+                            System.out.println(e);
+                            System.out.println("Hi ha hagut un error");
                         }
                     }
                     else{
                         try {
                             _partida = new Partida(s);
                         } catch (IOException e) {
-                            e.printStackTrace();
+                            System.out.println(e);
+                            System.out.println("No s'ha trobat el fitxer de la partida");
+                        } catch (Exception e){
+                            System.out.println(e);
+                            System.out.println("Hi ha hagut un error");
                         }
                     }
                     crearEscenaPartida();
@@ -540,7 +548,7 @@ public class PartidaGrafica extends Application{
         String res;
         res = _partida.ferTirada(mov);
         if(res.equalsIgnoreCase("tiradaMort")){ //ha matat la peça que hi havia anteriorment a aquesta posició
-            res = "Tirada vàlida i s'ha matat\n" + "la peça/les peces corresponent/s";
+            res = "Tirada vàlida i s'ha matat la peça/les peces corresponent/s";
             eliminarPeces(pane);
             p.move(newX, newY);
             passarTorn(pane);
@@ -579,12 +587,25 @@ public class PartidaGrafica extends Application{
             p.move(newX, newY);
             passarTorn(pane);
         }else if(res.equalsIgnoreCase("EscacsSeguits")){
+            p.move(newX, newY);
+            res = "Masses escacs seguits, s'acaba la partida en taules";
             _partida.taulesEscacsSeguits();
         }else if(res.equalsIgnoreCase("TornsInaniccio")){
+            p.move(newX, newY);
+            res = "Masses torns sense acció, s'acaba la partida en taules";
             _partida.taulesTornsInaccio();
-        }else if(res.equalsIgnoreCase("escacmat")){
+        }else if(res.equalsIgnoreCase("noTiradaEscac")){
+            res = "No s'ha fet la tirada perquè el teu rei està amenaçat!";
+            p.abortMove();
+        }
+        else if(res.equalsIgnoreCase("escacmat")){
+            p.move(newX, newY);
+            res = "Escac i mat. S'acaba la partida. Ha guanyat el jugador " + _partida.getProperTorn();
             //_partida.escacIMat();
 
+        }else if(res.equalsIgnoreCase("enrocNo")){
+            p.abortMove();
+            res = "Aquestes peces no poden fer enroc";
         }
         else{
             p.abortMove();

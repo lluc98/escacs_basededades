@@ -126,7 +126,7 @@ public abstract class PartidaText {
             }else{//si entra aqui sabem segur que ha retornat "no", per tant, que no vol moure la peça que ha dit
                 System.out.println("Pots tornar a entrar la posició Inicial");
             }
-            if(res.toString().equalsIgnoreCase("EscacsSeguits") || res.toString().equalsIgnoreCase("TornsInaniccio") || res.toString().contains("escacmat")){
+            if(res.toString().equalsIgnoreCase("EscacsSeguits") || res.toString().equalsIgnoreCase("TornsInaniccio") || res.toString().contains("escacMat")){
                 continuar = false;
             }
         }
@@ -229,13 +229,19 @@ public abstract class PartidaText {
             String[] tokens = res.toString().split(" ");
             if(tokens.length > 1){
                 if(tokens[1].equalsIgnoreCase("escac")){
-                    System.out.println("Escac al rei ");
+                    System.out.print("Escac al rei ");
                     if(colorTorn.toString().equals("BLANQUES")){
                         System.out.println("NEGRE");
                     }else{
                         System.out.println("BLANC");
                     }
                 }else{ //escac i mat
+                    System.out.print("Hi ha escac i mat a les fitxes ");
+                    if(colorTorn.toString().equals("BLANQUES")){
+                        System.out.println("NEGRE");
+                    }else{
+                        System.out.println("BLANC");
+                    }
                     //_partida.escacIMat();
                 }
 

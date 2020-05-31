@@ -3,8 +3,6 @@ package partida;
  * @brief Partida d'escacs.
  */
 
-import java.io.IOException;
-import java.nio.file.NoSuchFileException;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.StringTokenizer;
@@ -190,11 +188,16 @@ public class Partida {
                     int i = jugadorActual.observarJaque(taulell);
                     if (i==1) {
                         TornsInaccio++;
-                        EscacsSeguits++;
+                        if(colorTorn){
+                            EscacsSeguitsBlanques++;
+                        }
+                        else{
+                            EscacsSeguitsNegres++;
+                        }
                         if (limitTornsInaccio <= TornsInaccio) {
                             return "TornsInaniccio";
                         }
-                        if if (limitEscacsSeguits <= EscacsSeguitsBlanques || limitEscacsSeguits <= EscacsSeguitsNegres) {
+                        if(limitEscacsSeguits <= EscacsSeguitsBlanques || limitEscacsSeguits <= EscacsSeguitsNegres) {
                             String r = " + ESCAC";
                             afegirResultatUltimaTirada(r);
                             return "EscacsSeguits";

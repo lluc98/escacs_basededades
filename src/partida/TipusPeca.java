@@ -107,7 +107,9 @@ public class TipusPeca {
 
     }
 
-
+    public boolean getPromocio(){
+        return _promocio;
+    }
 }
 
 

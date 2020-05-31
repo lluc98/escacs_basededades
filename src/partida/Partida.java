@@ -156,6 +156,7 @@ public class Partida {
     public String ferTirada (String tirada) {
         boolean colorTorn = "BLANQUES" == properTorn;
         Jugador jugadorActual = jugadorBlanques;
+        StringBuilder resultat = new StringBuilder();
         if (colorTorn != jugadorBlanques.get_equip()) {
             jugadorActual = jugadorNegres;
         }
@@ -173,7 +174,35 @@ public class Partida {
             }
 
             if (jugadorActual.ferEnrroc(taulell, origen, desti)) {
-                return "enrocFet";
+                if(jugadorActual.shaProvocatJaque(taulell)){
+                    desferTirada(resultat);
+                    return "noTirada Escac";
+                }
+                else {
+                    int i = jugadorActual.observarJaque(taulell);
+                    if (i==1) {
+                        TornsInaccio++;
+                        EscacsSeguits++;
+                        if (limitTornsInaccio <= TornsInaccio) {
+                            return "TornsInaniccio";
+                        }
+                        if (limitEscacsSeguits <= EscacsSeguits) {
+                            String r = " + ESCAC";
+                            afegirResultatUltimaTirada(r);
+                            return "EscacsSeguits";
+                        }
+                        modificarResultatUltimaTirada("ESCAC");
+                        return "enrocFet Escac";
+                    }
+                    else if(i==2){
+                        modificarResultatUltimaTirada("ESCAC I MAT");
+                        return "escacMat";
+                    }
+                    else{
+                        return "enrocFet";
+                    }
+                }
+
             } else {
                 return "enrocNo";
             }
@@ -181,14 +210,14 @@ public class Partida {
         } else if (defaultTokenizer.countTokens() == 2) { //Tirada Normal
             Posicio origen = new Posicio((defaultTokenizer.nextToken())); //origen
             Posicio desti = new Posicio((defaultTokenizer.nextToken())); //destí
-            StringBuilder resultat = new StringBuilder();
+
 
             int resultatTirada = jugadorActual.ferTirada(taulell, origen, desti);
             if (resultatTirada > 0) {
-                if (jugadorActual.ShaProvocatJaque(taulell)) {
+                if (jugadorActual.shaProvocatJaque(taulell)) {
                   
                     desferTirada(resultat);
-                    return "noTirada";
+                    return "noTiradaEscac";
 
                 } else if (jugadorActual.observarPromocio(desti, taulell)) {
                     TornsInaccio++;
@@ -197,17 +226,24 @@ public class Partida {
                         return "TornsInaniccio";
                     }
                     return "promocio";
-                } else if (jugadorActual.observarJaque(taulell)) {
-                    TornsInaccio++;
-                    EscacsSeguits++;
-                    if (limitTornsInaccio <= TornsInaccio) {
-                        return "TornsInaniccio";
+                } else{
+                    int j = jugadorActual.observarJaque(taulell);
+                    if (j==1) {
+                        TornsInaccio++;
+                        EscacsSeguits++;
+                        if (limitTornsInaccio <= TornsInaccio) {
+                            return "TornsInaniccio";
+                        }
+                        if (limitEscacsSeguits <= EscacsSeguits) {
+                            return "EscacsSeguits";
+                        }
+                        modificarResultatUltimaTirada("ESCAC");
+                        return "escac";
                     }
-                    if (limitEscacsSeguits <= EscacsSeguits) {
-                        return "EscacsSeguits";
+                    else if(j==2){
+                        modificarResultatUltimaTirada("ESCAC I MAT");
+                        return "escacMat";
                     }
-                    modificarResultatUltimaTirada("ESCAC");
-                    return "escac";
                 }
             }
             //0 no valid
@@ -337,10 +373,18 @@ public class Partida {
             v = taulell.getPeca(desti);
             jugadorActual.ferPromocio(desti,taulell,p);
             modificarResultatUltimaTirada("PROMOCIÓ: " + v.getNom() + " - " + p.getNom() );
-            if(jugadorActual.ShaProvocatJaque(taulell)){
-                return "feta jaque";
+            int i = jugadorActual.observarJaque(taulell);
+            if(i==1){
+                String r = " + ESCAC";
+                afegirResultatUltimaTirada(r);
+                return "siProm Escac";
             }
-            else return "siProm";
+            else if(i==2){
+                String r = " + ESCAC I MAT";
+                afegirResultatUltimaTirada(r);
+                return "escacmat";
+            }
+            return "siProm";
         }
     }
 
@@ -349,11 +393,15 @@ public class Partida {
      * @post Desfet l'ultima tirada al taulell i al fitxer de partida
      */
     public TiradaSimple desferTirada (StringBuilder resultat) {
-        TiradaSimple ultimaTirada = getUltimaTirada();
-        resultat.append(getUltimResultat());
-        TiradaSimple tiradaDesfeta = taulell.desferTirada(ultimaTirada, getUltimResultat(), conjuntPeces);
-        eliminarUltimaTirada();
-        return tiradaDesfeta;
+        TiradaSimple ultimaTirada = null;
+        if(!fitxerTiradesBuit()){
+            ultimaTirada = getUltimaTirada();
+            resultat.append(getUltimResultat());
+            TiradaSimple tiradaDesfeta = taulell.desferTirada(ultimaTirada, getUltimResultat(), conjuntPeces);
+            eliminarUltimaTirada();
+            return tiradaDesfeta;
+        }
+        return ultimaTirada;
     }
 
     /** @brief  Refem l'última tirada

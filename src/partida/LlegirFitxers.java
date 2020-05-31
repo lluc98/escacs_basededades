@@ -8,6 +8,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.TreeMap;
@@ -80,9 +81,8 @@ public class LlegirFitxers {
      * @pre path és vàlid
      * @post totes les variables del fitxer de Regles estan assignades.
      */
-    public void llegirRegles(String path, boolean comencada) {
-        try {
-            String contingut = new String((Files.readAllBytes((Paths.get(path)))));
+    public void llegirRegles(String path, boolean comencada) throws Exception {
+                String contingut = new String((Files.readAllBytes((Paths.get(path)))));
             JSONObject regles = new JSONObject(contingut);
             //Ara tenim guardabt tot el contingut del fitxer Regles al JSONObject regles, fem constructors.
 
@@ -168,10 +168,6 @@ public class LlegirFitxers {
                 CaracteristiquesEnroc ce = new CaracteristiquesEnroc(pecaA, pecaB, quiets, buitAlMig);
                 conjuntPeces.get(pecaA).afegirEnrroc(ce);
             }
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     /** @brief  Llegeix el fitxer de Partida
@@ -179,7 +175,7 @@ public class LlegirFitxers {
      * @pre path és vàlid
      * @post totes les variables del fitxer de Partida estan assignades. La Partida no està acabada.
      */
-    public String llegirPartidaAcabada (String path) {
+    public String llegirPartidaAcabada (String path) throws  Exception{
         try {
             contingut = new String((Files.readAllBytes(Paths.get(path))));
             JSONObject partidaN =  new JSONObject(contingut);
@@ -243,62 +239,58 @@ public class LlegirFitxers {
      * @pre path és vàlid
      * @post totes les variables del fitxer de Partida estan assignades. La Partida no està acabada.
      */
-    public String llegirPartidaComencada (String path, boolean comencada) {
-        try {
-            contingut = new String((Files.readAllBytes(Paths.get(path))));
-            JSONObject partidaN =  new JSONObject(contingut);
-            fitxerRegles = partidaN.getString("fitxerRegles");
+    public String llegirPartidaComencada (String path, boolean comencada) throws Exception {
+        contingut = new String((Files.readAllBytes(Paths.get(path))));
+        JSONObject partidaN =  new JSONObject(contingut);
+        fitxerRegles = partidaN.getString("fitxerRegles");
 
-            llegirRegles(fitxerRegles, comencada);
+        llegirRegles(fitxerRegles, comencada);
 
-            posIniBlanques = partidaN.getJSONArray("posIniBlanques");
+        posIniBlanques = partidaN.getJSONArray("posIniBlanques");
 
-            for (int i=0; i<posIniBlanques.length(); i++) {
-                JSONObject posicio = posIniBlanques.getJSONObject(i);
+        for (int i=0; i<posIniBlanques.length(); i++) {
+            JSONObject posicio = posIniBlanques.getJSONObject(i);
 
-                String pos = posicio.getString("pos");
-                String tipus = posicio.getString("tipus");
-                boolean moguda = posicio.getBoolean("moguda");
+            String pos = posicio.getString("pos");
+            String tipus = posicio.getString("tipus");
+            boolean moguda = posicio.getBoolean("moguda");
 
-                Peca p = new Peca(tipus, true, conjuntPeces);
-                Posicio posicioB = new Posicio(pos);
-                taulell.assignarPecaTauler(p, posicioB);
-            }
-
-            posIniNegres = partidaN.getJSONArray("posIniNegres");
-
-            for (int i=0; i<posIniNegres.length(); i++) {
-                JSONObject posicio = posIniNegres.getJSONObject(i);
-
-                String pos = posicio.getString("pos");
-                String tipus = posicio.getString("tipus");
-                boolean moguda = posicio.getBoolean("moguda");
-
-                Peca p = new Peca(tipus, false, conjuntPeces);
-                Posicio posicioN = new Posicio(pos);
-                taulell.assignarPecaTauler(p, posicioN);
-            }
-
-            //ens ho enduem a partida
-            properTorn = partidaN.getString("proper_torn");
-
-            tirades = partidaN.getJSONArray("tirades");
-            for (int i = 0; i<tirades.length(); i++) {
-                JSONObject tirada = tirades.getJSONObject(i);
-
-                String torn = tirada.getString("torn");
-                String origen = tirada.getString("origen");
-                String desti = tirada.getString("desti");
-                String resultat = tirada.getString("resultat");
-
-                //Ho hem de guardar a algun lloc
-            }
-
-            //Això ens diferencia de una partida que no esta acabada
-            resultatFinal = partidaN.getString("resultat_final");
-        } catch (IOException e) {
-            e.printStackTrace();
+            Peca p = new Peca(tipus, true, conjuntPeces);
+            Posicio posicioB = new Posicio(pos);
+            taulell.assignarPecaTauler(p, posicioB);
         }
+
+        posIniNegres = partidaN.getJSONArray("posIniNegres");
+
+        for (int i=0; i<posIniNegres.length(); i++) {
+            JSONObject posicio = posIniNegres.getJSONObject(i);
+
+            String pos = posicio.getString("pos");
+            String tipus = posicio.getString("tipus");
+            boolean moguda = posicio.getBoolean("moguda");
+
+            Peca p = new Peca(tipus, false, conjuntPeces);
+            Posicio posicioN = new Posicio(pos);
+            taulell.assignarPecaTauler(p, posicioN);
+        }
+
+        //ens ho enduem a partida
+        properTorn = partidaN.getString("proper_torn");
+
+        tirades = partidaN.getJSONArray("tirades");
+        for (int i = 0; i<tirades.length(); i++) {
+            JSONObject tirada = tirades.getJSONObject(i);
+
+            String torn = tirada.getString("torn");
+            String origen = tirada.getString("origen");
+            String desti = tirada.getString("desti");
+            String resultat = tirada.getString("resultat");
+
+            //Ho hem de guardar a algun lloc
+        }
+
+        //Això ens diferencia de una partida que no esta acabada
+        resultatFinal = partidaN.getString("resultat_final");
         return contingut;
     }
 }

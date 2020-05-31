@@ -166,4 +166,8 @@ public class Peca {
         return s;
 
     }
+
+    public boolean getPromocio(){
+        return _tipus.getPromocio();
+    }
 }

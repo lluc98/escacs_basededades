@@ -255,4 +255,16 @@ public class Historial {
         JSONArray tirades = partida.getJSONArray("tirades");
         return tirades.length()-1;
     }
+
+    public static void afegirResultatUltimaTirada(String resultat) {
+        JSONArray tirades = partida.getJSONArray("tirades");
+        JSONObject tirada = tirades.getJSONObject(tirades.length() - 1);
+        String s = tirada.getString("resultat");
+        tirada.put("resultat", s+resultat);
+    }
+
+    public static boolean fitxerTiradesBuit(){
+        JSONArray tirades = partida.getJSONArray("tirades");
+        return tirades.length()==0;
+    }
 }

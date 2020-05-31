@@ -6,6 +6,8 @@ package partida;
 import javafx.geometry.Pos;
 import sun.reflect.generics.tree.Tree;
 
+import static partida.Historial.*;
+
 import java.util.*;
 
 /** @class Taulell
@@ -180,6 +182,92 @@ public class Taulell {
     }
 
     public boolean hiHaJaqueMate(TiradaSimple t){
+        Posicio pr = t.get_desti();
+        Peca rei = _tauler.get(pr);
+        if(!potTirarRei(t) && !potMatarPeça(t)) {
+            if (t.get_volar() == 2 || t.get_volar() == 1) {
+                return true;
+            }else if(!potFicarseMig(t)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean potFicarseMig(TiradaSimple t){
+        int x, y;
+        x = 0;
+        y = 0;
+        Posicio posOrigen = t.get_origen();
+        int f = posOrigen.get_fila();
+        int c = posOrigen.get_columna();
+        while(x!= t.get_desplaçamentX() || y!= t.get_desplacamentY()){
+            Posicio pos = new Posicio(f,c);
+            Peca pec = _tauler.get(pos);
+
+            if(!pos.equals(t.get_origen()) && !pos.equals(t.get_desti())){
+                TiradaSimple tiradaSimple = posAmenaçada(pos,pec,t.get_equip(),"REI");
+                if(tiradaSimple !=null){
+                    return true;
+                }
+            }
+
+            if(x!=t.get_desplaçamentX()){
+                if(t.get_desplaçamentX()>0){
+                    x++;
+                    f++;
+                }
+                else{
+                    x--;
+                    f--;
+
+                }
+
+            }
+            if(y!=t.get_desplacamentY()){
+                if(t.get_desplacamentY() > 0){
+                    y++;
+                    c++;
+                }
+                else{
+                    y--;
+                    c--;
+                }
+
+            }
+        }
+        return false;
+    }
+    public boolean potMatarPeça(TiradaSimple t){
+        Posicio p = t.get_origen();
+        Peca peca = _tauler.get(p);
+        TiradaSimple tiradaSimple = posAmenaçada(p,peca,t.get_equip(), "cuberta");
+        return tiradaSimple != null;
+    }
+
+    public boolean potTirarRei(TiradaSimple t){
+        Posicio pr = t.get_desti();
+        int x = -1;
+        int y = -1;
+        while(x!=2 || y!=-1){
+            Posicio p = new Posicio(pr.get_fila()+x,pr.get_columna()+y);
+            if((p.get_fila() > 0) && (p.get_fila() <= _fila) && (p.get_columna() > 0) && (p.get_columna() <= _columna)){
+                Peca peca = _tauler.get(p);
+                if(peca==null || peca.get_equip()!=_tauler.get(pr).get_equip()){
+                    TiradaSimple tirada = posAmenaçada(p,peca,!t.get_equip(),"cuberta");
+                    if(tirada==null){
+                        return true;
+                    }
+                }
+            }
+            if(y == 1){
+                x++;
+                y=-1;
+            }
+            else{
+                y++;
+            }
+        }
         return false;
     }
 
@@ -420,10 +508,10 @@ public class Taulell {
      * @post mira si es pot fer promocio o no
      */
     public boolean hiHaPromocio(Posicio p, boolean _equip){
-        if(p.get_fila() == _columna && _equip == true){ //si esta dalt de tot  i es una peça blanca
+        if(p.get_fila() == _columna && _equip == true && _tauler.get(p).getPromocio()==true){ //si esta dalt de tot  i es una peça blanca i pot fer promocio
             return true;
         }
-        else if(p.get_fila() == 1 && _equip == false){ //si esta baix de tot i es una peça negra
+        else if(p.get_fila() == 1 && _equip == false && _tauler.get(p).getPromocio()==true){ //si esta baix de tot i es una peça negra i pot fer promocio
             return true;
         }
         else{
@@ -507,6 +595,7 @@ public class Taulell {
                 Peca n = new Peca(nova,t.get_equip(),mapTipus);
                 _tauler.put(t.get_origen(),v);
                 _tauler.remove(t.get_desti());
+                _promocio.add(n);
             } else if (s.equalsIgnoreCase("ENROC:")){
                 enroc = true;
                 Posicio p1origen = new Posicio(defaultTokenizer.nextToken());
@@ -562,6 +651,8 @@ public class Taulell {
      */
     public TiradaSimple referTirada(StringBuilder resultat){
         TiradaSimple t = _tiradesRefer.get(_tiradesRefer.size()-1);
+        t.guardarMatar(1);
+        t.guardarVolar(2);
         _tiradesRefer.remove(_tiradesRefer.size()-1);
         Peca v = _tauler.get(t.get_origen());
         Peca d = _tauler.get(t.get_desti());
@@ -574,7 +665,7 @@ public class Taulell {
             if(hiHaPromocio(t.get_desti(),t.get_equip())){
                 Peca n = _promocio.get(_promocio.size()-1);
                 _promocio.remove(_promocio.size()-1);
-                n = _tauler.put(t.get_desti(),n);
+                _tauler.put(t.get_desti(),n);
                 resultat.append("PROMOCIÓ: " + v.getNom() + " - " + n.getNom());
             }
             else{
@@ -601,7 +692,7 @@ public class Taulell {
             pos = entry.getKey();
             p = entry.getValue();
             if(p.get_equip()==equip){
-                TiradaSimple t = posAmenaçada(pos,p,equip);
+                TiradaSimple t = posAmenaçada(pos,p,equip," ");
                 if(t!=null){
                     return  t;
                 }
@@ -610,19 +701,27 @@ public class Taulell {
         return null;
     }
 
-    public TiradaSimple posAmenaçada(Posicio p, Peca pObservada, boolean equip){
+    public TiradaSimple posAmenaçada(Posicio p, Peca pObservada, boolean equip, String rei){
         Iterator<Map.Entry<Posicio, Peca>> it = _tauler.entrySet().iterator();
         Posicio pos ;
-        Peca peça;
+        Peca peca;
         while(it.hasNext()){
             Map.Entry<Posicio, Peca> entry = it.next();
             pos = entry.getKey();
-            peça = entry.getValue();
-            if(peça.get_equip()!=equip) {
+            peca = entry.getValue();
+            if(peca.get_equip()!=equip) {
                 TiradaSimple tirada = new TiradaSimple(pos, p, equip);
-                if (peça.movimentValid(tirada)) {
+                if (peca.movimentValid(tirada)) {
                     if (validMatar(tirada, pObservada) && validVolar(tirada)) {
-                        return tirada;
+                        if(rei.equals("cuberta") && peca.getNom().equals("REI")){ //si el rei es el que amenaça miro si la peça que amenaça esta sent cubrida
+                            TiradaSimple t2 = posAmenaçada(p,_tauler.get(tirada.get_origen()),!tirada.get_equip()," ");
+                            if(t2==null){
+                                return tirada;
+                            }
+                        }
+                        else if(!peca.getNom().equals(rei)){ //el rei no es pot ficar entremig dun jaque
+                            return tirada;
+                        }
                     }
                 }
             }

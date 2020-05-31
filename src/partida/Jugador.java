@@ -68,14 +68,21 @@ public class Jugador {
         taulell.realitzarPromocio(posicio, p);
     }
 
-    /** @brief Comprova si hi ha un jaque.
+    /** @brief Comprova si hi ha un jaque i si hi ha escac i mat.
      * @param taulell taulell de la partida
      * @pre --
-     * @post mira si hi ha escac o no
+     * @post mira si hi ha escac o escac i mat o no
      */
-    public boolean observarJaque(Taulell taulell){
+    public int observarJaque(Taulell taulell){
         TiradaSimple t = taulell.hihaJaque(_equip);
-        return  t != null;
+        if(t!=null){
+            if(taulell.hiHaJaqueMate(t)){
+                System.out.println("HI HA JAQUE MATEEEEEEEEEE");
+                return 2;
+            }
+            return 1;
+        }
+        return  0;
     }
 
     /** @brief Comprova si hi ha un jaque.
@@ -83,7 +90,7 @@ public class Jugador {
      * @pre --
      * @post mira si hi ha escac o no
      */
-    public boolean ShaProvocatJaque(Taulell taulell){
+    public boolean shaProvocatJaque(Taulell taulell){
         TiradaSimple t =taulell.hihaJaque(!_equip);
         return t != null;
     }

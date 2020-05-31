@@ -379,7 +379,7 @@ public class Taulell {
         _tauler.put(t.get_desti(),p);
         _tauler.remove(t.get_origen());
         p.primerMovFet();
-
+        p.incrementarMov();
         _eliminats.put(nTorns,eli);
         ++nTorns;
 
@@ -405,7 +405,7 @@ public class Taulell {
             Posicio pos = new Posicio(f, c);
             Peca pec = _tauler.get(pos);
             if (pec != null) {
-                if(!pos.equals(t.get_origen()) && !pos.equals(t.get_desti())) { //si troba un peça que no sigui ni desti ni origen
+                if(!pos.equals(t.get_origen()) && !pos.equals(t.get_desti()) && pec.get_equip()!=t.get_equip()) { //si troba un peça que no sigui ni desti ni origen
                     eli.put(pos, pec);
                     _tauler.remove(pos);
                     res++;
@@ -603,6 +603,11 @@ public class Taulell {
                 _tauler.put(t.get_origen(),v);
                 _tauler.remove(t.get_desti());
                 _promocio.add(n);
+                v.decrementarMov();
+                if(p.getNMovs()==1){
+                    p.restaurarMov();
+                }
+
             } else if (s.equalsIgnoreCase("ENROC:")){
                 enroc = true;
                 Posicio p1origen = new Posicio(defaultTokenizer.nextToken());
@@ -615,15 +620,33 @@ public class Taulell {
                 realitzarTirada(t1);
                 realitzarTirada(t2);
                 nTorns = nTorns-3;
+                _tauler.get(p1origen).decrementarMov();
+                _tauler.get(p1origen).decrementarMov();
+                _tauler.get(p2origen).decrementarMov();
+                _tauler.get(p2origen).decrementarMov();
+                if(_tauler.get(p1origen).getNMovs()==0){
+                    _tauler.get(p1origen).restaurarMov();
+                }
+                if(_tauler.get(p2origen).getNMovs()==0){
+                    _tauler.get(p2origen).restaurarMov();
+                }
             }
             else {
                 _tauler.put(t.get_origen(), p);
                 _tauler.remove(t.get_desti());
+                p.decrementarMov();
+                if(p.getNMovs()==0){
+                    p.restaurarMov();
+                }
             }
         }
         else {
             _tauler.put(t.get_origen(),p);
             _tauler.remove(t.get_desti());
+            p.decrementarMov();
+            if(p.getNMovs()==0){
+                p.restaurarMov();
+            }
         }
 
 

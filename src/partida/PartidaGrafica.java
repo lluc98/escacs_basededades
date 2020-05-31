@@ -27,6 +27,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.Iterator;
+import java.util.Map;
+import java.util.TreeMap;
 
 public class PartidaGrafica extends Application{
 
@@ -211,7 +213,7 @@ public class PartidaGrafica extends Application{
         Button tie = new Button("Demanar taules");
         Button exit = new Button("Exit");
         Label lbl = new Label("Torn de " + _partida.getProperTorn());
-        /*redo.setOnAction(new EventHandler<ActionEvent>() {
+        redo.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 StringBuilder resultat = new StringBuilder();
@@ -222,53 +224,61 @@ public class PartidaGrafica extends Application{
                 if(tokens.length == 6){ //vol dir que hi ha enroc
                     while(itr.hasNext()){
                         pGraf = (PecaGrafica) itr.next();
-                        if(pGraf.get_oldX() == (int)(tokens[2].charAt(0))-1-96 && pGraf.get_oldY() == tokens[2].charAt(1)-1-48){ //resto 1 perquè en lluc no fa servir la posició 0 i jo si i després resto l'altre numero perquè retorna en codi ascii
+                        if(posTauler(pGraf.get_oldX()) == (int)(tokens[2].charAt(0))-1-96 && posTauler(pGraf.get_oldY()) == tokens[2].charAt(1)-1-48){ //resto 1 perquè en lluc no fa servir la posició 0 i jo si i després resto l'altre numero perquè retorna en codi ascii
                             break;
                         }
                     }
-                    pGraf.move((int)(tokens[5].charAt(0)-1-96),tokens[5].charAt(1)-1-48);
+                    pGraf.move((int)(tokens[5].charAt(0))-1-96,tokens[5].charAt(1)-1-48);
                     pGraf = null;
                     itr = _fitxes.getChildren().iterator();
                     while(itr.hasNext()){
                         pGraf = (PecaGrafica) itr.next();
-                        if(pGraf.get_oldX() == (int)(tokens[2].charAt(0))-1-96 && pGraf.get_oldY() == tokens[1].charAt(1)-1-48){ //resto 1 perquè en lluc no fa servir la posició 0 i jo si i després resto l'altre numero perquè retorna en codi ascii
+                        if(posTauler(pGraf.get_oldX()) == (int)(tokens[1].charAt(0))-1-96 && posTauler(pGraf.get_oldY()) == tokens[1].charAt(1)-1-48){ //resto 1 perquè en lluc no fa servir la posició 0 i jo si i després resto l'altre numero perquè retorna en codi ascii
                             break;
                         }
                     }
-                    pGraf.move((int)(tokens[4].charAt(0)-1-96),tokens[4].charAt(1)-1-48);
+                    pGraf.move((int)(tokens[4].charAt(0))-1-96,tokens[4].charAt(1)-1-48);
                 }else if(tokens.length == 4){ //ha fet promoció
-                    int x = (int)tirada.get_origen().get_columna()-1-96;
-                    int y = (int)tirada.get_origen().get_fila()-1-48;
+                    int x = tirada.get_origen().get_columna()-1;
+                    int y = tirada.get_origen().get_fila()-1;
                     eliminarPeca(x, y);
-                    Peca f = _partida.getPeca(new Posicio(y+1, x+1));
+                    Peca f = _partida.getPeca(new Posicio(tirada.get_desti().get_fila(), tirada.get_desti().get_columna()));
                     if(f!=null){
-                        pGraf = crearFitxa(f, x, y, p);
+                        pGraf = crearFitxa(f, tirada.get_desti().get_columna()-1, tirada.get_desti().get_fila()-1, p);
                         _fitxes.getChildren().add(pGraf);
                     }
-                    pGraf.move((int)tirada.get_desti().get_columna()-1-96, (int)tirada.get_desti().get_fila()-1-48);
-                }else{ //tirada normal
+                    //pGraf.move(tirada.get_desti().get_columna()-1, tirada.get_desti().get_fila()-1);
+                }else if(tirada != null){ //tirada normal
+                    //mirem si hi s'havia eliminat alguna peça a la tirada que volem refer.
                     TreeMap<Posicio, Peca> eliminades = _partida.getTaulell().getEliminats();
-                    Iterator<Map.Entry<Posicio, Peca>> it = eliminades.entrySet().iterator();
-                    while(it.hasNext()){
-                        Map.Entry<Posicio, Peca> entry = it.next();
-                        Posicio pos = entry.getKey();
-                        itr = _fitxes.getChildren().iterator();
-                        while(itr.hasNext()){
-                            pGraf = (PecaGrafica) itr.next();
-                            if(pGraf.get_oldX() == pos.get_columna()-1 && pGraf.get_oldY() == pos.get_fila()-1){ //resto 1 perquè en lluc no fa servir la posició 0 i jo si i després resto l'altre numero perquè retorna en codi ascii
-                                break;
+                    if(eliminades != null){
+                        Iterator<Map.Entry<Posicio, Peca>> it = eliminades.entrySet().iterator();
+                        while(it.hasNext()){
+                            Map.Entry<Posicio, Peca> entry = it.next();
+                            Posicio pos = entry.getKey();
+                            itr = _fitxes.getChildren().iterator();
+                            while(itr.hasNext()){
+                                pGraf = (PecaGrafica) itr.next();
+                                if(posTauler(pGraf.get_oldX()) == pos.get_columna()-1 && posTauler(pGraf.get_oldY()) == pos.get_fila()-1){ //resto 1 perquè en lluc no fa servir la posició 0 i jo si i després resto l'altre numero perquè retorna en codi ascii
+                                    break;
+                                }
                             }
+                            _fitxes.getChildren().remove(pGraf);
                         }
-                        _fitxes.getChildren().remove(pGraf);
+                    }else{
+                        //no hi ha peces per matar
                     }
+
                     itr = _fitxes.getChildren().iterator();
                     while(itr.hasNext()){
                         pGraf = (PecaGrafica) itr.next();
-                        if(pGraf.get_oldX() == tirada.get_origen().get_columna()-1 && pGraf.get_oldY() == tirada.get_origen().get_fila()-1){ //resto 1 perquè en lluc no fa servir la posició 0 i jo si
+                        if(posTauler(pGraf.get_oldX()) == tirada.get_origen().get_columna()-1 && posTauler(pGraf.get_oldY()) == tirada.get_origen().get_fila()-1){ //resto 1 perquè en lluc no fa servir la posició 0 i jo si
                             break;
                         }
                     }
-                    pGraf.move((int)tirada.get_desti().get_columna()-1-96, (int)tirada.get_desti().get_fila()-1-48);
+                    pGraf.move(tirada.get_desti().get_columna()-1, tirada.get_desti().get_fila()-1);
+                }else{
+                    //no queden tirades per refer
                 }
             }
         });
@@ -283,57 +293,63 @@ public class PartidaGrafica extends Application{
                 if(tokens.length == 6){ //si és 6 vol dir que hi ha hagut enroc
                     while(itr.hasNext()){
                         pGraf = (PecaGrafica) itr.next();
-                        if(pGraf.get_oldX() == (int)(tokens[5].charAt(0))-1-96 && pGraf.get_oldY() == tokens[5].charAt(1)-1-48){ //resto 1 perquè en lluc no fa servir la posició 0 i jo si i després resto l'altre numero perquè retorna en codi ascii
+                        if(posTauler(pGraf.get_oldX()) == (int)(tokens[5].charAt(0))-1-96 && posTauler(pGraf.get_oldY()) == tokens[5].charAt(1)-1-48){ //resto 1 perquè en lluc no fa servir la posició 0 i jo si i després resto l'altre numero perquè retorna en codi ascii
                             break;
                         }
                     }
-                    pGraf.move((int)(tokens[2].charAt(0)-1-96),tokens[2].charAt(1)-1-48);
+                    pGraf.move((int)(tokens[2].charAt(0))-1-96,tokens[2].charAt(1)-1-48);
                     pGraf = null;
                     itr = _fitxes.getChildren().iterator();
                     while(itr.hasNext()){
                         pGraf = (PecaGrafica) itr.next();
-                        if(pGraf.get_oldX() == (int)(tokens[4].charAt(0))-1-96 && pGraf.get_oldY() == tokens[4].charAt(1)-1-48){ //resto 1 perquè en lluc no fa servir la posició 0 i jo si i després resto l'altre numero perquè retorna en codi ascii
+                        if(posTauler(pGraf.get_oldX()) == (int)(tokens[4].charAt(0))-1-96 && posTauler(pGraf.get_oldY()) == tokens[4].charAt(1)-1-48){ //resto 1 perquè en lluc no fa servir la posició 0 i jo si i després resto l'altre numero perquè retorna en codi ascii
                             break;
                         }
                     }
                     pGraf.move((int)(tokens[1].charAt(0)-1-96),tokens[1].charAt(1)-1-48);
                 }else if(tokens.length == 4){//ha fet promoció
-                    int x = (int)(tokens[5].charAt(0))-1-96;
-                    int y = tokens[5].charAt(1)-1-48;
-                    eliminarPeca(x, y);
-                    Peca f = _partida.getPeca(new Posicio(y+1, x+1));
+                    int x = tirada.get_origen().get_columna();
+                    int y = tirada.get_origen().get_fila();
+                    eliminarPeca(x-1, y-1);
+                    Peca f = _partida.getPeca(new Posicio(tirada.get_desti().get_fila(), tirada.get_desti().get_columna()));
                     if(f!=null){
-                        pGraf = crearFitxa(f, x, y, p);
+                        pGraf = crearFitxa(f, x-1, y-1, p);
                         _fitxes.getChildren().add(pGraf);
                     }
-                    pGraf.move((int)tirada.get_origen().get_columna()-1-96, (int)tirada.get_origen().get_fila()-1-48);
+                    pGraf.move(tirada.get_desti().get_columna()-1, tirada.get_desti().get_fila()-1);
 
                 }
-                else{ //no hi ha hagut enrroc ni promoció: tirada normal
+                else if(tirada != null){ //no hi ha hagut enrroc ni promoció: tirada normal
                     while(itr.hasNext()){
                         pGraf = (PecaGrafica) itr.next();
-                        if(pGraf.get_oldX() == tirada.get_desti().get_columna()-1 && pGraf.get_oldY() == tirada.get_desti().get_fila()-1){ //resto 1 perquè en lluc no fa servir la posició 0 i jo si
+                        if(posTauler(pGraf.get_oldX()) == tirada.get_origen().get_columna()-1 && posTauler(pGraf.get_oldY()) == tirada.get_origen().get_fila()-1){ //resto 1 perquè en lluc no fa servir la posició 0 i jo si
                             break;
                         }
                     }
-                    pGraf.move(tirada.get_origen().get_fila()-1, tirada.get_origen().get_columna()-1);
+                    pGraf.move(tirada.get_desti().get_columna()-1, tirada.get_desti().get_fila()-1);
 
                     TreeMap<Posicio, Peca> eliminades = _partida.getTaulell().getEliminats();
-                    Iterator<Map.Entry<Posicio, Peca>> it = eliminades.entrySet().iterator();
-                    while(it.hasNext()){
-                        Map.Entry<Posicio, Peca> entry = it.next();
-                        Posicio pos = entry.getKey();
-                        Peca peca = entry.getValue();
-                        if(peca!=null){
-                            PecaGrafica pGrafi = crearFitxa(peca, pos.get_columna(), pos.get_fila(), p);
-                            _fitxes.getChildren().add(pGrafi);
+                    if(eliminades != null){
+                        Iterator<Map.Entry<Posicio, Peca>> it = eliminades.entrySet().iterator();
+                        while(it.hasNext()){
+                            Map.Entry<Posicio, Peca> entry = it.next();
+                            Posicio pos = entry.getKey();
+                            Peca peca = entry.getValue();
+                            if(peca!=null){
+                                PecaGrafica pGrafi = crearFitxa(peca, pos.get_columna()-1, pos.get_fila()-1, p);
+                                _fitxes.getChildren().add(pGrafi);
+                            }
                         }
+                    }else{
+                        //no hi ha peces mortes
                     }
+                }else{
+                    //no queden tirades per desfer
                 }
 
 
             }
-        });*/
+        });
         surrender.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -486,7 +502,8 @@ public class PartidaGrafica extends Application{
                 }else{
                     mov = s.append((char)(97+oldX)).append(oldY+1).append(' ').append((char)(97 + newX)).append(newY+1).toString();
                 }
-                res = _partida.ferTirada(mov);
+                realitzarTirada(mov, newX, newY, p, pane, oldX);
+                /*res = _partida.ferTirada(mov);
                 if(res.equalsIgnoreCase("tiradaMort")){ //ha matat la peça que hi havia anteriorment a aquesta posició
                     eliminarPeca(newX, newY);
                     p.move(newX, newY);
@@ -505,7 +522,7 @@ public class PartidaGrafica extends Application{
                     PecaGrafica pGraf = null;
                     while (itr.hasNext()) {
                         pGraf = (PecaGrafica) itr.next();
-                        if (pGraf.get_oldX() == newX+1 && pGraf.get_oldY() == newY+1) {
+                        if (posTauler(pGraf.get_oldX()) == newX && posTauler(pGraf.get_oldY()) == newY) {
                             break;
                         }
                     }
@@ -521,11 +538,51 @@ public class PartidaGrafica extends Application{
                 else{
                     p.abortMove();
                 }
-                modificarLblAvisos(res, pane);
+                modificarLblAvisos(res, pane);*/
             }
         });
 
         return p;
+    }
+
+    private static void realitzarTirada(String mov, int newX, int newY, PecaGrafica p, BorderPane pane, int oldX){
+        String res;
+        res = _partida.ferTirada(mov);
+        if(res.equalsIgnoreCase("tiradaMort")){ //ha matat la peça que hi havia anteriorment a aquesta posició
+            eliminarPeca(newX, newY);
+            p.move(newX, newY);
+            passarTorn(pane);
+        }else if(res.equalsIgnoreCase("tiradaV")){ //la tirada s'ha fet a nivell lògic, ara a gràfic
+            p.move(newX, newY);
+            passarTorn(pane);
+        }else if(res.equalsIgnoreCase("noTirada")){
+            p.abortMove();
+        }else if(res.equalsIgnoreCase("promocio")){
+            p.move(newX, newY);
+            crearEscenaPromoció(pane, mov, newX, newY); //si no funciona d'aquesta manera, dins de l'eventHandler dels botons faig que es canviï la peça ia i aqui, despres de cridar aquest mètode, busco la peça que hi ha a la posició i li envio al ferpromocio.
+            res = "Escena promoció creada";
+        }else if(res.equalsIgnoreCase("enrocFet")) {
+            Iterator<Node> itr = _fitxes.getChildren().iterator();
+            PecaGrafica pGraf = null;
+            while (itr.hasNext()) {
+                pGraf = (PecaGrafica) itr.next();
+                if (posTauler(pGraf.get_oldX()) == newX && posTauler(pGraf.get_oldY()) == newY) {
+                    break;
+                }
+            }
+            if (oldX > newX) {
+                p.move(oldX - 2, newY);
+                pGraf.move(oldX - 1, newY);
+            } else {
+                p.move(oldX + 2, newY);
+                pGraf.move(oldX + 1, newY);
+            }
+            passarTorn(pane);
+        }
+        else{
+            p.abortMove();
+        }
+        modificarLblAvisos(res, pane);
     }
 
     private static void crearEscenaPromoció(BorderPane p, String mov, int x, int y){

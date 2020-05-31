@@ -1,12 +1,6 @@
 package partida;
 
-import javafx.geometry.Pos;
-import sun.reflect.generics.tree.Tree;
-
 import java.util.*;
-import java.util.Random;
-
-import static partida.Historial.*;
 
 
 public class Taulell {
@@ -242,7 +236,8 @@ public class Taulell {
         p.primerMovFet();
 
         _eliminats.put(nTorns,eli);
-        nTorns ++;
+        System.out.println(nTorns.intValue());
+        ++nTorns;
 
         return  res;
     }
@@ -304,7 +299,7 @@ public class Taulell {
     }
 
     public TreeMap<Posicio,Peca> getEliminats(){
-        return _eliminats.get(nTorns);
+        return _eliminats.get(_eliminats.size());
     }
 
     public boolean validarEnrroc(Enrroc e){
@@ -357,7 +352,8 @@ public class Taulell {
     }
 
     public TiradaSimple desferTirada(TiradaSimple t, String resultat, TreeMap<String,TipusPeca> mapTipus){
-        nTorns--;
+        _eliminats.remove(nTorns);
+        --nTorns;
         Peca p = _tauler.get(t.get_desti());
         boolean enroc = false;
         if(!resultat.isEmpty()){
@@ -441,9 +437,6 @@ public class Taulell {
                 }
             }
         }
-
-
-
         return t;
     }
 

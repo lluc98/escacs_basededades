@@ -14,12 +14,12 @@ public abstract class PartidaText {
         String opcio = null;
         while(opcio == null){
             opcio = teclat.nextLine();
-            if (!opcio.equals("Començar") && !opcio.equals("Carregar")) {
+            if (!opcio.equalsIgnoreCase("Començar") && !opcio.equalsIgnoreCase("Carregar")) {
                 System.out.println("Opcio incorrecte, introdueix-ne una correcte (Començar/Carregar)");
                 opcio = null;
             }
         }
-        if(opcio.equals("Començar")){
+        if(opcio.equalsIgnoreCase("Començar")){
             System.out.println("Entra el fitxer de regles: (nomFitxer.json)");
             String nomFitxer = teclat.nextLine();
             int nJug;
@@ -78,23 +78,23 @@ public abstract class PartidaText {
             continuar = false;
             res.append("ajornar");
         }else if(s.equalsIgnoreCase("desfer")){
-            /*StringBuilder result = new StringBuilder();
+            StringBuilder result = new StringBuilder();
             TiradaSimple tirada = _partida.desferTirada(result);
             if(tirada == null){
                 res.append("noDesfer");
             }
             else{
                 res.append("desfer fet");
-            }*/
+            }
         }else if(s.equalsIgnoreCase("refer")){
-            /*StringBuilder result = new StringBuilder();
+            StringBuilder result = new StringBuilder();
             TiradaSimple tirada = _partida.referTirada(result);
             if(tirada == null){
                 res.append("noRefer");
             }
             else{
                 res.append("refer fet");
-            }*/
+            }
         }
         else{
             System.out.println("Pots moure aquesta peça, a on la vols moure? O escriu 'no' si prefereixes moure una altre peça");
@@ -293,6 +293,9 @@ public abstract class PartidaText {
     }
 
     private static boolean posicioCorrecteOrigen(String s){
+        if(s.equals("")) {
+            return false;
+        }
         boolean correcte = false;
         String res = _partida.posCorrecteOrigen(s);
         if(res.equals("Posició invàlida")) { //posicio sense peça
@@ -307,6 +310,9 @@ public abstract class PartidaText {
     }
 
     private static String posicioCorrecteDesti(String s){
+        if(s.equals("")){
+            return "no";
+        }
         String correcte = "";
         String res = _partida.posCorrecteDesti(s);
         if(res.equalsIgnoreCase("Posició invàlida")) { //posicio sense peça

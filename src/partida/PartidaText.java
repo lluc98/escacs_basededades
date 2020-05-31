@@ -1,13 +1,13 @@
 package partida;
 
-import java.io.IOException;
+import java.nio.file.NoSuchFileException;
 import java.util.Scanner;
 
 public abstract class PartidaText {
 
     private static Partida _partida;
 
-    public static void iniciaAplicacio() throws IOException {
+    public static void iniciaAplicacio() throws Exception {
         Scanner teclat = new Scanner(System.in);
         System.out.println("Benvingut a l'aplicació!!");
         System.out.println("Vols començar una partida o carregar-ne una de començada? (Començar/Carregar)");
@@ -29,13 +29,22 @@ public abstract class PartidaText {
         }
         else{
             System.out.println("Entra el fitxer de la partida que vols carregar:");
-            String nomFitxer = teclat.nextLine();
-            _partida = new Partida(nomFitxer); //un metode que carrega el fitxer.
+            String nomFitxer;
+            while(true){
+                try{
+                    nomFitxer = teclat.nextLine();
+                    _partida = new Partida(nomFitxer); //un metode que carrega el fitxer.
+                    break;
+                }catch(NoSuchFileException e){
+                    System.out.println(e);
+                    nomFitxer = teclat.next();
+                }
+            }
         }
         jugar();
     }
 
-    private static void jugar(){
+    private static void jugar() throws Exception {
         boolean continuar = true;
         StringBuilder colorTorn = new StringBuilder(_partida.getProperTorn());
         StringBuilder posInici = null;
@@ -62,7 +71,7 @@ public abstract class PartidaText {
         }while(continuar);
     }
 
-    private static boolean tirada(StringBuilder res, StringBuilder posInici, StringBuilder posFinal, StringBuilder colorTorn) {
+    private static boolean tirada(StringBuilder res, StringBuilder posInici, StringBuilder posFinal, StringBuilder colorTorn) throws Exception {
         Scanner teclat = new Scanner(System.in);
         boolean continuar = true;
         System.out.println("Torn del jugador de peces " + colorTorn.toString());
@@ -105,17 +114,11 @@ public abstract class PartidaText {
             if(tokens.length > 1){
                 if(tokens[0].equalsIgnoreCase("correcte")) {
                     System.out.println(posInici.toString() + tokens[1]);
-                    res.append(_partida.ferTirada(posInici.toString() + tokens[1]));
                     posFinal.append(tokens[1]);
+                    res.append(_partida.ferTirada(posInici.toString() + tokens[1]));
                 }else if(tokens[0].equalsIgnoreCase("enroc")){
-                    System.out.println("Segur que vols fer aquest enroc?");
-                    String opcio = teclat.nextLine();
-                    if(opcio.equalsIgnoreCase("si")){
-                        res.append(_partida.ferTirada(posInici.toString() + "- " + tokens[1]));
-                        posFinal.append(tokens[1]);
-                    }else if(opcio.equalsIgnoreCase("no")){
-                        res.append("noEnroc");
-                    }
+                    posFinal.append(tokens[1]);
+                    res.append(_partida.ferTirada(posInici.toString() + "- " + tokens[1]));
                 }else{
                     System.out.println("Fail");
                     System.exit(-1);
@@ -123,7 +126,7 @@ public abstract class PartidaText {
             }else{//si entra aqui sabem segur que ha retornat "no", per tant, que no vol moure la peça que ha dit
                 System.out.println("Pots tornar a entrar la posició Inicial");
             }
-            if(res.toString().equalsIgnoreCase("EscacsSeguits") || res.toString().equalsIgnoreCase("TornsInaniccio")){
+            if(res.toString().equalsIgnoreCase("EscacsSeguits") || res.toString().equalsIgnoreCase("TornsInaniccio") || res.toString().contains("escacmat")){
                 continuar = false;
             }
         }
@@ -183,25 +186,30 @@ public abstract class PartidaText {
     }
 
 
-    private static boolean processarRes(StringBuilder res, StringBuilder colorTorn){
-        if(res.toString().equals("tiradaV")){ //S'ha realitzat la tirada i no ha passat res més
+    private static boolean processarRes(StringBuilder res, StringBuilder colorTorn) throws Exception {
+        if(res.toString().equalsIgnoreCase("tiradaV")){ //S'ha realitzat la tirada i no ha passat res més
             System.out.println("S'ha realitzat la tirada correctament");
             return true;
         }else if(res.toString().equalsIgnoreCase("tiradaMort")){ //S'ha realitzat una tirada i s'ha matat mínim una peça
             System.out.println("S'ha realitzat la tirada i s'ha matat una peça");
             return true;
-        } else if(res.toString().equals("taules")){ //L'usuari ha demanat taules
+        } else if(res.toString().equalsIgnoreCase("taules")){ //L'usuari ha demanat taules
             System.out.println("El jugador amb les peces " + colorTorn.toString() + " demana taules");
             return true;
-        }else if(res.toString().equals("escac")){ //L'usuari ha fet la tirada, i amb aquesta, amenaça el rei enemic
+        }else if(res.toString().equalsIgnoreCase("escac")){ //L'usuari ha fet la tirada, i amb aquesta, amenaça el rei enemic
             System.out.println("Escac al rei ");
             if(colorTorn.toString().equals("BLANQUES")){
                 System.out.println("NEGRE");
-            }else{
+            }else {
                 System.out.println("BLANC");
             }
-        }else if(res.toString().equals("noTirada")){ //No s'ha pogut fer la tirada que diu el jugador
-            System.out.println("No s'ha realitzat la tirada");
+            return true;
+        }else if(res.toString().equalsIgnoreCase("noTirada")){ //No s'ha pogut fer la tirada que diu el jugador
+            System.out.println("Tirada invàlida, no s'ha realitzat");
+        }else if(res.toString().equalsIgnoreCase("noTiradaEscac")){ //s'ha desfet un moviment
+            System.out.println("Vigila! No s'ha fet la tirada perquè el teu rei està amenaçat! gi-li-po-lles.");
+            System.out.println("Un rei de veritat t'hagues matat ja...");
+            System.out.println("El millor atac és una bona defensa! Compte amb el teu rei.");
         }else if(res.toString().equalsIgnoreCase("desfer fet")){ //s'ha desfet un moviment
             System.out.println("S'ha desfer l'ultim moviment");
         }else if(res.toString().equalsIgnoreCase("noDesfer")){ //no queden moviments per desfer
@@ -220,12 +228,17 @@ public abstract class PartidaText {
             System.out.println("Has fet la promoció!");
             String[] tokens = res.toString().split(" ");
             if(tokens.length > 1){
-                System.out.println("Escac al rei ");
-                if(colorTorn.toString().equals("BLANQUES")){
-                    System.out.println("NEGRE");
-                }else{
-                    System.out.println("BLANC");
+                if(tokens[1].equalsIgnoreCase("escac")){
+                    System.out.println("Escac al rei ");
+                    if(colorTorn.toString().equals("BLANQUES")){
+                        System.out.println("NEGRE");
+                    }else{
+                        System.out.println("BLANC");
+                    }
+                }else{ //escac i mat
+                    //_partida.escacIMat();
                 }
+
             }
             return true;
         }else if(res.toString().equalsIgnoreCase("ajornar")){ //l'usuari ajorna la partida
@@ -238,21 +251,35 @@ public abstract class PartidaText {
             System.out.println("No s'ha volgut fer l'enroc, pots tornar a entrar les posicions.");
         }else if(res.toString().equalsIgnoreCase("enrocNo")){ //l'enroc no s'ha pogut fer
             System.out.println("No s'ha fet l'enroc");
-        }else if(res.toString().equalsIgnoreCase("enrocFet")) { //s'ha fet l'enroc
+        }else if(res.toString().contains("enrocFet")) { //s'ha fet l'enroc
             System.out.println("S'ha fet l'enroc");
+            String[] tokens = res.toString().split(" ");
+            if(tokens.length > 1){
+                System.out.println("Escac al rei ");
+                if(colorTorn.toString().equals("BLANQUES")){
+                    System.out.println("NEGRE");
+                }else{
+                    System.out.println("BLANC");
+                }
+            }
             return true;
         }else if(res.toString().equalsIgnoreCase("EscacsSeguits")){ //masses escacs seguits, s'acaba la partida
-            //_partida.taulesEscacsSeguits();
+            _partida.taulesEscacsSeguits();
             System.out.println("S'ha superat el nombre de torns que restulta amb 'Escac'. S'acaba la partida");
 
         }else if(res.toString().equalsIgnoreCase("TornsInaniccio")){ //masses torns sense que passi res, s'acaba la partida
-            //_partida.taulesTornsInaccio();
+            _partida.taulesTornsInaccio();
             System.out.println("S'ha superat el nombre de torns sense matar cap peça. S'acaba la partida");
+        }else if(res.toString().equalsIgnoreCase("escacmat")){ //escac i mat, s'acaba la partida
+
+        }
+        else{
+            throw new Exception("Ha passat algun error");
         }
         return false;
     }
 
-    private static String llegirPosicioInici(){
+    private static String llegirPosicioInici() throws Exception {
         boolean correcte = false;
         String s;
         Scanner teclat = new Scanner(System.in);
@@ -273,7 +300,7 @@ public abstract class PartidaText {
         return s;
     }
 
-    private static String llegirPosicioDesti(){
+    private static String llegirPosicioDesti() throws Exception {
         String correcte = "";
         String s;
         Scanner teclat = new Scanner(System.in);
@@ -292,7 +319,7 @@ public abstract class PartidaText {
         return correcte;
     }
 
-    private static boolean posicioCorrecteOrigen(String s){
+    private static boolean posicioCorrecteOrigen(String s) throws Exception {
         if(s.equals("")) {
             return false;
         }
@@ -305,11 +332,13 @@ public abstract class PartidaText {
         }
         else if(res.equalsIgnoreCase("tot correcte")){
             correcte = true;
+        }else{
+            throw new Exception("Error posició correcte origen");
         }
         return correcte;
     }
 
-    private static String posicioCorrecteDesti(String s){
+    private static String posicioCorrecteDesti(String s) throws Exception {
         if(s.equals("")){
             return "no";
         }
@@ -325,6 +354,8 @@ public abstract class PartidaText {
             System.out.println("Posició correcte");
             correcte = "correcte " + s;
             //System.out.println(correcte);
+        }else{
+            throw new Exception("Error Posició correcte destí");
         }
         return correcte;
     }

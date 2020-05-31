@@ -4,6 +4,7 @@ package partida;
  */
 
 import java.io.IOException;
+import java.nio.file.NoSuchFileException;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.StringTokenizer;
@@ -35,9 +36,10 @@ public class Partida {
      * @pre fitxerPartida existeix i esta en un format correcte
      * @post totes les variables per a continuar una partida estan settejades.
      */
-    public Partida(String fitxerPartida) throws IOException {
+    public Partida(String fitxerPartida) throws Exception {
         boolean comencada = true;
         fitxerEntradaPartida.llegirPartidaComencada(fitxerPartida, comencada);
+        System.out.println("S'ha liat");
         carregarPartidaAnterior(fitxerPartida, fitxerEntradaPartida);
         conjuntPeces = fitxerEntradaPartida.getConjuntPeces();
         taulell = fitxerEntradaPartida.getTaulell();
@@ -61,7 +63,7 @@ public class Partida {
      * @pre fitxerRegles existeix i esta en un format correcte
      * @post totes les variables per a començar una partida estan settejades.
      */
-    public Partida(String fitxerRegles, int jugadors) throws IOException {
+    public Partida(String fitxerRegles, int jugadors) throws Exception {
         boolean comencada = false;
         iniciarPartidaNova(fitxerRegles);
         fitxerEntradaPartida.llegirRegles(fitxerRegles, comencada);
@@ -186,7 +188,7 @@ public class Partida {
             int resultatTirada = jugadorActual.ferTirada(taulell, origen, desti);
             if (resultatTirada > 0) {
                 if (jugadorActual.ShaProvocatJaque(taulell)) {
-                  
+
                     desferTirada(resultat);
                     return "noTirada";
 

@@ -27,10 +27,10 @@ public class LlegirFitxers {
     private int limitTornsInaccio = 0;                                        ///< Limit d'escacs que es poden fer abans d'acabar la partida
     private String resultatFinal = "";                                        ///< Valor de resultat en que queda una Partida
     private String properTorn = "BLANQUES";                                   ///< Valor que diu qui comença el primer torn
-    private String contingut;
-    private JSONArray posIniBlanques;
-    private JSONArray posIniNegres;
-    private JSONArray tirades;
+    private String contingut;                                                 ///< String que conté tot el contingut del fitxer
+    private JSONArray posIniBlanques;                                         ///< Llista de posicions inicials de l'equip de peces Blanques
+    private JSONArray posIniNegres;                                           ///< Llista de posicions inicials de l'equip de peces Negres
+    private JSONArray tirades;                                                ///< Llista de tirades realitzades.
 
     public JSONArray getTirades() {
         return tirades;

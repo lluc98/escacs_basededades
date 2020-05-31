@@ -25,9 +25,6 @@ public class Jugador {
         return _equip;
     }
 
-
-
-
     /** @brief Fa totes les comprovacions per veure si la tirada entrada es valida o no i es realitza la tirada
      * @param taulell taulell on es fa la tirada
      * @param origen posicio origen on esta la peça que es vol moure

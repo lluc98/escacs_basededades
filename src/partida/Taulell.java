@@ -138,6 +138,11 @@ public class Taulell {
 
     }
 
+    /** @brief Metode que escull una posició aleatoria amb una peça d'un equip.
+     * @param equip Equip que ha de tenir la Peça trida.
+     * @pre --
+     * @post Retorna una Posició amb una Peça del equip demanat.
+     */
     public Posicio escollirPosPeca(boolean equip){
         Random rand = new Random();
         Posicio p;
@@ -453,7 +458,7 @@ public class Taulell {
         return pos;
     }
 
-
+    /** @brief Llista de Peces eliminades*/
     public TreeMap<Posicio,Peca> getEliminats(){
         return _eliminats.get(_eliminats.size());
     }
@@ -538,7 +543,13 @@ public class Taulell {
         return _tiradesRefer.isEmpty();
     }
 
-
+    /** @brief Carrega les tirades realitzades en una partida anterior
+     * @param t tirada a carregar
+     * @param resultat resultat de la partida a carregar
+     * @param mapTipus estructura on es guarden els tipus de peces
+     * @pre --
+     * @post Refa les tirades a partir d'una partida anterior per a que es pugui seguir.
+     */
     public void carregarTirades(TiradaSimple t, String resultat, TreeMap<String,TipusPeca> mapTipus) {
         Peca p = _tauler.get(t.get_origen());
         if (!resultat.isEmpty()) {
@@ -681,8 +692,11 @@ public class Taulell {
         return t;
     }
 
-
-
+    /** @brief Mira si les peces del equip contrari estan amenaçades
+     * @param equip Blanc o Negre
+     @pre --
+     @post moviments retorna la Tirada que s'ha de fer per a matar la Peça amenaçada
+     */
     public TiradaSimple hiHaAlgunaAmenaça(boolean equip){
         Iterator<Map.Entry<Posicio, Peca>> it = _tauler.entrySet().iterator();
         Posicio pos = null;
@@ -701,25 +715,31 @@ public class Taulell {
         return null;
     }
 
-    public TiradaSimple posAmenaçada(Posicio p, Peca pObservada, boolean equip, String rei){
+    /** @brief Mira si la posició esta amenaçada una posició a partir d'una Peça
+     * @param p Posició observada
+     * @param pObservada Peça Observada
+     * @param equip Blanc o Negre
+     @pre Posició dins el Taulell, Peça != null
+     @post Retorna la Tirada que amenaça a la Peça
+     */
+    public TiradaSimple posAmenaçada(Posicio p, Peca pObservada, boolean equip, String rei) {
         Iterator<Map.Entry<Posicio, Peca>> it = _tauler.entrySet().iterator();
-        Posicio pos ;
+        Posicio pos;
         Peca peca;
-        while(it.hasNext()){
+        while (it.hasNext()) {
             Map.Entry<Posicio, Peca> entry = it.next();
             pos = entry.getKey();
             peca = entry.getValue();
-            if(peca.get_equip()!=equip) {
+            if (peca.get_equip() != equip) {
                 TiradaSimple tirada = new TiradaSimple(pos, p, equip);
                 if (peca.movimentValid(tirada)) {
                     if (validMatar(tirada, pObservada) && validVolar(tirada)) {
-                        if(rei.equals("cuberta") && peca.getNom().equals("REI")){ //si el rei es el que amenaça miro si la peça que amenaça esta sent cubrida
-                            TiradaSimple t2 = posAmenaçada(p,_tauler.get(tirada.get_origen()),!tirada.get_equip()," ");
-                            if(t2==null){
+                        if (rei.equals("cuberta") && peca.getNom().equals("REI")) { //si el rei es el que amenaça miro si la peça que amenaça esta sent cubrida
+                            TiradaSimple t2 = posAmenaçada(p, _tauler.get(tirada.get_origen()), !tirada.get_equip(), " ");
+                            if (t2 == null) {
                                 return tirada;
                             }
-                        }
-                        else if(!peca.getNom().equals(rei)){ //el rei no es pot ficar entremig dun jaque
+                        } else if (!peca.getNom().equals(rei)) { //el rei no es pot ficar entremig dun jaque
                             return tirada;
                         }
                     }

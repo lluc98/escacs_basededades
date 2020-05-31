@@ -29,7 +29,9 @@ public class Partida {
     private Historial historial = new Historial();                         ///< Modul que controla l'historial de tirades
     private LlegirFitxers fitxerEntradaPartida = new LlegirFitxers();      ///< Modul que llegeix els fitxers d'entrada
     private int TornsInaccio = 0;                                          ///< Contador de torns actual d'Inacció
-    private int EscacsSeguits = 0;                                         ///< Contador d'escacs seguits actual
+    private int EscacsSeguitsBlanques = 0;                                 ///< Contador d'escacs seguits actual del equip de Blanques
+    private int EscacsSeguitsNegres = 0;                                 ///< Contador d'escacs seguits actual del equip de Negres
+
 
     /** @brief  Genera una partida carregada
      * @param fitxerPartida nom del fitxer d'entrada
@@ -115,6 +117,9 @@ public class Partida {
         }
     }
 
+    /** @pre --
+     * @post True si s és un enter, false altrament.
+     */
     public static boolean esEnter(String s) {
         try {
             Integer.parseInt(s);
@@ -169,7 +174,8 @@ public class Partida {
             defaultTokenizer.nextToken(); // -
             Posicio desti = new Posicio((defaultTokenizer.nextToken())); //destí
             TornsInaccio++;
-            EscacsSeguits = 0;
+            if (colorTorn) EscacsSeguitsBlanques = 0;
+            else EscacsSeguitsNegres = 0;
 
             if (limitTornsInaccio <= TornsInaccio) {
                 return "TornsInaniccio";
@@ -188,7 +194,7 @@ public class Partida {
                         if (limitTornsInaccio <= TornsInaccio) {
                             return "TornsInaniccio";
                         }
-                        if (limitEscacsSeguits <= EscacsSeguits) {
+                        if if (limitEscacsSeguits <= EscacsSeguitsBlanques || limitEscacsSeguits <= EscacsSeguitsNegres) {
                             String r = " + ESCAC";
                             afegirResultatUltimaTirada(r);
                             return "EscacsSeguits";
@@ -217,13 +223,14 @@ public class Partida {
             int resultatTirada = jugadorActual.ferTirada(taulell, origen, desti);
             if (resultatTirada > 0) {
 
-                if (jugadorActual.shaProvocatJaque(taulell)) {   
+                if (jugadorActual.shaProvocatJaque(taulell)) {
                     desferTirada(resultat);
                     return "noTiradaEscac";
 
                 } else if (jugadorActual.observarPromocio(desti, taulell)) {
                     TornsInaccio++;
-                    EscacsSeguits = 0;
+                    if (colorTorn) EscacsSeguitsBlanques = 0;
+                    else EscacsSeguitsNegres = 0;
                     if (limitTornsInaccio <= TornsInaccio) {
                         return "TornsInaniccio";
                     }
@@ -232,11 +239,12 @@ public class Partida {
                     int j = jugadorActual.observarJaque(taulell);
                     if (j==1) {
                         TornsInaccio++;
-                        EscacsSeguits++;
+                        if (colorTorn) EscacsSeguitsBlanques ++;
+                        else EscacsSeguitsNegres ++;
                         if (limitTornsInaccio <= TornsInaccio) {
                             return "TornsInaniccio";
                         }
-                        if (limitEscacsSeguits <= EscacsSeguits) {
+                        if (limitEscacsSeguits <= EscacsSeguitsBlanques || limitEscacsSeguits <= EscacsSeguitsNegres) {
                             return "EscacsSeguits";
                         }
                         modificarResultatUltimaTirada("ESCAC");
@@ -253,14 +261,16 @@ public class Partida {
             //>1 tirada valida + morts;
             if (resultatTirada == 1) {
                 TornsInaccio++;
-                EscacsSeguits = 0;
+                if (colorTorn) EscacsSeguitsBlanques = 0;
+                else EscacsSeguitsNegres = 0;
                 if (limitTornsInaccio <= TornsInaccio) {
                     return "TornsInaniccio";
                 }
                 return "tiradaV";
             } else if (resultatTirada > 1) {
                 TornsInaccio = 0;
-                EscacsSeguits = 0;
+                if (colorTorn) EscacsSeguitsBlanques = 0;
+                else EscacsSeguitsNegres = 0;
                 return "tiradaMort";
             } else {
                 return "noTirada";
@@ -269,22 +279,34 @@ public class Partida {
         return "Alguna cosa ha sortit malament";
     }
 
+    /** @brief  Acció de empatar la partida, han passat una quantitat de torns sense que es mati cap peça.
+     * @pre --
+     * @post Es tanca la partida amb un empat
+     */
     public void taulesTornsInaccio() {
         guardarProperTorn(properTorn);
         Historial.guardarPartida("TAULES PER INACCIÓ");
     }
 
+    /** @brief  Acció de empatar la partida, han passat una quantitat de torns amb escacs seguits.
+     * @pre --
+     * @post Es tanca la partida amb un empat.
+     */
     public void taulesEscacsSeguits() {
         guardarProperTorn(properTorn);
         Historial.guardarPartida("TAULES PER ESCAC CONTINU");
     }
 
+    /** @brief  Acció de empatar la partida, el rei no esta amenaçat però no es pot moure.
+     * @pre --
+     * @post Es tanca la partida amb un empat.
+     */
     public void taulesPerReiOfegat() {
         guardarProperTorn(properTorn);
         Historial.guardarPartida("TAULES PER REI OFEGAT");
     }
 
-    /** @brief Acció de perdre la partida, cada jugador ho pot decidir en el seu torn
+    /** @brief Acció de perdre la partida, cada jugador ho pot decidir en el seu torn.
      * @pre --
      * @post Es tanca la partida amb el guanyador siguent l'equip contrari
      */

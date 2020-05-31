@@ -9,7 +9,6 @@ import org.json.JSONObject;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.NoSuchFileException;
 
 /** @class Historial
  * @brief Tirades i resultats que s'obtenen dirant la partida, també posicions inicials
@@ -67,6 +66,12 @@ public class Historial {
         fitxerPartida = new FileWriter("Partida" + (nPartida + 1) + ".json");
     }
 
+    /** @param path Ubicació on guardarem el fitxer de Partida
+     @param fitxerEntradaPartida Nom del fitxer de Partida que volem carregar
+     @pre path és correcte i el fitxerEntradaPartida existeix i te el format i l'informació correcte
+     @post Es guarda en la variable de la classe , partida, tota l'informació
+     referent a la partida carregada
+     */
     public static void carregarPartidaAnterior(String path, LlegirFitxers fitxerEntradaPartida) throws IOException {
 
         partida.put("resultat_final", fitxerEntradaPartida.getResultatFinal());
@@ -84,6 +89,9 @@ public class Historial {
         fitxerPartida = new FileWriter(path);
     }
 
+    /** @pre --
+     * @post True si s és un enter, false altrament.
+     */
     public static boolean esEnter(String s) {
         try {
             Integer.parseInt(s);
@@ -232,12 +240,21 @@ public class Historial {
         return tirada.getString("resultat");
     }
 
+    /** @brief  Obté el resultat de la Tirada numero i.
+     * @pre i esta dins el rang de tirades fetes.
+     * @post Retorna un String amb el resultat de la tirada i.
+     */
     public static String getResultat (int i) {
         JSONArray tirades = partida.getJSONArray("tirades");
         JSONObject tirada = tirades.getJSONObject(i);
 
         return tirada.getString("resultat");
     }
+
+    /** @brief  Obté la Tirada numero i.
+     * @pre i esta dins el rang de tirades fetes.
+     * @post Retorna un objecte TiradaSimple corresponent a la tirada i.
+     */
     public static TiradaSimple getTirada(int i) {
         JSONArray tirades = partida.getJSONArray("tirades");
         JSONObject tirada = tirades.getJSONObject(i);
@@ -251,6 +268,8 @@ public class Historial {
         Posicio d = new Posicio(desti);
         return new TiradaSimple(o, d, equip);
     }
+
+    /** @brief Quantitat de tirades */
     public static int longTiradades(){
         JSONArray tirades = partida.getJSONArray("tirades");
         return tirades.length()-1;

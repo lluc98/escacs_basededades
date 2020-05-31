@@ -20,12 +20,22 @@ public abstract class PartidaText {
             }
         }
         if(opcio.equalsIgnoreCase("Començar")){
+            int nJug = -1;
+            while(nJug < 0 || nJug > 2){
+                nJug = demanarNjugadors();
+            }
             System.out.println("Entra el fitxer de regles: (nomFitxer.json)");
-            String nomFitxer = teclat.nextLine();
-            int nJug;
-            System.out.println("Entre el nombre de jugadors reals (0, 1, 2)");
-            nJug = teclat.nextInt();
-            _partida = new Partida(nomFitxer, nJug);
+            while(true){
+                try{
+                    String nomFitxer = teclat.nextLine();
+                    _partida = new Partida(nomFitxer, nJug);
+                    break;
+                }catch(NoSuchFileException e){
+                    System.out.println(e);
+                }catch(Exception e){
+                    System.out.println(e);
+                }
+            }
         }
         else{
             System.out.println("Entra el fitxer de la partida que vols carregar:");
@@ -37,11 +47,33 @@ public abstract class PartidaText {
                     break;
                 }catch(NoSuchFileException e){
                     System.out.println(e);
-                    nomFitxer = teclat.next();
+                }catch(Exception e){
+                    System.out.println(e);
                 }
             }
         }
         jugar();
+    }
+
+    public static int demanarNjugadors(){
+        Scanner teclat = new Scanner(System.in);
+        String nombre = "";
+        while(!esEnter(nombre)){
+            System.out.println("Entre el nombre de jugadors reals (0, 1, 2)");
+            nombre = teclat.nextLine();
+        }
+        return Integer.parseInt(nombre);
+    }
+
+    public static boolean esEnter(String s) {
+        try {
+            Integer.parseInt(s);
+        } catch(NumberFormatException e) {
+            return false;
+        } catch(NullPointerException e) {
+            return false;
+        }
+        return true;
     }
 
     private static void jugar() throws Exception {
@@ -126,8 +158,14 @@ public abstract class PartidaText {
             }else{//si entra aqui sabem segur que ha retornat "no", per tant, que no vol moure la peça que ha dit
                 System.out.println("Pots tornar a entrar la posició Inicial");
             }
-            if(res.toString().equalsIgnoreCase("EscacsSeguits") || res.toString().equalsIgnoreCase("TornsInaniccio") || res.toString().contains("escacmat")){
+            String[] tokensRes = res.toString().split(" ");
+            if(res.toString().equalsIgnoreCase("EscacsSeguits") || res.toString().equalsIgnoreCase("TornsInaniccio") || res.toString().equalsIgnoreCase("escacmat")){
                 continuar = false;
+            }
+            if(tokensRes.length>1){
+                if(tokensRes[1].equalsIgnoreCase("escacmat")){
+                    continuar = false;
+                }
             }
         }
         return continuar;
@@ -229,13 +267,19 @@ public abstract class PartidaText {
             String[] tokens = res.toString().split(" ");
             if(tokens.length > 1){
                 if(tokens[1].equalsIgnoreCase("escac")){
-                    System.out.println("Escac al rei ");
+                    System.out.print("Escac al rei ");
                     if(colorTorn.toString().equals("BLANQUES")){
                         System.out.println("NEGRE");
                     }else{
                         System.out.println("BLANC");
                     }
                 }else{ //escac i mat
+                    System.out.print("Hi ha escac i mat a les fitxes ");
+                    if(colorTorn.toString().equals("BLANQUES")){
+                        System.out.println("NEGRE");
+                    }else{
+                        System.out.println("BLANC");
+                    }
                     //_partida.escacIMat();
                 }
 
@@ -271,7 +315,8 @@ public abstract class PartidaText {
             _partida.taulesTornsInaccio();
             System.out.println("S'ha superat el nombre de torns sense matar cap peça. S'acaba la partida");
         }else if(res.toString().equalsIgnoreCase("escacmat")){ //escac i mat, s'acaba la partida
-
+            System.out.println("Escac i mat!! El jugador " + _partida.getProperTorn() + " ha guanyat la partida");
+            _partida.escacIMat();
         }
         else{
             throw new Exception("Ha passat algun error");
@@ -353,7 +398,6 @@ public abstract class PartidaText {
         else if(res.equalsIgnoreCase("tot correcte")){
             System.out.println("Posició correcte");
             correcte = "correcte " + s;
-            //System.out.println(correcte);
         }else{
             throw new Exception("Error Posició correcte destí");
         }

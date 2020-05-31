@@ -3,12 +3,9 @@ package partida;
 /** @file Taulell.java
  * @brief Taulell d'Escac
  */
-import javafx.geometry.Pos;
-import sun.reflect.generics.tree.Tree;
-
-import static partida.Historial.*;
-
 import java.util.*;
+
+import static partida.Historial.guardarPosInicial;
 
 /** @class Taulell
  * @brief Modul que representa el taulell d'escacs el qual pot ser modificable
@@ -384,7 +381,6 @@ public class Taulell {
         p.primerMovFet();
         p.incrementarMov();
         _eliminats.put(nTorns,eli);
-        System.out.println(nTorns.intValue());
         ++nTorns;
 
         return  res;

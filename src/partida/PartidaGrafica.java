@@ -11,14 +11,20 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.*;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
@@ -129,7 +135,7 @@ public class PartidaGrafica extends Application{
             public void handle(ActionEvent event) {
                 String s = nomFitxer.getText();
                 if(s.isEmpty() || s == null){
-                    missatge.setText("Entre un fitxer vàlid");
+                    missatge.setText("Entre un fitxer.");
                 }
                 else if(opcio == 1 && cb.getValue()==null){
                     missatge.setText("Entre un nombre de jugadors");
@@ -138,19 +144,31 @@ public class PartidaGrafica extends Application{
                     if(opcio == 1){
                         try {
                             _partida = new Partida(s, (int) cb.getValue());
+                            crearEscenaPartida();
+                            window.setScene(escenaPartida);
                         } catch (IOException e) {
-                            e.printStackTrace();
+                            missatge.setText("No s'ha trobat el fitxer de regles, entra'n un altre de correcte.");
+                            System.out.println(e);
+                            System.out.println("No s'ha trobat el fitxer de regles");
+                        } catch (Exception e){
+                            System.out.println(e);
+                            System.out.println("Hi ha hagut un error");
                         }
                     }
                     else{
                         try {
                             _partida = new Partida(s);
+                            crearEscenaPartida();
+                            window.setScene(escenaPartida);
                         } catch (IOException e) {
-                            e.printStackTrace();
+                            missatge.setText("No s'ha trobat el fitxer de la partida, entra'n un altre de correcte");
+                            System.out.println(e);
+                            System.out.println("No s'ha trobat el fitxer de la partida");
+                        } catch (Exception e){
+                            System.out.println(e);
+                            System.out.println("Hi ha hagut un error");
                         }
                     }
-                    crearEscenaPartida();
-                    window.setScene(escenaPartida);
                 }
             }
         });
@@ -365,40 +383,54 @@ public class PartidaGrafica extends Application{
             @Override
             public void handle(ActionEvent event) {
                 _partida.rendirse();
-                VBox root = new VBox();
+                VBox root = new VBox(30);
+                root.setStyle("-fx-background-image: url(" + "/Images/darkWoodTexture.png" + "); -fx-background-size: stretch; -fx-padding: 50 0 0 0;");
                 Label accept = new Label("El jugador " + _partida.getProperTorn() + " s'ha rendit.");
+                accept.setStyle("-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 18;");
                 Label gg = new Label("Bona partida, fins la pròxima");
-                root.getChildren().addAll(accept, gg);
+                gg.setStyle("-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 18;");
+                Label avisSortir = new Label("(Clica la imatge per acabar)");
+                avisSortir.setStyle("-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 15;");
+                ImageView i = new ImageView("/Images/gifNen.gif");
+                i.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent event) {
+                        Platform.exit();
+                    }
+                });
+                root.getChildren().addAll(accept, gg, avisSortir, i);
                 root.setPadding(new Insets(50));
                 root.setAlignment(Pos.CENTER);
+                root.setPadding(new Insets(20));
                 Scene s = new Scene(root, 500d, 500d);
                 window.setScene(s);
-                try {
-                    Thread.sleep(10000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                Platform.exit();
             }
         });
         postpone.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 _partida.ajornar();
-                VBox root = new VBox();
+                VBox root = new VBox(30);
+                root.setStyle("-fx-background-image: url(" + "/Images/darkWoodTexture.png" + "); -fx-backbround-size: stretch; -fx-padding: 50 0 0 0;");
                 Label accept = new Label("El jugador " + _partida.getProperTorn() + " ha ajornat la partida.");
-                Label gg = new Label("Fins la pròxima");
-                root.getChildren().addAll(accept, gg);
+                accept.setStyle("-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 18;");
+                Label gg = new Label("Fins la pròxima!!");
+                gg.setStyle("-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 18;");
+                Label avisSortir = new Label("(Clica la imatge per acabar)");
+                avisSortir.setStyle("-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 15;");
+                ImageView i = new ImageView("/Images/ajornarGif.gif");
+                i.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent event) {
+                        Platform.exit();
+                    }
+                });
+                root.getChildren().addAll(accept, gg, avisSortir, i);
                 root.setPadding(new Insets(50));
                 root.setAlignment(Pos.CENTER);
+                root.setPadding(new Insets(20));
                 Scene s = new Scene(root, 500d, 500d);
                 window.setScene(s);
-                try {
-                    Thread.sleep(10000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                Platform.exit();
             }
         });
         tie.setOnAction(new EventHandler<ActionEvent>() {
@@ -407,7 +439,32 @@ public class PartidaGrafica extends Application{
                 p.setRight(crearPaneTaules(p));
             }
         });
-        exit.setOnAction( e-> Platform.exit());
+        exit.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                VBox root = new VBox(30);
+                root.setStyle("-fx-background-image: url(" + "/Images/darkWoodTexture.png" + "); -fx-backbround-size: stretch; -fx-padding: 50 0 0 0;");
+                Label accept = new Label("No treguis el joc així...");
+                accept.setStyle("-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 18;");
+                Label gg = new Label("Que la partida no es guarda...");
+                gg.setStyle("-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 18;");
+                Label avisSortir = new Label("(Clica la imatge per acabar)");
+                avisSortir.setStyle("-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 15;");
+                ImageView i = new ImageView("/Images/rageQuit.gif");
+                i.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent event) {
+                        Platform.exit();
+                    }
+                });
+                root.getChildren().addAll(accept, gg, avisSortir, i);
+                root.setPadding(new Insets(50));
+                root.setAlignment(Pos.CENTER);
+                root.setPadding(new Insets(20));
+                Scene s = new Scene(root, 500d, 500d);
+                window.setScene(s);
+            }
+        });
         HBox avisos = new HBox(15);
         Label av = new Label("No hi ha cap avís");
         av.setWrapText(true);
@@ -442,25 +499,38 @@ public class PartidaGrafica extends Application{
 
     private static Node crearPaneTaules(BorderPane p){
         VBox root = new VBox(10);
+        root.setStyle("-fx-background-image: url("+ "/Images/darkWoodTexture.png" + ");-fx-background-size: stretch; -fx-padding: 50 0 0 0;");
         root.setId("2");
         Label lbl = new Label("El jugador " + _partida.getProperTorn() + " ha demanat taules");
+        lbl.setStyle("-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 15;");
         Button si = new Button("Si");
+        si.setStyle("-fx-background-color: transparent; -fx-font-weight: bold; -fx-border-style: dotted; -fx-border-insets: 1 1 1 1; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 1, 1;");
         Button no = new Button("No");
+        no.setStyle("-fx-background-color: transparent; -fx-font-weight: bold; -fx-border-style: dotted; -fx-border-insets: 1 1 1 1; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 1, 1;");
         si.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                VBox root = new VBox();
-                Label accept = new Label("S'han acceptat les taules, s'acaba la partida");
-                Label gg = new Label("Bona partida, fins la pròxima");
-                root.getChildren().addAll(accept, gg);
+                _partida.taules();
+                VBox root = new VBox(30);
+                root.setStyle("-fx-background-image: url(" + "/Images/darkWoodTexture.png" + "); -fx-backbround-size: stretch;");
+                Label accept = new Label("El jugador " + _partida.getProperTorn() + " ha acceptat les taules");
+                accept.setStyle("-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 18;");
+                accept.setWrapText(true);
+                Label gg = new Label("Fins la pròxima!");
+                gg.setStyle("-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 18;");
+                Label avisSortir = new Label("(Clica la imatge per acabar)");
+                avisSortir.setStyle("-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 15;");
+                ImageView i = new ImageView("/Images/donarMa.gif");
+                i.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent event) {
+                        Platform.exit();
+                    }
+                });
+                root.getChildren().addAll(accept, gg, avisSortir, i);
+                root.setAlignment(Pos.CENTER);
                 Scene s = new Scene(root, 500d, 500d);
                 window.setScene(s);
-                try {
-                    Thread.sleep(10000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                Platform.exit();
             }
         });
         no.setOnAction(new EventHandler<ActionEvent>() {
@@ -540,7 +610,7 @@ public class PartidaGrafica extends Application{
         String res;
         res = _partida.ferTirada(mov);
         if(res.equalsIgnoreCase("tiradaMort")){ //ha matat la peça que hi havia anteriorment a aquesta posició
-            res = "Tirada vàlida i s'ha matat\n" + "la peça/les peces corresponent/s";
+            res = "Tirada vàlida i s'ha matat la peça/les peces corresponent/s";
             eliminarPeces(pane);
             p.move(newX, newY);
             passarTorn(pane);
@@ -579,17 +649,54 @@ public class PartidaGrafica extends Application{
             p.move(newX, newY);
             passarTorn(pane);
         }else if(res.equalsIgnoreCase("EscacsSeguits")){
+            p.move(newX, newY);
+            res = "Masses escacs seguits, s'acaba la partida en taules";
             _partida.taulesEscacsSeguits();
         }else if(res.equalsIgnoreCase("TornsInaniccio")){
+            p.move(newX, newY);
+            res = "Masses torns sense acció, s'acaba la partida en taules";
             _partida.taulesTornsInaccio();
-        }else if(res.equalsIgnoreCase("escacmat")){
+        }else if(res.equalsIgnoreCase("noTiradaEscac")){
+            res = "No s'ha fet la tirada perquè el teu rei està amenaçat!";
+            p.abortMove();
+        }
+        else if(res.equalsIgnoreCase("escacmat")){
+            p.move(newX, newY);
+            res = "Escac i mat. S'acaba la partida. Ha guanyat el jugador " + _partida.getProperTorn();
             //_partida.escacIMat();
+            crearEscenaFinal();
 
+        }else if(res.equalsIgnoreCase("enrocNo")){
+            p.abortMove();
+            res = "Aquestes peces no poden fer enroc";
         }
         else{
             p.abortMove();
         }
         modificarLblAvisos(res, pane);
+    }
+
+    private static void crearEscenaFinal(){
+        VBox root = new VBox(30);
+        root.setStyle("-fx-background-image: url(" + "/Images/darkWoodTexture.png" + "); -fx-backbround-size: stretch;");
+        Label accept = new Label("El jugador " + _partida.getProperTorn() + " ha GUANYAT!");
+        accept.setStyle("-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 18;");
+        accept.setWrapText(true);
+        Label gg = new Label("Fins la pròxima!");
+        gg.setStyle("-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 18;");
+        Label avisSortir = new Label("(Clica la imatge per acabar)");
+        avisSortir.setStyle("-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 15;");
+        ImageView i = new ImageView("/Images/victoryGif.gif");
+        i.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                Platform.exit();
+            }
+        });
+        root.getChildren().addAll(accept, gg, avisSortir, i);
+        root.setAlignment(Pos.CENTER);
+        Scene s = new Scene(root, 500d, 500d);
+        window.setScene(s);
     }
 
     private static void eliminarPeces(BorderPane pane) {
@@ -617,13 +724,16 @@ public class PartidaGrafica extends Application{
 
     private static void crearEscenaPromoció(BorderPane p, String mov, int x, int y){
         VBox root = new VBox(10);
-        Label lbl = new Label("Per quina peça vols fer la promoció.");
-        Label lbl2 = new Label("Si no ho fas ara, no ho podras fer");
-        root.getChildren().addAll(lbl, lbl2);
+        Label lbl = new Label("Per quina peça vols fer la promoció. Si no ho fas ara, no ho podras fer");
+        root.setPrefWidth(300);
+        lbl.setWrapText(true);
+
+        root.getChildren().add(lbl);
         String[] llsitaPeces = _partida.getLlistaPeces();
         for(String s : llsitaPeces){
             if(!s.equalsIgnoreCase("rei")){
                 Button btn = new Button(s);
+                btn.setStyle("-fx-background-image: url(" + "/Images/woodTexture.png" + "); -fx-font-weight: bold");
                 btn.setOnAction(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent event) {
@@ -645,10 +755,11 @@ public class PartidaGrafica extends Application{
 
         }
         lbl.setAlignment(Pos.CENTER);
-        lbl2.setAlignment(Pos.CENTER);
+        lbl.setStyle("-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 15;");
         root.setAlignment(Pos.CENTER);
         root.setPadding(new Insets(20));
         p.setRight(root);
+        p.setStyle("-fx-background-image: url(" + "/Images/darkWoodTexture.png" +"); -fx-background-size: stretch;");
     }
 
     private static void modificarLblAvisos(String s, BorderPane p){
@@ -658,30 +769,6 @@ public class PartidaGrafica extends Application{
             Label txt = (Label) top.getChildren().get(0);
             txt.setText(s);
         }
-    }
-
-    private static VBox crearPaneEnroc(BorderPane p, StringBuilder s){
-        VBox root = new VBox();
-        Label lbl = new Label("Estas segur que vols fer l'enroc?");
-        Button si = new Button("Si");
-        Button no = new Button("No");
-        si.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                s.append("si");
-                p.setRight(crearOpcions(p));
-            }
-        });
-        no.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                s.append("no");
-                p.setRight(crearOpcions(p));
-            }
-        });
-        root.getChildren().addAll(lbl, si, no);
-        root.setAlignment(Pos.CENTER);
-        return root;
     }
 
     private static void passarTorn(BorderPane p){

@@ -11,17 +11,14 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
+import javafx.scene.text.*;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
@@ -57,11 +54,13 @@ public class PartidaGrafica extends Application{
         BorderPane root = new BorderPane();
         Button btnCom = new Button("Començar nova partida");
         Button btnCar = new Button("Carregar una partida");
+        btnCom.setStyle("-fx-background-image: url(" + "/Images/woodTexture.png" + "); -fx-font-weight: bold");
+        btnCar.setStyle("-fx-background-image: url(" + "/Images/woodTexture.png" + "); -fx-font-weight: bold");
         btnCom.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 System.out.println("Es començarà una nova partida");
-                escenaSecondaria(1);
+                escenaSecundaria(1);
                 window.setScene(escenaSec);
             }
         });
@@ -69,11 +68,11 @@ public class PartidaGrafica extends Application{
             @Override
             public void handle(ActionEvent event) {
                 System.out.println("Es carregarà una partida");
-                escenaSecondaria(2);
+                escenaSecundaria(2);
                 window.setScene(escenaSec);
             }
         });
-        root.setStyle("-fx-background-image: url("+ "/Images/FonsPrincipal.png" + ");-fx-background-size: stretch;");
+        root.setStyle("-fx-background-image: url("+ "/Images/darkWoodTexture.png" + ");-fx-background-size: stretch;");
         opcions.setAlignment(Pos.CENTER);
 
         opcions.getChildren().add(btnCom);
@@ -85,15 +84,15 @@ public class PartidaGrafica extends Application{
         escenaPrincipal = new Scene(root, 500d, 500d);
     }
 
-    private void escenaSecondaria(int opcio){
+    private void escenaSecundaria(int opcio){
         BorderPane root = new BorderPane();
 
+        //no poso excepció per si no troba la imatge, perquè si no la troba posa un fons gris per defecte
+        root.setStyle("-fx-background-image: url("+ "/Images/darkWoodTexture.png" + ");-fx-background-size: stretch;");
         if(opcio == 1){
-            root.setStyle("-fx-background-image: url("+ "/Images/fonsComencar.jpg" + ");-fx-background-size: stretch;");
-            root.setTop(topLabel("Entra el fitxer de regles que vols començar", root.widthProperty()));
+            root.setTop(topLabel("Entra el fitxer de regles que vols carregar", root.widthProperty()));
         }
         else{
-            root.setStyle("-fx-background-image: url("+ "/Images/fonsCarregar.jpg" + ");-fx-background-size: stretch;");
             root.setTop(topLabel("Entra el fitxer de la partida que vols carregar", root.widthProperty()));
         }
         root.setBottom(botoInferior("Cancelar"));
@@ -107,22 +106,27 @@ public class PartidaGrafica extends Application{
     private Node prepararCentre(int opcio) {
         TextField nomFitxer = new TextField();
         nomFitxer.setPromptText("Ex: nomFitxer.json");
+        nomFitxer.setStyle("-fx-background-color: transparent; -fx-font-weight: bold; -fx-border-style: dotted; -fx-border-insets: 1 1 1 1; -fx-text-fill: white; -fx-border-color: white;");
         Label lbl = new Label("Nom fitxer:");
+        lbl.setStyle("-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 15;");
         Label missatge = new Label();
+        missatge.setStyle("-fx-text-fill: white; -fx-font-weight: bold");
         HBox hb = new HBox(10);
         hb.getChildren().addAll(lbl, nomFitxer);
         hb.setAlignment(Pos.CENTER);
         VBox vb = new VBox(10);
         Button subBtn = new Button("Submit");
+        subBtn.setStyle("-fx-background-image: url(" + "/Images/woodTexture.png" + "); -fx-font-weight: bold");
         Button rmvBtn = new Button("Cancelar");
+        rmvBtn.setStyle("-fx-background-image: url(" + "/Images/woodTexture.png" + "); -fx-font-weight: bold");
         ChoiceBox cb = new ChoiceBox();
         cb.getItems().addAll(0,1,2);
+        cb.setStyle("-fx-background-image: url(" + "/Images/woodTexture.png" + "); -fx-font-weight: bold");
         vb.getChildren().add(hb);
         if(opcio==1){ vb.getChildren().add(cb); }
         subBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                //_partida = new Partida(nomFitxer.getText());
                 String s = nomFitxer.getText();
                 if(s.isEmpty() || s == null){
                     missatge.setText("Entre un fitxer vàlid");
@@ -167,8 +171,7 @@ public class PartidaGrafica extends Application{
         lbl.setAlignment(Pos.BASELINE_CENTER);
         lbl.setPrefHeight(60);
         lbl.prefWidthProperty().bind(d);
-        lbl.setStyle("-fx-font-weight: bolder; -fx-font-size: 25px; -fx-font-family: " + "Arial Black" + "; -fx-fill: #818181; " +
-                "-fx-effect: innershadow(three-pass-box, rgb(255,99,71), 6, 0.0, 0, 2);");
+        lbl.setStyle("-fx-font-weight: bold; -fx-font-size: 25px; -fx-font-family: " + "Arial Black" + "; -fx-text-fill: white;");
 
         return lbl;
     }
@@ -176,6 +179,7 @@ public class PartidaGrafica extends Application{
     private static Node botoInferior(String s){
         Pane root = new Pane();
         Button btnInf = new Button(s);
+        btnInf.setStyle("-fx-background-image: url(" + "/Images/woodTexture.png" + "); -fx-font-weight: bold");
         if(s.equals("Exit")){
             btnInf.setOnAction(e -> Platform.exit());
         }
@@ -211,8 +215,15 @@ public class PartidaGrafica extends Application{
         Button surrender = new Button("Rendir-se");
         Button postpone = new Button("Ajornar");
         Button tie = new Button("Demanar taules");
-        Button exit = new Button("Exit");
+        Button exit = new Button("EXIT");
+        redo.setStyle("-fx-background-color: transparent; -fx-font-weight: bold; -fx-border-style: dotted; -fx-border-insets: 1 1 1 1;");
+        undo.setStyle("-fx-background-color: transparent; -fx-font-weight: bold; -fx-border-style: dotted; -fx-border-insets: 1 1 1 1;");
+        surrender.setStyle("-fx-background-color: transparent; -fx-font-weight: bold; -fx-border-style: dotted; -fx-border-insets: 1 1 1 1;");
+        postpone.setStyle("-fx-background-color: transparent; -fx-font-weight: bold; -fx-border-style: dotted; -fx-border-insets: 1 1 1 1;");
+        tie.setStyle("-fx-background-color: transparent; -fx-font-weight: bold; -fx-border-style: dotted; -fx-border-insets: 1 1 1 1;");
+        exit.setStyle("-fx-background-color: transparent; -fx-font-weight: bold; -fx-border-style: dotted; -fx-border-insets: 1 1 1 1; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 1, 1;");
         Label lbl = new Label("Torn de " + _partida.getProperTorn());
+        lbl.setStyle("-fx-font-weight: bold;");
         redo.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -238,6 +249,7 @@ public class PartidaGrafica extends Application{
                         }
                     }
                     pGraf.move((int)(tokens[4].charAt(0))-1-96,tokens[4].charAt(1)-1-48);
+                    modificarLblAvisos("Enroc refet", p);
                 }else if(tokens.length == 4){ //ha fet promoció
                     int x = tirada.get_origen().get_columna()-1;
                     int y = tirada.get_origen().get_fila()-1;
@@ -247,7 +259,7 @@ public class PartidaGrafica extends Application{
                         pGraf = crearFitxa(f, tirada.get_desti().get_columna()-1, tirada.get_desti().get_fila()-1, p);
                         _fitxes.getChildren().add(pGraf);
                     }
-                    //pGraf.move(tirada.get_desti().get_columna()-1, tirada.get_desti().get_fila()-1);
+                    modificarLblAvisos("Promoció refeta", p);
                 }else if(tirada != null){ //tirada normal
                     //mirem si hi s'havia eliminat alguna peça a la tirada que volem refer.
                     TreeMap<Posicio, Peca> eliminades = _partida.getTaulell().getEliminats();
@@ -265,10 +277,8 @@ public class PartidaGrafica extends Application{
                             }
                             _fitxes.getChildren().remove(pGraf);
                         }
-                    }else{
-                        //no hi ha peces per matar
-                    }
 
+                    }
                     itr = _fitxes.getChildren().iterator();
                     while(itr.hasNext()){
                         pGraf = (PecaGrafica) itr.next();
@@ -277,8 +287,9 @@ public class PartidaGrafica extends Application{
                         }
                     }
                     pGraf.move(tirada.get_desti().get_columna()-1, tirada.get_desti().get_fila()-1);
+                    modificarLblAvisos("Tirada refeta", p);
                 }else{
-                    //no queden tirades per refer
+                    modificarLblAvisos("No hi ha tirades per refer. Fes alguna altre acció", p);
                 }
             }
         });
@@ -307,6 +318,7 @@ public class PartidaGrafica extends Application{
                         }
                     }
                     pGraf.move((int)(tokens[1].charAt(0)-1-96),tokens[1].charAt(1)-1-48);
+                    modificarLblAvisos("Enroc desfet", p);
                 }else if(tokens.length == 4){//ha fet promoció
                     int x = tirada.get_origen().get_columna();
                     int y = tirada.get_origen().get_fila();
@@ -317,7 +329,7 @@ public class PartidaGrafica extends Application{
                         _fitxes.getChildren().add(pGraf);
                     }
                     pGraf.move(tirada.get_desti().get_columna()-1, tirada.get_desti().get_fila()-1);
-
+                    modificarLblAvisos("Promoció desfeta", p);
                 }
                 else if(tirada != null){ //no hi ha hagut enrroc ni promoció: tirada normal
                     while(itr.hasNext()){
@@ -340,11 +352,10 @@ public class PartidaGrafica extends Application{
                                 _fitxes.getChildren().add(pGrafi);
                             }
                         }
-                    }else{
-                        //no hi ha peces mortes
                     }
+                    modificarLblAvisos("Tirada desfeta", p);
                 }else{
-                    //no queden tirades per desfer
+                    modificarLblAvisos("No hi ha tirades per desfer. Fes alguna altre acció", p);
                 }
 
 
@@ -394,14 +405,20 @@ public class PartidaGrafica extends Application{
             @Override
             public void handle(ActionEvent event) {
                 p.setRight(crearPaneTaules(p));
-                _partida.canviarTorn();
             }
         });
         exit.setOnAction( e-> Platform.exit());
         HBox avisos = new HBox(15);
-        Text av = new Text("No hi ha cap avís");
+        Label av = new Label("No hi ha cap avís");
+        av.setWrapText(true);
+        av.setAlignment(Pos.CENTER);
+        av.setFont(Font.font("arial", FontWeight.BOLD, FontPosture.REGULAR, 20));
         avisos.getChildren().add(av);
-        avisos.setAlignment(Pos.TOP_CENTER);
+        avisos.setAlignment(Pos.CENTER);
+        avisos.setStyle("-fx-border-style: solid; -fx-border-width: 3 3 3 3; -fx-background-image: url(" +"/Images/woodTexture.png" +"); -fx-background-size: stretch;");
+        avisos.setPrefHeight(200);
+        avisos.setPrefHeight(280);
+        avisos.setPadding(new Insets(10));
 
         HBox botoMarxar = new HBox(15);
         botoMarxar.getChildren().add(exit);
@@ -409,7 +426,13 @@ public class PartidaGrafica extends Application{
 
         opcionsGenerals.setAlignment(Pos.CENTER);
         opcionsGenerals.getChildren().addAll(lbl, undo, redo, surrender, postpone, tie, botoMarxar);
+        opcionsGenerals.setStyle("-fx-border-style: solid; -fx-border-width: 3 3 3 3; -fx-background-image: url(" +"/Images/woodTexture.png" +"); -fx-background-size: stretch;");
+        opcionsGenerals.setPadding(new Insets(20));
 
+        BorderPane.setMargin(avisos, new Insets(10));
+        BorderPane.setMargin(opcionsGenerals, new Insets(10));
+
+        root.setStyle("-fx-background-image: url(" + "/Images/darkWoodTexture.png" +"); -fx-background-size: stretch;");
         root.setPadding(new Insets(20));
         root.setTop(avisos);
         root.setCenter(opcionsGenerals);
@@ -418,7 +441,7 @@ public class PartidaGrafica extends Application{
     }
 
     private static Node crearPaneTaules(BorderPane p){
-        VBox root = new VBox();
+        VBox root = new VBox(10);
         root.setId("2");
         Label lbl = new Label("El jugador " + _partida.getProperTorn() + " ha demanat taules");
         Button si = new Button("Si");
@@ -446,6 +469,10 @@ public class PartidaGrafica extends Application{
                 p.setRight(crearOpcions(p)); //com que hi ha poca informació i el java disposa de garbage collector,podem anar creant aquesta part i el garbage collector s'encarregarà d'eliminar l'anterior
             }
         });
+        lbl.setAlignment(Pos.CENTER);
+        si.setAlignment(Pos.CENTER);
+        no.setAlignment(Pos.CENTER);
+        root.setPadding(new Insets(20));
         root.getChildren().addAll(lbl, si, no);
         root.setAlignment(Pos.CENTER);
         return root;
@@ -454,9 +481,9 @@ public class PartidaGrafica extends Application{
 
     private static Node crearContingutPartida(BorderPane p){
         Image img1;
-        img1 = new Image("/Images/fons.png");
+        img1 = new Image("/Images/fons1_2.png");
         Image img2;
-        img2 = new Image("/Images/fons2.png");
+        img2 = new Image("/Images/fons2_2.png");
         Pane root = new Pane();
         root.setPrefSize(_partida.getColumnes() * _pixelsRajola, _partida.getFiles() * _pixelsRajola);
         root.getChildren().addAll(_rajoles, _fitxes);
@@ -503,42 +530,6 @@ public class PartidaGrafica extends Application{
                     mov = s.append((char)(97+oldX)).append(oldY+1).append(' ').append((char)(97 + newX)).append(newY+1).toString();
                 }
                 realitzarTirada(mov, newX, newY, p, pane, oldX);
-                /*res = _partida.ferTirada(mov);
-                if(res.equalsIgnoreCase("tiradaMort")){ //ha matat la peça que hi havia anteriorment a aquesta posició
-                    eliminarPeca(newX, newY);
-                    p.move(newX, newY);
-                    passarTorn(pane);
-                }else if(res.equalsIgnoreCase("tiradaV")){ //la tirada s'ha fet a nivell lògic, ara a gràfic
-                    p.move(newX, newY);
-                    passarTorn(pane);
-                }else if(res.equalsIgnoreCase("noTirada")){
-                    p.abortMove();
-                }else if(res.equalsIgnoreCase("promocio")){
-                    p.move(newX, newY);
-                    crearEscenaPromoció(pane, mov, newX, newY); //si no funciona d'aquesta manera, dins de l'eventHandler dels botons faig que es canviï la peça ia i aqui, despres de cridar aquest mètode, busco la peça que hi ha a la posició i li envio al ferpromocio.
-                    res = "Escena promoció creada";
-                }else if(res.equalsIgnoreCase("enrocFet")) {
-                    Iterator<Node> itr = _fitxes.getChildren().iterator();
-                    PecaGrafica pGraf = null;
-                    while (itr.hasNext()) {
-                        pGraf = (PecaGrafica) itr.next();
-                        if (posTauler(pGraf.get_oldX()) == newX && posTauler(pGraf.get_oldY()) == newY) {
-                            break;
-                        }
-                    }
-                    if (oldX < newX) {
-                        p.move(newX - 1, newY);
-                        pGraf.move(newX - 2, newY);
-                    } else {
-                        p.move(newX + 1, newY);
-                        pGraf.move(newX + 2, newY);
-                    }
-                    passarTorn(pane);
-                }
-                else{
-                    p.abortMove();
-                }
-                modificarLblAvisos(res, pane);*/
             }
         });
 
@@ -549,19 +540,24 @@ public class PartidaGrafica extends Application{
         String res;
         res = _partida.ferTirada(mov);
         if(res.equalsIgnoreCase("tiradaMort")){ //ha matat la peça que hi havia anteriorment a aquesta posició
-            eliminarPeca(newX, newY);
+            res = "Tirada vàlida i s'ha matat\n" + "la peça/les peces corresponent/s";
+            eliminarPeces(pane);
             p.move(newX, newY);
             passarTorn(pane);
         }else if(res.equalsIgnoreCase("tiradaV")){ //la tirada s'ha fet a nivell lògic, ara a gràfic
             p.move(newX, newY);
+            res = "Tirada vàlida i feta";
             passarTorn(pane);
         }else if(res.equalsIgnoreCase("noTirada")){
+            res = "Tirada invàlida, no s'ha realitzat.";
             p.abortMove();
         }else if(res.equalsIgnoreCase("promocio")){
+            eliminarPeces(pane);
             p.move(newX, newY);
             crearEscenaPromoció(pane, mov, newX, newY); //si no funciona d'aquesta manera, dins de l'eventHandler dels botons faig que es canviï la peça ia i aqui, despres de cridar aquest mètode, busco la peça que hi ha a la posició i li envio al ferpromocio.
             res = "Escena promoció creada";
         }else if(res.equalsIgnoreCase("enrocFet")) {
+            res = "S'ha fet l'enroc";
             Iterator<Node> itr = _fitxes.getChildren().iterator();
             PecaGrafica pGraf = null;
             while (itr.hasNext()) {
@@ -578,11 +574,45 @@ public class PartidaGrafica extends Application{
                 pGraf.move(oldX + 1, newY);
             }
             passarTorn(pane);
+        }else if(res.equalsIgnoreCase("escac")){
+            eliminarPeces(pane);
+            p.move(newX, newY);
+            passarTorn(pane);
+        }else if(res.equalsIgnoreCase("EscacsSeguits")){
+            _partida.taulesEscacsSeguits();
+        }else if(res.equalsIgnoreCase("TornsInaniccio")){
+            _partida.taulesTornsInaccio();
+        }else if(res.equalsIgnoreCase("escacmat")){
+            //_partida.escacIMat();
+
         }
         else{
             p.abortMove();
         }
         modificarLblAvisos(res, pane);
+    }
+
+    private static void eliminarPeces(BorderPane pane) {
+        TreeMap<Posicio, Peca> eliminades = _partida.getTaulell().getEliminats();
+        if(eliminades != null){
+            Iterator<Node> itr;
+            PecaGrafica pGraf = null;
+            Iterator<Map.Entry<Posicio, Peca>> it = eliminades.entrySet().iterator();
+            while(it.hasNext()){
+                Map.Entry<Posicio, Peca> entry = it.next();
+                Posicio pos = entry.getKey();
+                itr = _fitxes.getChildren().iterator();
+                while(itr.hasNext()){
+                    pGraf = (PecaGrafica) itr.next();
+                    if(posTauler(pGraf.get_oldX()) == pos.get_columna()-1 && posTauler(pGraf.get_oldY()) == pos.get_fila()-1){ //resto 1 perquè en lluc no fa servir la posició 0 i jo si i després resto l'altre numero perquè retorna en codi ascii
+                        break;
+                    }
+                }
+                _fitxes.getChildren().remove(pGraf);
+            }
+        }else{
+            modificarLblAvisos("No hi ha peces per eliminar", pane);
+        }
     }
 
     private static void crearEscenaPromoció(BorderPane p, String mov, int x, int y){
@@ -625,7 +655,7 @@ public class PartidaGrafica extends Application{
         if(!s.equalsIgnoreCase("Escena promoció creada")){
             BorderPane dreta = (BorderPane) p.getRight();
             HBox top = (HBox) dreta.getTop();
-            Text txt = (Text) top.getChildren().get(0);
+            Label txt = (Label) top.getChildren().get(0);
             txt.setText(s);
         }
     }

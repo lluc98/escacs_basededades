@@ -1,17 +1,32 @@
 package partida;
+/** @file CPU.java
+ * @brief Jugador "màquina"
+ */
 
 import javafx.geometry.Pos;
 
 import javax.swing.border.StrokeBorder;
 import java.util.Random;
+
+/** @class CPU
+ * @brief S'encarrega de substituïr un jugador fisic
+ */
 public class CPU {
-    private boolean _equip;
+    private boolean _equip;             ///< Equip de la màquina
 
-
+    /** @brief  Inicialitzador del jugador CPU
+     * @pre --
+     * @post El jugador CPU sap el seu equip
+     */
     CPU(boolean equip){
         _equip = equip;
     }
 
+    /** @brief  Realitza l'acció de tirar una peça
+     * @param taulell Posició inicial de la Peça
+     * @pre El taulell està actualitzat
+     * @post S'ha realitzat una tirada automàtica
+     */
     public void ferTirada(Taulell taulell){
         TiradaSimple t= taulell.hihaJaque(_equip);
         if(t!=null){
@@ -50,11 +65,8 @@ public class CPU {
                             it++;
                         }
                     }
-
-
                 }
             }
-
         }
 
     }

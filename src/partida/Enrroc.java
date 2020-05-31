@@ -31,6 +31,15 @@ public class Enrroc {
 
     }
 
+    /** @brief  Assigna els atributs de l'Enrroc
+     * @param a Valor de la Posició A
+     * @param b Valor de la Posició b
+     * @param equip Bándol del equip que pot realitzar aquest Enrroc
+     * @param quiets Variable que ens indica si s'han mogut les peces del Enrroc
+     * @param buitAlmig Variable que ens indica l'equip que realitza l'Enrroc.
+     * @pre --
+     * @post Atributs assignats
+     */
     public Enrroc(Posicio a, Posicio b, boolean equip, boolean quiets, boolean buitAlmig){
         p1 = a;
         p2 = b;

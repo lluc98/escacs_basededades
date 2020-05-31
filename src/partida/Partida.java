@@ -362,7 +362,7 @@ public class Partida {
      */
    public TiradaSimple referTirada (StringBuilder resultat) {
        TiradaSimple ultimaTirada = null;
-       if (taulell.estaBuidaRefer()) {
+       if (!taulell.estaBuidaRefer()) {
            ultimaTirada = taulell.referTirada(resultat);
            String r = resultat.toString();
            guardarTirada(ultimaTirada, r);

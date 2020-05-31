@@ -12,6 +12,7 @@ public class Peca {
     private TipusPeca _tipus;               ///< Conjunt d'atributs que defineixen la Peça
     private boolean _primerMoviment;        ///< Controlador de si s'ha fet el primer moviment
     private boolean _equip;                 ///< Controlador del equip al que pertany la Peça
+    private int _nMov;
 
     /** @brief Genera una peça buida
      * @pre --
@@ -20,6 +21,7 @@ public class Peca {
     public Peca(){
         _primerMoviment = false;
         _equip = false;
+        _nMov = 0;
     }
 
     /** @brief Genera una Peça amb els atributs definits
@@ -34,6 +36,7 @@ public class Peca {
         if(_tipus != null){
             _primerMoviment = false;
             _equip = equip;
+            _nMov = 0;
         }
         else{
             throw new RuntimeException("Tipus de peça no trobada");
@@ -169,5 +172,20 @@ public class Peca {
 
     public boolean getPromocio(){
         return _tipus.getPromocio();
+    }
+
+    public void incrementarMov(){
+        _nMov++;
+    }
+    public void decrementarMov(){
+        _nMov--;
+    }
+
+    public int getNMovs(){
+        return  _nMov;
+    }
+
+    public void restaurarMov(){
+        _primerMoviment=false;
     }
 }

@@ -207,7 +207,7 @@ public class Partida {
                     }
                     else if(i==2){
                         modificarResultatUltimaTirada("ESCAC I MAT");
-                        return "escacMat";
+                        return "escacmat";
                     }
                     else{
                         return "enrocFet";
@@ -255,7 +255,7 @@ public class Partida {
                     }
                     else if(j==2){
                         modificarResultatUltimaTirada("ESCAC I MAT");
-                        return "escacMat";
+                        return "escacmat";
                     }
                 }
             }
@@ -461,5 +461,14 @@ public class Partida {
             i++;
         }
         return peces;
+    }
+
+    /** @brief  Acció de guanyar la partida
+     * @pre --
+     * @post Es tanca la partida, guanya el jugador actual.
+     */
+    public void escacIMat () {
+        guardarProperTorn(properTorn);
+        Historial.guardarPartida("GUANYA EL JUGADOR DE LES PECES " + properTorn);
     }
 }

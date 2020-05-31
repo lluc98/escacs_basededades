@@ -74,7 +74,6 @@ public class Jugador {
         TiradaSimple t = taulell.hihaJaque(_equip);
         if(t!=null){
             if(taulell.hiHaJaqueMate(t)){
-                System.out.println("HI HA JAQUE MATEEEEEEEEEE");
                 return 2;
             }
             return 1;

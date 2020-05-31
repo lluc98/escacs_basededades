@@ -36,14 +36,23 @@ public class Partida {
      * @post totes les variables per a continuar una partida estan settejades.
      */
     public Partida(String fitxerPartida) throws IOException {
-        //Hauriem de posar condicions per a saber quina partida començarem
-        fitxerEntradaPartida.llegirPartidaComencada(fitxerPartida);
+        boolean comencada = true;
+        fitxerEntradaPartida.llegirPartidaComencada(fitxerPartida, comencada);
+        carregarPartidaAnterior(fitxerPartida, fitxerEntradaPartida);
         conjuntPeces = fitxerEntradaPartida.getConjuntPeces();
         taulell = fitxerEntradaPartida.getTaulell();
         properTorn = fitxerEntradaPartida.getProperTorn();
         limitEscacsSeguits = fitxerEntradaPartida.getLimitEscacsSeguits();
         limitTornsInaccio = fitxerEntradaPartida.getLimitTornsInaccio();
-        carregarPartidaAnterior(fitxerPartida);
+        carregarPartida();
+    }
+
+    public void carregarPartida(){
+        for(int i = 0; i<=longTiradades(); i++){
+            TiradaSimple tirada = getTirada(i);
+            String res = getResultat(i);
+            taulell.carregarTirades(tirada,res,conjuntPeces);
+        }
     }
 
     /** @brief  Genera una partida carregada
@@ -53,14 +62,15 @@ public class Partida {
      * @post totes les variables per a començar una partida estan settejades.
      */
     public Partida(String fitxerRegles, int jugadors) throws IOException {
-        fitxerEntradaPartida.llegirRegles(fitxerRegles);
+        boolean comencada = false;
+        iniciarPartidaNova(fitxerRegles);
+        fitxerEntradaPartida.llegirRegles(fitxerRegles, comencada);
         conjuntPeces = fitxerEntradaPartida.getConjuntPeces();
         taulell = fitxerEntradaPartida.getTaulell();
         limitEscacsSeguits = fitxerEntradaPartida.getLimitEscacsSeguits();
         limitTornsInaccio = fitxerEntradaPartida.getLimitTornsInaccio();
         properTorn = "BLANQUES";
         nJugadors = jugadors;
-        iniciarPartidaNova(fitxerRegles);
         guardarFitxerRegles(fitxerRegles);
     }
 
@@ -80,7 +90,7 @@ public class Partida {
      * @post Avisem del valor de la posició
      */
     public String posCorrecteOrigen (String posicioIndefinida) {
-        boolean colorTorn = "BLANQUES" == properTorn;
+        boolean colorTorn = properTorn.equalsIgnoreCase("BLANQUES");
         String lletra = posicioIndefinida.substring(0, 1);
         int n = -1;
         if (esEnter(posicioIndefinida.substring(1)))
@@ -265,7 +275,7 @@ public class Partida {
      */
     public void ajornar () {
         guardarProperTorn(properTorn);
-        Historial.guardarPartida("");
+        Historial.guardarPartida("PARTIDA AJORNADA");
     }
 
     /** @brief  Acció de mostrar el taulell

@@ -66,7 +66,20 @@ public class Historial {
         fitxerPartida = new FileWriter("Partida" + (nPartida + 1) + ".json");
     }
 
-    public static void carregarPartidaAnterior(String path) throws IOException {
+    public static void carregarPartidaAnterior(String path, LlegirFitxers fitxerEntradaPartida) throws IOException {
+
+        partida.put("resultat_final", fitxerEntradaPartida.getResultatFinal());
+
+        partida.put("fitxerRegles", fitxerEntradaPartida.getFitxerRegles());
+
+        partida.put("posIniBlanques", fitxerEntradaPartida.getPosIniBlanques());
+
+        partida.put("posIniNegres", fitxerEntradaPartida.getPosIniNegres());
+
+        partida.put("proper_torn", fitxerEntradaPartida.getProperTorn());
+
+        partida.put("tirades", fitxerEntradaPartida.getTirades());
+
         fitxerPartida = new FileWriter(path);
     }
 
@@ -94,7 +107,7 @@ public class Historial {
         infoPos.put("pos",posicio.get_posicio());
         infoPos.put("tipus",peca.getNom());
         infoPos.put("moguda",moguda);
-        if (equip == true) {
+        if (equip) {
             JSONArray posIniBlanques = partida.getJSONArray("posIniBlanques");
             posIniBlanques.put(infoPos);
         } else {
@@ -176,11 +189,11 @@ public class Historial {
         String contingut = "";
 
 
-        if (resultat == "BLANQUES") {
+        if (resultat.equalsIgnoreCase("BLANQUES")) {
             partida.put("resultat_final", "BLANQUES GUANYEN");
-        } else if (resultat == "NEGRES") {
+        } else if (resultat.equalsIgnoreCase("NEGRES")) {
             partida.put("resultat_final", "NEGRES GUANYEN");
-        } else if (resultat == "TAULES") {
+        } else if (resultat.equalsIgnoreCase("TAULES")) {
             partida.put("resultat_final", "TAULES");
         } else {
             partida.put("resultat_final", "AJORNAMENT");
@@ -216,5 +229,29 @@ public class Historial {
         JSONObject tirada = tirades.getJSONObject(tirades.length() - 1);
 
         return tirada.getString("resultat");
+    }
+
+    public static String getResultat (int i) {
+        JSONArray tirades = partida.getJSONArray("tirades");
+        JSONObject tirada = tirades.getJSONObject(i);
+
+        return tirada.getString("resultat");
+    }
+    public static TiradaSimple getTirada(int i) {
+        JSONArray tirades = partida.getJSONArray("tirades");
+        JSONObject tirada = tirades.getJSONObject(i);
+
+        String torn = tirada.getString("torn");
+        String origen = tirada.getString("origen");
+        String desti = tirada.getString("desti");
+
+        boolean equip = torn == "BLANQUES";
+        Posicio o = new Posicio(origen);
+        Posicio d = new Posicio(desti);
+        return new TiradaSimple(o, d, equip);
+    }
+    public static int longTiradades(){
+        JSONArray tirades = partida.getJSONArray("tirades");
+        return tirades.length()-1;
     }
 }

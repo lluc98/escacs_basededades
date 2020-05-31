@@ -1,8 +1,16 @@
 package partida;
 
+/** @file Taulell.java
+ * @brief Taulell d'Escac
+ */
+import javafx.geometry.Pos;
+import sun.reflect.generics.tree.Tree;
+
 import java.util.*;
 
-
+/** @class Taulell
+ * @brief Modul que representa el taulell d'escacs el qual pot ser modificable
+ */
 public class Taulell {
 
     private int _fila;
@@ -14,6 +22,13 @@ public class Taulell {
     private Integer nTorns;
     private ArrayList<TiradaSimple> _tiradesRefer;
 
+
+    /** @brief Genera un Taulell amb els atributs definits
+     * @param c nombre de columnes del taulell
+     * @param f nombre de files del taulell
+     * @pre c i f nombres enters entre 4 i 16
+     * @post Taulell creat de dimensio f x c
+     */
     public Taulell(int c, int f){
         _fila = f;
         _columna = c;
@@ -27,17 +42,24 @@ public class Taulell {
         _promocio = new ArrayList<>();
     }
 
-
+    /** @brief Nombre de files */
     public int getFiles() {
         return _fila;
     }
 
 
-
+    /** @brief Nombre de columnes */
     public int getColumnes() {
         return _columna;
     }
 
+
+    /** @brief Assigna les peces entrades al seu lloc a mesura que li van entran
+     * @param b peca blanca
+     * @param n peca nerga
+     * @pre b i n diferent de null
+     * @post peces afegides al taulell
+     */
     public void afegirPeca(Peca b, Peca n){
         if(n_peces < (_fila*_columna)-_columna) {
             int x, y, y2;
@@ -56,21 +78,31 @@ public class Taulell {
             Posicio p = new Posicio(y, x);
             Posicio p2 = new Posicio(y2, x);
             _tauler.put(p, b);
-            //guardarPosInicial(p, b, false, true);
             _tauler.put(p2, n);
-            //guardarPosInicial(p, b, false, true);
             n_peces = n_peces + 2;
+            guardarPosInicial(p, b, false, true);
+            guardarPosInicial(p2, n, false, false);
         }
         else
             throw new RuntimeException("NO CABEN MÉS PECES AL TAULELL");
 
-
     }
 
+    /** @brief Assigna la peca al taulell a la posicio determinada
+     * @param peca peça
+     * @param pos una posicio del taulell
+     * @pre peca i pos diferents de null
+     * @post peca afegides al taulell a la posicio pos
+     */
     public void assignarPecaTauler(Peca peca, Posicio pos){
         _tauler.put(pos,peca);
     }
 
+    /** @brief Fa totes les comprovacions per veure si la tirada entrada es valida o no
+     * @param t tirada que es vol validar
+     * @pre t diferent de null
+     * @post mira si la tirada es valida o no
+     */
     public boolean tiradaValida(TiradaSimple t){
         Posicio origen = t.get_origen();
         Posicio desti = t.get_desti();
@@ -119,6 +151,11 @@ public class Taulell {
         }
     }
 
+    /** @brief Comprova si hi ha un jaque. Si hi ha jaque retorna la tirada que el fa
+     * @param equip indica l'equip que vol mirar si esta fent ESCAC
+     * @pre --
+     * @post mira si hi ha escac o no
+     */
     public TiradaSimple hihaJaque(boolean equip){
         Iterator<Map.Entry<Posicio, Peca>> it = _tauler.entrySet().iterator();
         Posicio posRei = buscaRei(equip);
@@ -146,6 +183,12 @@ public class Taulell {
         return false;
     }
 
+    /** @brief Comprova que les habilitats de matar de la peça amb les que vol fer a la tirada
+     * @param t tirada que es vol fer
+     * @param p peça que si existeix, es voldria matar
+     * @pre t diferent de null
+     * @post mira si es pot fer l'habilitat de matar que s'executa en la tirada
+     */
     private boolean validMatar(TiradaSimple t, Peca p){
         if(t.get_matar() == 0 && p==null){
             return true;
@@ -161,6 +204,12 @@ public class Taulell {
         }
     }
 
+
+    /** @brief Comprova que les habilitats de volar de la peça amb les que vol fer a la tirada
+     * @param t tirada que es vol fer
+     * @pre t diferent de null
+     * @post mira si es pot fer l'habilitat de volar que s'executa en la tirada
+     */
     private boolean validVolar(TiradaSimple t){
         if(t.get_volar() == 0 && !hiHaPecesEntremig(t)){
             return true;
@@ -173,6 +222,11 @@ public class Taulell {
         }
     }
 
+    /** @brief Comprova si hi ha peces entremig de la tirada que es vol executar
+     * @param t tirada que es vol fer
+     * @pre t diferent de null
+     * @post mira si hi ha peces entremig de t o no
+     */
     public boolean hiHaPecesEntremig(TiradaSimple t){
         int x, y;
         x = 0;
@@ -215,10 +269,11 @@ public class Taulell {
         return false;
     }
 
-    public void restarTorns(){
-        nTorns--;
-    }
-
+    /** @brief Realitza la tirada t al taulell. Retorna un enter que s'incrementara si es maten peces enemigues.
+     * @param t tirada que es vol fer
+     * @pre t diferent de null
+     * @post tirada feta i taulell modificat
+     */
     public int realitzarTirada(TiradaSimple t){
         TreeMap<Posicio,Peca> eli = new TreeMap<>();
         int res = 1;
@@ -242,6 +297,13 @@ public class Taulell {
         return  res;
     }
 
+
+    /** @brief Comprova si hi ha peces entremig de la tirada i si n'hi ha les mata
+     * @param t tirada que es vol fer
+     * @param eli map on es guardaran les peces mortes i la posicio on han mort
+     * @pre t diferent de null
+     * @post mira si hi ha peces entremig de t o no i les mata si n'hi ha
+     */
     private int eliminarPecesEntremig(TiradaSimple t, TreeMap<Posicio, Peca> eli){
         int x, y, res, f, c;
         res = 0;
@@ -282,6 +344,11 @@ public class Taulell {
         return res;
     }
 
+    /** @brief Busca al rei del equip "equip" i retorna la seva posicio.
+     * @param equip boolea que indica l'equip del rei buscat
+     * @pre cert
+     * @post posicio del rei trobada
+     */
     public Posicio buscaRei(boolean equip){
         Iterator<Map.Entry<Posicio, Peca>> it = _tauler.entrySet().iterator();
         boolean trobat = false;
@@ -298,10 +365,16 @@ public class Taulell {
         return pos;
     }
 
+
     public TreeMap<Posicio,Peca> getEliminats(){
         return _eliminats.get(_eliminats.size());
     }
 
+    /** @brief Fa totes les comprovacions per veure si l'enroc entrat es valid o no
+     * @param e enroc que es vol validar
+     * @pre e diferent de null
+     * @post mira si l'enroc es valid o no
+     */
     public boolean validarEnrroc(Enrroc e){
         Posicio a = e.get_p1();
         Posicio b = e.get_p2();
@@ -321,15 +394,31 @@ public class Taulell {
         }
     }
 
+    /** @brief Comprova si a la posicio entrada hi ha un peça al taulell
+     * @param p posicio que es vol mirar si conte un peça
+     * @pre cert
+     * @post mira si el taulell te una peça a la posicio p
+     */
     public boolean contePeçaCasella(Posicio p){
         Peca peca = _tauler.get(p);
         return peca !=  null;
     }
 
+    /** @brief retorna la peça que hi ha a la posicio p
+     * @param p posicio on esta la peça que es vol retornar
+     * @pre cert
+     * @post retorna la peça del taulell que esta a la poscio p
+     */
     public Peca getPeca(Posicio p) {
         return _tauler.get(p);
     }
 
+    /** @brief Comprova si a la posicio entrada es pot fer una promocio
+     * @param p posicio que es vol mirar si es pot fer la promocio
+     * @param _equip equip de la peça que vols fer promocio
+     * @pre cert
+     * @post mira si es pot fer promocio o no
+     */
     public boolean hiHaPromocio(Posicio p, boolean _equip){
         if(p.get_fila() == _columna && _equip == true){ //si esta dalt de tot  i es una peça blanca
             return true;
@@ -342,15 +431,66 @@ public class Taulell {
         }
     }
 
+    /** @brief canvia la peça que hi ha a la posicio pos per la peça pec
+     * @param pec nova peça que es ficara al taulell
+     * @param pos posicio on se canviara la peça
+     * @pre peça i pos existeixen
+     * @post promocio feta
+     */
     public void realitzarPromocio(Posicio pos, Peca pec){
         _tauler.put(pos,pec);
         _promocio.add(pec);
     }
 
+    /** @brief boolea que et diu si el _tiradesRefer esta buit o no
+     * @pre cert
+     * @post mira si _tiradesRefer esta buit o no
+     */
     public boolean estaBuidaRefer(){
         return _tiradesRefer.isEmpty();
     }
 
+
+    public void carregarTirades(TiradaSimple t, String resultat, TreeMap<String,TipusPeca> mapTipus) {
+        Peca p = _tauler.get(t.get_origen());
+        if (!resultat.isEmpty()) {
+            StringTokenizer defaultTokenizer = new StringTokenizer(resultat);
+            String s = defaultTokenizer.nextToken();
+            if (s.equalsIgnoreCase("PROMOCIÓ:")) {
+                String vella = defaultTokenizer.nextToken();
+                defaultTokenizer.nextToken();
+                String nova = defaultTokenizer.nextToken();
+                Peca v = new Peca(vella, t.get_equip(), mapTipus);
+                Peca n = new Peca(nova, t.get_equip(), mapTipus);
+                realitzarTirada(t);
+                _tauler.put(t.get_origen(), n);
+
+            } else if (s.equalsIgnoreCase("ENROC:")) {
+                Posicio p1origen = new Posicio(defaultTokenizer.nextToken());
+                Posicio p2origen = new Posicio(defaultTokenizer.nextToken());
+                String guio = defaultTokenizer.nextToken();
+                Posicio p1desti = new Posicio(defaultTokenizer.nextToken());
+                Posicio p2desti = new Posicio(defaultTokenizer.nextToken());
+                TiradaSimple t1 = new TiradaSimple(p1origen, p1desti, t.get_equip(), 0, 1);
+                TiradaSimple t2 = new TiradaSimple(p2origen, p2desti, t.get_equip(), 0,1);
+                realitzarTirada(t1);
+                realitzarTirada(t2);
+            } else {
+                realitzarTirada(t);
+            }
+        } else {
+            realitzarTirada(t);
+        }
+
+    }
+
+    /** @brief desfa la tirada que li entren
+     * @param t tirada a desfer
+     * @param resultat resultat de la partida a refer
+     * @param mapTipus estructura on es guarden els tipus de peces
+     * @pre --
+     * @post tirada desfeta
+     */
     public TiradaSimple desferTirada(TiradaSimple t, String resultat, TreeMap<String,TipusPeca> mapTipus){
         _eliminats.remove(nTorns);
         --nTorns;
@@ -406,10 +546,20 @@ public class Taulell {
         return new TiradaSimple(t.get_desti(),t.get_origen(),t.get_equip());
     }
 
+
+    /** @brief reinicia l'array de tirades que s'han desfet
+     * @pre --
+     * @post tiradesRefer reiniciat
+     */
     public void reiniciaTiradesRefer(){
         _tiradesRefer = new ArrayList<>();
     }
 
+    /** @brief refem l'ultima jugada desfeta i guardem el resultat
+     * @param resultat resultat del refer que farem
+     * @pre s'ha fet  minim un desfer previament
+     * @post tirada refeta
+     */
     public TiradaSimple referTirada(StringBuilder resultat){
         TiradaSimple t = _tiradesRefer.get(_tiradesRefer.size()-1);
         _tiradesRefer.remove(_tiradesRefer.size()-1);
@@ -439,6 +589,8 @@ public class Taulell {
         }
         return t;
     }
+
+
 
     public TiradaSimple hiHaAlgunaAmenaça(boolean equip){
         Iterator<Map.Entry<Posicio, Peca>> it = _tauler.entrySet().iterator();
@@ -478,6 +630,10 @@ public class Taulell {
         return null;
     }
 
+    /** @brief mostra el taulell amb les seves peces
+     * @pre taulell creat
+     * @post mostra el taulell
+     */
     public String mostra() {
         String s = "";
         Character x = 'a';

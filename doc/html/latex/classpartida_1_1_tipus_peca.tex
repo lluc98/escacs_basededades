@@ -1,0 +1,473 @@
+\hypertarget{classpartida_1_1_tipus_peca}{}\doxysection{partida.\+Tipus\+Peca Class Reference}
+\label{classpartida_1_1_tipus_peca}\index{partida.TipusPeca@{partida.TipusPeca}}
+
+
+Contenidor de Tipus de Peces.  
+
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+String \mbox{\hyperlink{classpartida_1_1_tipus_peca_ac8e3ed219e301d3bdae60aee48abab3b}{get\+\_\+simbol}} ()
+\begin{DoxyCompactList}\small\item\em Simbol de la Peça. \end{DoxyCompactList}\item 
+String \mbox{\hyperlink{classpartida_1_1_tipus_peca_a2bba3b8853615e3d1deae8fada01a20b}{get\+\_\+img\+Blanca}} ()
+\begin{DoxyCompactList}\small\item\em Drecera de l\textquotesingle{}imatge de la Peça blanca. \end{DoxyCompactList}\item 
+String \mbox{\hyperlink{classpartida_1_1_tipus_peca_a7957e37f0563a84579b44f52c4481b92}{get\+\_\+img\+Negra}} ()
+\begin{DoxyCompactList}\small\item\em Drecera de l\textquotesingle{}imatge de la Peça negra. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classpartida_1_1_tipus_peca_a0308c6daf7d315e5a50ba93684461fc1}{get\+\_\+valor}} ()
+\begin{DoxyCompactList}\small\item\em Valor de la Peça. \end{DoxyCompactList}\item 
+Array\+List$<$ \mbox{\hyperlink{classpartida_1_1_moviment}{Moviment}} $>$ \mbox{\hyperlink{classpartida_1_1_tipus_peca_a3f4c25160487b41f205e84cd8e21177e}{get\+\_\+llista\+Moviments}} ()
+\begin{DoxyCompactList}\small\item\em Llista de Moviments. \end{DoxyCompactList}\item 
+Array\+List$<$ \mbox{\hyperlink{classpartida_1_1_moviment}{Moviment}} $>$ \mbox{\hyperlink{classpartida_1_1_tipus_peca_a2e366673bce7d0cb632875b464686290}{get\+\_\+llista\+Moviments\+Inicials}} ()
+\begin{DoxyCompactList}\small\item\em Llista de Moviments Inicials. \end{DoxyCompactList}\item 
+Array\+List$<$ \mbox{\hyperlink{classpartida_1_1_caracteristiques_enroc}{Caracteristiques\+Enroc}} $>$ \mbox{\hyperlink{classpartida_1_1_tipus_peca_a20c66206debaf77f3012620abe4b6c70}{get\+\_\+llista\+Enrocs}} ()
+\begin{DoxyCompactList}\small\item\em Llista de Moviments d\textquotesingle{}Enroc. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classpartida_1_1_tipus_peca_a361167302ead328f1ef299f0de0893ff}{Tipus\+Peca}} (String nom, String simbol, String blanca, String negra, int valor, Array\+List$<$ \mbox{\hyperlink{classpartida_1_1_moviment}{Moviment}} $>$ list\+Mov, Array\+List$<$ \mbox{\hyperlink{classpartida_1_1_moviment}{Moviment}} $>$ list\+Iini, boolean promocio, boolean invulnerabilitat)
+\begin{DoxyCompactList}\small\item\em Genera una partida carregada. \end{DoxyCompactList}\item 
+boolean \mbox{\hyperlink{classpartida_1_1_tipus_peca_a8d39abf24f8d3dbb1517060b83c1f728}{tipus\+Peca\+Valida}} (\mbox{\hyperlink{classpartida_1_1_tirada_simple}{Tirada\+Simple}} t, boolean primer\+Mov)
+\begin{DoxyCompactList}\small\item\em Mira si un tipus de Peça és vàlid. \end{DoxyCompactList}\item 
+String \mbox{\hyperlink{classpartida_1_1_tipus_peca_a4d5a3d6a5f26c4167a4a7e2b4a9f0015}{get\+\_\+nom}} ()
+\begin{DoxyCompactList}\small\item\em Nom del tipus de Peça. \end{DoxyCompactList}\item 
+boolean \mbox{\hyperlink{classpartida_1_1_tipus_peca_ac533650085cc35ebdd18d2eb7274154e}{get\+\_\+invulnerabilitat}} ()
+\begin{DoxyCompactList}\small\item\em Valor d\textquotesingle{}invulnerabilitat. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classpartida_1_1_tipus_peca_aa9be144859d51295c5640cac803d53d9}{afegir\+Enrroc}} (\mbox{\hyperlink{classpartida_1_1_caracteristiques_enroc}{Caracteristiques\+Enroc}} c)
+\item 
+boolean \mbox{\hyperlink{classpartida_1_1_tipus_peca_a869e5932a298695ccaaa08285935b42b}{validar\+Enrroc}} (\mbox{\hyperlink{classpartida_1_1_enrroc}{Enrroc}} e, \mbox{\hyperlink{classpartida_1_1_peca}{Peca}} b)
+\begin{DoxyCompactList}\small\item\em Comprova si l\textquotesingle{}enrroc és vàlid. \end{DoxyCompactList}\item 
+boolean \mbox{\hyperlink{classpartida_1_1_tipus_peca_a13ef9ba68757ea7276f9e35a2722a5a0}{get\+Promocio}} ()
+\begin{DoxyCompactList}\small\item\em Capacitat de Promocionar-\/se. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+String \mbox{\hyperlink{classpartida_1_1_tipus_peca_af75865abbf421d641a8e583b41f8a4a8}{\+\_\+nom}}
+\begin{DoxyCompactList}\small\item\em Nom de la Peça. \end{DoxyCompactList}\item 
+String \mbox{\hyperlink{classpartida_1_1_tipus_peca_a30ba29dda879773aa303ce0078a84888}{\+\_\+simbol}}
+\begin{DoxyCompactList}\small\item\em Simbol de la Peça, normalment és la seva Primera lletra. \end{DoxyCompactList}\item 
+String \mbox{\hyperlink{classpartida_1_1_tipus_peca_a9662a59cd03004317d4b0ea491550d4d}{\+\_\+img\+Blanca}}
+\begin{DoxyCompactList}\small\item\em Drecera de l\textquotesingle{}imatge de la versió de l\textquotesingle{}equip de fitxes Blanques. \end{DoxyCompactList}\item 
+String \mbox{\hyperlink{classpartida_1_1_tipus_peca_abafac0a42c3bdf18e76ece418c2e4205}{\+\_\+img\+Negra}}
+\begin{DoxyCompactList}\small\item\em Drecera de l\textquotesingle{}imatge de la versió de l\textquotesingle{}equip de fitxes Negres. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classpartida_1_1_tipus_peca_a136cdaf158da6e5e536ef1dbc4141385}{\+\_\+valor}}
+\begin{DoxyCompactList}\small\item\em Valor que té la peça. \end{DoxyCompactList}\item 
+boolean \mbox{\hyperlink{classpartida_1_1_tipus_peca_a539813888dfc86494ed79de39b05577f}{\+\_\+promocio}}
+\begin{DoxyCompactList}\small\item\em Capacitat de promorcionar. \end{DoxyCompactList}\item 
+boolean \mbox{\hyperlink{classpartida_1_1_tipus_peca_ad53f4bc63b1b14cb2b9ff3e98402b2d7}{\+\_\+invulnerabilitat}}
+\begin{DoxyCompactList}\small\item\em Capacitat de invulnerabilitat de la Peça. \end{DoxyCompactList}\item 
+Array\+List$<$ \mbox{\hyperlink{classpartida_1_1_moviment}{Moviment}} $>$ \mbox{\hyperlink{classpartida_1_1_tipus_peca_a7c8d761f20d8e3d0bbccb50624d40155}{\+\_\+llista\+Moviments}}
+\begin{DoxyCompactList}\small\item\em Llista de moviments que pot realitzar cada Peça. \end{DoxyCompactList}\item 
+Array\+List$<$ \mbox{\hyperlink{classpartida_1_1_moviment}{Moviment}} $>$ \mbox{\hyperlink{classpartida_1_1_tipus_peca_a8e155d14b6accb36400d1b7be74fd19c}{\+\_\+llista\+Moviments\+Inicials}}
+\begin{DoxyCompactList}\small\item\em Llista de moviments inicials que pot realitzar cada Peça. \end{DoxyCompactList}\item 
+Array\+List$<$ \mbox{\hyperlink{classpartida_1_1_caracteristiques_enroc}{Caracteristiques\+Enroc}} $>$ \mbox{\hyperlink{classpartida_1_1_tipus_peca_ae886e0de983fa8e6e831fa30f3f0d1b1}{\+\_\+llista\+Enrocs}}
+\begin{DoxyCompactList}\small\item\em Llista de moviments d\textquotesingle{}enroc que pot realitzar cada Peça. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Contenidor de Tipus de Peces. 
+
+Definition at line 12 of file Tipus\+Peca.\+java.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classpartida_1_1_tipus_peca_a361167302ead328f1ef299f0de0893ff}\label{classpartida_1_1_tipus_peca_a361167302ead328f1ef299f0de0893ff}} 
+\index{partida.TipusPeca@{partida.TipusPeca}!TipusPeca@{TipusPeca}}
+\index{TipusPeca@{TipusPeca}!partida.TipusPeca@{partida.TipusPeca}}
+\doxysubsubsection{\texorpdfstring{TipusPeca()}{TipusPeca()}}
+{\footnotesize\ttfamily partida.\+Tipus\+Peca.\+Tipus\+Peca (\begin{DoxyParamCaption}\item[{String}]{nom,  }\item[{String}]{simbol,  }\item[{String}]{blanca,  }\item[{String}]{negra,  }\item[{int}]{valor,  }\item[{Array\+List$<$ \mbox{\hyperlink{classpartida_1_1_moviment}{Moviment}} $>$}]{list\+Mov,  }\item[{Array\+List$<$ \mbox{\hyperlink{classpartida_1_1_moviment}{Moviment}} $>$}]{list\+Iini,  }\item[{boolean}]{promocio,  }\item[{boolean}]{invulnerabilitat }\end{DoxyParamCaption})}
+
+
+
+Genera una partida carregada. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nom} & Nom de la Peça \\
+\hline
+{\em simbol} & Inicial de la Peça \\
+\hline
+{\em blanca} & Drecera de la versió Blanca de la Peça \\
+\hline
+{\em negra} & Drecera de la versió Negra de la Peça \\
+\hline
+{\em valor} & Valor numèric de la Peça \\
+\hline
+{\em list\+Mov} & Llista de Moviments de la Peça \\
+\hline
+{\em list\+Iini} & Llista de Moviments inicials de la Peça \\
+\hline
+{\em promocio} & Capacitat de promocionar-\/se que té una Peça \\
+\hline
+{\em invulnerabilitat} & Capacitat de invulnerabilitat que té una Peça \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+Tots els camps s\textquotesingle{}han omplert correctament 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+Totes les variables per a assignar un tipus de peça estan settejades. 
+\end{DoxyPostcond}
+
+
+Definition at line 72 of file Tipus\+Peca.\+java.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classpartida_1_1_tipus_peca_aa9be144859d51295c5640cac803d53d9}\label{classpartida_1_1_tipus_peca_aa9be144859d51295c5640cac803d53d9}} 
+\index{partida.TipusPeca@{partida.TipusPeca}!afegirEnrroc@{afegirEnrroc}}
+\index{afegirEnrroc@{afegirEnrroc}!partida.TipusPeca@{partida.TipusPeca}}
+\doxysubsubsection{\texorpdfstring{afegirEnrroc()}{afegirEnrroc()}}
+{\footnotesize\ttfamily void partida.\+Tipus\+Peca.\+afegir\+Enrroc (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classpartida_1_1_caracteristiques_enroc}{Caracteristiques\+Enroc}}}]{c }\end{DoxyParamCaption})}
+
+\begin{DoxyPrecond}{Precondition}
+-- 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+S\textquotesingle{}ha afegit l\textquotesingle{}enrroc amb caracteristiques c 
+\end{DoxyPostcond}
+
+
+Definition at line 125 of file Tipus\+Peca.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_tipus_peca_a2bba3b8853615e3d1deae8fada01a20b}\label{classpartida_1_1_tipus_peca_a2bba3b8853615e3d1deae8fada01a20b}} 
+\index{partida.TipusPeca@{partida.TipusPeca}!get\_imgBlanca@{get\_imgBlanca}}
+\index{get\_imgBlanca@{get\_imgBlanca}!partida.TipusPeca@{partida.TipusPeca}}
+\doxysubsubsection{\texorpdfstring{get\_imgBlanca()}{get\_imgBlanca()}}
+{\footnotesize\ttfamily String partida.\+Tipus\+Peca.\+get\+\_\+img\+Blanca (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Drecera de l\textquotesingle{}imatge de la Peça blanca. 
+
+
+
+Definition at line 30 of file Tipus\+Peca.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_tipus_peca_a7957e37f0563a84579b44f52c4481b92}\label{classpartida_1_1_tipus_peca_a7957e37f0563a84579b44f52c4481b92}} 
+\index{partida.TipusPeca@{partida.TipusPeca}!get\_imgNegra@{get\_imgNegra}}
+\index{get\_imgNegra@{get\_imgNegra}!partida.TipusPeca@{partida.TipusPeca}}
+\doxysubsubsection{\texorpdfstring{get\_imgNegra()}{get\_imgNegra()}}
+{\footnotesize\ttfamily String partida.\+Tipus\+Peca.\+get\+\_\+img\+Negra (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Drecera de l\textquotesingle{}imatge de la Peça negra. 
+
+
+
+Definition at line 35 of file Tipus\+Peca.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_tipus_peca_ac533650085cc35ebdd18d2eb7274154e}\label{classpartida_1_1_tipus_peca_ac533650085cc35ebdd18d2eb7274154e}} 
+\index{partida.TipusPeca@{partida.TipusPeca}!get\_invulnerabilitat@{get\_invulnerabilitat}}
+\index{get\_invulnerabilitat@{get\_invulnerabilitat}!partida.TipusPeca@{partida.TipusPeca}}
+\doxysubsubsection{\texorpdfstring{get\_invulnerabilitat()}{get\_invulnerabilitat()}}
+{\footnotesize\ttfamily boolean partida.\+Tipus\+Peca.\+get\+\_\+invulnerabilitat (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Valor d\textquotesingle{}invulnerabilitat. 
+
+
+
+Definition at line 120 of file Tipus\+Peca.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_tipus_peca_a20c66206debaf77f3012620abe4b6c70}\label{classpartida_1_1_tipus_peca_a20c66206debaf77f3012620abe4b6c70}} 
+\index{partida.TipusPeca@{partida.TipusPeca}!get\_llistaEnrocs@{get\_llistaEnrocs}}
+\index{get\_llistaEnrocs@{get\_llistaEnrocs}!partida.TipusPeca@{partida.TipusPeca}}
+\doxysubsubsection{\texorpdfstring{get\_llistaEnrocs()}{get\_llistaEnrocs()}}
+{\footnotesize\ttfamily Array\+List$<$\mbox{\hyperlink{classpartida_1_1_caracteristiques_enroc}{Caracteristiques\+Enroc}}$>$ partida.\+Tipus\+Peca.\+get\+\_\+llista\+Enrocs (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Llista de Moviments d\textquotesingle{}Enroc. 
+
+
+
+Definition at line 55 of file Tipus\+Peca.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_tipus_peca_a3f4c25160487b41f205e84cd8e21177e}\label{classpartida_1_1_tipus_peca_a3f4c25160487b41f205e84cd8e21177e}} 
+\index{partida.TipusPeca@{partida.TipusPeca}!get\_llistaMoviments@{get\_llistaMoviments}}
+\index{get\_llistaMoviments@{get\_llistaMoviments}!partida.TipusPeca@{partida.TipusPeca}}
+\doxysubsubsection{\texorpdfstring{get\_llistaMoviments()}{get\_llistaMoviments()}}
+{\footnotesize\ttfamily Array\+List$<$\mbox{\hyperlink{classpartida_1_1_moviment}{Moviment}}$>$ partida.\+Tipus\+Peca.\+get\+\_\+llista\+Moviments (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Llista de Moviments. 
+
+
+
+Definition at line 45 of file Tipus\+Peca.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_tipus_peca_a2e366673bce7d0cb632875b464686290}\label{classpartida_1_1_tipus_peca_a2e366673bce7d0cb632875b464686290}} 
+\index{partida.TipusPeca@{partida.TipusPeca}!get\_llistaMovimentsInicials@{get\_llistaMovimentsInicials}}
+\index{get\_llistaMovimentsInicials@{get\_llistaMovimentsInicials}!partida.TipusPeca@{partida.TipusPeca}}
+\doxysubsubsection{\texorpdfstring{get\_llistaMovimentsInicials()}{get\_llistaMovimentsInicials()}}
+{\footnotesize\ttfamily Array\+List$<$\mbox{\hyperlink{classpartida_1_1_moviment}{Moviment}}$>$ partida.\+Tipus\+Peca.\+get\+\_\+llista\+Moviments\+Inicials (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Llista de Moviments Inicials. 
+
+
+
+Definition at line 50 of file Tipus\+Peca.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_tipus_peca_a4d5a3d6a5f26c4167a4a7e2b4a9f0015}\label{classpartida_1_1_tipus_peca_a4d5a3d6a5f26c4167a4a7e2b4a9f0015}} 
+\index{partida.TipusPeca@{partida.TipusPeca}!get\_nom@{get\_nom}}
+\index{get\_nom@{get\_nom}!partida.TipusPeca@{partida.TipusPeca}}
+\doxysubsubsection{\texorpdfstring{get\_nom()}{get\_nom()}}
+{\footnotesize\ttfamily String partida.\+Tipus\+Peca.\+get\+\_\+nom (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Nom del tipus de Peça. 
+
+
+
+Definition at line 115 of file Tipus\+Peca.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_tipus_peca_ac8e3ed219e301d3bdae60aee48abab3b}\label{classpartida_1_1_tipus_peca_ac8e3ed219e301d3bdae60aee48abab3b}} 
+\index{partida.TipusPeca@{partida.TipusPeca}!get\_simbol@{get\_simbol}}
+\index{get\_simbol@{get\_simbol}!partida.TipusPeca@{partida.TipusPeca}}
+\doxysubsubsection{\texorpdfstring{get\_simbol()}{get\_simbol()}}
+{\footnotesize\ttfamily String partida.\+Tipus\+Peca.\+get\+\_\+simbol (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Simbol de la Peça. 
+
+
+
+Definition at line 25 of file Tipus\+Peca.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_tipus_peca_a0308c6daf7d315e5a50ba93684461fc1}\label{classpartida_1_1_tipus_peca_a0308c6daf7d315e5a50ba93684461fc1}} 
+\index{partida.TipusPeca@{partida.TipusPeca}!get\_valor@{get\_valor}}
+\index{get\_valor@{get\_valor}!partida.TipusPeca@{partida.TipusPeca}}
+\doxysubsubsection{\texorpdfstring{get\_valor()}{get\_valor()}}
+{\footnotesize\ttfamily int partida.\+Tipus\+Peca.\+get\+\_\+valor (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Valor de la Peça. 
+
+
+
+Definition at line 40 of file Tipus\+Peca.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_tipus_peca_a13ef9ba68757ea7276f9e35a2722a5a0}\label{classpartida_1_1_tipus_peca_a13ef9ba68757ea7276f9e35a2722a5a0}} 
+\index{partida.TipusPeca@{partida.TipusPeca}!getPromocio@{getPromocio}}
+\index{getPromocio@{getPromocio}!partida.TipusPeca@{partida.TipusPeca}}
+\doxysubsubsection{\texorpdfstring{getPromocio()}{getPromocio()}}
+{\footnotesize\ttfamily boolean partida.\+Tipus\+Peca.\+get\+Promocio (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Capacitat de Promocionar-\/se. 
+
+
+
+Definition at line 151 of file Tipus\+Peca.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_tipus_peca_a8d39abf24f8d3dbb1517060b83c1f728}\label{classpartida_1_1_tipus_peca_a8d39abf24f8d3dbb1517060b83c1f728}} 
+\index{partida.TipusPeca@{partida.TipusPeca}!tipusPecaValida@{tipusPecaValida}}
+\index{tipusPecaValida@{tipusPecaValida}!partida.TipusPeca@{partida.TipusPeca}}
+\doxysubsubsection{\texorpdfstring{tipusPecaValida()}{tipusPecaValida()}}
+{\footnotesize\ttfamily boolean partida.\+Tipus\+Peca.\+tipus\+Peca\+Valida (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classpartida_1_1_tirada_simple}{Tirada\+Simple}}}]{t,  }\item[{boolean}]{primer\+Mov }\end{DoxyParamCaption})}
+
+
+
+Mira si un tipus de Peça és vàlid. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & Tirada que ha de realitzar un tipis de peça \\
+\hline
+{\em primer\+Mov} & Valor que diu si es el primer moviment de la Peça \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+\mbox{\hyperlink{classpartida_1_1_tirada_simple}{Tirada\+Simple}} t és correcte 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+S\textquotesingle{}ha validat si el tipus de Peça pot realitzar la tirada t. 
+\end{DoxyPostcond}
+
+
+Definition at line 91 of file Tipus\+Peca.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_tipus_peca_a869e5932a298695ccaaa08285935b42b}\label{classpartida_1_1_tipus_peca_a869e5932a298695ccaaa08285935b42b}} 
+\index{partida.TipusPeca@{partida.TipusPeca}!validarEnrroc@{validarEnrroc}}
+\index{validarEnrroc@{validarEnrroc}!partida.TipusPeca@{partida.TipusPeca}}
+\doxysubsubsection{\texorpdfstring{validarEnrroc()}{validarEnrroc()}}
+{\footnotesize\ttfamily boolean partida.\+Tipus\+Peca.\+validar\+Enrroc (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classpartida_1_1_enrroc}{Enrroc}}}]{e,  }\item[{\mbox{\hyperlink{classpartida_1_1_peca}{Peca}}}]{b }\end{DoxyParamCaption})}
+
+
+
+Comprova si l\textquotesingle{}enrroc és vàlid. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & valor de l\textquotesingle{}Enroc \\
+\hline
+{\em b} & Peça a Enrocar \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+-- 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+S\textquotesingle{}ha validat l\textquotesingle{}\mbox{\hyperlink{classpartida_1_1_enrroc}{Enrroc}} 
+\end{DoxyPostcond}
+
+
+Definition at line 135 of file Tipus\+Peca.\+java.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classpartida_1_1_tipus_peca_a9662a59cd03004317d4b0ea491550d4d}\label{classpartida_1_1_tipus_peca_a9662a59cd03004317d4b0ea491550d4d}} 
+\index{partida.TipusPeca@{partida.TipusPeca}!\_imgBlanca@{\_imgBlanca}}
+\index{\_imgBlanca@{\_imgBlanca}!partida.TipusPeca@{partida.TipusPeca}}
+\doxysubsubsection{\texorpdfstring{\_imgBlanca}{\_imgBlanca}}
+{\footnotesize\ttfamily String partida.\+Tipus\+Peca.\+\_\+img\+Blanca\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Drecera de l\textquotesingle{}imatge de la versió de l\textquotesingle{}equip de fitxes Blanques. 
+
+
+
+Definition at line 15 of file Tipus\+Peca.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_tipus_peca_abafac0a42c3bdf18e76ece418c2e4205}\label{classpartida_1_1_tipus_peca_abafac0a42c3bdf18e76ece418c2e4205}} 
+\index{partida.TipusPeca@{partida.TipusPeca}!\_imgNegra@{\_imgNegra}}
+\index{\_imgNegra@{\_imgNegra}!partida.TipusPeca@{partida.TipusPeca}}
+\doxysubsubsection{\texorpdfstring{\_imgNegra}{\_imgNegra}}
+{\footnotesize\ttfamily String partida.\+Tipus\+Peca.\+\_\+img\+Negra\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Drecera de l\textquotesingle{}imatge de la versió de l\textquotesingle{}equip de fitxes Negres. 
+
+
+
+Definition at line 16 of file Tipus\+Peca.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_tipus_peca_ad53f4bc63b1b14cb2b9ff3e98402b2d7}\label{classpartida_1_1_tipus_peca_ad53f4bc63b1b14cb2b9ff3e98402b2d7}} 
+\index{partida.TipusPeca@{partida.TipusPeca}!\_invulnerabilitat@{\_invulnerabilitat}}
+\index{\_invulnerabilitat@{\_invulnerabilitat}!partida.TipusPeca@{partida.TipusPeca}}
+\doxysubsubsection{\texorpdfstring{\_invulnerabilitat}{\_invulnerabilitat}}
+{\footnotesize\ttfamily boolean partida.\+Tipus\+Peca.\+\_\+invulnerabilitat\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Capacitat de invulnerabilitat de la Peça. 
+
+
+
+Definition at line 19 of file Tipus\+Peca.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_tipus_peca_ae886e0de983fa8e6e831fa30f3f0d1b1}\label{classpartida_1_1_tipus_peca_ae886e0de983fa8e6e831fa30f3f0d1b1}} 
+\index{partida.TipusPeca@{partida.TipusPeca}!\_llistaEnrocs@{\_llistaEnrocs}}
+\index{\_llistaEnrocs@{\_llistaEnrocs}!partida.TipusPeca@{partida.TipusPeca}}
+\doxysubsubsection{\texorpdfstring{\_llistaEnrocs}{\_llistaEnrocs}}
+{\footnotesize\ttfamily Array\+List$<$\mbox{\hyperlink{classpartida_1_1_caracteristiques_enroc}{Caracteristiques\+Enroc}}$>$ partida.\+Tipus\+Peca.\+\_\+llista\+Enrocs\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Llista de moviments d\textquotesingle{}enroc que pot realitzar cada Peça. 
+
+
+
+Definition at line 22 of file Tipus\+Peca.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_tipus_peca_a7c8d761f20d8e3d0bbccb50624d40155}\label{classpartida_1_1_tipus_peca_a7c8d761f20d8e3d0bbccb50624d40155}} 
+\index{partida.TipusPeca@{partida.TipusPeca}!\_llistaMoviments@{\_llistaMoviments}}
+\index{\_llistaMoviments@{\_llistaMoviments}!partida.TipusPeca@{partida.TipusPeca}}
+\doxysubsubsection{\texorpdfstring{\_llistaMoviments}{\_llistaMoviments}}
+{\footnotesize\ttfamily Array\+List$<$\mbox{\hyperlink{classpartida_1_1_moviment}{Moviment}}$>$ partida.\+Tipus\+Peca.\+\_\+llista\+Moviments\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Llista de moviments que pot realitzar cada Peça. 
+
+
+
+Definition at line 20 of file Tipus\+Peca.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_tipus_peca_a8e155d14b6accb36400d1b7be74fd19c}\label{classpartida_1_1_tipus_peca_a8e155d14b6accb36400d1b7be74fd19c}} 
+\index{partida.TipusPeca@{partida.TipusPeca}!\_llistaMovimentsInicials@{\_llistaMovimentsInicials}}
+\index{\_llistaMovimentsInicials@{\_llistaMovimentsInicials}!partida.TipusPeca@{partida.TipusPeca}}
+\doxysubsubsection{\texorpdfstring{\_llistaMovimentsInicials}{\_llistaMovimentsInicials}}
+{\footnotesize\ttfamily Array\+List$<$\mbox{\hyperlink{classpartida_1_1_moviment}{Moviment}}$>$ partida.\+Tipus\+Peca.\+\_\+llista\+Moviments\+Inicials\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Llista de moviments inicials que pot realitzar cada Peça. 
+
+
+
+Definition at line 21 of file Tipus\+Peca.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_tipus_peca_af75865abbf421d641a8e583b41f8a4a8}\label{classpartida_1_1_tipus_peca_af75865abbf421d641a8e583b41f8a4a8}} 
+\index{partida.TipusPeca@{partida.TipusPeca}!\_nom@{\_nom}}
+\index{\_nom@{\_nom}!partida.TipusPeca@{partida.TipusPeca}}
+\doxysubsubsection{\texorpdfstring{\_nom}{\_nom}}
+{\footnotesize\ttfamily String partida.\+Tipus\+Peca.\+\_\+nom\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Nom de la Peça. 
+
+
+
+Definition at line 13 of file Tipus\+Peca.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_tipus_peca_a539813888dfc86494ed79de39b05577f}\label{classpartida_1_1_tipus_peca_a539813888dfc86494ed79de39b05577f}} 
+\index{partida.TipusPeca@{partida.TipusPeca}!\_promocio@{\_promocio}}
+\index{\_promocio@{\_promocio}!partida.TipusPeca@{partida.TipusPeca}}
+\doxysubsubsection{\texorpdfstring{\_promocio}{\_promocio}}
+{\footnotesize\ttfamily boolean partida.\+Tipus\+Peca.\+\_\+promocio\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Capacitat de promorcionar. 
+
+
+
+Definition at line 18 of file Tipus\+Peca.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_tipus_peca_a30ba29dda879773aa303ce0078a84888}\label{classpartida_1_1_tipus_peca_a30ba29dda879773aa303ce0078a84888}} 
+\index{partida.TipusPeca@{partida.TipusPeca}!\_simbol@{\_simbol}}
+\index{\_simbol@{\_simbol}!partida.TipusPeca@{partida.TipusPeca}}
+\doxysubsubsection{\texorpdfstring{\_simbol}{\_simbol}}
+{\footnotesize\ttfamily String partida.\+Tipus\+Peca.\+\_\+simbol\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Simbol de la Peça, normalment és la seva Primera lletra. 
+
+
+
+Definition at line 14 of file Tipus\+Peca.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_tipus_peca_a136cdaf158da6e5e536ef1dbc4141385}\label{classpartida_1_1_tipus_peca_a136cdaf158da6e5e536ef1dbc4141385}} 
+\index{partida.TipusPeca@{partida.TipusPeca}!\_valor@{\_valor}}
+\index{\_valor@{\_valor}!partida.TipusPeca@{partida.TipusPeca}}
+\doxysubsubsection{\texorpdfstring{\_valor}{\_valor}}
+{\footnotesize\ttfamily int partida.\+Tipus\+Peca.\+\_\+valor\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Valor que té la peça. 
+
+
+
+Definition at line 17 of file Tipus\+Peca.\+java.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_tipus_peca_8java}{Tipus\+Peca.\+java}}\end{DoxyCompactItemize}

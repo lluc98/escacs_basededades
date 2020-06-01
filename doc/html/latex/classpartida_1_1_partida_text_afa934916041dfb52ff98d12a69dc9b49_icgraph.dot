@@ -1,0 +1,18 @@
+digraph "partida.PartidaText.posicioCorrecteDesti"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node1 [label="partida.PartidaText.posicio\lCorrecteDesti",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Calcula si es correcte la posició destí que ha seleccionat l'usuari."];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node2 [label="partida.PartidaText.llegir\lPosicioDesti",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_partida_text.html#abcb4c014d1fe80e93ed0b803dadcf301",tooltip="Llegeix la posició destí que demana l'usuari i la processa."];
+  Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node3 [label="partida.PartidaText.tirada",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_partida_text.html#acc995d318d946fd2b8e0f16366797ded",tooltip="Gestiona la tirada."];
+  Node3 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node4 [label="partida.PartidaText.jugar",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_partida_text.html#a879caed244bc5c974313cd31faa75c6d",tooltip="Gestiona la partida."];
+  Node4 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node5 [label="partida.PartidaText.inicia\lAplicacio",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_partida_text.html#a02c8b096e88ca947f3956566b3fd4145",tooltip="Inicia el joc."];
+  Node5 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node6 [label="partida.JocEscacs.main",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_joc_escacs.html#a61412703510b43d5067b1aa19d45a85f",tooltip=" "];
+}

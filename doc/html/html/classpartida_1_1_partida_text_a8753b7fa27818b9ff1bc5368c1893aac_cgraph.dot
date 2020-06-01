@@ -1,0 +1,18 @@
+digraph "partida.PartidaText.posicioCorrecteOrigen"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="partida.PartidaText.posicio\lCorrecteOrigen",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Calcula si es correcte la posició d'origen que ha seleccionat l'usuari."];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="partida.Partida.posCorrecte\lOrigen",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_partida.html#abb12badc944cd77ea700a508502cd774",tooltip="Comprova si la posició selecionada al origen és correcte."];
+  Node2 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="partida.Taulell.contePeça\lCasella",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_taulell.html#a92e92d8c4846fda13d15a0393019faaf",tooltip="Comprova si a la posicio entrada hi ha un peça al taulell."];
+  Node2 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="partida.Partida.esEnter",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_partida.html#a63ecced9800ec54777ad0250c2d6ea3d",tooltip=" "];
+  Node2 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="partida.Peca.get_equip",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_peca.html#acf746f82f289a4a6b9c13f518df1fe6b",tooltip="Equip."];
+  Node2 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="partida.Taulell.getPeca",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_taulell.html#a4b161ff5085972632d42fd39a6404af9",tooltip="retorna la peça que hi ha a la posicio p"];
+}

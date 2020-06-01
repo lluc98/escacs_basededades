@@ -1,0 +1,10 @@
+digraph "partida.Peca.getNom"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="partida.Peca.getNom",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Nom de la Peça."];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="partida.TipusPeca.get_nom",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_tipus_peca.html#a4d5a3d6a5f26c4167a4a7e2b4a9f0015",tooltip="Nom del tipus de Peça."];
+}

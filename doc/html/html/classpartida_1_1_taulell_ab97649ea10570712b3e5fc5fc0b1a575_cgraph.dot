@@ -1,0 +1,24 @@
+digraph "partida.Taulell.validarEnrroc"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="partida.Taulell.validarEnrroc",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Fa totes les comprovacions per veure si l'enroc entrat es valid o no."];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="partida.Peca.enrrocValid",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_peca.html#a8b258f6875773e0981f1b7c768adbb25",tooltip="Validació del Enrroc mirant si és el primer Moviment."];
+  Node2 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="partida.Enrroc.getQuiets",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_enrroc.html#af5fd342d6f1866fc13304f4211cd542f",tooltip="Quiets."];
+  Node2 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="partida.TipusPeca.validar\lEnrroc",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_tipus_peca.html#a869e5932a298695ccaaa08285935b42b",tooltip="Comprova si l'enrroc és vàlid."];
+  Node1 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="partida.Enrroc.get\l_equip",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_enrroc.html#aa0e2a69af57ed2a3f70058610db1a845",tooltip="Equip."];
+  Node1 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="partida.Peca.get_equip",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_peca.html#acf746f82f289a4a6b9c13f518df1fe6b",tooltip="Equip."];
+  Node1 -> Node7 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="partida.Posicio.get_fila",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_posicio.html#afd3e4dfc10d7a4ce1587ebc641cbbee5",tooltip="Fila."];
+  Node1 -> Node8 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="partida.Enrroc.get_p1",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_enrroc.html#a4f4b454bc7fe59b7f7a25ef49a5d53b7",tooltip="Posició 1."];
+  Node1 -> Node9 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="partida.Enrroc.get_p2",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_enrroc.html#a16702c29d9c38ca51f0d6f0835611d17",tooltip="Posició 2."];
+}

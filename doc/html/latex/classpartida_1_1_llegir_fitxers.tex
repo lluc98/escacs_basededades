@@ -1,0 +1,440 @@
+\hypertarget{classpartida_1_1_llegir_fitxers}{}\doxysection{partida.\+Llegir\+Fitxers Class Reference}
+\label{classpartida_1_1_llegir_fitxers}\index{partida.LlegirFitxers@{partida.LlegirFitxers}}
+
+
+Classe de lectura de fitxers d\textquotesingle{}entrada.  
+
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+J\+S\+O\+N\+Array \mbox{\hyperlink{classpartida_1_1_llegir_fitxers_abd670eb5308a04ae31ec11c29bee55f3}{get\+Tirades}} ()
+\begin{DoxyCompactList}\small\item\em Conjunt de Tirades. \end{DoxyCompactList}\item 
+J\+S\+O\+N\+Array \mbox{\hyperlink{classpartida_1_1_llegir_fitxers_aab647ea3b170ed79285b782c928726b6}{get\+Pos\+Ini\+Blanques}} ()
+\begin{DoxyCompactList}\small\item\em Posicions inicials del equip de Peces blanques. \end{DoxyCompactList}\item 
+J\+S\+O\+N\+Array \mbox{\hyperlink{classpartida_1_1_llegir_fitxers_a3f20944503fcda73001d2983be2a0b4b}{get\+Pos\+Ini\+Negres}} ()
+\begin{DoxyCompactList}\small\item\em Posicions inicials del equip de Peces negres. \end{DoxyCompactList}\item 
+Tree\+Map$<$ String, \mbox{\hyperlink{classpartida_1_1_tipus_peca}{Tipus\+Peca}} $>$ \mbox{\hyperlink{classpartida_1_1_llegir_fitxers_a75e2d0b0f112429fcd5db9b5f3f62517}{get\+Conjunt\+Peces}} ()
+\begin{DoxyCompactList}\small\item\em Contenidor del conjunt de Peces. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classpartida_1_1_taulell}{Taulell}} \mbox{\hyperlink{classpartida_1_1_llegir_fitxers_ad72fcdbdebb01d735177aa6ce303cfbf}{get\+Taulell}} ()
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classpartida_1_1_taulell}{Taulell}}. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classpartida_1_1_llegir_fitxers_a31154b40526d36c2a76cb6ea656e6d8e}{get\+Limit\+Escacs\+Seguits}} ()
+\begin{DoxyCompactList}\small\item\em Escacs Seguits. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classpartida_1_1_llegir_fitxers_aec9f26dbcb1298ecfe570bfb066bc963}{get\+Limit\+Torns\+Inaccio}} ()
+\begin{DoxyCompactList}\small\item\em Limit de Torns d\textquotesingle{}Inaccio. \end{DoxyCompactList}\item 
+String \mbox{\hyperlink{classpartida_1_1_llegir_fitxers_a7f2b6baeba7a0ee4d5fba0c408357bab}{get\+Resultat\+Final}} ()
+\begin{DoxyCompactList}\small\item\em Resultat Final. \end{DoxyCompactList}\item 
+String \mbox{\hyperlink{classpartida_1_1_llegir_fitxers_a899cc90283aba86511ec5c5f27171f7c}{get\+Proper\+Torn}} ()
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classpartida_1_1_jugador}{Jugador}} que comença el Proper Torn. \end{DoxyCompactList}\item 
+String \mbox{\hyperlink{classpartida_1_1_llegir_fitxers_ad4296fc29120e50ed129f357b9af4e8a}{get\+Fitxer\+Regles}} ()
+\item 
+void \mbox{\hyperlink{classpartida_1_1_llegir_fitxers_a56b82ea9c6181010cd3616479a42682c}{llegir\+Regles}} (String path, boolean comencada)  throws Exception 
+\begin{DoxyCompactList}\small\item\em Llegeix el fitxer de Regles. \end{DoxyCompactList}\item 
+String \mbox{\hyperlink{classpartida_1_1_llegir_fitxers_a3578ed0ae0f60776e1161c04b5cb16c6}{llegir\+Partida\+Acabada}} (String path)  throws Exception
+\begin{DoxyCompactList}\small\item\em Llegeix el fitxer de \mbox{\hyperlink{classpartida_1_1_partida}{Partida}}. \end{DoxyCompactList}\item 
+String \mbox{\hyperlink{classpartida_1_1_llegir_fitxers_ae9a7149166f6fcb60990025425dfd23c}{llegir\+Partida\+Comencada}} (String path, boolean comencada)  throws Exception 
+\begin{DoxyCompactList}\small\item\em Llegeix el fitxer de \mbox{\hyperlink{classpartida_1_1_partida}{Partida}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+String \mbox{\hyperlink{classpartida_1_1_llegir_fitxers_a18eefcf1e93a9a11e4561a4041c7c257}{fitxer\+Regles}}
+\item 
+Tree\+Map$<$ String, \mbox{\hyperlink{classpartida_1_1_tipus_peca}{Tipus\+Peca}} $>$ \mbox{\hyperlink{classpartida_1_1_llegir_fitxers_a33cf960ecc5e44cb8e040c2357a42002}{conjunt\+Peces}} = new Tree\+Map$<$String, \mbox{\hyperlink{classpartida_1_1_tipus_peca}{Tipus\+Peca}}$>$()
+\begin{DoxyCompactList}\small\item\em Contenidor de tots els conjunts de peces. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classpartida_1_1_taulell}{Taulell}} \mbox{\hyperlink{classpartida_1_1_llegir_fitxers_ad4c2b9cf952d3c1fc6d4aed0c783c380}{taulell}} = new \mbox{\hyperlink{classpartida_1_1_taulell}{Taulell}}(9,9)
+\begin{DoxyCompactList}\small\item\em Objecte que conté les dades de \mbox{\hyperlink{classpartida_1_1_taulell}{Taulell}}. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classpartida_1_1_llegir_fitxers_a073f27680aaab0df2c47e05e4a1338ff}{limit\+Escacs\+Seguits}} = 0
+\begin{DoxyCompactList}\small\item\em Torns que es pot estar sense matar. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classpartida_1_1_llegir_fitxers_ab61e931dbc06784c25e989eed53de99e}{limit\+Torns\+Inaccio}} = 0
+\begin{DoxyCompactList}\small\item\em Limit d\textquotesingle{}escacs que es poden fer abans d\textquotesingle{}acabar la partida. \end{DoxyCompactList}\item 
+String \mbox{\hyperlink{classpartida_1_1_llegir_fitxers_a99497e5db65e06e36b3a0e0c5650eed4}{resultat\+Final}} = \char`\"{}\char`\"{}
+\begin{DoxyCompactList}\small\item\em Valor de resultat en que queda una \mbox{\hyperlink{classpartida_1_1_partida}{Partida}}. \end{DoxyCompactList}\item 
+String \mbox{\hyperlink{classpartida_1_1_llegir_fitxers_a2ebb0c90e8588497cdbdb6d097cd5a92}{proper\+Torn}} = \char`\"{}B\+L\+A\+N\+Q\+U\+ES\char`\"{}
+\begin{DoxyCompactList}\small\item\em Valor que diu qui comença el primer torn. \end{DoxyCompactList}\item 
+String \mbox{\hyperlink{classpartida_1_1_llegir_fitxers_ae892c1d9f830e7b1347c0df8b4816b78}{contingut}}
+\begin{DoxyCompactList}\small\item\em String que conté tot el contingut del fitxer. \end{DoxyCompactList}\item 
+J\+S\+O\+N\+Array \mbox{\hyperlink{classpartida_1_1_llegir_fitxers_a63caff8568ed2326a0a34a530374c65e}{pos\+Ini\+Blanques}}
+\begin{DoxyCompactList}\small\item\em Llista de posicions inicials de l\textquotesingle{}equip de peces Blanques. \end{DoxyCompactList}\item 
+J\+S\+O\+N\+Array \mbox{\hyperlink{classpartida_1_1_llegir_fitxers_a7145e51a83cad118c7e54a2c6c074385}{pos\+Ini\+Negres}}
+\begin{DoxyCompactList}\small\item\em Llista de posicions inicials de l\textquotesingle{}equip de peces Negres. \end{DoxyCompactList}\item 
+J\+S\+O\+N\+Array \mbox{\hyperlink{classpartida_1_1_llegir_fitxers_a6b78df35f8546b59998dec35543aa74e}{tirades}}
+\begin{DoxyCompactList}\small\item\em Llista de tirades realitzades. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Classe de lectura de fitxers d\textquotesingle{}entrada. 
+
+Definition at line 19 of file Llegir\+Fitxers.\+java.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classpartida_1_1_llegir_fitxers_a75e2d0b0f112429fcd5db9b5f3f62517}\label{classpartida_1_1_llegir_fitxers_a75e2d0b0f112429fcd5db9b5f3f62517}} 
+\index{partida.LlegirFitxers@{partida.LlegirFitxers}!getConjuntPeces@{getConjuntPeces}}
+\index{getConjuntPeces@{getConjuntPeces}!partida.LlegirFitxers@{partida.LlegirFitxers}}
+\doxysubsubsection{\texorpdfstring{getConjuntPeces()}{getConjuntPeces()}}
+{\footnotesize\ttfamily Tree\+Map$<$String, \mbox{\hyperlink{classpartida_1_1_tipus_peca}{Tipus\+Peca}}$>$ partida.\+Llegir\+Fitxers.\+get\+Conjunt\+Peces (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Contenidor del conjunt de Peces. 
+
+
+
+Definition at line 48 of file Llegir\+Fitxers.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_llegir_fitxers_ad4296fc29120e50ed129f357b9af4e8a}\label{classpartida_1_1_llegir_fitxers_ad4296fc29120e50ed129f357b9af4e8a}} 
+\index{partida.LlegirFitxers@{partida.LlegirFitxers}!getFitxerRegles@{getFitxerRegles}}
+\index{getFitxerRegles@{getFitxerRegles}!partida.LlegirFitxers@{partida.LlegirFitxers}}
+\doxysubsubsection{\texorpdfstring{getFitxerRegles()}{getFitxerRegles()}}
+{\footnotesize\ttfamily String partida.\+Llegir\+Fitxers.\+get\+Fitxer\+Regles (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 77 of file Llegir\+Fitxers.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_llegir_fitxers_a31154b40526d36c2a76cb6ea656e6d8e}\label{classpartida_1_1_llegir_fitxers_a31154b40526d36c2a76cb6ea656e6d8e}} 
+\index{partida.LlegirFitxers@{partida.LlegirFitxers}!getLimitEscacsSeguits@{getLimitEscacsSeguits}}
+\index{getLimitEscacsSeguits@{getLimitEscacsSeguits}!partida.LlegirFitxers@{partida.LlegirFitxers}}
+\doxysubsubsection{\texorpdfstring{getLimitEscacsSeguits()}{getLimitEscacsSeguits()}}
+{\footnotesize\ttfamily int partida.\+Llegir\+Fitxers.\+get\+Limit\+Escacs\+Seguits (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Escacs Seguits. 
+
+
+
+Definition at line 58 of file Llegir\+Fitxers.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_llegir_fitxers_aec9f26dbcb1298ecfe570bfb066bc963}\label{classpartida_1_1_llegir_fitxers_aec9f26dbcb1298ecfe570bfb066bc963}} 
+\index{partida.LlegirFitxers@{partida.LlegirFitxers}!getLimitTornsInaccio@{getLimitTornsInaccio}}
+\index{getLimitTornsInaccio@{getLimitTornsInaccio}!partida.LlegirFitxers@{partida.LlegirFitxers}}
+\doxysubsubsection{\texorpdfstring{getLimitTornsInaccio()}{getLimitTornsInaccio()}}
+{\footnotesize\ttfamily int partida.\+Llegir\+Fitxers.\+get\+Limit\+Torns\+Inaccio (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Limit de Torns d\textquotesingle{}Inaccio. 
+
+
+
+Definition at line 63 of file Llegir\+Fitxers.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_llegir_fitxers_aab647ea3b170ed79285b782c928726b6}\label{classpartida_1_1_llegir_fitxers_aab647ea3b170ed79285b782c928726b6}} 
+\index{partida.LlegirFitxers@{partida.LlegirFitxers}!getPosIniBlanques@{getPosIniBlanques}}
+\index{getPosIniBlanques@{getPosIniBlanques}!partida.LlegirFitxers@{partida.LlegirFitxers}}
+\doxysubsubsection{\texorpdfstring{getPosIniBlanques()}{getPosIniBlanques()}}
+{\footnotesize\ttfamily J\+S\+O\+N\+Array partida.\+Llegir\+Fitxers.\+get\+Pos\+Ini\+Blanques (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Posicions inicials del equip de Peces blanques. 
+
+
+
+Definition at line 38 of file Llegir\+Fitxers.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_llegir_fitxers_a3f20944503fcda73001d2983be2a0b4b}\label{classpartida_1_1_llegir_fitxers_a3f20944503fcda73001d2983be2a0b4b}} 
+\index{partida.LlegirFitxers@{partida.LlegirFitxers}!getPosIniNegres@{getPosIniNegres}}
+\index{getPosIniNegres@{getPosIniNegres}!partida.LlegirFitxers@{partida.LlegirFitxers}}
+\doxysubsubsection{\texorpdfstring{getPosIniNegres()}{getPosIniNegres()}}
+{\footnotesize\ttfamily J\+S\+O\+N\+Array partida.\+Llegir\+Fitxers.\+get\+Pos\+Ini\+Negres (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Posicions inicials del equip de Peces negres. 
+
+
+
+Definition at line 43 of file Llegir\+Fitxers.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_llegir_fitxers_a899cc90283aba86511ec5c5f27171f7c}\label{classpartida_1_1_llegir_fitxers_a899cc90283aba86511ec5c5f27171f7c}} 
+\index{partida.LlegirFitxers@{partida.LlegirFitxers}!getProperTorn@{getProperTorn}}
+\index{getProperTorn@{getProperTorn}!partida.LlegirFitxers@{partida.LlegirFitxers}}
+\doxysubsubsection{\texorpdfstring{getProperTorn()}{getProperTorn()}}
+{\footnotesize\ttfamily String partida.\+Llegir\+Fitxers.\+get\+Proper\+Torn (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\mbox{\hyperlink{classpartida_1_1_jugador}{Jugador}} que comença el Proper Torn. 
+
+
+
+Definition at line 73 of file Llegir\+Fitxers.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_llegir_fitxers_a7f2b6baeba7a0ee4d5fba0c408357bab}\label{classpartida_1_1_llegir_fitxers_a7f2b6baeba7a0ee4d5fba0c408357bab}} 
+\index{partida.LlegirFitxers@{partida.LlegirFitxers}!getResultatFinal@{getResultatFinal}}
+\index{getResultatFinal@{getResultatFinal}!partida.LlegirFitxers@{partida.LlegirFitxers}}
+\doxysubsubsection{\texorpdfstring{getResultatFinal()}{getResultatFinal()}}
+{\footnotesize\ttfamily String partida.\+Llegir\+Fitxers.\+get\+Resultat\+Final (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Resultat Final. 
+
+
+
+Definition at line 68 of file Llegir\+Fitxers.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_llegir_fitxers_ad72fcdbdebb01d735177aa6ce303cfbf}\label{classpartida_1_1_llegir_fitxers_ad72fcdbdebb01d735177aa6ce303cfbf}} 
+\index{partida.LlegirFitxers@{partida.LlegirFitxers}!getTaulell@{getTaulell}}
+\index{getTaulell@{getTaulell}!partida.LlegirFitxers@{partida.LlegirFitxers}}
+\doxysubsubsection{\texorpdfstring{getTaulell()}{getTaulell()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classpartida_1_1_taulell}{Taulell}} partida.\+Llegir\+Fitxers.\+get\+Taulell (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\mbox{\hyperlink{classpartida_1_1_taulell}{Taulell}}. 
+
+
+
+Definition at line 53 of file Llegir\+Fitxers.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_llegir_fitxers_abd670eb5308a04ae31ec11c29bee55f3}\label{classpartida_1_1_llegir_fitxers_abd670eb5308a04ae31ec11c29bee55f3}} 
+\index{partida.LlegirFitxers@{partida.LlegirFitxers}!getTirades@{getTirades}}
+\index{getTirades@{getTirades}!partida.LlegirFitxers@{partida.LlegirFitxers}}
+\doxysubsubsection{\texorpdfstring{getTirades()}{getTirades()}}
+{\footnotesize\ttfamily J\+S\+O\+N\+Array partida.\+Llegir\+Fitxers.\+get\+Tirades (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Conjunt de Tirades. 
+
+
+
+Definition at line 33 of file Llegir\+Fitxers.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_llegir_fitxers_a3578ed0ae0f60776e1161c04b5cb16c6}\label{classpartida_1_1_llegir_fitxers_a3578ed0ae0f60776e1161c04b5cb16c6}} 
+\index{partida.LlegirFitxers@{partida.LlegirFitxers}!llegirPartidaAcabada@{llegirPartidaAcabada}}
+\index{llegirPartidaAcabada@{llegirPartidaAcabada}!partida.LlegirFitxers@{partida.LlegirFitxers}}
+\doxysubsubsection{\texorpdfstring{llegirPartidaAcabada()}{llegirPartidaAcabada()}}
+{\footnotesize\ttfamily String partida.\+Llegir\+Fitxers.\+llegir\+Partida\+Acabada (\begin{DoxyParamCaption}\item[{String}]{path }\end{DoxyParamCaption}) throws Exception}
+
+
+
+Llegeix el fitxer de \mbox{\hyperlink{classpartida_1_1_partida}{Partida}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & drecera del fitxer de \mbox{\hyperlink{classpartida_1_1_partida}{Partida}} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+path és vàlid 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+totes les variables del fitxer de \mbox{\hyperlink{classpartida_1_1_partida}{Partida}} estan assignades. La \mbox{\hyperlink{classpartida_1_1_partida}{Partida}} està acabada. 
+\end{DoxyPostcond}
+
+
+Definition at line 178 of file Llegir\+Fitxers.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_llegir_fitxers_ae9a7149166f6fcb60990025425dfd23c}\label{classpartida_1_1_llegir_fitxers_ae9a7149166f6fcb60990025425dfd23c}} 
+\index{partida.LlegirFitxers@{partida.LlegirFitxers}!llegirPartidaComencada@{llegirPartidaComencada}}
+\index{llegirPartidaComencada@{llegirPartidaComencada}!partida.LlegirFitxers@{partida.LlegirFitxers}}
+\doxysubsubsection{\texorpdfstring{llegirPartidaComencada()}{llegirPartidaComencada()}}
+{\footnotesize\ttfamily String partida.\+Llegir\+Fitxers.\+llegir\+Partida\+Comencada (\begin{DoxyParamCaption}\item[{String}]{path,  }\item[{boolean}]{comencada }\end{DoxyParamCaption}) throws Exception}
+
+
+
+Llegeix el fitxer de \mbox{\hyperlink{classpartida_1_1_partida}{Partida}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & drecera del fitxer de \mbox{\hyperlink{classpartida_1_1_partida}{Partida}} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+path és vàlid 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+totes les variables del fitxer de \mbox{\hyperlink{classpartida_1_1_partida}{Partida}} estan assignades. La \mbox{\hyperlink{classpartida_1_1_partida}{Partida}} no està acabada. 
+\end{DoxyPostcond}
+
+
+Definition at line 242 of file Llegir\+Fitxers.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_llegir_fitxers_a56b82ea9c6181010cd3616479a42682c}\label{classpartida_1_1_llegir_fitxers_a56b82ea9c6181010cd3616479a42682c}} 
+\index{partida.LlegirFitxers@{partida.LlegirFitxers}!llegirRegles@{llegirRegles}}
+\index{llegirRegles@{llegirRegles}!partida.LlegirFitxers@{partida.LlegirFitxers}}
+\doxysubsubsection{\texorpdfstring{llegirRegles()}{llegirRegles()}}
+{\footnotesize\ttfamily void partida.\+Llegir\+Fitxers.\+llegir\+Regles (\begin{DoxyParamCaption}\item[{String}]{path,  }\item[{boolean}]{comencada }\end{DoxyParamCaption}) throws Exception}
+
+
+
+Llegeix el fitxer de Regles. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & drecera del fitxer de Regles \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+path és vàlid 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+totes les variables del fitxer de Regles estan assignades. 
+\end{DoxyPostcond}
+
+
+Definition at line 84 of file Llegir\+Fitxers.\+java.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classpartida_1_1_llegir_fitxers_a33cf960ecc5e44cb8e040c2357a42002}\label{classpartida_1_1_llegir_fitxers_a33cf960ecc5e44cb8e040c2357a42002}} 
+\index{partida.LlegirFitxers@{partida.LlegirFitxers}!conjuntPeces@{conjuntPeces}}
+\index{conjuntPeces@{conjuntPeces}!partida.LlegirFitxers@{partida.LlegirFitxers}}
+\doxysubsubsection{\texorpdfstring{conjuntPeces}{conjuntPeces}}
+{\footnotesize\ttfamily Tree\+Map$<$String, \mbox{\hyperlink{classpartida_1_1_tipus_peca}{Tipus\+Peca}}$>$ partida.\+Llegir\+Fitxers.\+conjunt\+Peces = new Tree\+Map$<$String, \mbox{\hyperlink{classpartida_1_1_tipus_peca}{Tipus\+Peca}}$>$()\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Contenidor de tots els conjunts de peces. 
+
+
+
+Definition at line 21 of file Llegir\+Fitxers.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_llegir_fitxers_ae892c1d9f830e7b1347c0df8b4816b78}\label{classpartida_1_1_llegir_fitxers_ae892c1d9f830e7b1347c0df8b4816b78}} 
+\index{partida.LlegirFitxers@{partida.LlegirFitxers}!contingut@{contingut}}
+\index{contingut@{contingut}!partida.LlegirFitxers@{partida.LlegirFitxers}}
+\doxysubsubsection{\texorpdfstring{contingut}{contingut}}
+{\footnotesize\ttfamily String partida.\+Llegir\+Fitxers.\+contingut\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+String que conté tot el contingut del fitxer. 
+
+
+
+Definition at line 27 of file Llegir\+Fitxers.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_llegir_fitxers_a18eefcf1e93a9a11e4561a4041c7c257}\label{classpartida_1_1_llegir_fitxers_a18eefcf1e93a9a11e4561a4041c7c257}} 
+\index{partida.LlegirFitxers@{partida.LlegirFitxers}!fitxerRegles@{fitxerRegles}}
+\index{fitxerRegles@{fitxerRegles}!partida.LlegirFitxers@{partida.LlegirFitxers}}
+\doxysubsubsection{\texorpdfstring{fitxerRegles}{fitxerRegles}}
+{\footnotesize\ttfamily String partida.\+Llegir\+Fitxers.\+fitxer\+Regles\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 20 of file Llegir\+Fitxers.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_llegir_fitxers_a073f27680aaab0df2c47e05e4a1338ff}\label{classpartida_1_1_llegir_fitxers_a073f27680aaab0df2c47e05e4a1338ff}} 
+\index{partida.LlegirFitxers@{partida.LlegirFitxers}!limitEscacsSeguits@{limitEscacsSeguits}}
+\index{limitEscacsSeguits@{limitEscacsSeguits}!partida.LlegirFitxers@{partida.LlegirFitxers}}
+\doxysubsubsection{\texorpdfstring{limitEscacsSeguits}{limitEscacsSeguits}}
+{\footnotesize\ttfamily int partida.\+Llegir\+Fitxers.\+limit\+Escacs\+Seguits = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Torns que es pot estar sense matar. 
+
+
+
+Definition at line 23 of file Llegir\+Fitxers.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_llegir_fitxers_ab61e931dbc06784c25e989eed53de99e}\label{classpartida_1_1_llegir_fitxers_ab61e931dbc06784c25e989eed53de99e}} 
+\index{partida.LlegirFitxers@{partida.LlegirFitxers}!limitTornsInaccio@{limitTornsInaccio}}
+\index{limitTornsInaccio@{limitTornsInaccio}!partida.LlegirFitxers@{partida.LlegirFitxers}}
+\doxysubsubsection{\texorpdfstring{limitTornsInaccio}{limitTornsInaccio}}
+{\footnotesize\ttfamily int partida.\+Llegir\+Fitxers.\+limit\+Torns\+Inaccio = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Limit d\textquotesingle{}escacs que es poden fer abans d\textquotesingle{}acabar la partida. 
+
+
+
+Definition at line 24 of file Llegir\+Fitxers.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_llegir_fitxers_a63caff8568ed2326a0a34a530374c65e}\label{classpartida_1_1_llegir_fitxers_a63caff8568ed2326a0a34a530374c65e}} 
+\index{partida.LlegirFitxers@{partida.LlegirFitxers}!posIniBlanques@{posIniBlanques}}
+\index{posIniBlanques@{posIniBlanques}!partida.LlegirFitxers@{partida.LlegirFitxers}}
+\doxysubsubsection{\texorpdfstring{posIniBlanques}{posIniBlanques}}
+{\footnotesize\ttfamily J\+S\+O\+N\+Array partida.\+Llegir\+Fitxers.\+pos\+Ini\+Blanques\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Llista de posicions inicials de l\textquotesingle{}equip de peces Blanques. 
+
+
+
+Definition at line 28 of file Llegir\+Fitxers.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_llegir_fitxers_a7145e51a83cad118c7e54a2c6c074385}\label{classpartida_1_1_llegir_fitxers_a7145e51a83cad118c7e54a2c6c074385}} 
+\index{partida.LlegirFitxers@{partida.LlegirFitxers}!posIniNegres@{posIniNegres}}
+\index{posIniNegres@{posIniNegres}!partida.LlegirFitxers@{partida.LlegirFitxers}}
+\doxysubsubsection{\texorpdfstring{posIniNegres}{posIniNegres}}
+{\footnotesize\ttfamily J\+S\+O\+N\+Array partida.\+Llegir\+Fitxers.\+pos\+Ini\+Negres\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Llista de posicions inicials de l\textquotesingle{}equip de peces Negres. 
+
+
+
+Definition at line 29 of file Llegir\+Fitxers.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_llegir_fitxers_a2ebb0c90e8588497cdbdb6d097cd5a92}\label{classpartida_1_1_llegir_fitxers_a2ebb0c90e8588497cdbdb6d097cd5a92}} 
+\index{partida.LlegirFitxers@{partida.LlegirFitxers}!properTorn@{properTorn}}
+\index{properTorn@{properTorn}!partida.LlegirFitxers@{partida.LlegirFitxers}}
+\doxysubsubsection{\texorpdfstring{properTorn}{properTorn}}
+{\footnotesize\ttfamily String partida.\+Llegir\+Fitxers.\+proper\+Torn = \char`\"{}B\+L\+A\+N\+Q\+U\+ES\char`\"{}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Valor que diu qui comença el primer torn. 
+
+
+
+Definition at line 26 of file Llegir\+Fitxers.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_llegir_fitxers_a99497e5db65e06e36b3a0e0c5650eed4}\label{classpartida_1_1_llegir_fitxers_a99497e5db65e06e36b3a0e0c5650eed4}} 
+\index{partida.LlegirFitxers@{partida.LlegirFitxers}!resultatFinal@{resultatFinal}}
+\index{resultatFinal@{resultatFinal}!partida.LlegirFitxers@{partida.LlegirFitxers}}
+\doxysubsubsection{\texorpdfstring{resultatFinal}{resultatFinal}}
+{\footnotesize\ttfamily String partida.\+Llegir\+Fitxers.\+resultat\+Final = \char`\"{}\char`\"{}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Valor de resultat en que queda una \mbox{\hyperlink{classpartida_1_1_partida}{Partida}}. 
+
+
+
+Definition at line 25 of file Llegir\+Fitxers.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_llegir_fitxers_ad4c2b9cf952d3c1fc6d4aed0c783c380}\label{classpartida_1_1_llegir_fitxers_ad4c2b9cf952d3c1fc6d4aed0c783c380}} 
+\index{partida.LlegirFitxers@{partida.LlegirFitxers}!taulell@{taulell}}
+\index{taulell@{taulell}!partida.LlegirFitxers@{partida.LlegirFitxers}}
+\doxysubsubsection{\texorpdfstring{taulell}{taulell}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classpartida_1_1_taulell}{Taulell}} partida.\+Llegir\+Fitxers.\+taulell = new \mbox{\hyperlink{classpartida_1_1_taulell}{Taulell}}(9,9)\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Objecte que conté les dades de \mbox{\hyperlink{classpartida_1_1_taulell}{Taulell}}. 
+
+
+
+Definition at line 22 of file Llegir\+Fitxers.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_llegir_fitxers_a6b78df35f8546b59998dec35543aa74e}\label{classpartida_1_1_llegir_fitxers_a6b78df35f8546b59998dec35543aa74e}} 
+\index{partida.LlegirFitxers@{partida.LlegirFitxers}!tirades@{tirades}}
+\index{tirades@{tirades}!partida.LlegirFitxers@{partida.LlegirFitxers}}
+\doxysubsubsection{\texorpdfstring{tirades}{tirades}}
+{\footnotesize\ttfamily J\+S\+O\+N\+Array partida.\+Llegir\+Fitxers.\+tirades\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Llista de tirades realitzades. 
+
+
+
+Definition at line 30 of file Llegir\+Fitxers.\+java.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_llegir_fitxers_8java}{Llegir\+Fitxers.\+java}}\end{DoxyCompactItemize}

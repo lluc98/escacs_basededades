@@ -1,0 +1,20 @@
+digraph "partida.Partida.posCorrecteOrigen"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node1 [label="partida.Partida.posCorrecte\lOrigen",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Comprova si la posició selecionada al origen és correcte."];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node2 [label="partida.PartidaText.posicio\lCorrecteOrigen",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_partida_text.html#a8753b7fa27818b9ff1bc5368c1893aac",tooltip="Calcula si es correcte la posició d'origen que ha seleccionat l'usuari."];
+  Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node3 [label="partida.PartidaText.llegir\lPosicioInici",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_partida_text.html#a9a8d898034dc8795d70b36fa11366ef1",tooltip="Llegeix la posició inicial que demana l'usuari i la processa."];
+  Node3 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node4 [label="partida.PartidaText.tirada",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_partida_text.html#acc995d318d946fd2b8e0f16366797ded",tooltip="Gestiona la tirada."];
+  Node4 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node5 [label="partida.PartidaText.jugar",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_partida_text.html#a879caed244bc5c974313cd31faa75c6d",tooltip="Gestiona la partida."];
+  Node5 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node6 [label="partida.PartidaText.inicia\lAplicacio",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_partida_text.html#a02c8b096e88ca947f3956566b3fd4145",tooltip="Inicia el joc."];
+  Node6 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node7 [label="partida.JocEscacs.main",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_joc_escacs.html#a61412703510b43d5067b1aa19d45a85f",tooltip=" "];
+}

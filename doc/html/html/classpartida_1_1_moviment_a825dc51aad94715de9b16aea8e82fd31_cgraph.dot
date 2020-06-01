@@ -1,0 +1,18 @@
+digraph "partida.Moviment.movimentvalid"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="partida.Moviment.movimentvalid",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Diu si un moviment és vàlid."];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="partida.TiradaSimple.get\l_desplacamentY",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_tirada_simple.html#a43de35c8d09caf5ac372ae579a369625",tooltip="Desplaçament en l'eix de les Y."];
+  Node1 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="partida.TiradaSimple.get\l_desplaçamentX",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_tirada_simple.html#a77438dc75b40c3c578ebfe0f41c85d7a",tooltip="Desplaçament en l'eix de les X."];
+  Node1 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="partida.TiradaSimple.guardar\lMatar",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_tirada_simple.html#a5aa68305d899944a05b7bd0797e06864",tooltip="Guarda el valor de Matar."];
+  Node1 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="partida.TiradaSimple.guardar\lVolar",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_tirada_simple.html#a714dbe584662075a93c207a6af7c3744",tooltip="Guarda el valor de Volar."];
+  Node1 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="partida.Moviment.valid",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_moviment.html#a5c2aabd3b2db99d7039d6578c7ec48ec",tooltip="Diu si un moviment és vàlid."];
+}

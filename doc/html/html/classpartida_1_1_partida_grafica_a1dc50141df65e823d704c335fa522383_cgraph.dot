@@ -1,0 +1,14 @@
+digraph "partida.PartidaGrafica.eliminarPeca"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="partida.PartidaGrafica.eliminarPeca",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="S'elimina una peça gràfica del taulell."];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="partida.PecaGrafica.get_oldX",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_peca_grafica.html#a1584b799e9fa415ca81e6de6b2a96f5c",tooltip="Posició x de la Peça."];
+  Node1 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="partida.PecaGrafica.get_oldY",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_peca_grafica.html#a000a86424d3a4ed7a2bf1ff63b18e74d",tooltip="Posició y de la Peça."];
+  Node1 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="partida.PartidaGrafica.pos\lTauler",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_partida_grafica.html#ac2e4eeec65c2ed97c1906157e4f8cdb2",tooltip="Calcula la posició al taulell gràfic."];
+}

@@ -1,0 +1,333 @@
+{
+  "nFiles": 8,
+  "nCols": 8,
+  "peces": [
+    {
+      "nom": "REI",
+      "simbol": "R",
+      "imatgeBlanca": "reiB.png",
+      "imatgeNegra": "reiN.png",
+      "valor": 100,
+      "moviments": [
+        [
+          1,
+          0,
+          1,
+          0
+        ],
+        [
+          1,
+          1,
+          1,
+          0
+        ],
+        [
+          1,
+          -1,
+          1,
+          0
+        ],
+        [
+          0,
+          1,
+          1,
+          0
+        ],
+        [
+          0,
+          -1,
+          1,
+          0
+        ],
+        [
+          -1,
+          -1,
+          1,
+          0
+        ],
+        [
+          -1,
+          0,
+          1,
+          0
+        ],
+        [
+          -1,
+          1,
+          1,
+          0
+        ]
+      ],
+      "movimentsInicials": [
+        
+      ],
+      "promocio": false,
+      "invulnerabilitat": false
+    },
+    {
+      "nom": "ALFIL",
+      "simbol": "A",
+      "imatgeBlanca": "alfilB.png",
+      "imatgeNegra": "alfilN.png",
+      "valor": 3,
+      "moviments": [
+        [
+          " a",
+          " a",
+          1,
+          0
+        ],
+        [
+          " a",
+          " - a",
+          1,
+          0
+        ]
+      ],
+      "movimentsInicials": [
+        
+      ],
+      "promocio": false,
+      "invulnerabilitat": false
+    },
+    {
+      "nom": "CUSTOM",
+      "simbol": "C",
+      "imatgeBlanca": "customB.png",
+      "imatgeNegra": "customN.png",
+      "valor": 5,
+      "moviments": [
+        [
+          " a",
+          " a",
+          1,
+          0
+        ],
+        [
+          " a",
+          " - a",
+          1,
+          0
+        ],
+		[
+          2,
+          1,
+          1,
+          1
+        ],
+        [
+          2,
+          -1,
+          1,
+          1
+        ],
+        [
+          -2,
+          1,
+          1,
+          1
+        ],
+        [
+          -2,
+          -1,
+          1,
+          1
+        ],
+        [
+          1,
+          2,
+          1,
+          1
+        ],
+        [
+          1,
+          -2,
+          1,
+          1
+        ],
+        [
+          -1,
+          2,
+          1,
+          1
+        ],
+        [
+          -1,
+          -2,
+          1,
+          1
+        ]
+      ],
+      "movimentsInicials": [
+
+      ],
+      "promocio": false,
+      "invulnerabilitat": true
+    },
+    {
+      "nom": "DAMA",
+      "simbol": "D",
+      "imatgeBlanca": "dama B.png",
+      "imatgeNegra": "damaN.png",
+      "valor": 9,
+      "moviments": [
+        [
+          0,
+          " a",
+          1,
+          0
+        ],
+        [
+          " a",
+          0,
+          1,
+          0
+        ],
+        [
+          " a",
+          " a",
+          1,
+          0
+        ],
+        [
+          " a",
+          " - a",
+          1,
+          0
+        ]
+      ],
+      "movimentsInicials": [
+        
+      ],
+      "promocio": false,
+      "invulnerabilitat": false
+    },
+    {
+      "nom": "CAVALL",
+      "simbol": "C",
+      "imatgeBlanca": "cavall B.png",
+      "imatgeNegra": "cavallN.png",
+      "valor": 3,
+      "moviments": [
+        [
+          2,
+          1,
+          1,
+          1
+        ],
+        [
+          2,
+          -1,
+          1,
+          1
+        ],
+        [
+          -2,
+          1,
+          1,
+          1
+        ],
+        [
+          -2,
+          -1,
+          1,
+          1
+        ],
+        [
+          1,
+          2,
+          1,
+          1
+        ],
+        [
+          1,
+          -2,
+          1,
+          1
+        ],
+        [
+          -1,
+          2,
+          1,
+          1
+        ],
+        [
+          -1,
+          -2,
+          1,
+          1
+        ]
+      ],
+      "movimentsInicials": [
+        
+      ],
+      "promocio": false,
+      "invulnerabilitat": false
+    },
+    {
+      "nom": "PEO",
+      "simbol": "P",
+      "imatgeBlanca": "peo B.png",
+      "imatgeNegra": "peoN.png",
+      "valor": 1,
+      "moviments": [
+        [
+          1,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          1,
+          2,
+          0
+        ],
+        [
+          1,
+          -1,
+          2,
+          0
+        ]
+      ],
+      "movimentsInicials": [
+        [
+          2,
+          0,
+          0,
+          0
+        ]
+      ],
+      "promocio": true,
+      "invulnerabilitat": false
+    }
+  ],
+  "posInicial": [
+    "CUSTOM",
+    "CAVALL",
+    "ALFIL",
+    "DAMA",
+    "REI",
+    "ALFIL",
+    "CAVALL",
+    "CUSTOM",
+    "PEO",
+    "PEO",
+    "PEO",
+    "PEO",
+    "PEO",
+    "PEO",
+    "PEO",
+    "PEO"
+  ],
+  "limitEscacsSeguits": 3,
+  "limitTornsInaccio": 50,
+  "enrocs": [
+    {
+      "pecaA": "REI",
+      "pecaB": "TORRE",
+      "quiets": true,
+      "buitAlMig": true
+    }
+  ]
+}

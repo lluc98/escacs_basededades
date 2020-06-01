@@ -1,0 +1,32 @@
+digraph "partida.Partida"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="partida.Partida",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Versió d'un joc d'escacs amb peces personalitzables i taulells de mida variable."];
+  Node2 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" historial" ,fontname="Helvetica"];
+  Node2 [label="partida.Historial",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_historial.html",tooltip="Tirades i resultats que s'obtenen dirant la partida, també posicions inicials."];
+  Node3 -> Node2 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" partida" ,fontname="Helvetica"];
+  Node3 [label="JSONObject",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
+  Node4 -> Node2 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" fitxerPartida" ,fontname="Helvetica"];
+  Node4 [label="FileWriter",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
+  Node5 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" conjuntPeces" ,fontname="Helvetica"];
+  Node5 [label="TreeMap\< String, partida.\lTipusPeca \>",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
+  Node6 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" jugadorNegres\njugadorBlanques" ,fontname="Helvetica"];
+  Node6 [label="partida.Jugador",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_jugador.html",tooltip="modul que analitzara i executara les jugades del usuari"];
+  Node7 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" taulell" ,fontname="Helvetica"];
+  Node7 [label="partida.Taulell",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_taulell.html",tooltip="Modul que representa el taulell d'escacs el qual pot ser modificable."];
+  Node8 -> Node7 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" _promocio" ,fontname="Helvetica"];
+  Node8 [label="ArrayList\< partida.Peca \>",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
+  Node9 -> Node7 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" _tiradesRefer" ,fontname="Helvetica"];
+  Node9 [label="ArrayList\< partida.Tirada\lSimple \>",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
+  Node10 -> Node7 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" _eliminats" ,fontname="Helvetica"];
+  Node10 [label="TreeMap\< Integer, TreeMap\l\< partida.Posicio, partida.Peca \> \>",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
+  Node11 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" fitxerEntradaPartida" ,fontname="Helvetica"];
+  Node11 [label="partida.LlegirFitxers",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_llegir_fitxers.html",tooltip="Classe de lectura de fitxers d'entrada."];
+  Node12 -> Node11 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" posIniNegres\nposIniBlanques\ntirades" ,fontname="Helvetica"];
+  Node12 [label="JSONArray",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
+  Node5 -> Node11 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" conjuntPeces" ,fontname="Helvetica"];
+  Node7 -> Node11 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" taulell" ,fontname="Helvetica"];
+}

@@ -1,0 +1,25 @@
+var classpartida_1_1_peca =
+[
+    [ "Peca", "classpartida_1_1_peca.html#af97319ec02941a4da8b66dff9c7b5da3", null ],
+    [ "Peca", "classpartida_1_1_peca.html#a766c07bbf25720a9273876e80f87b2c4", null ],
+    [ "Peca", "classpartida_1_1_peca.html#a0a19a8105540b0a050962e18a8c4f80d", null ],
+    [ "decrementarMov", "classpartida_1_1_peca.html#a282bada04cb73037a8ca03d4af277967", null ],
+    [ "enrrocValid", "classpartida_1_1_peca.html#a8b258f6875773e0981f1b7c768adbb25", null ],
+    [ "esInvulnerable", "classpartida_1_1_peca.html#adf2f180435ec4a34c687f5a58904d6c8", null ],
+    [ "esPecaNom", "classpartida_1_1_peca.html#a7cd12e2b9992a9f92d8bd5b4ace9f7ef", null ],
+    [ "esRei", "classpartida_1_1_peca.html#aea07d3883c4cbe04b3d8228d69b1ee26", null ],
+    [ "get_equip", "classpartida_1_1_peca.html#acf746f82f289a4a6b9c13f518df1fe6b", null ],
+    [ "get_tipus", "classpartida_1_1_peca.html#a8db1539316c423a1045050027ff1ec4a", null ],
+    [ "getNMovs", "classpartida_1_1_peca.html#ae0f551213e2f6e4e9ab7e8b32aacfc8a", null ],
+    [ "getNom", "classpartida_1_1_peca.html#a4961f25a80f488fd2c5c97ff15ceddeb", null ],
+    [ "getPromocio", "classpartida_1_1_peca.html#a64b99e9643e839418cf1942d2812e553", null ],
+    [ "incrementarMov", "classpartida_1_1_peca.html#a14606aca0160587c25a6525f435e5ad1", null ],
+    [ "movimentValid", "classpartida_1_1_peca.html#a00c836ce784c43093c86c54ce7ad7754", null ],
+    [ "primerMovFet", "classpartida_1_1_peca.html#afddc0a60f1817a3f9e61d9ecaa6ba9df", null ],
+    [ "restaurarMov", "classpartida_1_1_peca.html#aa9bc3c1b79fbb69930d2da3d97f30911", null ],
+    [ "toString", "classpartida_1_1_peca.html#a61596e557c984bef4e35ff69aaa30bb9", null ],
+    [ "_equip", "classpartida_1_1_peca.html#adac259ff130f0431b15927d8093a863b", null ],
+    [ "_nMov", "classpartida_1_1_peca.html#ad53e163ff2eabd4166d9c2d8458f5419", null ],
+    [ "_primerMoviment", "classpartida_1_1_peca.html#abf7c0320e4b5e3802ff38e6d04861b53", null ],
+    [ "_tipus", "classpartida_1_1_peca.html#a93eeca4d00e528bc7b8ab7a326e7121b", null ]
+];

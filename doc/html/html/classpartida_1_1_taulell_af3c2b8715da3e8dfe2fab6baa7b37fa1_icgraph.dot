@@ -1,0 +1,10 @@
+digraph "partida.Taulell.hiHaAlgunaAmenaça"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node1 [label="partida.Taulell.hiHaAlguna\lAmenaça",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Mira si les peces del equip contrari estan amenaçades."];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="partida.CPU.ferTirada",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_c_p_u.html#a0faa511637755fa4e4414e24fb7ac1e7",tooltip="Realitza l'acció de tirar una peça."];
+}

@@ -1,0 +1,14 @@
+digraph "partida.Historial.guardarPosInicial"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="partida.Historial.guardar\lPosInicial",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Guarda una Posició Inicial d'una Peçá"];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="partida.Posicio.get\l_posicio",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_posicio.html#a9ca82ab2c846c946a3b0c59fabb0df6c",tooltip="Posició"];
+  Node1 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="partida.Peca.getNom",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_peca.html#a4961f25a80f488fd2c5c97ff15ceddeb",tooltip="Nom de la Peça."];
+  Node3 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="partida.TipusPeca.get_nom",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_tipus_peca.html#a4d5a3d6a5f26c4167a4a7e2b4a9f0015",tooltip="Nom del tipus de Peça."];
+}

@@ -1,0 +1,20 @@
+digraph "partida.Partida.Partida"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="partida.Partida.Partida",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Genera una partida carregada."];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid"];
+  Node2 [label="partida.LlegirFitxers.get\lConjuntPeces",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_llegir_fitxers.html#a75e2d0b0f112429fcd5db9b5f3f62517",tooltip="Contenidor del conjunt de Peces."];
+  Node1 -> Node3 [color="midnightblue",fontsize="10",style="solid"];
+  Node3 [label="partida.LlegirFitxers.get\lLimitEscacsSeguits",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_llegir_fitxers.html#a31154b40526d36c2a76cb6ea656e6d8e",tooltip="Escacs Seguits."];
+  Node1 -> Node4 [color="midnightblue",fontsize="10",style="solid"];
+  Node4 [label="partida.LlegirFitxers.get\lLimitTornsInaccio",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_llegir_fitxers.html#aec9f26dbcb1298ecfe570bfb066bc963",tooltip="Limit de Torns d'Inaccio."];
+  Node1 -> Node5 [color="midnightblue",fontsize="10",style="solid"];
+  Node5 [label="partida.LlegirFitxers.get\lTaulell",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_llegir_fitxers.html#ad72fcdbdebb01d735177aa6ce303cfbf",tooltip="Taulell."];
+  Node1 -> Node6 [color="midnightblue",fontsize="10",style="solid"];
+  Node6 [label="partida.LlegirFitxers.llegir\lRegles",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_llegir_fitxers.html#a56b82ea9c6181010cd3616479a42682c",tooltip="Llegeix el fitxer de Regles."];
+  Node6 -> Node7 [color="midnightblue",fontsize="10",style="solid"];
+  Node7 [label="partida.Taulell.afegirPeca",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_taulell.html#a76081c673e786c344ebc30e49bf3897e",tooltip="Assigna les peces entrades al seu lloc a mesura que li van entran."];
+}

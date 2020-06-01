@@ -1,0 +1,488 @@
+\hypertarget{classpartida_1_1_historial}{}\doxysection{partida.\+Historial Class Reference}
+\label{classpartida_1_1_historial}\index{partida.Historial@{partida.Historial}}
+
+
+Tirades i resultats que s\textquotesingle{}obtenen dirant la partida, també posicions inicials.  
+
+
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{classpartida_1_1_historial_a7962728217b518f690a2b95e29d7ee72}{iniciar\+Partida\+Nova}} (String fitxer\+Regles)  throws Exception 
+\begin{DoxyCompactList}\small\item\em Inicialitzador de l\textquotesingle{}objecte J\+S\+ON que guardarem. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{classpartida_1_1_historial_a68fc303c8c495b012c35125ccde061a0}{carregar\+Partida\+Anterior}} (String path, \mbox{\hyperlink{classpartida_1_1_llegir_fitxers}{Llegir\+Fitxers}} fitxer\+Entrada\+Partida)  throws I\+O\+Exception 
+\item 
+static boolean \mbox{\hyperlink{classpartida_1_1_historial_a7b2b4d14d5271d732f8e967a573d4320}{es\+Enter}} (String s)
+\item 
+static void \mbox{\hyperlink{classpartida_1_1_historial_a772a949e58c11c20712bee46160f7b90}{guardar\+Pos\+Inicial}} (\mbox{\hyperlink{classpartida_1_1_posicio}{Posicio}} posicio, \mbox{\hyperlink{classpartida_1_1_peca}{Peca}} peca, boolean moguda, boolean equip)
+\begin{DoxyCompactList}\small\item\em Guarda una Posició Inicial d\textquotesingle{}una Peçá \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{classpartida_1_1_historial_a4c38d2a5df59aa81ad5b65ab4a69df57}{guardar\+Fitxer\+Regles}} (String nom\+Fitxer\+Regles)
+\begin{DoxyCompactList}\small\item\em Guarda el fitxer de Regles al fitxar de \mbox{\hyperlink{classpartida_1_1_partida}{Partida}}. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{classpartida_1_1_historial_aaeba373ccd309770032c5d7a0850ea8e}{guardar\+Proper\+Torn}} (String proper\+Torn)
+\begin{DoxyCompactList}\small\item\em Guarda el Torn de qui li toca realitzar la Tirada. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{classpartida_1_1_historial_a1b53c542fcd8c8476ba35322792663f9}{guardar\+Tirada}} (\mbox{\hyperlink{classpartida_1_1_tirada_simple}{Tirada\+Simple}} t, String resultat)
+\begin{DoxyCompactList}\small\item\em Guarda un Tirada amb el seu resultat. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{classpartida_1_1_tirada_simple}{Tirada\+Simple}} \mbox{\hyperlink{classpartida_1_1_historial_aa930dc8da1051b92fcb81cf642fff422}{get\+Ultima\+Tirada}} ()
+\begin{DoxyCompactList}\small\item\em Retorna l\textquotesingle{}ultima Tirada de que esta guardada. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{classpartida_1_1_historial_ad683e450ab25cf513061c97129d57c18}{eliminar\+Ultima\+Tirada}} ()
+\begin{DoxyCompactList}\small\item\em Elimina l\textquotesingle{}ultima tirada realitzada. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{classpartida_1_1_historial_a3c33d507e2b7939e293d2e31ca69b6ed}{guardar\+Partida}} (String resultat)
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classpartida_1_1_partida}{Partida}} guardad en un Fitxer i el valor del Resultat. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{classpartida_1_1_historial_a227f48ad86e1b86b24a54e8551cc2f0b}{modificar\+Resultat\+Ultima\+Tirada}} (String resultat)
+\begin{DoxyCompactList}\small\item\em Modifica el resultat de lúltima Tirada. \end{DoxyCompactList}\item 
+static String \mbox{\hyperlink{classpartida_1_1_historial_abb3382a897d4adb112a8e62ac4ca37cd}{get\+Ultim\+Resultat}} ()
+\begin{DoxyCompactList}\small\item\em Obté el resultat de l\textquotesingle{}última Tirada. \end{DoxyCompactList}\item 
+static String \mbox{\hyperlink{classpartida_1_1_historial_a99cb49e21019e19ddc738cee3b9811f2}{get\+Resultat}} (int i)
+\begin{DoxyCompactList}\small\item\em Obté el resultat de la Tirada numero i. \end{DoxyCompactList}\item 
+static String \mbox{\hyperlink{classpartida_1_1_historial_a516e1d17712c88bd6c0834a4821cade8}{get\+Torn}} (int i)
+\begin{DoxyCompactList}\small\item\em Obté el torn de la Tirada numero i. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{classpartida_1_1_tirada_simple}{Tirada\+Simple}} \mbox{\hyperlink{classpartida_1_1_historial_ab328b54925eda7404bcbe2db391f3859}{get\+Tirada}} (int i)
+\begin{DoxyCompactList}\small\item\em Obté la Tirada numero i. \end{DoxyCompactList}\item 
+static int \mbox{\hyperlink{classpartida_1_1_historial_afeb4cb7cc44586b34db8eaa82896d51e}{long\+Tiradades}} ()
+\begin{DoxyCompactList}\small\item\em Quantitat de tirades. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{classpartida_1_1_historial_ae3d4d4ceca1123d0617d11671820881e}{afegir\+Resultat\+Ultima\+Tirada}} (String resultat)
+\begin{DoxyCompactList}\small\item\em Afegeix un resultat a l\textquotesingle{}última tirada. \end{DoxyCompactList}\item 
+static boolean \mbox{\hyperlink{classpartida_1_1_historial_a606be47f24145678edfc519ccaaf25aa}{fitxer\+Tirades\+Buit}} ()
+\begin{DoxyCompactList}\small\item\em Cert si l\textquotesingle{}Array de tirades és buit, false altrament. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static File\+Writer \mbox{\hyperlink{classpartida_1_1_historial_a8b91241aa2a9a4322139206beb927922}{fitxer\+Partida}}
+\begin{DoxyCompactList}\small\item\em Standard Input d\textquotesingle{}escriptura que utilitzarem per a escriure el nostre fitxer. \end{DoxyCompactList}\item 
+static J\+S\+O\+N\+Object \mbox{\hyperlink{classpartida_1_1_historial_ad14287277e9cce9c90d8697fb73f37fd}{partida}} = new J\+S\+O\+N\+Object()
+\begin{DoxyCompactList}\small\item\em Objecte J\+S\+ON on guardarem les dades de la \mbox{\hyperlink{classpartida_1_1_partida}{Partida}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static String \mbox{\hyperlink{classpartida_1_1_historial_ac611f50e2a8f1460cc350c10934fff23}{adreca\+Fitxer}} = \char`\"{}Partida.\+txt\char`\"{}
+\begin{DoxyCompactList}\small\item\em Adreça del fitxer que generarem i guardarem. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Tirades i resultats que s\textquotesingle{}obtenen dirant la partida, també posicions inicials. 
+
+Definition at line 16 of file Historial.\+java.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classpartida_1_1_historial_ae3d4d4ceca1123d0617d11671820881e}\label{classpartida_1_1_historial_ae3d4d4ceca1123d0617d11671820881e}} 
+\index{partida.Historial@{partida.Historial}!afegirResultatUltimaTirada@{afegirResultatUltimaTirada}}
+\index{afegirResultatUltimaTirada@{afegirResultatUltimaTirada}!partida.Historial@{partida.Historial}}
+\doxysubsubsection{\texorpdfstring{afegirResultatUltimaTirada()}{afegirResultatUltimaTirada()}}
+{\footnotesize\ttfamily static void partida.\+Historial.\+afegir\+Resultat\+Ultima\+Tirada (\begin{DoxyParamCaption}\item[{String}]{resultat }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Afegeix un resultat a l\textquotesingle{}última tirada. 
+
+\begin{DoxyPrecond}{Precondition}
+-- 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+S\textquotesingle{}ha guradat a partida el resultat de l\textquotesingle{}ultima tirada 
+\end{DoxyPostcond}
+
+
+Definition at line 280 of file Historial.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_historial_a68fc303c8c495b012c35125ccde061a0}\label{classpartida_1_1_historial_a68fc303c8c495b012c35125ccde061a0}} 
+\index{partida.Historial@{partida.Historial}!carregarPartidaAnterior@{carregarPartidaAnterior}}
+\index{carregarPartidaAnterior@{carregarPartidaAnterior}!partida.Historial@{partida.Historial}}
+\doxysubsubsection{\texorpdfstring{carregarPartidaAnterior()}{carregarPartidaAnterior()}}
+{\footnotesize\ttfamily static void partida.\+Historial.\+carregar\+Partida\+Anterior (\begin{DoxyParamCaption}\item[{String}]{path,  }\item[{\mbox{\hyperlink{classpartida_1_1_llegir_fitxers}{Llegir\+Fitxers}}}]{fitxer\+Entrada\+Partida }\end{DoxyParamCaption}) throws I\+O\+Exception\hspace{0.3cm}{\ttfamily [static]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & Ubicació on guardarem el fitxer de \mbox{\hyperlink{classpartida_1_1_partida}{Partida}} \\
+\hline
+{\em fitxer\+Entrada\+Partida} & Nom del fitxer de \mbox{\hyperlink{classpartida_1_1_partida}{Partida}} que volem carregar \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+path és correcte i el fitxer\+Entrada\+Partida existeix i te el format i l\textquotesingle{}informació correcte 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+Es guarda en la variable de la classe , partida, tota l\textquotesingle{}informació referent a la partida carregada 
+\end{DoxyPostcond}
+
+
+Definition at line 75 of file Historial.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_historial_ad683e450ab25cf513061c97129d57c18}\label{classpartida_1_1_historial_ad683e450ab25cf513061c97129d57c18}} 
+\index{partida.Historial@{partida.Historial}!eliminarUltimaTirada@{eliminarUltimaTirada}}
+\index{eliminarUltimaTirada@{eliminarUltimaTirada}!partida.Historial@{partida.Historial}}
+\doxysubsubsection{\texorpdfstring{eliminarUltimaTirada()}{eliminarUltimaTirada()}}
+{\footnotesize\ttfamily static void partida.\+Historial.\+eliminar\+Ultima\+Tirada (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Elimina l\textquotesingle{}ultima tirada realitzada. 
+
+\begin{DoxyPrecond}{Precondition}
+S\textquotesingle{}ha realitzat alguna tirada 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+S\textquotesingle{}ha eliminat l\textquotesingle{}últim element de la llista de Tirades 
+\end{DoxyPostcond}
+
+
+Definition at line 184 of file Historial.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_historial_a7b2b4d14d5271d732f8e967a573d4320}\label{classpartida_1_1_historial_a7b2b4d14d5271d732f8e967a573d4320}} 
+\index{partida.Historial@{partida.Historial}!esEnter@{esEnter}}
+\index{esEnter@{esEnter}!partida.Historial@{partida.Historial}}
+\doxysubsubsection{\texorpdfstring{esEnter()}{esEnter()}}
+{\footnotesize\ttfamily static boolean partida.\+Historial.\+es\+Enter (\begin{DoxyParamCaption}\item[{String}]{s }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\begin{DoxyPrecond}{Precondition}
+-- 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+True si s és un enter, false altrament. 
+\end{DoxyPostcond}
+
+
+Definition at line 95 of file Historial.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_historial_a606be47f24145678edfc519ccaaf25aa}\label{classpartida_1_1_historial_a606be47f24145678edfc519ccaaf25aa}} 
+\index{partida.Historial@{partida.Historial}!fitxerTiradesBuit@{fitxerTiradesBuit}}
+\index{fitxerTiradesBuit@{fitxerTiradesBuit}!partida.Historial@{partida.Historial}}
+\doxysubsubsection{\texorpdfstring{fitxerTiradesBuit()}{fitxerTiradesBuit()}}
+{\footnotesize\ttfamily static boolean partida.\+Historial.\+fitxer\+Tirades\+Buit (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Cert si l\textquotesingle{}Array de tirades és buit, false altrament. 
+
+
+
+Definition at line 288 of file Historial.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_historial_a99cb49e21019e19ddc738cee3b9811f2}\label{classpartida_1_1_historial_a99cb49e21019e19ddc738cee3b9811f2}} 
+\index{partida.Historial@{partida.Historial}!getResultat@{getResultat}}
+\index{getResultat@{getResultat}!partida.Historial@{partida.Historial}}
+\doxysubsubsection{\texorpdfstring{getResultat()}{getResultat()}}
+{\footnotesize\ttfamily static String partida.\+Historial.\+get\+Resultat (\begin{DoxyParamCaption}\item[{int}]{i }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Obté el resultat de la Tirada numero i. 
+
+\begin{DoxyPrecond}{Precondition}
+i esta dins el rang de tirades fetes. 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+Retorna un String amb el resultat de la tirada i. 
+\end{DoxyPostcond}
+
+
+Definition at line 233 of file Historial.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_historial_ab328b54925eda7404bcbe2db391f3859}\label{classpartida_1_1_historial_ab328b54925eda7404bcbe2db391f3859}} 
+\index{partida.Historial@{partida.Historial}!getTirada@{getTirada}}
+\index{getTirada@{getTirada}!partida.Historial@{partida.Historial}}
+\doxysubsubsection{\texorpdfstring{getTirada()}{getTirada()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{classpartida_1_1_tirada_simple}{Tirada\+Simple}} partida.\+Historial.\+get\+Tirada (\begin{DoxyParamCaption}\item[{int}]{i }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Obté la Tirada numero i. 
+
+\begin{DoxyPrecond}{Precondition}
+i esta dins el rang de tirades fetes. 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+Retorna un objecte \mbox{\hyperlink{classpartida_1_1_tirada_simple}{Tirada\+Simple}} corresponent a la tirada i. 
+\end{DoxyPostcond}
+
+
+Definition at line 256 of file Historial.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_historial_a516e1d17712c88bd6c0834a4821cade8}\label{classpartida_1_1_historial_a516e1d17712c88bd6c0834a4821cade8}} 
+\index{partida.Historial@{partida.Historial}!getTorn@{getTorn}}
+\index{getTorn@{getTorn}!partida.Historial@{partida.Historial}}
+\doxysubsubsection{\texorpdfstring{getTorn()}{getTorn()}}
+{\footnotesize\ttfamily static String partida.\+Historial.\+get\+Torn (\begin{DoxyParamCaption}\item[{int}]{i }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Obté el torn de la Tirada numero i. 
+
+\begin{DoxyPrecond}{Precondition}
+i esta dins el rang de tirades fetes. 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+Retorna un String amb el torn de la tirada i. 
+\end{DoxyPostcond}
+
+
+Definition at line 244 of file Historial.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_historial_aa930dc8da1051b92fcb81cf642fff422}\label{classpartida_1_1_historial_aa930dc8da1051b92fcb81cf642fff422}} 
+\index{partida.Historial@{partida.Historial}!getUltimaTirada@{getUltimaTirada}}
+\index{getUltimaTirada@{getUltimaTirada}!partida.Historial@{partida.Historial}}
+\doxysubsubsection{\texorpdfstring{getUltimaTirada()}{getUltimaTirada()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{classpartida_1_1_tirada_simple}{Tirada\+Simple}} partida.\+Historial.\+get\+Ultima\+Tirada (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Retorna l\textquotesingle{}ultima Tirada de que esta guardada. 
+
+\begin{DoxyPrecond}{Precondition}
+S\textquotesingle{}ha realitzat alguna tirada 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+S\textquotesingle{}ha retornat l\textquotesingle{}objecte \mbox{\hyperlink{classpartida_1_1_tirada_simple}{Tirada\+Simple}} 
+\end{DoxyPostcond}
+
+
+Definition at line 166 of file Historial.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_historial_abb3382a897d4adb112a8e62ac4ca37cd}\label{classpartida_1_1_historial_abb3382a897d4adb112a8e62ac4ca37cd}} 
+\index{partida.Historial@{partida.Historial}!getUltimResultat@{getUltimResultat}}
+\index{getUltimResultat@{getUltimResultat}!partida.Historial@{partida.Historial}}
+\doxysubsubsection{\texorpdfstring{getUltimResultat()}{getUltimResultat()}}
+{\footnotesize\ttfamily static String partida.\+Historial.\+get\+Ultim\+Resultat (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Obté el resultat de l\textquotesingle{}última Tirada. 
+
+\begin{DoxyPrecond}{Precondition}
+-- 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+retorna el valor del resultat de l\textquotesingle{}última Tirada de la llista de Tirades 
+\end{DoxyPostcond}
+
+
+Definition at line 222 of file Historial.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_historial_a4c38d2a5df59aa81ad5b65ab4a69df57}\label{classpartida_1_1_historial_a4c38d2a5df59aa81ad5b65ab4a69df57}} 
+\index{partida.Historial@{partida.Historial}!guardarFitxerRegles@{guardarFitxerRegles}}
+\index{guardarFitxerRegles@{guardarFitxerRegles}!partida.Historial@{partida.Historial}}
+\doxysubsubsection{\texorpdfstring{guardarFitxerRegles()}{guardarFitxerRegles()}}
+{\footnotesize\ttfamily static void partida.\+Historial.\+guardar\+Fitxer\+Regles (\begin{DoxyParamCaption}\item[{String}]{nom\+Fitxer\+Regles }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Guarda el fitxer de Regles al fitxar de \mbox{\hyperlink{classpartida_1_1_partida}{Partida}}. 
+
+\begin{DoxyPrecond}{Precondition}
+-- 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+Nom del fitxer de Regles guardat al objecte \mbox{\hyperlink{classpartida_1_1_partida}{Partida}} J\+S\+ON 
+\end{DoxyPostcond}
+
+
+Definition at line 132 of file Historial.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_historial_a3c33d507e2b7939e293d2e31ca69b6ed}\label{classpartida_1_1_historial_a3c33d507e2b7939e293d2e31ca69b6ed}} 
+\index{partida.Historial@{partida.Historial}!guardarPartida@{guardarPartida}}
+\index{guardarPartida@{guardarPartida}!partida.Historial@{partida.Historial}}
+\doxysubsubsection{\texorpdfstring{guardarPartida()}{guardarPartida()}}
+{\footnotesize\ttfamily static void partida.\+Historial.\+guardar\+Partida (\begin{DoxyParamCaption}\item[{String}]{resultat }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+\mbox{\hyperlink{classpartida_1_1_partida}{Partida}} guardad en un Fitxer i el valor del Resultat. 
+
+\begin{DoxyPrecond}{Precondition}
+-- 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+S\textquotesingle{}ha guardat una partida en un Fitxer assignant un resultat. 
+\end{DoxyPostcond}
+
+
+Definition at line 193 of file Historial.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_historial_a772a949e58c11c20712bee46160f7b90}\label{classpartida_1_1_historial_a772a949e58c11c20712bee46160f7b90}} 
+\index{partida.Historial@{partida.Historial}!guardarPosInicial@{guardarPosInicial}}
+\index{guardarPosInicial@{guardarPosInicial}!partida.Historial@{partida.Historial}}
+\doxysubsubsection{\texorpdfstring{guardarPosInicial()}{guardarPosInicial()}}
+{\footnotesize\ttfamily static void partida.\+Historial.\+guardar\+Pos\+Inicial (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classpartida_1_1_posicio}{Posicio}}}]{posicio,  }\item[{\mbox{\hyperlink{classpartida_1_1_peca}{Peca}}}]{peca,  }\item[{boolean}]{moguda,  }\item[{boolean}]{equip }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Guarda una Posició Inicial d\textquotesingle{}una Peçá 
+
+
+\begin{DoxyParams}{Parameters}
+{\em posicio} & Posició inicial de la Peça \\
+\hline
+{\em peca} & Peça que guardem \\
+\hline
+{\em moguda} & Atribut de si s\textquotesingle{}ha mogut respecta la posició inicial de la \mbox{\hyperlink{classpartida_1_1_partida}{Partida}} \\
+\hline
+{\em equip} & Atribut de quin Equip és la Peça \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+-- 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+totes les variables han estat guardades al objecte J\+S\+ON 
+\end{DoxyPostcond}
+
+
+Definition at line 114 of file Historial.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_historial_aaeba373ccd309770032c5d7a0850ea8e}\label{classpartida_1_1_historial_aaeba373ccd309770032c5d7a0850ea8e}} 
+\index{partida.Historial@{partida.Historial}!guardarProperTorn@{guardarProperTorn}}
+\index{guardarProperTorn@{guardarProperTorn}!partida.Historial@{partida.Historial}}
+\doxysubsubsection{\texorpdfstring{guardarProperTorn()}{guardarProperTorn()}}
+{\footnotesize\ttfamily static void partida.\+Historial.\+guardar\+Proper\+Torn (\begin{DoxyParamCaption}\item[{String}]{proper\+Torn }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Guarda el Torn de qui li toca realitzar la Tirada. 
+
+\begin{DoxyPrecond}{Precondition}
+-- 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+Nom del Equip que ha de fer el proper Torn guardat al objecte \mbox{\hyperlink{classpartida_1_1_partida}{Partida}} J\+S\+ON 
+\end{DoxyPostcond}
+
+
+Definition at line 140 of file Historial.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_historial_a1b53c542fcd8c8476ba35322792663f9}\label{classpartida_1_1_historial_a1b53c542fcd8c8476ba35322792663f9}} 
+\index{partida.Historial@{partida.Historial}!guardarTirada@{guardarTirada}}
+\index{guardarTirada@{guardarTirada}!partida.Historial@{partida.Historial}}
+\doxysubsubsection{\texorpdfstring{guardarTirada()}{guardarTirada()}}
+{\footnotesize\ttfamily static void partida.\+Historial.\+guardar\+Tirada (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classpartida_1_1_tirada_simple}{Tirada\+Simple}}}]{t,  }\item[{String}]{resultat }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Guarda un Tirada amb el seu resultat. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & Tiarada que s\textquotesingle{}ha realitzat \\
+\hline
+{\em resultat} & Resultat de la tirada realitzada \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+-- 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+Tots els atributs de tirada i resultat guardats en el fitxer J\+S\+ON 
+\end{DoxyPostcond}
+
+
+Definition at line 150 of file Historial.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_historial_a7962728217b518f690a2b95e29d7ee72}\label{classpartida_1_1_historial_a7962728217b518f690a2b95e29d7ee72}} 
+\index{partida.Historial@{partida.Historial}!iniciarPartidaNova@{iniciarPartidaNova}}
+\index{iniciarPartidaNova@{iniciarPartidaNova}!partida.Historial@{partida.Historial}}
+\doxysubsubsection{\texorpdfstring{iniciarPartidaNova()}{iniciarPartidaNova()}}
+{\footnotesize\ttfamily static void partida.\+Historial.\+iniciar\+Partida\+Nova (\begin{DoxyParamCaption}\item[{String}]{fitxer\+Regles }\end{DoxyParamCaption}) throws Exception\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Inicialitzador de l\textquotesingle{}objecte J\+S\+ON que guardarem. 
+
+\begin{DoxyPrecond}{Precondition}
+-- 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+Totes les variables estan inicialitzades 
+\end{DoxyPostcond}
+
+
+Definition at line 26 of file Historial.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_historial_afeb4cb7cc44586b34db8eaa82896d51e}\label{classpartida_1_1_historial_afeb4cb7cc44586b34db8eaa82896d51e}} 
+\index{partida.Historial@{partida.Historial}!longTiradades@{longTiradades}}
+\index{longTiradades@{longTiradades}!partida.Historial@{partida.Historial}}
+\doxysubsubsection{\texorpdfstring{longTiradades()}{longTiradades()}}
+{\footnotesize\ttfamily static int partida.\+Historial.\+long\+Tiradades (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Quantitat de tirades. 
+
+
+
+Definition at line 271 of file Historial.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_historial_a227f48ad86e1b86b24a54e8551cc2f0b}\label{classpartida_1_1_historial_a227f48ad86e1b86b24a54e8551cc2f0b}} 
+\index{partida.Historial@{partida.Historial}!modificarResultatUltimaTirada@{modificarResultatUltimaTirada}}
+\index{modificarResultatUltimaTirada@{modificarResultatUltimaTirada}!partida.Historial@{partida.Historial}}
+\doxysubsubsection{\texorpdfstring{modificarResultatUltimaTirada()}{modificarResultatUltimaTirada()}}
+{\footnotesize\ttfamily static void partida.\+Historial.\+modificar\+Resultat\+Ultima\+Tirada (\begin{DoxyParamCaption}\item[{String}]{resultat }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Modifica el resultat de lúltima Tirada. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em resultat} & Valor a substituïr en l\textquotesingle{}ultima Tirada \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+-- 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+El resultat s\textquotesingle{}ha sobreescrit en l\textquotesingle{}ultim element de la llista de Tirades del objecte J\+S\+ON 
+\end{DoxyPostcond}
+
+
+Definition at line 211 of file Historial.\+java.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classpartida_1_1_historial_ac611f50e2a8f1460cc350c10934fff23}\label{classpartida_1_1_historial_ac611f50e2a8f1460cc350c10934fff23}} 
+\index{partida.Historial@{partida.Historial}!adrecaFitxer@{adrecaFitxer}}
+\index{adrecaFitxer@{adrecaFitxer}!partida.Historial@{partida.Historial}}
+\doxysubsubsection{\texorpdfstring{adrecaFitxer}{adrecaFitxer}}
+{\footnotesize\ttfamily String partida.\+Historial.\+adreca\+Fitxer = \char`\"{}Partida.\+txt\char`\"{}\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Adreça del fitxer que generarem i guardarem. 
+
+
+
+Definition at line 17 of file Historial.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_historial_a8b91241aa2a9a4322139206beb927922}\label{classpartida_1_1_historial_a8b91241aa2a9a4322139206beb927922}} 
+\index{partida.Historial@{partida.Historial}!fitxerPartida@{fitxerPartida}}
+\index{fitxerPartida@{fitxerPartida}!partida.Historial@{partida.Historial}}
+\doxysubsubsection{\texorpdfstring{fitxerPartida}{fitxerPartida}}
+{\footnotesize\ttfamily File\+Writer partida.\+Historial.\+fitxer\+Partida\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Standard Input d\textquotesingle{}escriptura que utilitzarem per a escriure el nostre fitxer. 
+
+
+
+Definition at line 18 of file Historial.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_historial_ad14287277e9cce9c90d8697fb73f37fd}\label{classpartida_1_1_historial_ad14287277e9cce9c90d8697fb73f37fd}} 
+\index{partida.Historial@{partida.Historial}!partida@{partida}}
+\index{partida@{partida}!partida.Historial@{partida.Historial}}
+\doxysubsubsection{\texorpdfstring{partida}{partida}}
+{\footnotesize\ttfamily J\+S\+O\+N\+Object partida.\+Historial.\+partida = new J\+S\+O\+N\+Object()\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Objecte J\+S\+ON on guardarem les dades de la \mbox{\hyperlink{classpartida_1_1_partida}{Partida}}. 
+
+
+
+Definition at line 20 of file Historial.\+java.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_historial_8java}{Historial.\+java}}\end{DoxyCompactItemize}

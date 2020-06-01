@@ -1,0 +1,18 @@
+digraph "partida.Taulell.afegirPeca"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node1 [label="partida.Taulell.afegirPeca",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Assigna les peces entrades al seu lloc a mesura que li van entran."];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="partida.LlegirFitxers.llegir\lRegles",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_llegir_fitxers.html#a56b82ea9c6181010cd3616479a42682c",tooltip="Llegeix el fitxer de Regles."];
+  Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="partida.LlegirFitxers.llegir\lPartidaAcabada",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_llegir_fitxers.html#a3578ed0ae0f60776e1161c04b5cb16c6",tooltip="Llegeix el fitxer de Partida."];
+  Node2 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="partida.LlegirFitxers.llegir\lPartidaComencada",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_llegir_fitxers.html#ae9a7149166f6fcb60990025425dfd23c",tooltip="Llegeix el fitxer de Partida."];
+  Node4 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="partida.Partida.Partida",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_partida.html#a7c0cbdc23a559384ae5d21a08e4892ad",tooltip="Genera una partida carregada."];
+  Node2 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="partida.Partida.Partida",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_partida.html#ac08f4c1a5ee7b74a702eb5c09a38c1bf",tooltip="Genera una partida carregada."];
+}

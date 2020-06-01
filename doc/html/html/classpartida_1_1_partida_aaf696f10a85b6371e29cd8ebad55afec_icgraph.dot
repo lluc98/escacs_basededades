@@ -1,0 +1,42 @@
+digraph "partida.Partida.referTirada"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node1 [label="partida.Partida.referTirada",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Refem l'última tirada."];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="partida.PartidaGrafica.crear\lOpcions",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_partida_grafica.html#adba25a1c270fb61aadd0c60b50569e0c",tooltip="Crea les opcions que es podran fer durant la partida."];
+  Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="partida.PartidaGrafica.crear\lEscenaPartida",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_partida_grafica.html#a3b11d63e2d592d926ef4ca45a4148dc7",tooltip="Crea l'escena partida."];
+  Node3 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="partida.PartidaGrafica.preparar\lCentre",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_partida_grafica.html#a24051d5d02bee4cb623a58dd021c066e",tooltip="Es prepara el centre per l'escena secundaria."];
+  Node4 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="partida.PartidaGrafica.escena\lSecundaria",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_partida_grafica.html#a32e9bb5299be820aef87ea3f58fda6bd",tooltip="Crea l'escena secundaria."];
+  Node5 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="partida.PartidaGrafica.crear\lEscenaPrincipal",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_partida_grafica.html#a152d398be779196906064f031d898390",tooltip="Crea l'escena principal."];
+  Node6 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="partida.PartidaGrafica.start",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_partida_grafica.html#a8861a2699c3708a4db945ab4c9087cb3",tooltip=" "];
+  Node2 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="partida.PartidaGrafica.crear\lEscenaPromoció",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_partida_grafica.html#a8019015902aff562d5c2b747ccfe58c2",tooltip="Crea panell per fer la promoció"];
+  Node8 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="partida.PartidaGrafica.realitzar\lTirada",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_partida_grafica.html#acb4c99e7ee645483ab9f9955d320b117",tooltip="Realitza una tirada."];
+  Node9 -> Node10 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 [label="partida.PartidaGrafica.crear\lFitxa",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_partida_grafica.html#ad79e50c713a3e043355a0f20f9cc5cea",tooltip="Crea la fitxa gràfica que anirà al taulell gràfic."];
+  Node10 -> Node11 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node11 [label="partida.PartidaGrafica.crear\lContingutPartida",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_partida_grafica.html#a591e5560274bfbc48b1981eced48ebae",tooltip="Crea el taulell i posiciona les peces."];
+  Node11 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 -> Node12 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node12 [label="partida.PartidaGrafica.crear\lPaneTaules",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_partida_grafica.html#a5d30947acec27f26fe79c92f36ef7efc",tooltip="Crea un panell per acceptar/declinar les taules un cop s'han demanat."];
+  Node12 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node13 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node13 [label="partida.PartidaText.tirada",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_partida_text.html#acc995d318d946fd2b8e0f16366797ded",tooltip="Gestiona la tirada."];
+  Node13 -> Node14 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node14 [label="partida.PartidaText.jugar",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_partida_text.html#a879caed244bc5c974313cd31faa75c6d",tooltip="Gestiona la partida."];
+  Node14 -> Node15 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node15 [label="partida.PartidaText.inicia\lAplicacio",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_partida_text.html#a02c8b096e88ca947f3956566b3fd4145",tooltip="Inicia el joc."];
+  Node15 -> Node16 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node16 [label="partida.JocEscacs.main",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_joc_escacs.html#a61412703510b43d5067b1aa19d45a85f",tooltip=" "];
+}

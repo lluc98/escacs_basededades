@@ -1,0 +1,604 @@
+\hypertarget{classpartida_1_1_partida_grafica}{}\doxysection{partida.\+Partida\+Grafica Class Reference}
+\label{classpartida_1_1_partida_grafica}\index{partida.PartidaGrafica@{partida.PartidaGrafica}}
+
+
+\mbox{\hyperlink{classpartida_1_1_partida}{Partida}} gàfica, extensió de la classe Application de la A\+PI de java.  
+
+
+Inheritance diagram for partida.\+Partida\+Grafica\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classpartida_1_1_partida_grafica}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classpartida_1_1_partida_grafica_a8861a2699c3708a4db945ab4c9087cb3}{start}} (Stage primary\+Stage)
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{classpartida_1_1_partida_grafica_a0660dc3c96c1da524877d0925fe17a87}{main}} ()
+\begin{DoxyCompactList}\small\item\em Inicia l\textquotesingle{}aplicació d\textquotesingle{}escacs. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classpartida_1_1_partida_grafica_a152d398be779196906064f031d898390}{crear\+Escena\+Principal}} ()
+\begin{DoxyCompactList}\small\item\em Crea l\textquotesingle{}escena principal. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classpartida_1_1_partida_grafica_a32e9bb5299be820aef87ea3f58fda6bd}{escena\+Secundaria}} (int opcio)
+\begin{DoxyCompactList}\small\item\em Crea l\textquotesingle{}escena secundaria. \end{DoxyCompactList}\item 
+Node \mbox{\hyperlink{classpartida_1_1_partida_grafica_a24051d5d02bee4cb623a58dd021c066e}{preparar\+Centre}} (int opcio)
+\begin{DoxyCompactList}\small\item\em Es prepara el centre per l\textquotesingle{}escena secundaria. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static Node \mbox{\hyperlink{classpartida_1_1_partida_grafica_ae8f669d8b229a9ce1b8e0d641ccdb91d}{top\+Label}} (String s, Read\+Only\+Double\+Property d)
+\begin{DoxyCompactList}\small\item\em Crea el títol del top de l\textquotesingle{}escena secundaria. \end{DoxyCompactList}\item 
+static Node \mbox{\hyperlink{classpartida_1_1_partida_grafica_a2bef1ac364a7d7f6e5d139b09cf77921}{boto\+Inferior}} (String s)
+\begin{DoxyCompactList}\small\item\em Crea el botó per tirar enrere. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{classpartida_1_1_partida_grafica_a3b11d63e2d592d926ef4ca45a4148dc7}{crear\+Escena\+Partida}} ()
+\begin{DoxyCompactList}\small\item\em Crea l\textquotesingle{}escena partida. \end{DoxyCompactList}\item 
+static Node \mbox{\hyperlink{classpartida_1_1_partida_grafica_adba25a1c270fb61aadd0c60b50569e0c}{crear\+Opcions}} (Border\+Pane p)
+\begin{DoxyCompactList}\small\item\em Crea les opcions que es podran fer durant la partida. \end{DoxyCompactList}\item 
+static Node \mbox{\hyperlink{classpartida_1_1_partida_grafica_a5d30947acec27f26fe79c92f36ef7efc}{crear\+Pane\+Taules}} (Border\+Pane p)
+\begin{DoxyCompactList}\small\item\em Crea un panell per acceptar/declinar les taules un cop s\textquotesingle{}han demanat. \end{DoxyCompactList}\item 
+static Node \mbox{\hyperlink{classpartida_1_1_partida_grafica_a591e5560274bfbc48b1981eced48ebae}{crear\+Contingut\+Partida}} (Border\+Pane p)
+\begin{DoxyCompactList}\small\item\em Crea el taulell i posiciona les peces. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{classpartida_1_1_peca_grafica}{Peca\+Grafica}} \mbox{\hyperlink{classpartida_1_1_partida_grafica_ad79e50c713a3e043355a0f20f9cc5cea}{crear\+Fitxa}} (\mbox{\hyperlink{classpartida_1_1_peca}{Peca}} f, int i, int j, Border\+Pane pane)
+\begin{DoxyCompactList}\small\item\em Crea la fitxa gràfica que anirà al taulell gràfic. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{classpartida_1_1_partida_grafica_acb4c99e7ee645483ab9f9955d320b117}{realitzar\+Tirada}} (String mov, int newX, int newY, \mbox{\hyperlink{classpartida_1_1_peca_grafica}{Peca\+Grafica}} p, Border\+Pane pane, int oldX)
+\begin{DoxyCompactList}\small\item\em Realitza una tirada. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{classpartida_1_1_partida_grafica_a0e0ec498d646119a1755066e3e8200de}{crear\+Escena\+Final}} ()
+\begin{DoxyCompactList}\small\item\em Crea l\textquotesingle{}escena final de la partida quan un jugador guanya. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{classpartida_1_1_partida_grafica_a48b17dbb8a97287ded8b22e864bcf719}{eliminar\+Peces}} (Border\+Pane pane)
+\begin{DoxyCompactList}\small\item\em S\textquotesingle{}eliminen les peces que han mort en la tirada. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{classpartida_1_1_partida_grafica_a8019015902aff562d5c2b747ccfe58c2}{crear\+Escena\+Promoció}} (Border\+Pane p, String mov, int x, int y)
+\begin{DoxyCompactList}\small\item\em Crea panell per fer la promoció \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{classpartida_1_1_partida_grafica_ad83e144e7d5ba795b7fb3f4f594370e4}{modificar\+Lbl\+Avisos}} (String s, Border\+Pane p)
+\begin{DoxyCompactList}\small\item\em Modifica els avisos per l\textquotesingle{}usuari. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{classpartida_1_1_partida_grafica_a498453415ffc2f57ca641ab27a595319}{passar\+Torn}} (Border\+Pane p)
+\begin{DoxyCompactList}\small\item\em Es passa de torn. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{classpartida_1_1_partida_grafica_a1dc50141df65e823d704c335fa522383}{eliminar\+Peca}} (int x, int y)
+\begin{DoxyCompactList}\small\item\em S\textquotesingle{}elimina una peça gràfica del taulell. \end{DoxyCompactList}\item 
+static int \mbox{\hyperlink{classpartida_1_1_partida_grafica_ac2e4eeec65c2ed97c1906157e4f8cdb2}{pos\+Tauler}} (double p)
+\begin{DoxyCompactList}\small\item\em Calcula la posició al taulell gràfic. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static Scene \mbox{\hyperlink{classpartida_1_1_partida_grafica_a5c3fdc92aab4287058a7cfd5bfab51a7}{escena\+Principal}}
+\begin{DoxyCompactList}\small\item\em Primera escena de l\textquotesingle{}aplicació \end{DoxyCompactList}\item 
+static Scene \mbox{\hyperlink{classpartida_1_1_partida_grafica_aaf72895b6f3c16e0fe523143af47ba78}{escena\+Sec}}
+\begin{DoxyCompactList}\small\item\em Escena per triar fitxers i si fes falta, el nombre de jugadors. \end{DoxyCompactList}\item 
+static Scene \mbox{\hyperlink{classpartida_1_1_partida_grafica_aa674db9df0813654dc6c16aefff78bd4}{escena\+Partida}}
+\begin{DoxyCompactList}\small\item\em Escena per jugar la partida. \end{DoxyCompactList}\item 
+static Stage \mbox{\hyperlink{classpartida_1_1_partida_grafica_a8d1fb2e5d97ade388af1d80b0319b4a6}{window}}
+\begin{DoxyCompactList}\small\item\em Finestra de l\textquotesingle{}aplicació \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{classpartida_1_1_partida}{Partida}} \mbox{\hyperlink{classpartida_1_1_partida_grafica_a1c16fb357c1b24c927cd4056e7157fef}{\+\_\+partida}}
+\begin{DoxyCompactList}\small\item\em Joc d\textquotesingle{}escacs. \end{DoxyCompactList}\item 
+static Group \mbox{\hyperlink{classpartida_1_1_partida_grafica_a00ab60e43166e5d5b3673f55a9452ebd}{\+\_\+rajoles}} = new Group()
+\begin{DoxyCompactList}\small\item\em Grup de rajoles. \end{DoxyCompactList}\item 
+static Group \mbox{\hyperlink{classpartida_1_1_partida_grafica_a99b5d0e1c1c6d4ed6c53df21d9e8f1e1}{\+\_\+peces}} = new Group()
+\begin{DoxyCompactList}\small\item\em Grup de peces. \end{DoxyCompactList}\item 
+static int \mbox{\hyperlink{classpartida_1_1_partida_grafica_afd4f07c40af38b7c2855343facd09573}{\+\_\+pixels\+Rajola}}
+\begin{DoxyCompactList}\small\item\em Pixels d\textquotesingle{}un costat de la rajola. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{classpartida_1_1_partida}{Partida}} gàfica, extensió de la classe Application de la A\+PI de java. 
+
+Definition at line 44 of file Partida\+Grafica.\+java.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classpartida_1_1_partida_grafica_a2bef1ac364a7d7f6e5d139b09cf77921}\label{classpartida_1_1_partida_grafica_a2bef1ac364a7d7f6e5d139b09cf77921}} 
+\index{partida.PartidaGrafica@{partida.PartidaGrafica}!botoInferior@{botoInferior}}
+\index{botoInferior@{botoInferior}!partida.PartidaGrafica@{partida.PartidaGrafica}}
+\doxysubsubsection{\texorpdfstring{botoInferior()}{botoInferior()}}
+{\footnotesize\ttfamily static Node partida.\+Partida\+Grafica.\+boto\+Inferior (\begin{DoxyParamCaption}\item[{String}]{s }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Crea el botó per tirar enrere. 
+
+\begin{DoxyPrecond}{Precondition}
+{\ttfamily s} és el text que hi haurà dins el botó 
+\end{DoxyPrecond}
+\begin{DoxyReturn}{Returns}
+un node que serà contindrà un botó que tindrà la funcionalitat de tirar enrere i anar a l\textquotesingle{}escena principal 
+\end{DoxyReturn}
+
+
+Definition at line 235 of file Partida\+Grafica.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_partida_grafica_a591e5560274bfbc48b1981eced48ebae}\label{classpartida_1_1_partida_grafica_a591e5560274bfbc48b1981eced48ebae}} 
+\index{partida.PartidaGrafica@{partida.PartidaGrafica}!crearContingutPartida@{crearContingutPartida}}
+\index{crearContingutPartida@{crearContingutPartida}!partida.PartidaGrafica@{partida.PartidaGrafica}}
+\doxysubsubsection{\texorpdfstring{crearContingutPartida()}{crearContingutPartida()}}
+{\footnotesize\ttfamily static Node partida.\+Partida\+Grafica.\+crear\+Contingut\+Partida (\begin{DoxyParamCaption}\item[{Border\+Pane}]{p }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Crea el taulell i posiciona les peces. 
+
+\begin{DoxyPrecond}{Precondition}
+{\ttfamily p} és el panell de l\textquotesingle{}escena de la partida, necessari per funcionalitats on es requereix canviar l\textquotesingle{}escena 
+\end{DoxyPrecond}
+\begin{DoxyReturn}{Returns}
+un node que conté un Pane on hi ha el taulell muntat i les peces posades a la seva posició corresponent 
+\end{DoxyReturn}
+
+
+Definition at line 690 of file Partida\+Grafica.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_partida_grafica_a0e0ec498d646119a1755066e3e8200de}\label{classpartida_1_1_partida_grafica_a0e0ec498d646119a1755066e3e8200de}} 
+\index{partida.PartidaGrafica@{partida.PartidaGrafica}!crearEscenaFinal@{crearEscenaFinal}}
+\index{crearEscenaFinal@{crearEscenaFinal}!partida.PartidaGrafica@{partida.PartidaGrafica}}
+\doxysubsubsection{\texorpdfstring{crearEscenaFinal()}{crearEscenaFinal()}}
+{\footnotesize\ttfamily static void partida.\+Partida\+Grafica.\+crear\+Escena\+Final (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Crea l\textquotesingle{}escena final de la partida quan un jugador guanya. 
+
+\begin{DoxyPrecond}{Precondition}
+-- 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+Es crea l\textquotesingle{}escena amb un label indicant el jugador que ha guanyat, i un gif. 
+\end{DoxyPostcond}
+
+
+Definition at line 852 of file Partida\+Grafica.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_partida_grafica_a3b11d63e2d592d926ef4ca45a4148dc7}\label{classpartida_1_1_partida_grafica_a3b11d63e2d592d926ef4ca45a4148dc7}} 
+\index{partida.PartidaGrafica@{partida.PartidaGrafica}!crearEscenaPartida@{crearEscenaPartida}}
+\index{crearEscenaPartida@{crearEscenaPartida}!partida.PartidaGrafica@{partida.PartidaGrafica}}
+\doxysubsubsection{\texorpdfstring{crearEscenaPartida()}{crearEscenaPartida()}}
+{\footnotesize\ttfamily static void partida.\+Partida\+Grafica.\+crear\+Escena\+Partida (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Crea l\textquotesingle{}escena partida. 
+
+\begin{DoxyPrecond}{Precondition}
+-- 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+Escena de la partida creada on hi haurà el taulell i a la dreta una part amb diferents opcions per fer durant la partida 
+\end{DoxyPostcond}
+
+
+Definition at line 258 of file Partida\+Grafica.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_partida_grafica_a152d398be779196906064f031d898390}\label{classpartida_1_1_partida_grafica_a152d398be779196906064f031d898390}} 
+\index{partida.PartidaGrafica@{partida.PartidaGrafica}!crearEscenaPrincipal@{crearEscenaPrincipal}}
+\index{crearEscenaPrincipal@{crearEscenaPrincipal}!partida.PartidaGrafica@{partida.PartidaGrafica}}
+\doxysubsubsection{\texorpdfstring{crearEscenaPrincipal()}{crearEscenaPrincipal()}}
+{\footnotesize\ttfamily void partida.\+Partida\+Grafica.\+crear\+Escena\+Principal (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Crea l\textquotesingle{}escena principal. 
+
+\begin{DoxyPrecond}{Precondition}
+-- 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+Escena principal on l\textquotesingle{}usuari pot triar si començar una partida nova o carregar-\/ne una de començada o sortir. 
+\end{DoxyPostcond}
+
+
+Definition at line 76 of file Partida\+Grafica.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_partida_grafica_a8019015902aff562d5c2b747ccfe58c2}\label{classpartida_1_1_partida_grafica_a8019015902aff562d5c2b747ccfe58c2}} 
+\index{partida.PartidaGrafica@{partida.PartidaGrafica}!crearEscenaPromoció@{crearEscenaPromoció}}
+\index{crearEscenaPromoció@{crearEscenaPromoció}!partida.PartidaGrafica@{partida.PartidaGrafica}}
+\doxysubsubsection{\texorpdfstring{crearEscenaPromoció()}{crearEscenaPromoció()}}
+{\footnotesize\ttfamily static void partida.\+Partida\+Grafica.\+crear\+Escena\+Promoció (\begin{DoxyParamCaption}\item[{Border\+Pane}]{p,  }\item[{String}]{mov,  }\item[{int}]{x,  }\item[{int}]{y }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Crea panell per fer la promoció 
+
+\begin{DoxyPrecond}{Precondition}
+{\ttfamily p} és el panell de l\textquotesingle{}escena de la partida, necessari per funcionalitats on es requereix canviar l\textquotesingle{}escena, {\ttfamily mov} és el moviment que s\textquotesingle{}ha fet, necessàri per cridar el fer promoció lògic, {\ttfamily x} i {\ttfamily y} són les coordenades de la posició destí desgloçades 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+Es crea un panell on hi ha un label preguntant per quina peça es vol canviar i un botó per cada peça per la que es pugui fer la promoció 
+\end{DoxyPostcond}
+
+
+Definition at line 913 of file Partida\+Grafica.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_partida_grafica_ad79e50c713a3e043355a0f20f9cc5cea}\label{classpartida_1_1_partida_grafica_ad79e50c713a3e043355a0f20f9cc5cea}} 
+\index{partida.PartidaGrafica@{partida.PartidaGrafica}!crearFitxa@{crearFitxa}}
+\index{crearFitxa@{crearFitxa}!partida.PartidaGrafica@{partida.PartidaGrafica}}
+\doxysubsubsection{\texorpdfstring{crearFitxa()}{crearFitxa()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{classpartida_1_1_peca_grafica}{Peca\+Grafica}} partida.\+Partida\+Grafica.\+crear\+Fitxa (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classpartida_1_1_peca}{Peca}}}]{f,  }\item[{int}]{i,  }\item[{int}]{j,  }\item[{Border\+Pane}]{pane }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Crea la fitxa gràfica que anirà al taulell gràfic. 
+
+\begin{DoxyPrecond}{Precondition}
+{\ttfamily f} és la peça lògica que es vol representar gràficament, {\ttfamily i} i {\ttfamily j} són la columna i fila, respectivament on s\textquotesingle{}ha de posicionar la peça i {\ttfamily p} és el panell de l\textquotesingle{}escena de la partida, necessari per funcionalitats on es requereix canviar l\textquotesingle{}escena 
+\end{DoxyPrecond}
+\begin{DoxyReturn}{Returns}
+un node que conté un Border\+Pane on al top hi ha un label per els avisos útils per l\textquotesingle{}usuari, al centre hi ha les opcions que són diferents botons i al bottom hi ha un botó per sortir de l\textquotesingle{}aplicació 
+\end{DoxyReturn}
+
+
+Definition at line 727 of file Partida\+Grafica.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_partida_grafica_adba25a1c270fb61aadd0c60b50569e0c}\label{classpartida_1_1_partida_grafica_adba25a1c270fb61aadd0c60b50569e0c}} 
+\index{partida.PartidaGrafica@{partida.PartidaGrafica}!crearOpcions@{crearOpcions}}
+\index{crearOpcions@{crearOpcions}!partida.PartidaGrafica@{partida.PartidaGrafica}}
+\doxysubsubsection{\texorpdfstring{crearOpcions()}{crearOpcions()}}
+{\footnotesize\ttfamily static Node partida.\+Partida\+Grafica.\+crear\+Opcions (\begin{DoxyParamCaption}\item[{Border\+Pane}]{p }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Crea les opcions que es podran fer durant la partida. 
+
+\begin{DoxyPrecond}{Precondition}
+{\ttfamily p} és el panell de l\textquotesingle{}escena de la partida, necessari per funcionalitats on es requereix canviar l\textquotesingle{}escena 
+\end{DoxyPrecond}
+\begin{DoxyReturn}{Returns}
+un node que conté un Border\+Pane on al top hi ha un label per els avisos útils per l\textquotesingle{}usuari, al centre hi ha les opcions que són diferents botons i al bottom hi ha un botó per sortir de l\textquotesingle{}aplicació 
+\end{DoxyReturn}
+
+
+Definition at line 274 of file Partida\+Grafica.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_partida_grafica_a5d30947acec27f26fe79c92f36ef7efc}\label{classpartida_1_1_partida_grafica_a5d30947acec27f26fe79c92f36ef7efc}} 
+\index{partida.PartidaGrafica@{partida.PartidaGrafica}!crearPaneTaules@{crearPaneTaules}}
+\index{crearPaneTaules@{crearPaneTaules}!partida.PartidaGrafica@{partida.PartidaGrafica}}
+\doxysubsubsection{\texorpdfstring{crearPaneTaules()}{crearPaneTaules()}}
+{\footnotesize\ttfamily static Node partida.\+Partida\+Grafica.\+crear\+Pane\+Taules (\begin{DoxyParamCaption}\item[{Border\+Pane}]{p }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Crea un panell per acceptar/declinar les taules un cop s\textquotesingle{}han demanat. 
+
+\begin{DoxyPrecond}{Precondition}
+{\ttfamily p} és el panell de l\textquotesingle{}escena de la partida, necessari per funcionalitats on es requereix canviar l\textquotesingle{}escena 
+\end{DoxyPrecond}
+\begin{DoxyReturn}{Returns}
+un node que conté un text on indica a l\textquotesingle{}usuari quin dels dos ha demanat les taules i dos botons, un per acceptar les taules i l\textquotesingle{}altre per declinar-\/les 
+\end{DoxyReturn}
+
+
+Definition at line 634 of file Partida\+Grafica.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_partida_grafica_a1dc50141df65e823d704c335fa522383}\label{classpartida_1_1_partida_grafica_a1dc50141df65e823d704c335fa522383}} 
+\index{partida.PartidaGrafica@{partida.PartidaGrafica}!eliminarPeca@{eliminarPeca}}
+\index{eliminarPeca@{eliminarPeca}!partida.PartidaGrafica@{partida.PartidaGrafica}}
+\doxysubsubsection{\texorpdfstring{eliminarPeca()}{eliminarPeca()}}
+{\footnotesize\ttfamily static void partida.\+Partida\+Grafica.\+eliminar\+Peca (\begin{DoxyParamCaption}\item[{int}]{x,  }\item[{int}]{y }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+S\textquotesingle{}elimina una peça gràfica del taulell. 
+
+\begin{DoxyPrecond}{Precondition}
+{\ttfamily x} i {\ttfamily y} són les coordenades de la posició de la peça que s\textquotesingle{}ha d\textquotesingle{}eliminar 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+La peça que es trobava a la posició amb coordenades {\ttfamily x} i {\ttfamily y} s\textquotesingle{}ha eliminat del group \+\_\+fitxes i del taulell gràfic 
+\end{DoxyPostcond}
+
+
+Definition at line 998 of file Partida\+Grafica.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_partida_grafica_a48b17dbb8a97287ded8b22e864bcf719}\label{classpartida_1_1_partida_grafica_a48b17dbb8a97287ded8b22e864bcf719}} 
+\index{partida.PartidaGrafica@{partida.PartidaGrafica}!eliminarPeces@{eliminarPeces}}
+\index{eliminarPeces@{eliminarPeces}!partida.PartidaGrafica@{partida.PartidaGrafica}}
+\doxysubsubsection{\texorpdfstring{eliminarPeces()}{eliminarPeces()}}
+{\footnotesize\ttfamily static void partida.\+Partida\+Grafica.\+eliminar\+Peces (\begin{DoxyParamCaption}\item[{Border\+Pane}]{pane }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+S\textquotesingle{}eliminen les peces que han mort en la tirada. 
+
+\begin{DoxyPrecond}{Precondition}
+{\ttfamily pane} és el panell de l\textquotesingle{}escena de la partida, necessari per funcionalitats on es requereix canviar l\textquotesingle{}escena 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+Es demanen les peces eliminades en la tirada que s\textquotesingle{}ha realitzat i si n\textquotesingle{}hi ha, s\textquotesingle{}eliminen del taulell gràfic 
+\end{DoxyPostcond}
+
+
+Definition at line 883 of file Partida\+Grafica.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_partida_grafica_a32e9bb5299be820aef87ea3f58fda6bd}\label{classpartida_1_1_partida_grafica_a32e9bb5299be820aef87ea3f58fda6bd}} 
+\index{partida.PartidaGrafica@{partida.PartidaGrafica}!escenaSecundaria@{escenaSecundaria}}
+\index{escenaSecundaria@{escenaSecundaria}!partida.PartidaGrafica@{partida.PartidaGrafica}}
+\doxysubsubsection{\texorpdfstring{escenaSecundaria()}{escenaSecundaria()}}
+{\footnotesize\ttfamily void partida.\+Partida\+Grafica.\+escena\+Secundaria (\begin{DoxyParamCaption}\item[{int}]{opcio }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Crea l\textquotesingle{}escena secundaria. 
+
+\begin{DoxyPrecond}{Precondition}
+{\ttfamily opcio} si igual a 1 indica que es comença una partida, si val 2 es carrega una partida 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+Es crea una escena secundaria on l\textquotesingle{}usuari haurà d\textquotesingle{}entrar el nom del fitxer que necessita i {\ttfamily opcio} igual a 1, el nombre de jugadors, juntament amb un botó per confirmar el que ha entrat i un botó per anar a l\textquotesingle{}escena anterior en cas que s\textquotesingle{}hagi equivocat. 
+\end{DoxyPostcond}
+
+
+Definition at line 119 of file Partida\+Grafica.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_partida_grafica_a0660dc3c96c1da524877d0925fe17a87}\label{classpartida_1_1_partida_grafica_a0660dc3c96c1da524877d0925fe17a87}} 
+\index{partida.PartidaGrafica@{partida.PartidaGrafica}!main@{main}}
+\index{main@{main}!partida.PartidaGrafica@{partida.PartidaGrafica}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily static void partida.\+Partida\+Grafica.\+main (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Inicia l\textquotesingle{}aplicació d\textquotesingle{}escacs. 
+
+\begin{DoxyPrecond}{Precondition}
+-- 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+s\textquotesingle{}executa una aplicació per poder jugar a escacs 
+\end{DoxyPostcond}
+
+
+Definition at line 59 of file Partida\+Grafica.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_partida_grafica_ad83e144e7d5ba795b7fb3f4f594370e4}\label{classpartida_1_1_partida_grafica_ad83e144e7d5ba795b7fb3f4f594370e4}} 
+\index{partida.PartidaGrafica@{partida.PartidaGrafica}!modificarLblAvisos@{modificarLblAvisos}}
+\index{modificarLblAvisos@{modificarLblAvisos}!partida.PartidaGrafica@{partida.PartidaGrafica}}
+\doxysubsubsection{\texorpdfstring{modificarLblAvisos()}{modificarLblAvisos()}}
+{\footnotesize\ttfamily static void partida.\+Partida\+Grafica.\+modificar\+Lbl\+Avisos (\begin{DoxyParamCaption}\item[{String}]{s,  }\item[{Border\+Pane}]{p }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Modifica els avisos per l\textquotesingle{}usuari. 
+
+\begin{DoxyPrecond}{Precondition}
+{\ttfamily s} és l\textquotesingle{}avís que volem que es mostri per l\textquotesingle{}usuari i {\ttfamily p} és el panell de l\textquotesingle{}escena de la partida, necessari per funcionalitats on es requereix canviar l\textquotesingle{}escena 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+Label d\textquotesingle{}avisos modificat amb el nou avís siguent \textbackslash{}s 
+\end{DoxyPostcond}
+
+
+Definition at line 970 of file Partida\+Grafica.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_partida_grafica_a498453415ffc2f57ca641ab27a595319}\label{classpartida_1_1_partida_grafica_a498453415ffc2f57ca641ab27a595319}} 
+\index{partida.PartidaGrafica@{partida.PartidaGrafica}!passarTorn@{passarTorn}}
+\index{passarTorn@{passarTorn}!partida.PartidaGrafica@{partida.PartidaGrafica}}
+\doxysubsubsection{\texorpdfstring{passarTorn()}{passarTorn()}}
+{\footnotesize\ttfamily static void partida.\+Partida\+Grafica.\+passar\+Torn (\begin{DoxyParamCaption}\item[{Border\+Pane}]{p }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Es passa de torn. 
+
+\begin{DoxyPrecond}{Precondition}
+{\ttfamily p} és el panell de l\textquotesingle{}escena de la partida, necessari per trobar el panell d\textquotesingle{}opcions i poder indicar el canvi de torn graficament 
+\end{DoxyPrecond}
+\begin{DoxyReturn}{Returns}
+un node que conté un Border\+Pane on al top hi ha un label per els avisos útils per l\textquotesingle{}usuari, al centre hi ha les opcions que són diferents botons i al bottom hi ha un botó per sortir de l\textquotesingle{}aplicació 
+\end{DoxyReturn}
+
+
+Definition at line 985 of file Partida\+Grafica.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_partida_grafica_ac2e4eeec65c2ed97c1906157e4f8cdb2}\label{classpartida_1_1_partida_grafica_ac2e4eeec65c2ed97c1906157e4f8cdb2}} 
+\index{partida.PartidaGrafica@{partida.PartidaGrafica}!posTauler@{posTauler}}
+\index{posTauler@{posTauler}!partida.PartidaGrafica@{partida.PartidaGrafica}}
+\doxysubsubsection{\texorpdfstring{posTauler()}{posTauler()}}
+{\footnotesize\ttfamily static int partida.\+Partida\+Grafica.\+pos\+Tauler (\begin{DoxyParamCaption}\item[{double}]{p }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Calcula la posició al taulell gràfic. 
+
+\begin{DoxyPrecond}{Precondition}
+{\ttfamily p} són pixels 
+\end{DoxyPrecond}
+\begin{DoxyReturn}{Returns}
+un enter que és la posició del taulell gràfic dels píxels {\ttfamily p} 
+\end{DoxyReturn}
+
+
+Definition at line 1014 of file Partida\+Grafica.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_partida_grafica_a24051d5d02bee4cb623a58dd021c066e}\label{classpartida_1_1_partida_grafica_a24051d5d02bee4cb623a58dd021c066e}} 
+\index{partida.PartidaGrafica@{partida.PartidaGrafica}!prepararCentre@{prepararCentre}}
+\index{prepararCentre@{prepararCentre}!partida.PartidaGrafica@{partida.PartidaGrafica}}
+\doxysubsubsection{\texorpdfstring{prepararCentre()}{prepararCentre()}}
+{\footnotesize\ttfamily Node partida.\+Partida\+Grafica.\+preparar\+Centre (\begin{DoxyParamCaption}\item[{int}]{opcio }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Es prepara el centre per l\textquotesingle{}escena secundaria. 
+
+\begin{DoxyPrecond}{Precondition}
+{\ttfamily opcio} si igual a 1 indica que es comença una partida, si val 2 es carrega una partida 
+\end{DoxyPrecond}
+\begin{DoxyReturn}{Returns}
+Un node on hi haurà un Text\+Field perquè l\textquotesingle{}usuari hi entri el nom del fitxer, si {\ttfamily opcio} igual a 1, també hi haurà un Check\+Box per triar el nombre de jugadors i per últim un botó per confirmar les dades que ha entrat 
+\end{DoxyReturn}
+
+
+Definition at line 143 of file Partida\+Grafica.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_partida_grafica_acb4c99e7ee645483ab9f9955d320b117}\label{classpartida_1_1_partida_grafica_acb4c99e7ee645483ab9f9955d320b117}} 
+\index{partida.PartidaGrafica@{partida.PartidaGrafica}!realitzarTirada@{realitzarTirada}}
+\index{realitzarTirada@{realitzarTirada}!partida.PartidaGrafica@{partida.PartidaGrafica}}
+\doxysubsubsection{\texorpdfstring{realitzarTirada()}{realitzarTirada()}}
+{\footnotesize\ttfamily static void partida.\+Partida\+Grafica.\+realitzar\+Tirada (\begin{DoxyParamCaption}\item[{String}]{mov,  }\item[{int}]{newX,  }\item[{int}]{newY,  }\item[{\mbox{\hyperlink{classpartida_1_1_peca_grafica}{Peca\+Grafica}}}]{p,  }\item[{Border\+Pane}]{pane,  }\item[{int}]{oldX }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Realitza una tirada. 
+
+\begin{DoxyPrecond}{Precondition}
+{\ttfamily mov} és una string on hi ha el moviment que es vol fer, {\ttfamily newX} i newY són les noves posicions gràfiques on anirà la peça gràfica en cas de que la tirada s\textquotesingle{}hagi realitzat correctament, {\ttfamily p} és la peça gràfica amb la que es vol realitzar la tirada, {\ttfamily p} és el panell de l\textquotesingle{}escena de la partida, necessari per funcionalitats on es requereix canviar l\textquotesingle{}escena i {\ttfamily oldX} és la columna on estava la peça gràfica, necessari en el cas de que es fagi enroc per trobar on moure les peces de l\textquotesingle{}enroc. 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+S\textquotesingle{}ha intentat fer una tirada lògica i es processa el resultat que retorna\+: -\/si retorna tiradaV es mou {\ttfamily p} a {\ttfamily newX} i {\ttfamily newY} i es canvia de torn -\/si retorna tirada\+Mort s\textquotesingle{}eliminen les peces mortes i es mou {\ttfamily p} a {\ttfamily newX} i {\ttfamily newY} -\/si retorna no\+Tirada tornem {\ttfamily p} a la posició inicial ja que no s\textquotesingle{}ha pogur realitzar la tirada -\/si retorna promocio es mou {\ttfamily p} a {\ttfamily newX} {\ttfamily newY} i es demana per quina peça es vol promocionar -\/si retorna enroc\+Fet es busca l\textquotesingle{}altre peça participant a l\textquotesingle{}enroc i es mouen a les posicions que toquen i es passa de torn -\/si retorna escac si fa falta eliminem peçes que hagin mort en aquesta tirada, movem {\ttfamily p} a {\ttfamily newX} i {\ttfamily newY} i passem de torn -\/si retorna Escac\+Seguits s\textquotesingle{}acaba la partida per taules per masses torns seguits amb escac al rei d\textquotesingle{}un equip -\/si retorna Torns\+Inacció s\textquotesingle{}acaba la partida per taules per masses torns seguits sense cap peça morta -\/si retorna no\+Tirada\+Escac tornem {\ttfamily p} a la posició inicial perquè no s\textquotesingle{}ha pogut fer la tirada -\/si retorna escacmat s\textquotesingle{}acaba la partida per escac i mat i es canvia per una escena final -\/si retorna enroc\+No tornem {\ttfamily p} a la posició inicial perquè no s\textquotesingle{}ha pogut realitzar l\textquotesingle{}enroc demanat. 
+\end{DoxyPostcond}
+
+
+Definition at line 779 of file Partida\+Grafica.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_partida_grafica_a8861a2699c3708a4db945ab4c9087cb3}\label{classpartida_1_1_partida_grafica_a8861a2699c3708a4db945ab4c9087cb3}} 
+\index{partida.PartidaGrafica@{partida.PartidaGrafica}!start@{start}}
+\index{start@{start}!partida.PartidaGrafica@{partida.PartidaGrafica}}
+\doxysubsubsection{\texorpdfstring{start()}{start()}}
+{\footnotesize\ttfamily void partida.\+Partida\+Grafica.\+start (\begin{DoxyParamCaption}\item[{Stage}]{primary\+Stage }\end{DoxyParamCaption})}
+
+
+
+Definition at line 64 of file Partida\+Grafica.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_partida_grafica_ae8f669d8b229a9ce1b8e0d641ccdb91d}\label{classpartida_1_1_partida_grafica_ae8f669d8b229a9ce1b8e0d641ccdb91d}} 
+\index{partida.PartidaGrafica@{partida.PartidaGrafica}!topLabel@{topLabel}}
+\index{topLabel@{topLabel}!partida.PartidaGrafica@{partida.PartidaGrafica}}
+\doxysubsubsection{\texorpdfstring{topLabel()}{topLabel()}}
+{\footnotesize\ttfamily static Node partida.\+Partida\+Grafica.\+top\+Label (\begin{DoxyParamCaption}\item[{String}]{s,  }\item[{Read\+Only\+Double\+Property}]{d }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Crea el títol del top de l\textquotesingle{}escena secundaria. 
+
+\begin{DoxyPrecond}{Precondition}
+{\ttfamily s} és el text que es mostrarà com a títol, {\ttfamily d} és una variable perquè el label quedi centrat. 
+\end{DoxyPrecond}
+\begin{DoxyReturn}{Returns}
+un node on hi haurà el títol que es posarà a l\textquotesingle{}escena secundaria. 
+\end{DoxyReturn}
+
+
+Definition at line 221 of file Partida\+Grafica.\+java.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classpartida_1_1_partida_grafica_a1c16fb357c1b24c927cd4056e7157fef}\label{classpartida_1_1_partida_grafica_a1c16fb357c1b24c927cd4056e7157fef}} 
+\index{partida.PartidaGrafica@{partida.PartidaGrafica}!\_partida@{\_partida}}
+\index{\_partida@{\_partida}!partida.PartidaGrafica@{partida.PartidaGrafica}}
+\doxysubsubsection{\texorpdfstring{\_partida}{\_partida}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classpartida_1_1_partida}{Partida}} partida.\+Partida\+Grafica.\+\_\+partida\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Joc d\textquotesingle{}escacs. 
+
+
+
+Definition at line 50 of file Partida\+Grafica.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_partida_grafica_a99b5d0e1c1c6d4ed6c53df21d9e8f1e1}\label{classpartida_1_1_partida_grafica_a99b5d0e1c1c6d4ed6c53df21d9e8f1e1}} 
+\index{partida.PartidaGrafica@{partida.PartidaGrafica}!\_peces@{\_peces}}
+\index{\_peces@{\_peces}!partida.PartidaGrafica@{partida.PartidaGrafica}}
+\doxysubsubsection{\texorpdfstring{\_peces}{\_peces}}
+{\footnotesize\ttfamily Group partida.\+Partida\+Grafica.\+\_\+peces = new Group()\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Grup de peces. 
+
+
+
+Definition at line 52 of file Partida\+Grafica.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_partida_grafica_afd4f07c40af38b7c2855343facd09573}\label{classpartida_1_1_partida_grafica_afd4f07c40af38b7c2855343facd09573}} 
+\index{partida.PartidaGrafica@{partida.PartidaGrafica}!\_pixelsRajola@{\_pixelsRajola}}
+\index{\_pixelsRajola@{\_pixelsRajola}!partida.PartidaGrafica@{partida.PartidaGrafica}}
+\doxysubsubsection{\texorpdfstring{\_pixelsRajola}{\_pixelsRajola}}
+{\footnotesize\ttfamily int partida.\+Partida\+Grafica.\+\_\+pixels\+Rajola\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Pixels d\textquotesingle{}un costat de la rajola. 
+
+
+
+Definition at line 53 of file Partida\+Grafica.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_partida_grafica_a00ab60e43166e5d5b3673f55a9452ebd}\label{classpartida_1_1_partida_grafica_a00ab60e43166e5d5b3673f55a9452ebd}} 
+\index{partida.PartidaGrafica@{partida.PartidaGrafica}!\_rajoles@{\_rajoles}}
+\index{\_rajoles@{\_rajoles}!partida.PartidaGrafica@{partida.PartidaGrafica}}
+\doxysubsubsection{\texorpdfstring{\_rajoles}{\_rajoles}}
+{\footnotesize\ttfamily Group partida.\+Partida\+Grafica.\+\_\+rajoles = new Group()\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Grup de rajoles. 
+
+
+
+Definition at line 51 of file Partida\+Grafica.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_partida_grafica_aa674db9df0813654dc6c16aefff78bd4}\label{classpartida_1_1_partida_grafica_aa674db9df0813654dc6c16aefff78bd4}} 
+\index{partida.PartidaGrafica@{partida.PartidaGrafica}!escenaPartida@{escenaPartida}}
+\index{escenaPartida@{escenaPartida}!partida.PartidaGrafica@{partida.PartidaGrafica}}
+\doxysubsubsection{\texorpdfstring{escenaPartida}{escenaPartida}}
+{\footnotesize\ttfamily Scene partida.\+Partida\+Grafica.\+escena\+Partida\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Escena per jugar la partida. 
+
+
+
+Definition at line 48 of file Partida\+Grafica.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_partida_grafica_a5c3fdc92aab4287058a7cfd5bfab51a7}\label{classpartida_1_1_partida_grafica_a5c3fdc92aab4287058a7cfd5bfab51a7}} 
+\index{partida.PartidaGrafica@{partida.PartidaGrafica}!escenaPrincipal@{escenaPrincipal}}
+\index{escenaPrincipal@{escenaPrincipal}!partida.PartidaGrafica@{partida.PartidaGrafica}}
+\doxysubsubsection{\texorpdfstring{escenaPrincipal}{escenaPrincipal}}
+{\footnotesize\ttfamily Scene partida.\+Partida\+Grafica.\+escena\+Principal\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Primera escena de l\textquotesingle{}aplicació 
+
+
+
+Definition at line 46 of file Partida\+Grafica.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_partida_grafica_aaf72895b6f3c16e0fe523143af47ba78}\label{classpartida_1_1_partida_grafica_aaf72895b6f3c16e0fe523143af47ba78}} 
+\index{partida.PartidaGrafica@{partida.PartidaGrafica}!escenaSec@{escenaSec}}
+\index{escenaSec@{escenaSec}!partida.PartidaGrafica@{partida.PartidaGrafica}}
+\doxysubsubsection{\texorpdfstring{escenaSec}{escenaSec}}
+{\footnotesize\ttfamily Scene partida.\+Partida\+Grafica.\+escena\+Sec\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Escena per triar fitxers i si fes falta, el nombre de jugadors. 
+
+
+
+Definition at line 47 of file Partida\+Grafica.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_partida_grafica_a8d1fb2e5d97ade388af1d80b0319b4a6}\label{classpartida_1_1_partida_grafica_a8d1fb2e5d97ade388af1d80b0319b4a6}} 
+\index{partida.PartidaGrafica@{partida.PartidaGrafica}!window@{window}}
+\index{window@{window}!partida.PartidaGrafica@{partida.PartidaGrafica}}
+\doxysubsubsection{\texorpdfstring{window}{window}}
+{\footnotesize\ttfamily Stage partida.\+Partida\+Grafica.\+window\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Finestra de l\textquotesingle{}aplicació 
+
+
+
+Definition at line 49 of file Partida\+Grafica.\+java.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_partida_grafica_8java}{Partida\+Grafica.\+java}}\end{DoxyCompactItemize}

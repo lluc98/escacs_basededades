@@ -171,7 +171,7 @@ public class Historial {
         String origen = tirada.getString("origen");
         String desti = tirada.getString("desti");
 
-        boolean equip = torn == "BLANQUES";
+        boolean equip = torn.equalsIgnoreCase("BLANQUES");
         Posicio o = new Posicio(origen);
         Posicio d = new Posicio(desti);
         return new TiradaSimple(o, d, equip);
@@ -275,7 +275,7 @@ public class Historial {
         String origen = tirada.getString("origen");
         String desti = tirada.getString("desti");
 
-        boolean equip = torn == "BLANQUES";
+        boolean equip = torn.equalsIgnoreCase("BLANQUES");
         Posicio o = new Posicio(origen);
         Posicio d = new Posicio(desti);
         return new TiradaSimple(o, d, equip);

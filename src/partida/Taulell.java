@@ -183,6 +183,11 @@ public class Taulell {
         return null;
     }
 
+    /** @brief Comprova si hi ha un jaque mate. Si hi ha jaque mate retorna true
+     * @param t tirada de fa jaque
+     * @pre --
+     * @post mira si hi ha escac i mat o no
+     */
     public boolean hiHaJaqueMate(TiradaSimple t){
         Posicio pr = t.get_desti();
         Peca rei = _tauler.get(pr);
@@ -196,6 +201,11 @@ public class Taulell {
         return false;
     }
 
+    /** @brief Comprova si hi ha alguna peça que es pot ficar entre mig del recorregut de la tirada de jaque
+     * @param t tirada de fa jaque
+     * @pre --
+     * @post mira si alguna peça pot ficarse en mig la tirada o no
+     */
     public boolean potFicarseMig(TiradaSimple t){
         int x, y;
         x = 0;
@@ -240,6 +250,12 @@ public class Taulell {
         }
         return false;
     }
+
+    /** @brief Mira si es pot matar la peça que està amenaçan el rei
+     * @param t tirada de fa jaque
+     * @pre --
+     * @post mira si se pot matar a la peça amenaçant o no
+     */
     public boolean potMatarPeça(TiradaSimple t){
         Posicio p = t.get_origen();
         Peca peca = _tauler.get(p);
@@ -247,6 +263,11 @@ public class Taulell {
         return tiradaSimple != null;
     }
 
+    /** @brief Mira si el rei pot tirar a algun lloc estant amençat
+     * @param t tirada de fa jaque
+     * @pre --
+     * @post mira si el rei pot tirar o no
+     */
     public boolean potTirarRei(TiradaSimple t){
         Posicio pr = t.get_desti();
         int x = -1;

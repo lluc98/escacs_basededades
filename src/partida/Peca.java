@@ -170,21 +170,36 @@ public class Peca {
 
     }
 
+    /** @brief Promocio */
     public boolean getPromocio(){
         return _tipus.getPromocio();
     }
 
+    /** @brief  Incrementa el contador de moviments fet per aquesta peça
+     * @pre --
+     * @post _nMov incrementat
+     */
     public void incrementarMov(){
         _nMov++;
     }
+
+    /** @brief  Incrementa el contador de moviments fet per aquesta peça
+     * @pre --
+     * @post _nMov incrementat
+     */
     public void decrementarMov(){
         _nMov--;
     }
 
+    /** @brief getNMovs */
     public int getNMovs(){
         return  _nMov;
     }
 
+    /** @brief  Ficar que la peça no ha fet cap moviment
+     * @pre --
+     * @post moviments restaurats
+     */
     public void restaurarMov(){
         _primerMoviment=false;
     }

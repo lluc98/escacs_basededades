@@ -42,6 +42,10 @@ public class PartidaGrafica extends Application{
     private static Group _fitxes = new Group();
     private static int _pixelsRajola;
 
+    /** @brief  Inicia l'aplicació d'escacs
+     * @pre --
+     * @post s'executa una aplicació per poder jugar a escacs
+     */
     public static void main(){
         launch(); //crida init+start
     }
@@ -55,6 +59,10 @@ public class PartidaGrafica extends Application{
         window.show();
     }
 
+    /** @brief  Crea l'escena principal
+     * @pre --
+     * @post Escena principal on l'usuari pot triar si començar una partida nova o carregar-ne una de començada o sortir.
+     */
     private void crearEscenaPrincipal(){
         VBox opcions = new VBox(10);
         BorderPane root = new BorderPane();
@@ -90,6 +98,11 @@ public class PartidaGrafica extends Application{
         escenaPrincipal = new Scene(root, 500d, 500d);
     }
 
+    /** @brief  Crea l'escena secundaria
+     * @pre \p opcio si igual a 1 indica que es comença una partida, si val 2 es carrega una partida
+     * @post Es crea una escena secundaria on l'usuari haurà d'entrar el nom del fitxer que necessita i \p opcio igual a 1, el nombre de jugadors,
+     * juntament amb un botó per confirmar el que ha entrat i un botó per anar a l'escena anterior en cas que s'hagi equivocat.
+     */
     private void escenaSecundaria(int opcio){
         BorderPane root = new BorderPane();
 
@@ -109,6 +122,11 @@ public class PartidaGrafica extends Application{
 
     }
 
+    /** @brief  Es prepara el centre per l'escena secundaria
+     * @pre \p opcio si igual a 1 indica que es comença una partida, si val 2 es carrega una partida
+     * @return Un node on hi haurà un TextField perquè l'usuari hi entri el nom del fitxer, si \p opcio igual a 1, també hi haurà un CheckBox
+     * per triar el nombre de jugadors i per últim un botó per confirmar les dades que ha entrat
+     */
     private Node prepararCentre(int opcio) {
         TextField nomFitxer = new TextField();
         nomFitxer.setPromptText("Ex: nomFitxer.json");
@@ -123,8 +141,6 @@ public class PartidaGrafica extends Application{
         VBox vb = new VBox(10);
         Button subBtn = new Button("Submit");
         subBtn.setStyle("-fx-background-image: url(" + "/Images/woodTexture.png" + "); -fx-font-weight: bold");
-        Button rmvBtn = new Button("Cancelar");
-        rmvBtn.setStyle("-fx-background-image: url(" + "/Images/woodTexture.png" + "); -fx-font-weight: bold");
         ChoiceBox cb = new ChoiceBox();
         cb.getItems().addAll(0,1,2);
         cb.setStyle("-fx-background-image: url(" + "/Images/woodTexture.png" + "); -fx-font-weight: bold");
@@ -172,18 +188,15 @@ public class PartidaGrafica extends Application{
                 }
             }
         });
-        rmvBtn.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                nomFitxer.clear();
-            }
-        });
 
         vb.getChildren().addAll(subBtn, missatge);
         vb.setAlignment(Pos.CENTER);
         return vb;
     }
-
+    /** @brief  Crea el títol del top de l'escena secundaria
+     * @pre \p s és el text que es mostrarà com a títol, \p d és una variable perquè el label quedi centrat.
+     * @return un node on hi haurà el títol que es posarà a l'escena secundaria.
+     */
     private static Node topLabel(String s, ReadOnlyDoubleProperty d){
         Label lbl = new Label(s);
         lbl.setAlignment(Pos.BASELINE_CENTER);
@@ -194,6 +207,10 @@ public class PartidaGrafica extends Application{
         return lbl;
     }
 
+    /** @brief  Crea el botó per tirar enrere
+     * @pre \p s és el text que hi haurà dins el botó
+     * @return un node que serà contindrà un botó que tindrà la funcionalitat de tirar enrere i anar a l'escena principal
+     */
     private static Node botoInferior(String s){
         Pane root = new Pane();
         Button btnInf = new Button(s);
@@ -213,6 +230,10 @@ public class PartidaGrafica extends Application{
         return root;
     }
 
+    /** @brief  Crea l'escena partida
+     * @pre --
+     * @post Escena de la partida creada on hi haurà el taulell i a la dreta una part amb diferents opcions per fer durant la partida
+     */
     private static void crearEscenaPartida(){
         BorderPane root = new BorderPane();
         int files = _partida.getFiles();
@@ -224,10 +245,16 @@ public class PartidaGrafica extends Application{
         escenaPartida = new Scene(root);
     }
 
+    /** @brief  Crea les opcions que es podran fer durant la partida
+     * @pre \p p és el panell de l'escena de la partida, necessari per funcionalitats on es requereix canviar l'escena
+     * @return un node que conté un BorderPane on al top hi ha un label per els avisos útils per l'usuari, al centre hi ha
+     * les opcions que són diferents botons i al bottom hi ha un botó per sortir de l'aplicació
+     */
     private static Node crearOpcions(BorderPane p){
         BorderPane root = new BorderPane();
-        VBox opcionsGenerals = new VBox(15);
         root.setPrefWidth(300);
+
+        VBox opcionsGenerals = new VBox(15);
         Button redo = new Button("Refer");
         Button undo = new Button("Desfer");
         Button surrender = new Button("Rendir-se");
@@ -240,6 +267,7 @@ public class PartidaGrafica extends Application{
         postpone.setStyle("-fx-background-color: transparent; -fx-font-weight: bold; -fx-border-style: dotted; -fx-border-insets: 1 1 1 1;");
         tie.setStyle("-fx-background-color: transparent; -fx-font-weight: bold; -fx-border-style: dotted; -fx-border-insets: 1 1 1 1;");
         exit.setStyle("-fx-background-color: transparent; -fx-font-weight: bold; -fx-border-style: dotted; -fx-border-insets: 1 1 1 1; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 1, 1;");
+
         Label lbl = new Label("Torn de " + _partida.getProperTorn());
         lbl.setStyle("-fx-font-weight: bold;");
         redo.setOnAction(new EventHandler<ActionEvent>() {
@@ -465,6 +493,7 @@ public class PartidaGrafica extends Application{
                 window.setScene(s);
             }
         });
+
         HBox avisos = new HBox(15);
         Label av = new Label("No hi ha cap avís");
         av.setWrapText(true);
@@ -497,6 +526,11 @@ public class PartidaGrafica extends Application{
         return root;
     }
 
+    /** @brief  Crea un panell per acceptar/declinar les taules un cop s'han demanat
+     * @pre \p p és el panell de l'escena de la partida, necessari per funcionalitats on es requereix canviar l'escena
+     * @return un node que conté un text on indica a l'usuari quin dels dos ha demanat les taules i dos botons, un per
+     * acceptar les taules i l'altre per declinar-les
+     */
     private static Node crearPaneTaules(BorderPane p){
         VBox root = new VBox(10);
         root.setStyle("-fx-background-image: url("+ "/Images/darkWoodTexture.png" + ");-fx-background-size: stretch; -fx-padding: 50 0 0 0;");
@@ -542,18 +576,23 @@ public class PartidaGrafica extends Application{
         lbl.setAlignment(Pos.CENTER);
         si.setAlignment(Pos.CENTER);
         no.setAlignment(Pos.CENTER);
+
         root.setPadding(new Insets(20));
         root.getChildren().addAll(lbl, si, no);
         root.setAlignment(Pos.CENTER);
         return root;
     }
 
-
+    /** @brief  Crea el taulell i posiciona les peces
+     * @pre \p p és el panell de l'escena de la partida, necessari per funcionalitats on es requereix canviar l'escena
+     * @return un node que conté un Pane on hi ha el taulell muntat i les peces posades a la seva posició corresponent
+     */
     private static Node crearContingutPartida(BorderPane p){
         Image img1;
         img1 = new Image("/Images/fons1_2.png");
         Image img2;
         img2 = new Image("/Images/fons2_2.png");
+
         Pane root = new Pane();
         root.setPrefSize(_partida.getColumnes() * _pixelsRajola, _partida.getFiles() * _pixelsRajola);
         root.getChildren().addAll(_rajoles, _fitxes);
@@ -579,6 +618,12 @@ public class PartidaGrafica extends Application{
         return root;
     }
 
+    /** @brief  Crea la fitxa gràfica que anirà al taulell gràfic
+     * @pre \p f és la peça lògica que es vol representar gràficament, \p i i \p j són la columna i fila, respectivament
+     * on s'ha de posicionar la peça i \p p és el panell de l'escena de la partida, necessari per funcionalitats on es requereix canviar l'escena
+     * @return un node que conté un BorderPane on al top hi ha un label per els avisos útils per l'usuari, al centre hi ha
+     * les opcions que són diferents botons i al bottom hi ha un botó per sortir de l'aplicació
+     */
     private static PecaGrafica crearFitxa(Peca f, int i, int j,BorderPane pane){
         PecaGrafica p = new PecaGrafica(f, _pixelsRajola, i, j);
         p.setOnMouseReleased(new EventHandler<MouseEvent>() {
@@ -606,6 +651,27 @@ public class PartidaGrafica extends Application{
         return p;
     }
 
+    /** @brief  Realitza una tirada
+     * @pre \p mov és una string on hi ha el moviment que es vol fer, \p newX i newY són les noves posicions gràfiques
+     * on anirà la peça gràfica en cas de que la tirada s'hagi realitzat correctament, \p p és la peça gràfica amb la
+     * que es vol realitzar la tirada, \p p és el panell de l'escena de la partida, necessari per funcionalitats on es
+     * requereix canviar l'escena i \p oldX és la columna on estava la peça gràfica, necessari en el cas de que es
+     * fagi enroc per trobar on moure les peces de l'enroc.
+     * @post S'ha intentat fer una tirada lògica i es processa el resultat que retorna:
+     * -si retorna tiradaV es mou \p p a \p newX i \p newY i es canvia de torn
+     * -si retorna tiradaMort s'eliminen les peces mortes i es mou \p p a \p newX i \p newY
+     * -si retorna noTirada tornem \p p a la posició inicial ja que no s'ha pogur realitzar la tirada
+     * -si retorna promocio es mou \p p a \p newX \p newY i es demana per quina peça es vol promocionar
+     * -si retorna enrocFet es busca l'altre peça participant a l'enroc i es mouen a les posicions que toquen i es passa
+     * de torn
+     * -si retorna escac si fa falta eliminem peçes que hagin mort en aquesta tirada, movem \p p a \p newX i \p newY
+     * i passem de torn
+     * -si retorna EscacSeguits s'acaba la partida per taules per masses torns seguits amb escac al rei d'un equip
+     * -si retorna TornsInacció s'acaba la partida per taules per masses torns seguits sense cap peça morta
+     * -si retorna noTiradaEscac tornem \p p a la posició inicial perquè no s'ha pogut fer la tirada
+     * -si retorna escacmat s'acaba la partida per escac i mat i es canvia per una escena final
+     * -si retorna enrocNo tornem \p p a la posició inicial perquè no s'ha pogut realitzar l'enroc demanat.
+     */
     private static void realitzarTirada(String mov, int newX, int newY, PecaGrafica p, BorderPane pane, int oldX){
         String res;
         res = _partida.ferTirada(mov);
@@ -649,11 +715,9 @@ public class PartidaGrafica extends Application{
             p.move(newX, newY);
             passarTorn(pane);
         }else if(res.equalsIgnoreCase("EscacsSeguits")){
-            p.move(newX, newY);
             res = "Masses escacs seguits, s'acaba la partida en taules";
             _partida.taulesEscacsSeguits();
         }else if(res.equalsIgnoreCase("TornsInaniccio")){
-            p.move(newX, newY);
             res = "Masses torns sense acció, s'acaba la partida en taules";
             _partida.taulesTornsInaccio();
         }else if(res.equalsIgnoreCase("noTiradaEscac")){
@@ -676,6 +740,10 @@ public class PartidaGrafica extends Application{
         modificarLblAvisos(res, pane);
     }
 
+    /** @brief  Crea l'escena final de la partida quan un jugador guanya.
+     * @pre --
+     * @post Es crea l'escena amb un label indicant el jugador que ha guanyat, i un gif.
+     */
     private static void crearEscenaFinal(){
         VBox root = new VBox(30);
         root.setStyle("-fx-background-image: url(" + "/Images/darkWoodTexture.png" + "); -fx-backbround-size: stretch;");
@@ -699,6 +767,10 @@ public class PartidaGrafica extends Application{
         window.setScene(s);
     }
 
+    /** @brief  S'eliminen les peces que han mort en la tirada
+     * @pre \p pane és el panell de l'escena de la partida, necessari per funcionalitats on es requereix canviar l'escena
+     * @post Es demanen les peces eliminades en la tirada que s'ha realitzat i si n'hi ha, s'eliminen del taulell gràfic
+     */
     private static void eliminarPeces(BorderPane pane) {
         TreeMap<Posicio, Peca> eliminades = _partida.getTaulell().getEliminats();
         if(eliminades != null){
@@ -722,6 +794,13 @@ public class PartidaGrafica extends Application{
         }
     }
 
+    /** @brief  Crea panell per fer la promoció
+     * @pre \p p és el panell de l'escena de la partida, necessari per funcionalitats on es requereix canviar l'escena,
+     * \p mov és el moviment que s'ha fet, necessàri per cridar el fer promoció lògic, \p x i \p y són les coordenades
+     * de la posició destí desgloçades
+     * @post Es crea un panell on hi ha un label preguntant per quina peça es vol canviar i un botó per cada peça per
+     * la que es pugui fer la promoció
+     */
     private static void crearEscenaPromoció(BorderPane p, String mov, int x, int y){
         VBox root = new VBox(10);
         Label lbl = new Label("Per quina peça vols fer la promoció. Si no ho fas ara, no ho podras fer");
@@ -756,12 +835,19 @@ public class PartidaGrafica extends Application{
         }
         lbl.setAlignment(Pos.CENTER);
         lbl.setStyle("-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 15;");
+
         root.setAlignment(Pos.CENTER);
         root.setPadding(new Insets(20));
+
         p.setRight(root);
         p.setStyle("-fx-background-image: url(" + "/Images/darkWoodTexture.png" +"); -fx-background-size: stretch;");
     }
 
+    /** @brief  Modifica els avisos per l'usuari
+     * @pre \p s és l'avís que volem que es mostri per l'usuari i \p p és el panell de l'escena de la partida, necessari
+     * per funcionalitats on es requereix canviar l'escena
+     * @post Label d'avisos modificat amb el nou avís siguent \s
+     */
     private static void modificarLblAvisos(String s, BorderPane p){
         if(!s.equalsIgnoreCase("Escena promoció creada")){
             BorderPane dreta = (BorderPane) p.getRight();
@@ -771,6 +857,12 @@ public class PartidaGrafica extends Application{
         }
     }
 
+    /** @brief  Es passa de torn
+     * @pre \p p és el panell de l'escena de la partida, necessari per trobar el panell d'opcions i poder indicar el
+     * canvi de torn graficament
+     * @return un node que conté un BorderPane on al top hi ha un label per els avisos útils per l'usuari, al centre hi ha
+     * les opcions que són diferents botons i al bottom hi ha un botó per sortir de l'aplicació
+     */
     private static void passarTorn(BorderPane p){
         _partida.canviarTorn();
         BorderPane dreta = (BorderPane) p.getRight();
@@ -779,6 +871,11 @@ public class PartidaGrafica extends Application{
         lbl.setText("Torn de " + _partida.getProperTorn());
     }
 
+    /** @brief  S'elimina una peça gràfica del taulell
+     * @pre \p x i \p y són les coordenades de la posició de la peça que s'ha d'eliminar
+     * @post La peça que es trobava a la posició amb coordenades \p x i \p y s'ha eliminat del group _fitxes i del
+     * taulell gràfic
+     */
     private static void eliminarPeca(int x, int y){
         PecaGrafica pg = null;
         for(Node n : _fitxes.getChildren()){
@@ -791,6 +888,10 @@ public class PartidaGrafica extends Application{
         _fitxes.getChildren().remove(pg);
     }
 
+    /** @brief  Calcula la posició al taulell gràfic
+     * @pre \p p són pixels
+     * @return un enter que és la posició del taulell gràfic dels píxels \p p
+     */
     private static int posTauler(double p){
         return (int)(p+_pixelsRajola/2)/_pixelsRajola;
     }

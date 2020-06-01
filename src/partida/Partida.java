@@ -48,6 +48,10 @@ public class Partida {
         carregarPartida();
     }
 
+    /** @brief  Agafa les tirades que s'ha de fer del historia i les passa al taulell per a que es puguin realitzar
+     * @pre fitxer de carrega existent
+     * @post Tirades carregades
+     */
     public void carregarPartida(){
         for(int i = 0; i<=longTiradades(); i++){
             TiradaSimple tirada = getTirada(i);

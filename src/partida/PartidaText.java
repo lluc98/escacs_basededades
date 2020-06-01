@@ -114,10 +114,8 @@ public abstract class PartidaText {
             continuar = false;
             res.append("rendirse"); //ens podem permetre anar fent "new" ja que gràcies al garbage collector, no ocuparem memòria extra pels new, la memòria que estava ocupada anteriorment s'alliberarà
         }else if(s.equalsIgnoreCase("Taules")){
-            _partida.taules();
             res.append("taules");
         }else if(s.equalsIgnoreCase("Ajornar")){
-            _partida.ajornar();
             continuar = false;
             res.append("ajornar");
         }else if(s.equalsIgnoreCase("desfer")){

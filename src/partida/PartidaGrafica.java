@@ -431,7 +431,8 @@ public class PartidaGrafica extends Application{
                         }
                     }
                     pGraf.move((int)(tokens[1].charAt(0))-1-96,tokens[1].charAt(1)-1-48);
-                    if(tokens.length == 6){
+                    tokens = _partida.resultatUltimaTirada().split(" ");
+                    if(tokens.length == 0){
                         modificarLblAvisos("Enroc desfet", p);
                     }else{
                         modificarLblAvisos("Enroc desfet i escac al rei enemic", p);
@@ -461,6 +462,7 @@ public class PartidaGrafica extends Application{
                             }
                         }
                     }
+                    tokens = _partida.resultatUltimaTirada().split(" ");
                     if(tokens.length == 6){
                         modificarLblAvisos("Promoció desfeta i escac al rei enemic", p);
                     }else{

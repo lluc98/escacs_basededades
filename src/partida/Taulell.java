@@ -720,6 +720,13 @@ public class Taulell {
                 _promocio.remove(_promocio.size()-1);
                 _tauler.put(t.get_desti(),n);
                 resultat.append("PROMOCIÓ: " + v.getNom() + " - " + n.getNom());
+                TiradaSimple t2 = hihaJaque(t.get_equip());
+                if(t2 != null){
+                    resultat.append(" + ESCAC");
+                }
+                else{
+                    resultat.append("");
+                }
             }
             else{
                 TiradaSimple t2 = hihaJaque(t.get_equip());

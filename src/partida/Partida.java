@@ -471,4 +471,9 @@ public class Partida {
         guardarProperTorn(properTorn);
         Historial.guardarPartida("GUANYA EL JUGADOR DE LES PECES " + properTorn);
     }
+
+    public static String resultatUltimaTirada(){
+        return getUltimResultat();
+    }
+
 }

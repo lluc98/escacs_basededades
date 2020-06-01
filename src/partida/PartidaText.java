@@ -1,12 +1,23 @@
 package partida;
+/** @file PartidaText.java
+ * @brief Partida d'escacs en mode Text.
+ */
 
 import java.nio.file.NoSuchFileException;
 import java.util.Scanner;
 
+/** @class PartidaText
+ * @brief Versió d'un joc d'escacs amb peces personalitzables i
+ * taulells de mida variable, en mode text.
+ */
 public abstract class PartidaText {
 
-    private static Partida _partida;
+    private static Partida _partida;                ///< Objecte partida que controla la situacó de la partida
 
+    /** @brief  Inicia el joc
+     * @pre --
+     * @post Iniciador del joc, intordueixes les dades basiques i aquest crida els metodes necessaris.
+     */
     public static void iniciaAplicacio() throws Exception {
         Scanner teclat = new Scanner(System.in);
         System.out.println("Benvingut a l'aplicació!!");
@@ -55,6 +66,10 @@ public abstract class PartidaText {
         jugar();
     }
 
+    /** @brief  Crea un ombre de jugadors
+     * @pre --
+     * @post retorna el nombre de jugadors que entra l'usuari
+     */
     public static int demanarNjugadors(){
         Scanner teclat = new Scanner(System.in);
         String nombre = "";
@@ -65,6 +80,9 @@ public abstract class PartidaText {
         return Integer.parseInt(nombre);
     }
 
+    /** @pre --
+     * @post True si s és un enter, false altrament.
+     */
     public static boolean esEnter(String s) {
         try {
             Integer.parseInt(s);
@@ -76,6 +94,10 @@ public abstract class PartidaText {
         return true;
     }
 
+    /** @brief  Gestiona la partida
+     * @pre --
+     * @post S'ha jugat una partida
+     */
     private static void jugar() throws Exception {
         boolean continuar = true;
         StringBuilder colorTorn = new StringBuilder(_partida.getProperTorn());
@@ -103,6 +125,14 @@ public abstract class PartidaText {
         }while(continuar);
     }
 
+    /** @brief  Gestiona la tirada
+     * @param res Resultat de la tirada
+     * @param posInici Posició inicial de la tirada
+     * @param posFinal Posició final de la tirada
+     * @param colorTorn color del equip que fa la tirada
+     * @pre --
+     * @post retorna true si s'ha realitzat la tirada, false altrament
+     */
     private static boolean tirada(StringBuilder res, StringBuilder posInici, StringBuilder posFinal, StringBuilder colorTorn) throws Exception {
         Scanner teclat = new Scanner(System.in);
         boolean continuar = true;
@@ -169,6 +199,12 @@ public abstract class PartidaText {
         return continuar;
     }
 
+    /** @brief  Gestiona una promocio
+     * @param posInici Posició inicial de la tirada
+     * @param posFinal Posició final de la tirada
+     * @pre --
+     * @post retorna un missatge donant informació del resultat de la promoció
+     */
     private static String promocio(StringBuilder posInici, StringBuilder posFinal){
         Scanner teclat = new Scanner(System.in);
         String s = teclat.nextLine();
@@ -195,6 +231,9 @@ public abstract class PartidaText {
         return res;
     }
 
+    /** @pre --
+     * @post S'ha triat una Peça per a convertir la Peça promocionada.
+     */
     private static void menuPromocio(){
         String[] llsitaPeces = _partida.getLlistaPeces();
         System.out.println("Pots fer promoció d'aquestes peces");
@@ -205,6 +244,9 @@ public abstract class PartidaText {
         }
     }
 
+    /** @pre --
+     * @post S'ha guardat una partida que ha acabat amb taules
+     */
     private static boolean taules(){
         Scanner teclat = new Scanner(System.in);
         boolean correcte = false;
@@ -221,7 +263,12 @@ public abstract class PartidaText {
         return true;
     }
 
-
+    /** @brief  Processa un resultat d'una tirada
+     * @param res Resultat de la tirada
+     * @param colorTorn color del euqip actual
+     * @pre --
+     * @post retorna true si s'ha realitzat la tirada, false altrament.
+     */
     private static boolean processarRes(StringBuilder res, StringBuilder colorTorn) throws Exception {
         if(res.toString().equalsIgnoreCase("tiradaV")){ //S'ha realitzat la tirada i no ha passat res més
             System.out.println("S'ha realitzat la tirada correctament");
@@ -332,6 +379,10 @@ public abstract class PartidaText {
         return false;
     }
 
+    /** @brief  Llegeix la posició inicial que demana l'usuari i la processa
+     * @pre --
+     * @post Retorna un avís amb el resultat de la posició inicial que ha seleccionat l'usuari
+     */
     private static String llegirPosicioInici() throws Exception {
         boolean correcte = false;
         String s;
@@ -353,6 +404,10 @@ public abstract class PartidaText {
         return s;
     }
 
+    /** @brief  Llegeix la posició destí que demana l'usuari i la processa
+     * @pre --
+     * @post Retorna un avís amb el resultat de la posició destí que ha seleccionat l'usuari
+     */
     private static String llegirPosicioDesti() throws Exception {
         String correcte = "";
         String s;
@@ -372,6 +427,11 @@ public abstract class PartidaText {
         return correcte;
     }
 
+    /** @brief  Calcula si es correcte la posició d'origen que ha seleccionat l'usuari
+     * @param s valor de la posició origen
+     * @pre --
+     * @post retorna si la posició origen és vàlida, false altrament.
+     */
     private static boolean posicioCorrecteOrigen(String s) throws Exception {
         if(s.equals("")) {
             return false;
@@ -391,6 +451,11 @@ public abstract class PartidaText {
         return correcte;
     }
 
+    /** @brief  Calcula si es correcte la posició destí que ha seleccionat l'usuari
+     * @param s valor de la posició destí
+     * @pre --
+     * @post retorna si la posició destí és vàlida, false altrament.
+     */
     private static String posicioCorrecteDesti(String s) throws Exception {
         if(s.equals("")){
             return "no";

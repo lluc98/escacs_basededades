@@ -276,8 +276,8 @@
   "limitTornsInaccio": 50,
   "enrocs": [
     {
-      "peçaA": "REI",
-      "peçaB": "TORRE",
+      "pecaA": "REI",
+      "pecaB": "TORRE",
       "quiets": true,
       "buitAlMig": true
     }

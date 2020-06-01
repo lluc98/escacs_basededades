@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="jar" name="projecte-2020-d6:jar">
-    <output-path>$PROJECT_DIR$/out/artifacts/projecte_2020_d6_jar</output-path>
+    <output-path>$PROJECT_DIR$/jar/artifacts/projecte_2020_d6_jar</output-path>
     <root id="archive" name="projecte-2020-d6.jar">
       <element id="directory" name="META-INF">
         <element id="file-copy" path="$PROJECT_DIR$/jar/META-INF/MANIFEST.MF" />

@@ -21,16 +21,16 @@ public abstract class PartidaText {
     public static void iniciaAplicacio() throws Exception {
         Scanner teclat = new Scanner(System.in);
         System.out.println("Benvingut a l'aplicació!!");
-        System.out.println("Vols començar una partida o carregar-ne una de començada? (Començar/Carregar)");
+        System.out.println("Vols començar una partida o carregar-ne una de començada? (Comencar/Carregar)");
         String opcio = null;
         while(opcio == null){
             opcio = teclat.nextLine();
-            if (!opcio.equalsIgnoreCase("Començar") && !opcio.equalsIgnoreCase("Carregar")) {
-                System.out.println("Opcio incorrecte, introdueix-ne una correcte (Començar/Carregar)");
+            if (!opcio.equalsIgnoreCase("Comencar") && !opcio.equalsIgnoreCase("Carregar")) {
+                System.out.println("Opcio incorrecte, introdueix-ne una correcte (Comencar/Carregar)");
                 opcio = null;
             }
         }
-        if(opcio.equalsIgnoreCase("Començar")){
+        if(opcio.equalsIgnoreCase("Comencar")){
             int nJug = -1;
             while(nJug < 0 || nJug > 2){
                 nJug = demanarNjugadors();

@@ -161,8 +161,8 @@ public class LlegirFitxers {
 
             for (int i=0; i<enrocs.length(); i++) {
                 JSONObject enroc = enrocs.getJSONObject(i);
-                String pecaA = enroc.getString("peçaA");
-                String pecaB = enroc.getString("peçaB");
+                String pecaA = enroc.getString("pecaA");
+                String pecaB = enroc.getString("pecaB");
                 boolean quiets = enroc.getBoolean("quiets");
                 boolean buitAlMig = enroc.getBoolean("buitAlMig");
                 CaracteristiquesEnroc ce = new CaracteristiquesEnroc(pecaA, pecaB, quiets, buitAlMig);

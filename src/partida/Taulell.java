@@ -546,19 +546,21 @@ public class Taulell {
      * @pre --
      * @post Refa les tirades a partir d'una partida anterior per a que es pugui seguir.
      */
-    public void carregarTirades(TiradaSimple t, String resultat, TreeMap<String,TipusPeca> mapTipus) {
+    public void carregarTirades(TiradaSimple t, String resultat, TreeMap<String,TipusPeca> mapTipus, String Torn) {
         Peca p = _tauler.get(t.get_origen());
         if (!resultat.isEmpty()) {
             StringTokenizer defaultTokenizer = new StringTokenizer(resultat);
             String s = defaultTokenizer.nextToken();
             if (s.equalsIgnoreCase("PROMOCIÓ:")) {
+                boolean equip = false;
+                if(Torn.equalsIgnoreCase("BLANQUES")) equip = true;
                 String vella = defaultTokenizer.nextToken();
                 defaultTokenizer.nextToken();
                 String nova = defaultTokenizer.nextToken();
                 Peca v = new Peca(vella, t.get_equip(), mapTipus);
-                Peca n = new Peca(nova, t.get_equip(), mapTipus);
+                Peca n = new Peca(nova, equip, mapTipus);
                 realitzarTirada(t);
-                _tauler.put(t.get_origen(), n);
+                _tauler.put(t.get_desti(), n);
 
             } else if (s.equalsIgnoreCase("ENROC:")) {
                 Posicio p1origen = new Posicio(defaultTokenizer.nextToken());

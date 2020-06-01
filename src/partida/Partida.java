@@ -53,7 +53,8 @@ public class Partida {
         for(int i = 0; i<=longTiradades(); i++){
             TiradaSimple tirada = getTirada(i);
             String res = getResultat(i);
-            taulell.carregarTirades(tirada,res,conjuntPeces);
+            String torn = getTorn(i);
+            taulell.carregarTirades(tirada,res,conjuntPeces,torn);
         }
     }
 
@@ -159,7 +160,7 @@ public class Partida {
      * @post S'ha realitzat una tirada
      */
     public String ferTirada (String tirada) {
-        boolean colorTorn = "BLANQUES" == properTorn;
+        boolean colorTorn = properTorn.equalsIgnoreCase("BLANQUES");
         Jugador jugadorActual = jugadorBlanques;
         StringBuilder resultat = new StringBuilder();
         if (colorTorn != jugadorBlanques.get_equip()) {

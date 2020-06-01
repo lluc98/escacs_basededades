@@ -66,7 +66,7 @@ public class Moviment {
         String x = _horitzontal.substring(_horitzontal.length()-1);
         String y = _vertical.substring(_vertical.length()-1);
         if(x.equals(y)){
-            if(Math.abs(t.get_desplaçamentX()) != Math.abs(t.get_desplacamentY())){
+            if(Math.abs(t.get_desplaçamentX()) != Math.abs(t.get_desplacamentY()) || (t.get_desplaçamentX()==0 && t.get_desplacamentY()==0)){
                 return false;
             }
         }

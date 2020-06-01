@@ -11,17 +11,8 @@ import javafx.application.Application;
 public abstract class JocEscacs {
 
     /**
-     @pre \p args és N M -g on 8 <= N <= 26 i 2 <= M <= 26
-     @post S'executa un joc d'Escacs amb N files i M columnes; amb l'opció -g s'executa en mode gràfic
-     @details 1.-Preguntar si es vol començar una partida o carregar-ne una
-      * 2.1-Si es vol començar una partida, preguntar pel fitxer de regles (es pregunta aqui perquè si ho preguntessim després de preguntar si es vol que
-      * sigui de text o gràfic, repetiriem codi)
-      * 2.1.1.-Preguntar si es vol crear una partida de text o gràfica
-      * 2.1.1.1.- Si es vol partida de text, crear un "partidaText" on li passem el nom del fitxer de regles que hem demanat abans
-      * 2.1.2.1- ((partida grafica))
-      *
-      * 2.2.-Si es volgués carregar una partida, demanar el nom del fitxer on hi ha la partida que volem carregar.
-     *
+     @pre \p args és per veure si s'executa l'aplicació en mode text o en mode gràfic
+     @post S'executa un joc d'Escacs; amb el paràmetre -g s'executa en mode gràfic
      */
     public static void main(String[] args){
         try {

@@ -114,8 +114,10 @@ public abstract class PartidaText {
             continuar = false;
             res.append("rendirse"); //ens podem permetre anar fent "new" ja que gràcies al garbage collector, no ocuparem memòria extra pels new, la memòria que estava ocupada anteriorment s'alliberarà
         }else if(s.equalsIgnoreCase("Taules")){
+            _partida.taules();
             res.append("taules");
         }else if(s.equalsIgnoreCase("Ajornar")){
+            _partida.ajornar();
             continuar = false;
             res.append("ajornar");
         }else if(s.equalsIgnoreCase("desfer")){
@@ -155,8 +157,6 @@ public abstract class PartidaText {
                     System.out.println("Fail");
                     System.exit(-1);
                 }
-            }else{//si entra aqui sabem segur que ha retornat "no", per tant, que no vol moure la peça que ha dit
-                System.out.println("Pots tornar a entrar la posició Inicial");
             }
             String[] tokensRes = res.toString().split(" ");
             if(res.toString().equalsIgnoreCase("EscacsSeguits") || res.toString().equalsIgnoreCase("TornsInaniccio") || res.toString().equalsIgnoreCase("escacmat")){
@@ -280,7 +280,7 @@ public abstract class PartidaText {
                     }else{
                         System.out.println("BLANC");
                     }
-                    //_partida.escacIMat();
+                    _partida.escacIMat();
                 }
 
             }
@@ -298,13 +298,21 @@ public abstract class PartidaText {
         }else if(res.toString().contains("enrocFet")) { //s'ha fet l'enroc
             System.out.println("S'ha fet l'enroc");
             String[] tokens = res.toString().split(" ");
-            if(tokens.length > 1){
-                System.out.println("Escac al rei ");
+            if(tokens[1].equalsIgnoreCase("escac")){
+                System.out.print("Escac al rei ");
                 if(colorTorn.toString().equals("BLANQUES")){
                     System.out.println("NEGRE");
                 }else{
                     System.out.println("BLANC");
                 }
+            }else{ //escac i mat
+                System.out.print("Hi ha escac i mat a les fitxes ");
+                if(colorTorn.toString().equals("BLANQUES")){
+                    System.out.println("NEGRE");
+                }else{
+                    System.out.println("BLANC");
+                }
+                _partida.escacIMat();
             }
             return true;
         }else if(res.toString().equalsIgnoreCase("EscacsSeguits")){ //masses escacs seguits, s'acaba la partida
@@ -317,6 +325,8 @@ public abstract class PartidaText {
         }else if(res.toString().equalsIgnoreCase("escacmat")){ //escac i mat, s'acaba la partida
             System.out.println("Escac i mat!! El jugador " + _partida.getProperTorn() + " ha guanyat la partida");
             _partida.escacIMat();
+        }else if(res.toString().equalsIgnoreCase("no")){
+            System.out.println("Pots tornar a entrar la posició Inicial");
         }
         else{
             throw new Exception("Ha passat algun error");

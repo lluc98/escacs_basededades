@@ -39,7 +39,6 @@ public class Partida {
     public Partida(String fitxerPartida) throws Exception {
         boolean comencada = true;
         fitxerEntradaPartida.llegirPartidaComencada(fitxerPartida, comencada);
-        System.out.println("S'ha liat");
         carregarPartidaAnterior(fitxerPartida, fitxerEntradaPartida);
         conjuntPeces = fitxerEntradaPartida.getConjuntPeces();
         taulell = fitxerEntradaPartida.getTaulell();
@@ -79,7 +78,7 @@ public class Partida {
 
     /** @brief Canvia de torn */
     public String canviarTorn() {
-        if (properTorn == "BLANQUES") {
+        if (properTorn.equalsIgnoreCase("BLANQUES")) {
             properTorn = "NEGRES";
         } else {
             properTorn = "BLANQUES";

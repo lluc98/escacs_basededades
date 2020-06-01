@@ -145,7 +145,7 @@ public class Historial {
      * @param t Tiarada que s'ha realitzat
      * @param resultat Resultat de la tirada realitzada
      * @pre --
-     * @post Tots els atributs de tiradaa i resultat guardats en el fitxer JSON
+     * @post Tots els atributs de tirada i resultat guardats en el fitxer JSON
      */
     public static void guardarTirada(TiradaSimple t, String resultat) {
         JSONObject infoTirada = new JSONObject();
@@ -188,25 +188,11 @@ public class Historial {
 
     /** @brief  Partida guardad en un Fitxer i el valor del Resultat
      * @pre --
-     * @post S'ha guardat una partida en un Fitxer assignant un resultat "" o amb valor.
+     * @post S'ha guardat una partida en un Fitxer assignant un resultat.
      */
     public static void guardarPartida(String resultat) {
-        //resultat = "BLANQUES", han guanyat les blanques, "NEGRES" viceversa
-        //resultat = "TAULES"
-        //resultat = "AJORNAT"
 
-        String contingut = "";
-
-
-        if (resultat.equalsIgnoreCase("BLANQUES")) {
-            partida.put("resultat_final", "BLANQUES GUANYEN");
-        } else if (resultat.equalsIgnoreCase("NEGRES")) {
-            partida.put("resultat_final", "NEGRES GUANYEN");
-        } else if (resultat.equalsIgnoreCase("TAULES")) {
-            partida.put("resultat_final", "TAULES");
-        } else {
-            partida.put("resultat_final", "AJORNAMENT");
-        }
+        partida.put("resultat_final", resultat);
 
         String a = partida.toString();
         try {
@@ -287,6 +273,10 @@ public class Historial {
         return tirades.length()-1;
     }
 
+    /** @brief  Afegeix un resultat a l'última tirada
+     * @pre --
+     * @post S'ha guradat a partida el resultat de l'ultima tirada
+     */
     public static void afegirResultatUltimaTirada(String resultat) {
         JSONArray tirades = partida.getJSONArray("tirades");
         JSONObject tirada = tirades.getJSONObject(tirades.length() - 1);
@@ -294,6 +284,7 @@ public class Historial {
         tirada.put("resultat", s+resultat);
     }
 
+    /** @brief Cert si l'Array de tirades és buit, false altrament */
     public static boolean fitxerTiradesBuit(){
         JSONArray tirades = partida.getJSONArray("tirades");
         return tirades.length()==0;

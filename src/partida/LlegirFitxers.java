@@ -8,12 +8,9 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.NoSuchFileException;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.TreeMap;
-
-import static partida.Historial.*;
 
 /** @class LlegirFitxers
  * @brief Classe de lectura de fitxers d'entrada
@@ -32,14 +29,17 @@ public class LlegirFitxers {
     private JSONArray posIniNegres;                                           ///< Llista de posicions inicials de l'equip de peces Negres
     private JSONArray tirades;                                                ///< Llista de tirades realitzades.
 
+    /** @brief Conjunt de Tirades */
     public JSONArray getTirades() {
         return tirades;
     }
 
+    /** @brief Posicions inicials del equip de Peces blanques */
     public JSONArray getPosIniBlanques() {
         return posIniBlanques;
     }
 
+    /** @brief Posicions inicials del equip de Peces negres */
     public JSONArray getPosIniNegres() {
         return posIniNegres;
     }
@@ -173,7 +173,7 @@ public class LlegirFitxers {
     /** @brief  Llegeix el fitxer de Partida
      * @param path drecera del fitxer de Partida
      * @pre path és vàlid
-     * @post totes les variables del fitxer de Partida estan assignades. La Partida no està acabada.
+     * @post totes les variables del fitxer de Partida estan assignades. La Partida està acabada.
      */
     public String llegirPartidaAcabada (String path) throws  Exception{
         try {

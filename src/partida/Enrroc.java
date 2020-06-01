@@ -87,7 +87,7 @@ public class Enrroc {
     /** @brief Realitza l'acció de l'Enrroc
      * @param t Valor del Taulell
      * @pre --
-     * @post true s'ha realitzat l'Enrroc, false altrament.
+     * @post retorna l'enrroc que s'ha realitzat
      */
     public String realitzarEnroc(Taulell t){
         int posCentral;

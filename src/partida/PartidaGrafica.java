@@ -321,9 +321,9 @@ public class PartidaGrafica extends Application{
 
                     //en el refer no hi haurà escac i mat.
                     if(tokens.length == 6){
-                        modificarLblAvisos("Enroc desfet", p);
+                        modificarLblAvisos("Enroc refet", p);
                     }else{
-                        modificarLblAvisos("Enroc desfet i escac al rei enemic", p);
+                        modificarLblAvisos("Enroc refet i escac al rei enemic", p);
                     }
                     _partida.canviarTorn();
                     lbl.setText("Torn de " + _partida.getProperTorn());
@@ -336,38 +336,7 @@ public class PartidaGrafica extends Application{
                     //ens assegurem que si s'ha eliminat peces, s'eliminin també
                     TreeMap<Posicio, Peca> eliminades = _partida.getTaulell().getEliminats();
                     if(eliminades != null){
-                        Iterator<Map.Entry<Posicio, Peca>> it = eliminades.entrySet().iterator();
-                        while(it.hasNext()){
-                            Map.Entry<Posicio, Peca> entry = it.next();
-                            Posicio pos = entry.getKey();
-                            Peca peca = entry.getValue();
-                            if(peca!=null){
-                                PecaGrafica pGrafi = crearFitxa(peca, pos.get_columna()-1, pos.get_fila()-1, p);
-                                _peces.getChildren().add(pGrafi);
-                            }
-                        }
-                    }
-
-                    Peca f = _partida.getPeca(new Posicio(tirada.get_desti().get_fila(), tirada.get_desti().get_columna()));
-                    if(f!=null){
-                        pGraf = crearFitxa(f, tirada.get_desti().get_columna()-1, tirada.get_desti().get_fila()-1, p);
-                        _peces.getChildren().add(pGraf);
-                    }
-
-                    //en el refer no hi haurà escac i mat.
-                    if(tokens.length == 4){
-                        modificarLblAvisos("Promoció refeta", p);
-                    }else{
-                        modificarLblAvisos("Promoció refeta i escac al rei enemic", p);
-                    }
-
-                    _partida.canviarTorn();
-                    lbl.setText("Torn de " + _partida.getProperTorn());
-
-                }else if(tirada != null){ //tirada normal
-                    //mirem si hi s'havia eliminat alguna peça a la tirada que volem refer.
-                    TreeMap<Posicio, Peca> eliminades = _partida.getTaulell().getEliminats();
-                    if(eliminades != null){
+                        pGraf = null;
                         Iterator<Map.Entry<Posicio, Peca>> it = eliminades.entrySet().iterator();
                         while(it.hasNext()){
                             Map.Entry<Posicio, Peca> entry = it.next();
@@ -381,7 +350,41 @@ public class PartidaGrafica extends Application{
                             }
                             _peces.getChildren().remove(pGraf);
                         }
+                    }
+                    Peca f = _partida.getPeca(new Posicio(tirada.get_desti().get_fila(), tirada.get_desti().get_columna()));
+                    if(f!=null){
+                        pGraf = crearFitxa(f, tirada.get_desti().get_columna()-1, tirada.get_desti().get_fila()-1, p);
+                        _peces.getChildren().add(pGraf);
+                    }
 
+                    //en el refer no hi haurà escac i mat.
+                    if(tokens.length == 6){
+                        modificarLblAvisos("Promoció refeta i escac al rei enemic", p);
+                    }else{
+                        modificarLblAvisos("Promoció refeta", p);
+                    }
+
+                    _partida.canviarTorn();
+                    lbl.setText("Torn de " + _partida.getProperTorn());
+
+                }else if(tirada != null){ //tirada normal
+                    //mirem si hi s'havia eliminat alguna peça a la tirada que volem refer.
+                    TreeMap<Posicio, Peca> eliminades = _partida.getTaulell().getEliminats();
+                    if(eliminades != null){
+                        pGraf = null;
+                        Iterator<Map.Entry<Posicio, Peca>> it = eliminades.entrySet().iterator();
+                        while(it.hasNext()){
+                            Map.Entry<Posicio, Peca> entry = it.next();
+                            Posicio pos = entry.getKey();
+                            itr = _peces.getChildren().iterator();
+                            while(itr.hasNext()){
+                                pGraf = (PecaGrafica) itr.next();
+                                if(posTauler(pGraf.get_oldX()) == pos.get_columna()-1 && posTauler(pGraf.get_oldY()) == pos.get_fila()-1){ //resto 1 perquè en lluc no fa servir la posició 0 i jo si i després resto l'altre numero perquè retorna en codi ascii
+                                    break;
+                                }
+                            }
+                            _peces.getChildren().remove(pGraf);
+                        }
                     }
                     itr = _peces.getChildren().iterator();
                     while(itr.hasNext()){
@@ -390,10 +393,10 @@ public class PartidaGrafica extends Application{
                             break;
                         }
                     }
-                    if(tokens.length == 0){
-                        modificarLblAvisos("Tirada refeta", p);
-                    }else{
+                    if(tokens.length > 1){
                         modificarLblAvisos("Tirada refeta i escac al rei enemic", p);
+                    }else{
+                        modificarLblAvisos("Tirada refeta", p);
                     }
                     pGraf.move(tirada.get_desti().get_columna()-1, tirada.get_desti().get_fila()-1);
                     _partida.canviarTorn();
@@ -458,10 +461,10 @@ public class PartidaGrafica extends Application{
                             }
                         }
                     }
-                    if(tokens.length == 4){
-                        modificarLblAvisos("Promoció desfeta", p);
-                    }else{
+                    if(tokens.length == 6){
                         modificarLblAvisos("Promoció desfeta i escac al rei enemic", p);
+                    }else{
+                        modificarLblAvisos("Promoció desfeta", p);
                     }
                     _partida.canviarTorn();
                     lbl.setText("Torn de " + _partida.getProperTorn());
@@ -488,10 +491,10 @@ public class PartidaGrafica extends Application{
                             }
                         }
                     }
-                    if(tokens.length == 0){
-                        modificarLblAvisos("Tirada desfeta", p);
-                    }else{
+                    if(tokens.length > 1){
                         modificarLblAvisos("Tirada desfeta i escac al rei enemic", p);
+                    }else{
+                        modificarLblAvisos("Tirada desfeta", p);
                     }
                     _partida.canviarTorn();
                     lbl.setText("Torn de " + _partida.getProperTorn());

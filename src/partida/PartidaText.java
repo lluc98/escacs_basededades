@@ -110,8 +110,11 @@ public abstract class PartidaText {
             if(res.toString().equals("taules")){
                 continuar = taules();
                 res = new StringBuilder(); //entrarà al processarRes però no farà cap acció
-            }else if(res.toString().equalsIgnoreCase("promocio")){
+            }else if(res.toString().contains("promocio")){
                 res = new StringBuilder(promocio(posInici, posFinal));
+                if(res.toString().contains("escacmat")){
+                    continuar = false;
+                }
             }else{
                 posInici = new StringBuilder(); //fem això perquè a l'hora de fer append no es borra el que hi havia i si fem new dins del mètode, no es retorna el que se li ha posat
                 posFinal = new StringBuilder();
@@ -181,10 +184,14 @@ public abstract class PartidaText {
                 }else if(tokens[0].equalsIgnoreCase("enroc")){
                     posFinal.append(tokens[1]);
                     res.append(_partida.ferTirada(posInici.toString() + "- " + tokens[1]));
-                }else{
+                }
+                else{
                     System.out.println("Fail");
                     System.exit(-1);
                 }
+            }else if(segPos.equalsIgnoreCase("no")){
+                res.append("no");
+                return true;
             }
             String[] tokensRes = res.toString().split(" ");
             if(res.toString().equalsIgnoreCase("EscacsSeguits") || res.toString().equalsIgnoreCase("TornsInaniccio") || res.toString().equalsIgnoreCase("escacmat")){
@@ -219,12 +226,10 @@ public abstract class PartidaText {
                 if(res.equalsIgnoreCase("noPromValid")){
                     System.out.println("Peça no vàlida, entra'n una de vàlida");
                 }
-            }while(!res.contains("siProm"));
-            String[] tokens = res.split(" ");
-            if(tokens.length > 1){
-                res = tokens[1];
+            }while(!res.contains("siProm") && !res.equalsIgnoreCase("escacmat"));
+            if(res.equalsIgnoreCase("escacmat")){
+                res = "siProm escacmat";
             }
-            res = res + " " + "siProm";
         }else{
             res = res + "noProm";
         }
@@ -295,10 +300,12 @@ public abstract class PartidaText {
             System.out.println("El millor atac és una bona defensa! Compte amb el teu rei.");
         }else if(res.toString().equalsIgnoreCase("desfer fet")){ //s'ha desfet un moviment
             System.out.println("S'ha desfer l'ultim moviment");
+            return true;
         }else if(res.toString().equalsIgnoreCase("noDesfer")){ //no queden moviments per desfer
             System.out.println("No queden moviments per desfer");
         }else if(res.toString().equalsIgnoreCase("refer fet")){ //s'ha refet un moviment
             System.out.println("S'ha refet la tirada");
+            return true;
         }else if(res.toString().equalsIgnoreCase("noRefer")){ //no queden moviments per refer
             System.out.println("No queden moviments per refer.");
         }else if(res.toString().equalsIgnoreCase("promocio")){ //L'usuari pot triar si fer o no promoció
@@ -314,18 +321,19 @@ public abstract class PartidaText {
                 if(tokens[1].equalsIgnoreCase("escac")){
                     System.out.print("Escac al rei ");
                     if(colorTorn.toString().equals("BLANQUES")){
-                        System.out.println("NEGRE");
+                        System.out.println("NEGRES");
                     }else{
-                        System.out.println("BLANC");
+                        System.out.println("BLANQUES");
                     }
                 }else{ //escac i mat
                     System.out.print("Hi ha escac i mat a les fitxes ");
                     if(colorTorn.toString().equals("BLANQUES")){
-                        System.out.println("NEGRE");
+                        System.out.println("NEGRES");
                     }else{
-                        System.out.println("BLANC");
+                        System.out.println("BLANQUES");
                     }
                     _partida.escacIMat();
+                    return false;
                 }
 
             }
@@ -343,22 +351,25 @@ public abstract class PartidaText {
         }else if(res.toString().contains("enrocFet")) { //s'ha fet l'enroc
             System.out.println("S'ha fet l'enroc");
             String[] tokens = res.toString().split(" ");
-            if(tokens[1].equalsIgnoreCase("escac")){
-                System.out.print("Escac al rei ");
-                if(colorTorn.toString().equals("BLANQUES")){
-                    System.out.println("NEGRE");
-                }else{
-                    System.out.println("BLANC");
+            if(tokens.length > 1){
+                if(tokens[1].equalsIgnoreCase("escac")){
+                    System.out.print("Escac al rei ");
+                    if(colorTorn.toString().equals("BLANQUES")){
+                        System.out.println("NEGRES");
+                    }else{
+                        System.out.println("BLANQUES");
+                    }
+                }else{ //escac i mat
+                    System.out.print("Hi ha escac i mat a les fitxes ");
+                    if(colorTorn.toString().equals("BLANQUES")){
+                        System.out.println("NEGRES");
+                    }else{
+                        System.out.println("BLANQUES");
+                    }
+                    _partida.escacIMat();
                 }
-            }else{ //escac i mat
-                System.out.print("Hi ha escac i mat a les fitxes ");
-                if(colorTorn.toString().equals("BLANQUES")){
-                    System.out.println("NEGRE");
-                }else{
-                    System.out.println("BLANC");
-                }
-                _partida.escacIMat();
             }
+
             return true;
         }else if(res.toString().equalsIgnoreCase("EscacsSeguits")){ //masses escacs seguits, s'acaba la partida
             _partida.taulesEscacsSeguits();

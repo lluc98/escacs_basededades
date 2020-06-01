@@ -251,6 +251,18 @@ public class Historial {
         return tirada.getString("resultat");
     }
 
+    /** @brief  Obté el torn de la Tirada numero i.
+     * @pre i esta dins el rang de tirades fetes.
+     * @post Retorna un String amb el torn de la tirada i.
+     */
+    public static String getTorn (int i) {
+        JSONArray tirades = partida.getJSONArray("tirades");
+        JSONObject tirada = tirades.getJSONObject(i);
+
+        return tirada.getString("torn");
+    }
+
+
     /** @brief  Obté la Tirada numero i.
      * @pre i esta dins el rang de tirades fetes.
      * @post Retorna un objecte TiradaSimple corresponent a la tirada i.

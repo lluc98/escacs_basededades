@@ -80,9 +80,6 @@ public class TipusPeca {
         _llistaMoviments = listMov;
         _llistaMovimentsInicials = listIini;
         _llistaEnrocs = new ArrayList<>();
-
-
-
     }
 
     /** @brief  Mira si un tipus de Peça és vàlid

@@ -338,7 +338,7 @@ public class Partida {
      */
     public void ajornar () {
         guardarProperTorn(properTorn);
-        Historial.guardarPartida("PARTIDA AJORNADA");
+        Historial.guardarPartida("AJORNAMENT");
     }
 
     /** @brief  Acció de mostrar el taulell

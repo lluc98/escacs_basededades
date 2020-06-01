@@ -75,9 +75,12 @@ public class PartidaGrafica extends Application{
      */
     private void crearEscenaPrincipal(){
         VBox opcions = new VBox(10);
+
         BorderPane root = new BorderPane();
+
         Button btnCom = new Button("Començar nova partida");
         Button btnCar = new Button("Carregar una partida");
+
         btnCom.setStyle("-fx-background-image: url(" + "/Images/woodTexture.png" + "); -fx-font-weight: bold");
         btnCar.setStyle("-fx-background-image: url(" + "/Images/woodTexture.png" + "); -fx-font-weight: bold");
         btnCom.setOnAction(new EventHandler<ActionEvent>() {
@@ -141,20 +144,28 @@ public class PartidaGrafica extends Application{
         TextField nomFitxer = new TextField();
         nomFitxer.setPromptText("Ex: nomFitxer.json");
         nomFitxer.setStyle("-fx-background-color: transparent; -fx-font-weight: bold; -fx-border-style: dotted; -fx-border-insets: 1 1 1 1; -fx-text-fill: white; -fx-border-color: white;");
+
         Label lbl = new Label("Nom fitxer:");
         lbl.setStyle("-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 15;");
+
         Label missatge = new Label();
         missatge.setStyle("-fx-text-fill: white; -fx-font-weight: bold");
+
         HBox hb = new HBox(10);
         hb.getChildren().addAll(lbl, nomFitxer);
         hb.setAlignment(Pos.CENTER);
+
         VBox vb = new VBox(10);
+
         Button subBtn = new Button("Submit");
         subBtn.setStyle("-fx-background-image: url(" + "/Images/woodTexture.png" + "); -fx-font-weight: bold");
+
         ChoiceBox cb = new ChoiceBox();
         cb.getItems().addAll(0,1,2);
         cb.setStyle("-fx-background-image: url(" + "/Images/woodTexture.png" + "); -fx-font-weight: bold");
+
         vb.getChildren().add(hb);
+
         if(opcio==1){ vb.getChildren().add(cb); }
         subBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -288,14 +299,16 @@ public class PartidaGrafica extends Application{
                 Iterator<Node> itr = _peces.getChildren().iterator();
                 PecaGrafica pGraf = null;
                 String[] tokens = resultat.toString().split(" ");
-                if(tokens.length == 6){ //vol dir que hi ha enroc
+                if(tokens[0].equalsIgnoreCase("enroc:")){ //vol dir que hi ha enroc
                     while(itr.hasNext()){
                         pGraf = (PecaGrafica) itr.next();
                         if(posTauler(pGraf.get_oldX()) == (int)(tokens[2].charAt(0))-1-96 && posTauler(pGraf.get_oldY()) == tokens[2].charAt(1)-1-48){ //resto 1 perquè en lluc no fa servir la posició 0 i jo si i després resto l'altre numero perquè retorna en codi ascii
                             break;
                         }
                     }
+
                     pGraf.move((int)(tokens[5].charAt(0))-1-96,tokens[5].charAt(1)-1-48);
+
                     pGraf = null;
                     itr = _peces.getChildren().iterator();
                     while(itr.hasNext()){
@@ -305,17 +318,52 @@ public class PartidaGrafica extends Application{
                         }
                     }
                     pGraf.move((int)(tokens[4].charAt(0))-1-96,tokens[4].charAt(1)-1-48);
-                    modificarLblAvisos("Enroc refet", p);
-                }else if(tokens.length == 4){ //ha fet promoció
+
+                    //en el refer no hi haurà escac i mat.
+                    if(tokens.length == 6){
+                        modificarLblAvisos("Enroc desfet", p);
+                    }else{
+                        modificarLblAvisos("Enroc desfet i escac al rei enemic", p);
+                    }
+                    _partida.canviarTorn();
+                    lbl.setText("Torn de " + _partida.getProperTorn());
+                }else if(tokens[0].equalsIgnoreCase("promoció:")){ //ha fet promoció
                     int x = tirada.get_origen().get_columna()-1;
                     int y = tirada.get_origen().get_fila()-1;
+
                     eliminarPeca(x, y);
+
+                    //ens assegurem que si s'ha eliminat peces, s'eliminin també
+                    TreeMap<Posicio, Peca> eliminades = _partida.getTaulell().getEliminats();
+                    if(eliminades != null){
+                        Iterator<Map.Entry<Posicio, Peca>> it = eliminades.entrySet().iterator();
+                        while(it.hasNext()){
+                            Map.Entry<Posicio, Peca> entry = it.next();
+                            Posicio pos = entry.getKey();
+                            Peca peca = entry.getValue();
+                            if(peca!=null){
+                                PecaGrafica pGrafi = crearFitxa(peca, pos.get_columna()-1, pos.get_fila()-1, p);
+                                _peces.getChildren().add(pGrafi);
+                            }
+                        }
+                    }
+
                     Peca f = _partida.getPeca(new Posicio(tirada.get_desti().get_fila(), tirada.get_desti().get_columna()));
                     if(f!=null){
                         pGraf = crearFitxa(f, tirada.get_desti().get_columna()-1, tirada.get_desti().get_fila()-1, p);
                         _peces.getChildren().add(pGraf);
                     }
-                    modificarLblAvisos("Promoció refeta", p);
+
+                    //en el refer no hi haurà escac i mat.
+                    if(tokens.length == 4){
+                        modificarLblAvisos("Promoció refeta", p);
+                    }else{
+                        modificarLblAvisos("Promoció refeta i escac al rei enemic", p);
+                    }
+
+                    _partida.canviarTorn();
+                    lbl.setText("Torn de " + _partida.getProperTorn());
+
                 }else if(tirada != null){ //tirada normal
                     //mirem si hi s'havia eliminat alguna peça a la tirada que volem refer.
                     TreeMap<Posicio, Peca> eliminades = _partida.getTaulell().getEliminats();
@@ -342,8 +390,14 @@ public class PartidaGrafica extends Application{
                             break;
                         }
                     }
+                    if(tokens.length == 0){
+                        modificarLblAvisos("Tirada refeta", p);
+                    }else{
+                        modificarLblAvisos("Tirada refeta i escac al rei enemic", p);
+                    }
                     pGraf.move(tirada.get_desti().get_columna()-1, tirada.get_desti().get_fila()-1);
-                    modificarLblAvisos("Tirada refeta", p);
+                    _partida.canviarTorn();
+                    lbl.setText("Torn de " + _partida.getProperTorn());
                 }else{
                     modificarLblAvisos("No hi ha tirades per refer. Fes alguna altre acció", p);
                 }
@@ -357,7 +411,7 @@ public class PartidaGrafica extends Application{
                 Iterator<Node> itr = _peces.getChildren().iterator();
                 PecaGrafica pGraf = null;
                 String[] tokens = resultat.toString().split(" ");
-                if(tokens.length == 6){ //si és 6 vol dir que hi ha hagut enroc
+                if(tokens[0].equalsIgnoreCase("enroc:")){ //si és 6 vol dir que hi ha hagut enroc
                     while(itr.hasNext()){
                         pGraf = (PecaGrafica) itr.next();
                         if(posTauler(pGraf.get_oldX()) == (int)(tokens[5].charAt(0))-1-96 && posTauler(pGraf.get_oldY()) == tokens[5].charAt(1)-1-48){ //resto 1 perquè en lluc no fa servir la posició 0 i jo si i després resto l'altre numero perquè retorna en codi ascii
@@ -373,9 +427,15 @@ public class PartidaGrafica extends Application{
                             break;
                         }
                     }
-                    pGraf.move((int)(tokens[1].charAt(0)-1-96),tokens[1].charAt(1)-1-48);
-                    modificarLblAvisos("Enroc desfet", p);
-                }else if(tokens.length == 4){//ha fet promoció
+                    pGraf.move((int)(tokens[1].charAt(0))-1-96,tokens[1].charAt(1)-1-48);
+                    if(tokens.length == 6){
+                        modificarLblAvisos("Enroc desfet", p);
+                    }else{
+                        modificarLblAvisos("Enroc desfet i escac al rei enemic", p);
+                    }
+                    _partida.canviarTorn();
+                    lbl.setText("Torn de " + _partida.getProperTorn());
+                }else if(tokens[0].equalsIgnoreCase("promoció:")){//ha fet promoció
                     int x = tirada.get_origen().get_columna();
                     int y = tirada.get_origen().get_fila();
                     eliminarPeca(x-1, y-1);
@@ -385,7 +445,26 @@ public class PartidaGrafica extends Application{
                         _peces.getChildren().add(pGraf);
                     }
                     pGraf.move(tirada.get_desti().get_columna()-1, tirada.get_desti().get_fila()-1);
-                    modificarLblAvisos("Promoció desfeta", p);
+                    TreeMap<Posicio, Peca> eliminades = _partida.getTaulell().getEliminats();
+                    if(eliminades != null){
+                        Iterator<Map.Entry<Posicio, Peca>> it = eliminades.entrySet().iterator();
+                        while(it.hasNext()){
+                            Map.Entry<Posicio, Peca> entry = it.next();
+                            Posicio pos = entry.getKey();
+                            Peca peca = entry.getValue();
+                            if(peca!=null){
+                                PecaGrafica pGrafi = crearFitxa(peca, pos.get_columna()-1, pos.get_fila()-1, p);
+                                _peces.getChildren().add(pGrafi);
+                            }
+                        }
+                    }
+                    if(tokens.length == 4){
+                        modificarLblAvisos("Promoció desfeta", p);
+                    }else{
+                        modificarLblAvisos("Promoció desfeta i escac al rei enemic", p);
+                    }
+                    _partida.canviarTorn();
+                    lbl.setText("Torn de " + _partida.getProperTorn());
                 }
                 else if(tirada != null){ //no hi ha hagut enrroc ni promoció: tirada normal
                     while(itr.hasNext()){
@@ -409,7 +488,13 @@ public class PartidaGrafica extends Application{
                             }
                         }
                     }
-                    modificarLblAvisos("Tirada desfeta", p);
+                    if(tokens.length == 0){
+                        modificarLblAvisos("Tirada desfeta", p);
+                    }else{
+                        modificarLblAvisos("Tirada desfeta i escac al rei enemic", p);
+                    }
+                    _partida.canviarTorn();
+                    lbl.setText("Torn de " + _partida.getProperTorn());
                 }else{
                     modificarLblAvisos("No hi ha tirades per desfer. Fes alguna altre acció", p);
                 }
@@ -647,11 +732,15 @@ public class PartidaGrafica extends Application{
                 String res = null;
                 StringBuilder s = new StringBuilder();
                 StringBuilder posFinal = new StringBuilder();
+                //montem la posició final
                 posFinal.append((char)(97+newX)).append(newY+1);
+                //comprovem que la posició final sigui correcte
                 res = _partida.posCorrecteDesti(posFinal.toString());
                 if(res.equalsIgnoreCase("enroc")){
+                    //montem el moviment com a enroc
                     mov = s.append((char)(97+oldX)).append(oldY+1).append(" - ").append((char)(97 + newX)).append(newY+1).toString();
                 }else{
+                    //montem el moviment normal
                     mov = s.append((char)(97+oldX)).append(oldY+1).append(' ').append((char)(97 + newX)).append(newY+1).toString();
                 }
                 realitzarTirada(mov, newX, newY, p, pane, oldX);
@@ -685,6 +774,7 @@ public class PartidaGrafica extends Application{
     private static void realitzarTirada(String mov, int newX, int newY, PecaGrafica p, BorderPane pane, int oldX){
         String res;
         res = _partida.ferTirada(mov);
+        //es processa el que ha retornat partida.
         if(res.equalsIgnoreCase("tiradaMort")){ //ha matat la peça que hi havia anteriorment a aquesta posició
             res = "Tirada vàlida i s'ha matat la peça/les peces corresponent/s";
             eliminarPeces(pane);
@@ -737,7 +827,7 @@ public class PartidaGrafica extends Application{
         else if(res.equalsIgnoreCase("escacmat")){
             p.move(newX, newY);
             res = "Escac i mat. S'acaba la partida. Ha guanyat el jugador " + _partida.getProperTorn();
-            //_partida.escacIMat();
+            _partida.escacIMat();
             crearEscenaFinal();
 
         }else if(res.equalsIgnoreCase("enrocNo")){
@@ -757,13 +847,17 @@ public class PartidaGrafica extends Application{
     private static void crearEscenaFinal(){
         VBox root = new VBox(30);
         root.setStyle("-fx-background-image: url(" + "/Images/darkWoodTexture.png" + "); -fx-backbround-size: stretch;");
+
         Label accept = new Label("El jugador " + _partida.getProperTorn() + " ha GUANYAT!");
         accept.setStyle("-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 18;");
         accept.setWrapText(true);
+
         Label gg = new Label("Fins la pròxima!");
         gg.setStyle("-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 18;");
+
         Label avisSortir = new Label("(Clica la imatge per acabar)");
         avisSortir.setStyle("-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 15;");
+
         ImageView i = new ImageView("/Images/victoryGif.gif");
         i.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
@@ -813,8 +907,9 @@ public class PartidaGrafica extends Application{
      */
     private static void crearEscenaPromoció(BorderPane p, String mov, int x, int y){
         VBox root = new VBox(10);
-        Label lbl = new Label("Per quina peça vols fer la promoció. Si no ho fas ara, no ho podras fer");
         root.setPrefWidth(300);
+
+        Label lbl = new Label("Per quina peça vols fer la promoció. Si no ho fas ara, no ho podras fer");
         lbl.setWrapText(true);
 
         root.getChildren().add(lbl);
@@ -826,16 +921,25 @@ public class PartidaGrafica extends Application{
                 btn.setOnAction(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent event) {
-                        _partida.ferPromocio(mov,s);
+                        String resProm = _partida.ferPromocio(mov,s);
                         eliminarPeca(x, y);
-                        Peca f = _partida.getPeca(new Posicio(y+1, x+1)); //aixo retorna null perq....
+                        Peca f = _partida.getPeca(new Posicio(y+1, x+1));
                         if(f!=null){
                             PecaGrafica novaPeca = crearFitxa(f, x, y, p);
                             _peces.getChildren().add(novaPeca);
                         }
+
                         p.setRight(crearOpcions(p));
+
+                        if(resProm.equalsIgnoreCase("escacmat")){
+                            crearEscenaFinal();
+                        }else if(resProm.contains("Escac")){
+                            modificarLblAvisos("Promoció feta i escac al rei enemic!", p);
+                        }
+                        else{
+                            modificarLblAvisos("Promoció feta", p);
+                        }
                         passarTorn(p);
-                        modificarLblAvisos("Promoció feta", p);
                     }
                 });
                 btn.setAlignment(Pos.CENTER);

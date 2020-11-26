@@ -1,0 +1,12 @@
+digraph "partida.Taulell.carregarTirades"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node1 [label="partida.Taulell.carregar\lTirades",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Carrega les tirades realitzades en una partida anterior."];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node2 [label="partida.Partida.carregar\lPartida",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_partida.html#a7e810e3152667dade3a39632a497e191",tooltip="Agafa les tirades que s'ha de fer del historia i les passa al taulell per a que es puguin realitzar."];
+  Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node3 [label="partida.Partida.Partida",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_partida.html#a7c0cbdc23a559384ae5d21a08e4892ad",tooltip="Genera una partida carregada."];
+}

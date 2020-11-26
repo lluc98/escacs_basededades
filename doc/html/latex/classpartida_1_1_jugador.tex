@@ -1,0 +1,235 @@
+\hypertarget{classpartida_1_1_jugador}{}\doxysection{partida.\+Jugador Class Reference}
+\label{classpartida_1_1_jugador}\index{partida.Jugador@{partida.Jugador}}
+
+
+modul que analitzara i executara les jugades del usuari  
+
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+boolean \mbox{\hyperlink{classpartida_1_1_jugador_aee630e1643bcb1e8ff96422401b3b2f2}{get\+\_\+equip}} ()
+\begin{DoxyCompactList}\small\item\em Equip. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classpartida_1_1_jugador_a6092f4063c6b8c6704000af4e48b93d1}{fer\+Tirada}} (\mbox{\hyperlink{classpartida_1_1_taulell}{Taulell}} taulell, \mbox{\hyperlink{classpartida_1_1_posicio}{Posicio}} origen, \mbox{\hyperlink{classpartida_1_1_posicio}{Posicio}} desti)
+\begin{DoxyCompactList}\small\item\em Fa totes les comprovacions per veure si la tirada entrada es valida o no i es realitza la tirada. \end{DoxyCompactList}\item 
+boolean \mbox{\hyperlink{classpartida_1_1_jugador_a5566d7c34b8eb340dbe861682cca3602}{observar\+Promocio}} (\mbox{\hyperlink{classpartida_1_1_posicio}{Posicio}} desti, \mbox{\hyperlink{classpartida_1_1_taulell}{Taulell}} taulell)
+\begin{DoxyCompactList}\small\item\em Comprova si a la posicio entrada es pot fer una promocio. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classpartida_1_1_jugador_aa63b59ff8e6bb4b33bd0c0ee7dadb0a0}{fer\+Promocio}} (\mbox{\hyperlink{classpartida_1_1_posicio}{Posicio}} posicio, \mbox{\hyperlink{classpartida_1_1_taulell}{Taulell}} taulell, \mbox{\hyperlink{classpartida_1_1_peca}{Peca}} p)
+\begin{DoxyCompactList}\small\item\em canvia la peça que hi ha a la posicio pos per la peça pec \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classpartida_1_1_jugador_ac53fa68761b50599ea909693e303f659}{observar\+Jaque}} (\mbox{\hyperlink{classpartida_1_1_taulell}{Taulell}} taulell)
+\begin{DoxyCompactList}\small\item\em Comprova si hi ha un jaque i si hi ha escac i mat. \end{DoxyCompactList}\item 
+boolean \mbox{\hyperlink{classpartida_1_1_jugador_a3b49298c1b8d60f39b802422e8f998d8}{sha\+Provocat\+Jaque}} (\mbox{\hyperlink{classpartida_1_1_taulell}{Taulell}} taulell)
+\begin{DoxyCompactList}\small\item\em Comprova si hi ha un jaque. \end{DoxyCompactList}\item 
+boolean \mbox{\hyperlink{classpartida_1_1_jugador_a3ce8b17ba5bda410c1242a56e595c7c9}{fer\+Enrroc}} (\mbox{\hyperlink{classpartida_1_1_taulell}{Taulell}} taulell, \mbox{\hyperlink{classpartida_1_1_posicio}{Posicio}} p1, \mbox{\hyperlink{classpartida_1_1_posicio}{Posicio}} p2)
+\begin{DoxyCompactList}\small\item\em Fa totes les comprovacions per veure si l\textquotesingle{}enroc es valid o no i es realitza l\textquotesingle{}enroc si es valid. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+boolean \mbox{\hyperlink{classpartida_1_1_jugador_af7d60c49b03b91585a9df3b8e62b0466}{\+\_\+equip}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+modul que analitzara i executara les jugades del usuari 
+
+Definition at line 9 of file Jugador.\+java.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classpartida_1_1_jugador_a3ce8b17ba5bda410c1242a56e595c7c9}\label{classpartida_1_1_jugador_a3ce8b17ba5bda410c1242a56e595c7c9}} 
+\index{partida.Jugador@{partida.Jugador}!ferEnrroc@{ferEnrroc}}
+\index{ferEnrroc@{ferEnrroc}!partida.Jugador@{partida.Jugador}}
+\doxysubsubsection{\texorpdfstring{ferEnrroc()}{ferEnrroc()}}
+{\footnotesize\ttfamily boolean partida.\+Jugador.\+fer\+Enrroc (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classpartida_1_1_taulell}{Taulell}}}]{taulell,  }\item[{\mbox{\hyperlink{classpartida_1_1_posicio}{Posicio}}}]{p1,  }\item[{\mbox{\hyperlink{classpartida_1_1_posicio}{Posicio}}}]{p2 }\end{DoxyParamCaption})}
+
+
+
+Fa totes les comprovacions per veure si l\textquotesingle{}enroc es valid o no i es realitza l\textquotesingle{}enroc si es valid. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em taulell} & taulell on es fa la tirada \\
+\hline
+{\em p1} & posicio origen on esta la peça que es vol enroca \\
+\hline
+{\em p2} & posicio desti on esta la peça que cubrira a p1 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+-- 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+cert si es fa l\textquotesingle{}enrroc, fals altrament 
+\end{DoxyPostcond}
+
+
+Definition at line 101 of file Jugador.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_jugador_aa63b59ff8e6bb4b33bd0c0ee7dadb0a0}\label{classpartida_1_1_jugador_aa63b59ff8e6bb4b33bd0c0ee7dadb0a0}} 
+\index{partida.Jugador@{partida.Jugador}!ferPromocio@{ferPromocio}}
+\index{ferPromocio@{ferPromocio}!partida.Jugador@{partida.Jugador}}
+\doxysubsubsection{\texorpdfstring{ferPromocio()}{ferPromocio()}}
+{\footnotesize\ttfamily void partida.\+Jugador.\+fer\+Promocio (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classpartida_1_1_posicio}{Posicio}}}]{posicio,  }\item[{\mbox{\hyperlink{classpartida_1_1_taulell}{Taulell}}}]{taulell,  }\item[{\mbox{\hyperlink{classpartida_1_1_peca}{Peca}}}]{p }\end{DoxyParamCaption})}
+
+
+
+canvia la peça que hi ha a la posicio pos per la peça pec 
+
+
+\begin{DoxyParams}{Parameters}
+{\em posicio} & posicio on se canviara la peça \\
+\hline
+{\em taulell} & taulell de la partida \\
+\hline
+{\em p} & nova peça que es ficara al taulell \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+peça i pos existeixen 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+promocio feta 
+\end{DoxyPostcond}
+
+
+Definition at line 64 of file Jugador.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_jugador_a6092f4063c6b8c6704000af4e48b93d1}\label{classpartida_1_1_jugador_a6092f4063c6b8c6704000af4e48b93d1}} 
+\index{partida.Jugador@{partida.Jugador}!ferTirada@{ferTirada}}
+\index{ferTirada@{ferTirada}!partida.Jugador@{partida.Jugador}}
+\doxysubsubsection{\texorpdfstring{ferTirada()}{ferTirada()}}
+{\footnotesize\ttfamily int partida.\+Jugador.\+fer\+Tirada (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classpartida_1_1_taulell}{Taulell}}}]{taulell,  }\item[{\mbox{\hyperlink{classpartida_1_1_posicio}{Posicio}}}]{origen,  }\item[{\mbox{\hyperlink{classpartida_1_1_posicio}{Posicio}}}]{desti }\end{DoxyParamCaption})}
+
+
+
+Fa totes les comprovacions per veure si la tirada entrada es valida o no i es realitza la tirada. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em taulell} & taulell on es fa la tirada \\
+\hline
+{\em origen} & posicio origen on esta la peça que es vol moure \\
+\hline
+{\em desti} & posicio desti on es vol anar \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+-- 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+retorna 0 si no s\textquotesingle{}ha fet la tirada, mes gran de 0 si s\textquotesingle{}ha fet 
+\end{DoxyPostcond}
+
+
+Definition at line 35 of file Jugador.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_jugador_aee630e1643bcb1e8ff96422401b3b2f2}\label{classpartida_1_1_jugador_aee630e1643bcb1e8ff96422401b3b2f2}} 
+\index{partida.Jugador@{partida.Jugador}!get\_equip@{get\_equip}}
+\index{get\_equip@{get\_equip}!partida.Jugador@{partida.Jugador}}
+\doxysubsubsection{\texorpdfstring{get\_equip()}{get\_equip()}}
+{\footnotesize\ttfamily boolean partida.\+Jugador.\+get\+\_\+equip (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Equip. 
+
+
+
+Definition at line 24 of file Jugador.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_jugador_ac53fa68761b50599ea909693e303f659}\label{classpartida_1_1_jugador_ac53fa68761b50599ea909693e303f659}} 
+\index{partida.Jugador@{partida.Jugador}!observarJaque@{observarJaque}}
+\index{observarJaque@{observarJaque}!partida.Jugador@{partida.Jugador}}
+\doxysubsubsection{\texorpdfstring{observarJaque()}{observarJaque()}}
+{\footnotesize\ttfamily int partida.\+Jugador.\+observar\+Jaque (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classpartida_1_1_taulell}{Taulell}}}]{taulell }\end{DoxyParamCaption})}
+
+
+
+Comprova si hi ha un jaque i si hi ha escac i mat. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em taulell} & taulell de la partida \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+-- 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+mira si hi ha escac o escac i mat o no 
+\end{DoxyPostcond}
+
+
+Definition at line 73 of file Jugador.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_jugador_a5566d7c34b8eb340dbe861682cca3602}\label{classpartida_1_1_jugador_a5566d7c34b8eb340dbe861682cca3602}} 
+\index{partida.Jugador@{partida.Jugador}!observarPromocio@{observarPromocio}}
+\index{observarPromocio@{observarPromocio}!partida.Jugador@{partida.Jugador}}
+\doxysubsubsection{\texorpdfstring{observarPromocio()}{observarPromocio()}}
+{\footnotesize\ttfamily boolean partida.\+Jugador.\+observar\+Promocio (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classpartida_1_1_posicio}{Posicio}}}]{desti,  }\item[{\mbox{\hyperlink{classpartida_1_1_taulell}{Taulell}}}]{taulell }\end{DoxyParamCaption})}
+
+
+
+Comprova si a la posicio entrada es pot fer una promocio. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em desti} & posicio on es comprova si hi ha promocio \\
+\hline
+{\em taulell} & taulell de la partida \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+cert 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+mira si es pot fer promocio o no 
+\end{DoxyPostcond}
+
+
+Definition at line 53 of file Jugador.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_jugador_a3b49298c1b8d60f39b802422e8f998d8}\label{classpartida_1_1_jugador_a3b49298c1b8d60f39b802422e8f998d8}} 
+\index{partida.Jugador@{partida.Jugador}!shaProvocatJaque@{shaProvocatJaque}}
+\index{shaProvocatJaque@{shaProvocatJaque}!partida.Jugador@{partida.Jugador}}
+\doxysubsubsection{\texorpdfstring{shaProvocatJaque()}{shaProvocatJaque()}}
+{\footnotesize\ttfamily boolean partida.\+Jugador.\+sha\+Provocat\+Jaque (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classpartida_1_1_taulell}{Taulell}}}]{taulell }\end{DoxyParamCaption})}
+
+
+
+Comprova si hi ha un jaque. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em taulell} & taulell de la partida \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+-- 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+mira si hi ha escac o no 
+\end{DoxyPostcond}
+
+
+Definition at line 89 of file Jugador.\+java.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classpartida_1_1_jugador_af7d60c49b03b91585a9df3b8e62b0466}\label{classpartida_1_1_jugador_af7d60c49b03b91585a9df3b8e62b0466}} 
+\index{partida.Jugador@{partida.Jugador}!\_equip@{\_equip}}
+\index{\_equip@{\_equip}!partida.Jugador@{partida.Jugador}}
+\doxysubsubsection{\texorpdfstring{\_equip}{\_equip}}
+{\footnotesize\ttfamily boolean partida.\+Jugador.\+\_\+equip\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 12 of file Jugador.\+java.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_jugador_8java}{Jugador.\+java}}\end{DoxyCompactItemize}

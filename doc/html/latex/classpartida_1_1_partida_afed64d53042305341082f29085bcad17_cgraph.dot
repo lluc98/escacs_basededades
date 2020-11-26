@@ -1,0 +1,10 @@
+digraph "partida.Partida.getFiles"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="partida.Partida.getFiles",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="nombre de Files que te el taulell"];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid"];
+  Node2 [label="partida.Taulell.getFiles",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_taulell.html#a1b48b7386a78790ba4340c71574b1b14",tooltip="Nombre de files."];
+}

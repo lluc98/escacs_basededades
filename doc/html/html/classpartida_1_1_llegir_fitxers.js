@@ -1,0 +1,27 @@
+var classpartida_1_1_llegir_fitxers =
+[
+    [ "getConjuntPeces", "classpartida_1_1_llegir_fitxers.html#a75e2d0b0f112429fcd5db9b5f3f62517", null ],
+    [ "getFitxerRegles", "classpartida_1_1_llegir_fitxers.html#ad4296fc29120e50ed129f357b9af4e8a", null ],
+    [ "getLimitEscacsSeguits", "classpartida_1_1_llegir_fitxers.html#a31154b40526d36c2a76cb6ea656e6d8e", null ],
+    [ "getLimitTornsInaccio", "classpartida_1_1_llegir_fitxers.html#aec9f26dbcb1298ecfe570bfb066bc963", null ],
+    [ "getPosIniBlanques", "classpartida_1_1_llegir_fitxers.html#aab647ea3b170ed79285b782c928726b6", null ],
+    [ "getPosIniNegres", "classpartida_1_1_llegir_fitxers.html#a3f20944503fcda73001d2983be2a0b4b", null ],
+    [ "getProperTorn", "classpartida_1_1_llegir_fitxers.html#a899cc90283aba86511ec5c5f27171f7c", null ],
+    [ "getResultatFinal", "classpartida_1_1_llegir_fitxers.html#a7f2b6baeba7a0ee4d5fba0c408357bab", null ],
+    [ "getTaulell", "classpartida_1_1_llegir_fitxers.html#ad72fcdbdebb01d735177aa6ce303cfbf", null ],
+    [ "getTirades", "classpartida_1_1_llegir_fitxers.html#abd670eb5308a04ae31ec11c29bee55f3", null ],
+    [ "llegirPartidaAcabada", "classpartida_1_1_llegir_fitxers.html#a3578ed0ae0f60776e1161c04b5cb16c6", null ],
+    [ "llegirPartidaComencada", "classpartida_1_1_llegir_fitxers.html#ae9a7149166f6fcb60990025425dfd23c", null ],
+    [ "llegirRegles", "classpartida_1_1_llegir_fitxers.html#a56b82ea9c6181010cd3616479a42682c", null ],
+    [ "conjuntPeces", "classpartida_1_1_llegir_fitxers.html#a33cf960ecc5e44cb8e040c2357a42002", null ],
+    [ "contingut", "classpartida_1_1_llegir_fitxers.html#ae892c1d9f830e7b1347c0df8b4816b78", null ],
+    [ "fitxerRegles", "classpartida_1_1_llegir_fitxers.html#a18eefcf1e93a9a11e4561a4041c7c257", null ],
+    [ "limitEscacsSeguits", "classpartida_1_1_llegir_fitxers.html#a073f27680aaab0df2c47e05e4a1338ff", null ],
+    [ "limitTornsInaccio", "classpartida_1_1_llegir_fitxers.html#ab61e931dbc06784c25e989eed53de99e", null ],
+    [ "posIniBlanques", "classpartida_1_1_llegir_fitxers.html#a63caff8568ed2326a0a34a530374c65e", null ],
+    [ "posIniNegres", "classpartida_1_1_llegir_fitxers.html#a7145e51a83cad118c7e54a2c6c074385", null ],
+    [ "properTorn", "classpartida_1_1_llegir_fitxers.html#a2ebb0c90e8588497cdbdb6d097cd5a92", null ],
+    [ "resultatFinal", "classpartida_1_1_llegir_fitxers.html#a99497e5db65e06e36b3a0e0c5650eed4", null ],
+    [ "taulell", "classpartida_1_1_llegir_fitxers.html#ad4c2b9cf952d3c1fc6d4aed0c783c380", null ],
+    [ "tirades", "classpartida_1_1_llegir_fitxers.html#a6b78df35f8546b59998dec35543aa74e", null ]
+];

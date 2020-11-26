@@ -1,0 +1,25 @@
+var searchData=
+[
+  ['canviarsignedesplacament_54',['canviarSigneDesplacament',['../classpartida_1_1_tirada_simple.html#a9b6b26d161cf537452ce59894d0e8f80',1,'partida::TiradaSimple']]],
+  ['canviartorn_55',['canviarTorn',['../classpartida_1_1_partida.html#ac108efb5ae0738ca71b8638267cd137e',1,'partida::Partida']]],
+  ['caracteristiquesenroc_56',['CaracteristiquesEnroc',['../classpartida_1_1_caracteristiques_enroc.html',1,'partida.CaracteristiquesEnroc'],['../classpartida_1_1_caracteristiques_enroc.html#a635149fafd68f9268a0e026d46391993',1,'partida.CaracteristiquesEnroc.CaracteristiquesEnroc()']]],
+  ['caracteristiquesenroc_2ejava_57',['CaracteristiquesEnroc.java',['../_caracteristiques_enroc_8java.html',1,'']]],
+  ['carregarpartida_58',['carregarPartida',['../classpartida_1_1_partida.html#a7e810e3152667dade3a39632a497e191',1,'partida::Partida']]],
+  ['carregarpartidaanterior_59',['carregarPartidaAnterior',['../classpartida_1_1_historial.html#a68fc303c8c495b012c35125ccde061a0',1,'partida::Historial']]],
+  ['carregartirades_60',['carregarTirades',['../classpartida_1_1_taulell.html#a3bc601f4d7f92cee6d09926e05c01c99',1,'partida::Taulell']]],
+  ['colortorn_61',['colorTorn',['../classpartida_1_1_partida.html#a44a9560acd2dd40172c03d9d36ad2573',1,'partida::Partida']]],
+  ['compareto_62',['compareTo',['../classpartida_1_1_posicio.html#aece002d36b091a0b44488fb2d5b3ae76',1,'partida::Posicio']]],
+  ['conjuntpeces_63',['conjuntPeces',['../classpartida_1_1_llegir_fitxers.html#a33cf960ecc5e44cb8e040c2357a42002',1,'partida.LlegirFitxers.conjuntPeces()'],['../classpartida_1_1_partida.html#a693b057a5b807b021ccb8a5b1218bcc0',1,'partida.Partida.conjuntPeces()']]],
+  ['contepeçacasella_64',['contePeçaCasella',['../classpartida_1_1_taulell.html#a92e92d8c4846fda13d15a0393019faaf',1,'partida::Taulell']]],
+  ['contingut_65',['contingut',['../classpartida_1_1_llegir_fitxers.html#ae892c1d9f830e7b1347c0df8b4816b78',1,'partida::LlegirFitxers']]],
+  ['cpu_66',['CPU',['../classpartida_1_1_c_p_u.html',1,'partida']]],
+  ['cpu_2ejava_67',['CPU.java',['../_c_p_u_8java.html',1,'']]],
+  ['crearcontingutpartida_68',['crearContingutPartida',['../classpartida_1_1_partida_grafica.html#a591e5560274bfbc48b1981eced48ebae',1,'partida::PartidaGrafica']]],
+  ['crearescenafinal_69',['crearEscenaFinal',['../classpartida_1_1_partida_grafica.html#a0e0ec498d646119a1755066e3e8200de',1,'partida::PartidaGrafica']]],
+  ['crearescenapartida_70',['crearEscenaPartida',['../classpartida_1_1_partida_grafica.html#a3b11d63e2d592d926ef4ca45a4148dc7',1,'partida::PartidaGrafica']]],
+  ['crearescenaprincipal_71',['crearEscenaPrincipal',['../classpartida_1_1_partida_grafica.html#a152d398be779196906064f031d898390',1,'partida::PartidaGrafica']]],
+  ['crearescenapromoció_72',['crearEscenaPromoció',['../classpartida_1_1_partida_grafica.html#a8019015902aff562d5c2b747ccfe58c2',1,'partida::PartidaGrafica']]],
+  ['crearfitxa_73',['crearFitxa',['../classpartida_1_1_partida_grafica.html#ad79e50c713a3e043355a0f20f9cc5cea',1,'partida.PartidaGrafica.crearFitxa()'],['../classpartida_1_1_peca_grafica.html#a15f3c022a3f1efd5786a42c3e9a1ab4b',1,'partida.PecaGrafica.crearFitxa()']]],
+  ['crearopcions_74',['crearOpcions',['../classpartida_1_1_partida_grafica.html#adba25a1c270fb61aadd0c60b50569e0c',1,'partida::PartidaGrafica']]],
+  ['crearpanetaules_75',['crearPaneTaules',['../classpartida_1_1_partida_grafica.html#a5d30947acec27f26fe79c92f36ef7efc',1,'partida::PartidaGrafica']]]
+];

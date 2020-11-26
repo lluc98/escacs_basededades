@@ -1,0 +1,266 @@
+\hypertarget{classpartida_1_1_moviment}{}\doxysection{partida.\+Moviment Class Reference}
+\label{classpartida_1_1_moviment}\index{partida.Moviment@{partida.Moviment}}
+
+
+Un moviment amb coordenades i atributs de matar i saltar.  
+
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+String \mbox{\hyperlink{classpartida_1_1_moviment_a1a5fbdea67e37bac83bbe3482f8c217d}{get\+\_\+horitzontal}} ()
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classpartida_1_1_moviment}{Moviment}} horitzontal. \end{DoxyCompactList}\item 
+String \mbox{\hyperlink{classpartida_1_1_moviment_a5cbca5aa24b5b15515e1531bd19712cc}{get\+\_\+vertical}} ()
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classpartida_1_1_moviment}{Moviment}} vertical. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classpartida_1_1_moviment_a99b3cc2e4f5a8e8b731f963581e71b71}{get\+\_\+mov\+Matar}} ()
+\begin{DoxyCompactList}\small\item\em Capacitat de Matar. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classpartida_1_1_moviment_a8b987cf8fe11e887e0843019979ab73d}{get\+\_\+mov\+Saltar}} ()
+\begin{DoxyCompactList}\small\item\em Capacitat de Saltar. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classpartida_1_1_moviment_a7301756aa11c6d91399d39e3ef59cd59}{Moviment}} (String horitzontal, String vertical, int matar, int saltar)
+\item 
+int \mbox{\hyperlink{classpartida_1_1_moviment_ada1a78e08370d1e9cd84674dcb23a779}{pot\+Saltar}} ()
+\begin{DoxyCompactList}\small\item\em Retorna la Capacitat de Saltar. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classpartida_1_1_moviment_a5ba064011e607d4532775aab6b5f6e50}{pot\+Matar}} ()
+\begin{DoxyCompactList}\small\item\em Retorna la Capacitat de Matar. \end{DoxyCompactList}\item 
+boolean \mbox{\hyperlink{classpartida_1_1_moviment_a825dc51aad94715de9b16aea8e82fd31}{movimentvalid}} (\mbox{\hyperlink{classpartida_1_1_tirada_simple}{Tirada\+Simple}} t)
+\begin{DoxyCompactList}\small\item\em Diu si un moviment és vàlid. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+boolean \mbox{\hyperlink{classpartida_1_1_moviment_a5c2aabd3b2db99d7039d6578c7ec48ec}{valid}} (int desp, String s)
+\begin{DoxyCompactList}\small\item\em Diu si un moviment és vàlid. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+String \mbox{\hyperlink{classpartida_1_1_moviment_ae5900970fb2230c5cdb9a7c059e262ca}{\+\_\+horitzontal}}
+\begin{DoxyCompactList}\small\item\em Tipus de \mbox{\hyperlink{classpartida_1_1_moviment}{Moviment}} en horitzontal. \end{DoxyCompactList}\item 
+String \mbox{\hyperlink{classpartida_1_1_moviment_a96df29f9eb54bd35e9c7655e770d67e9}{\+\_\+vertical}}
+\begin{DoxyCompactList}\small\item\em Tipus de \mbox{\hyperlink{classpartida_1_1_moviment}{Moviment}} en vertical. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classpartida_1_1_moviment_a2582524c723c6b2ceff7c065448b2637}{\+\_\+mov\+Matar}}
+\begin{DoxyCompactList}\small\item\em Capacitat de Matar. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classpartida_1_1_moviment_a5552eea32d7918a998f05d9d946bb277}{\+\_\+mov\+Saltar}}
+\begin{DoxyCompactList}\small\item\em Capacitat de Saltar. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Un moviment amb coordenades i atributs de matar i saltar. 
+
+Les coordenades de moviment es calculen de forma horitzontal i vertical, de forma que ens indiquen si son moviments definits o lineals. L\textquotesingle{}atribut mov\+Matar ens indica si el moviment permet matar Peces; l\textquotesingle{}atribut mov\+Slaltar ens indica si el moviment permet saltar Peces. 
+
+Definition at line 13 of file Moviment.\+java.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classpartida_1_1_moviment_a7301756aa11c6d91399d39e3ef59cd59}\label{classpartida_1_1_moviment_a7301756aa11c6d91399d39e3ef59cd59}} 
+\index{partida.Moviment@{partida.Moviment}!Moviment@{Moviment}}
+\index{Moviment@{Moviment}!partida.Moviment@{partida.Moviment}}
+\doxysubsubsection{\texorpdfstring{Moviment()}{Moviment()}}
+{\footnotesize\ttfamily partida.\+Moviment.\+Moviment (\begin{DoxyParamCaption}\item[{String}]{horitzontal,  }\item[{String}]{vertical,  }\item[{int}]{matar,  }\item[{int}]{saltar }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em horitzontal} & \mbox{\hyperlink{classpartida_1_1_moviment}{Moviment}} Horitzontal \\
+\hline
+{\em vertical} & \mbox{\hyperlink{classpartida_1_1_moviment}{Moviment}} Vertical \\
+\hline
+{\em matar} & Capacitat de Matar \\
+\hline
+{\em saltar} & Capacitat de Saltar \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 44 of file Moviment.\+java.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classpartida_1_1_moviment_a1a5fbdea67e37bac83bbe3482f8c217d}\label{classpartida_1_1_moviment_a1a5fbdea67e37bac83bbe3482f8c217d}} 
+\index{partida.Moviment@{partida.Moviment}!get\_horitzontal@{get\_horitzontal}}
+\index{get\_horitzontal@{get\_horitzontal}!partida.Moviment@{partida.Moviment}}
+\doxysubsubsection{\texorpdfstring{get\_horitzontal()}{get\_horitzontal()}}
+{\footnotesize\ttfamily String partida.\+Moviment.\+get\+\_\+horitzontal (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\mbox{\hyperlink{classpartida_1_1_moviment}{Moviment}} horitzontal. 
+
+
+
+Definition at line 20 of file Moviment.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_moviment_a99b3cc2e4f5a8e8b731f963581e71b71}\label{classpartida_1_1_moviment_a99b3cc2e4f5a8e8b731f963581e71b71}} 
+\index{partida.Moviment@{partida.Moviment}!get\_movMatar@{get\_movMatar}}
+\index{get\_movMatar@{get\_movMatar}!partida.Moviment@{partida.Moviment}}
+\doxysubsubsection{\texorpdfstring{get\_movMatar()}{get\_movMatar()}}
+{\footnotesize\ttfamily int partida.\+Moviment.\+get\+\_\+mov\+Matar (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Capacitat de Matar. 
+
+
+
+Definition at line 30 of file Moviment.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_moviment_a8b987cf8fe11e887e0843019979ab73d}\label{classpartida_1_1_moviment_a8b987cf8fe11e887e0843019979ab73d}} 
+\index{partida.Moviment@{partida.Moviment}!get\_movSaltar@{get\_movSaltar}}
+\index{get\_movSaltar@{get\_movSaltar}!partida.Moviment@{partida.Moviment}}
+\doxysubsubsection{\texorpdfstring{get\_movSaltar()}{get\_movSaltar()}}
+{\footnotesize\ttfamily int partida.\+Moviment.\+get\+\_\+mov\+Saltar (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Capacitat de Saltar. 
+
+
+
+Definition at line 35 of file Moviment.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_moviment_a5cbca5aa24b5b15515e1531bd19712cc}\label{classpartida_1_1_moviment_a5cbca5aa24b5b15515e1531bd19712cc}} 
+\index{partida.Moviment@{partida.Moviment}!get\_vertical@{get\_vertical}}
+\index{get\_vertical@{get\_vertical}!partida.Moviment@{partida.Moviment}}
+\doxysubsubsection{\texorpdfstring{get\_vertical()}{get\_vertical()}}
+{\footnotesize\ttfamily String partida.\+Moviment.\+get\+\_\+vertical (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\mbox{\hyperlink{classpartida_1_1_moviment}{Moviment}} vertical. 
+
+
+
+Definition at line 25 of file Moviment.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_moviment_a825dc51aad94715de9b16aea8e82fd31}\label{classpartida_1_1_moviment_a825dc51aad94715de9b16aea8e82fd31}} 
+\index{partida.Moviment@{partida.Moviment}!movimentvalid@{movimentvalid}}
+\index{movimentvalid@{movimentvalid}!partida.Moviment@{partida.Moviment}}
+\doxysubsubsection{\texorpdfstring{movimentvalid()}{movimentvalid()}}
+{\footnotesize\ttfamily boolean partida.\+Moviment.\+movimentvalid (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classpartida_1_1_tirada_simple}{Tirada\+Simple}}}]{t }\end{DoxyParamCaption})}
+
+
+
+Diu si un moviment és vàlid. 
+
+\begin{DoxyPrecond}{Precondition}
+/p t es el tauler de joc 
+\end{DoxyPrecond}
+\begin{DoxyReturn}{Returns}
+la validesa del moviment de la tirada actual 
+\end{DoxyReturn}
+
+
+Definition at line 65 of file Moviment.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_moviment_a5ba064011e607d4532775aab6b5f6e50}\label{classpartida_1_1_moviment_a5ba064011e607d4532775aab6b5f6e50}} 
+\index{partida.Moviment@{partida.Moviment}!potMatar@{potMatar}}
+\index{potMatar@{potMatar}!partida.Moviment@{partida.Moviment}}
+\doxysubsubsection{\texorpdfstring{potMatar()}{potMatar()}}
+{\footnotesize\ttfamily int partida.\+Moviment.\+pot\+Matar (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Retorna la Capacitat de Matar. 
+
+
+
+Definition at line 57 of file Moviment.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_moviment_ada1a78e08370d1e9cd84674dcb23a779}\label{classpartida_1_1_moviment_ada1a78e08370d1e9cd84674dcb23a779}} 
+\index{partida.Moviment@{partida.Moviment}!potSaltar@{potSaltar}}
+\index{potSaltar@{potSaltar}!partida.Moviment@{partida.Moviment}}
+\doxysubsubsection{\texorpdfstring{potSaltar()}{potSaltar()}}
+{\footnotesize\ttfamily int partida.\+Moviment.\+pot\+Saltar (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Retorna la Capacitat de Saltar. 
+
+
+
+Definition at line 52 of file Moviment.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_moviment_a5c2aabd3b2db99d7039d6578c7ec48ec}\label{classpartida_1_1_moviment_a5c2aabd3b2db99d7039d6578c7ec48ec}} 
+\index{partida.Moviment@{partida.Moviment}!valid@{valid}}
+\index{valid@{valid}!partida.Moviment@{partida.Moviment}}
+\doxysubsubsection{\texorpdfstring{valid()}{valid()}}
+{\footnotesize\ttfamily boolean partida.\+Moviment.\+valid (\begin{DoxyParamCaption}\item[{int}]{desp,  }\item[{String}]{s }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Diu si un moviment és vàlid. 
+
+\begin{DoxyPrecond}{Precondition}
+/p desp i /p s són el desplaçament i el eix on es realitza 
+\end{DoxyPrecond}
+\begin{DoxyReturn}{Returns}
+la validesa del desplaçament actual 
+\end{DoxyReturn}
+
+
+Definition at line 90 of file Moviment.\+java.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classpartida_1_1_moviment_ae5900970fb2230c5cdb9a7c059e262ca}\label{classpartida_1_1_moviment_ae5900970fb2230c5cdb9a7c059e262ca}} 
+\index{partida.Moviment@{partida.Moviment}!\_horitzontal@{\_horitzontal}}
+\index{\_horitzontal@{\_horitzontal}!partida.Moviment@{partida.Moviment}}
+\doxysubsubsection{\texorpdfstring{\_horitzontal}{\_horitzontal}}
+{\footnotesize\ttfamily String partida.\+Moviment.\+\_\+horitzontal\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Tipus de \mbox{\hyperlink{classpartida_1_1_moviment}{Moviment}} en horitzontal. 
+
+
+
+Definition at line 14 of file Moviment.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_moviment_a2582524c723c6b2ceff7c065448b2637}\label{classpartida_1_1_moviment_a2582524c723c6b2ceff7c065448b2637}} 
+\index{partida.Moviment@{partida.Moviment}!\_movMatar@{\_movMatar}}
+\index{\_movMatar@{\_movMatar}!partida.Moviment@{partida.Moviment}}
+\doxysubsubsection{\texorpdfstring{\_movMatar}{\_movMatar}}
+{\footnotesize\ttfamily int partida.\+Moviment.\+\_\+mov\+Matar\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Capacitat de Matar. 
+
+
+
+Definition at line 16 of file Moviment.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_moviment_a5552eea32d7918a998f05d9d946bb277}\label{classpartida_1_1_moviment_a5552eea32d7918a998f05d9d946bb277}} 
+\index{partida.Moviment@{partida.Moviment}!\_movSaltar@{\_movSaltar}}
+\index{\_movSaltar@{\_movSaltar}!partida.Moviment@{partida.Moviment}}
+\doxysubsubsection{\texorpdfstring{\_movSaltar}{\_movSaltar}}
+{\footnotesize\ttfamily int partida.\+Moviment.\+\_\+mov\+Saltar\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Capacitat de Saltar. 
+
+
+
+Definition at line 17 of file Moviment.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_moviment_a96df29f9eb54bd35e9c7655e770d67e9}\label{classpartida_1_1_moviment_a96df29f9eb54bd35e9c7655e770d67e9}} 
+\index{partida.Moviment@{partida.Moviment}!\_vertical@{\_vertical}}
+\index{\_vertical@{\_vertical}!partida.Moviment@{partida.Moviment}}
+\doxysubsubsection{\texorpdfstring{\_vertical}{\_vertical}}
+{\footnotesize\ttfamily String partida.\+Moviment.\+\_\+vertical\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Tipus de \mbox{\hyperlink{classpartida_1_1_moviment}{Moviment}} en vertical. 
+
+
+
+Definition at line 15 of file Moviment.\+java.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_moviment_8java}{Moviment.\+java}}\end{DoxyCompactItemize}

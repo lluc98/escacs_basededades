@@ -1,0 +1,14 @@
+digraph "partida.PartidaGrafica.prepararCentre"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node1 [label="partida.PartidaGrafica.preparar\lCentre",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Es prepara el centre per l'escena secundaria."];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node2 [label="partida.PartidaGrafica.escena\lSecundaria",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_partida_grafica.html#a32e9bb5299be820aef87ea3f58fda6bd",tooltip="Crea l'escena secundaria."];
+  Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node3 [label="partida.PartidaGrafica.crear\lEscenaPrincipal",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_partida_grafica.html#a152d398be779196906064f031d898390",tooltip="Crea l'escena principal."];
+  Node3 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node4 [label="partida.PartidaGrafica.start",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_partida_grafica.html#a8861a2699c3708a4db945ab4c9087cb3",tooltip=" "];
+}

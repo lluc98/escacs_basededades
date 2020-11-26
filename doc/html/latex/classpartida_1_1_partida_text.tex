@@ -1,0 +1,359 @@
+\hypertarget{classpartida_1_1_partida_text}{}\doxysection{partida.\+Partida\+Text Class Reference}
+\label{classpartida_1_1_partida_text}\index{partida.PartidaText@{partida.PartidaText}}
+
+
+Versió d\textquotesingle{}un joc d\textquotesingle{}escacs amb peces personalitzables i taulells de mida variable, en mode text.  
+
+
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{classpartida_1_1_partida_text_a02c8b096e88ca947f3956566b3fd4145}{inicia\+Aplicacio}} ()  throws Exception 
+\begin{DoxyCompactList}\small\item\em Inicia el joc. \end{DoxyCompactList}\item 
+static int \mbox{\hyperlink{classpartida_1_1_partida_text_a76de348bed138fc03b9dbe1378c2199e}{demanar\+Njugadors}} ()
+\begin{DoxyCompactList}\small\item\em Crea un ombre de jugadors. \end{DoxyCompactList}\item 
+static boolean \mbox{\hyperlink{classpartida_1_1_partida_text_a12ed85c23fb61a3ec26464c52bb93798}{es\+Enter}} (String s)
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{classpartida_1_1_partida_text_a879caed244bc5c974313cd31faa75c6d}{jugar}} ()  throws Exception 
+\begin{DoxyCompactList}\small\item\em Gestiona la partida. \end{DoxyCompactList}\item 
+static boolean \mbox{\hyperlink{classpartida_1_1_partida_text_acc995d318d946fd2b8e0f16366797ded}{tirada}} (String\+Builder res, String\+Builder pos\+Inici, String\+Builder pos\+Final, String\+Builder color\+Torn)  throws Exception 
+\begin{DoxyCompactList}\small\item\em Gestiona la tirada. \end{DoxyCompactList}\item 
+static String \mbox{\hyperlink{classpartida_1_1_partida_text_a12815e3ba7061f1a1958d37317825f09}{promocio}} (String\+Builder pos\+Inici, String\+Builder pos\+Final)
+\begin{DoxyCompactList}\small\item\em Gestiona una promocio. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{classpartida_1_1_partida_text_a8340b21f5d6b624d1c4d93588f6da2b3}{menu\+Promocio}} ()
+\item 
+static boolean \mbox{\hyperlink{classpartida_1_1_partida_text_a49ac1a2ebeb7f125501a5ef2209c75ac}{taules}} ()
+\item 
+static boolean \mbox{\hyperlink{classpartida_1_1_partida_text_a12713c55bfb589e4bb9cfd35653677b6}{processar\+Res}} (String\+Builder res, String\+Builder color\+Torn)  throws Exception 
+\begin{DoxyCompactList}\small\item\em Processa un resultat d\textquotesingle{}una tirada. \end{DoxyCompactList}\item 
+static String \mbox{\hyperlink{classpartida_1_1_partida_text_a9a8d898034dc8795d70b36fa11366ef1}{llegir\+Posicio\+Inici}} ()  throws Exception 
+\begin{DoxyCompactList}\small\item\em Llegeix la posició inicial que demana l\textquotesingle{}usuari i la processa. \end{DoxyCompactList}\item 
+static String \mbox{\hyperlink{classpartida_1_1_partida_text_abcb4c014d1fe80e93ed0b803dadcf301}{llegir\+Posicio\+Desti}} ()  throws Exception 
+\begin{DoxyCompactList}\small\item\em Llegeix la posició destí que demana l\textquotesingle{}usuari i la processa. \end{DoxyCompactList}\item 
+static boolean \mbox{\hyperlink{classpartida_1_1_partida_text_a8753b7fa27818b9ff1bc5368c1893aac}{posicio\+Correcte\+Origen}} (String s)  throws Exception 
+\begin{DoxyCompactList}\small\item\em Calcula si es correcte la posició d\textquotesingle{}origen que ha seleccionat l\textquotesingle{}usuari. \end{DoxyCompactList}\item 
+static String \mbox{\hyperlink{classpartida_1_1_partida_text_afa934916041dfb52ff98d12a69dc9b49}{posicio\+Correcte\+Desti}} (String s)  throws Exception 
+\begin{DoxyCompactList}\small\item\em Calcula si es correcte la posició destí que ha seleccionat l\textquotesingle{}usuari. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{classpartida_1_1_partida}{Partida}} \mbox{\hyperlink{classpartida_1_1_partida_text_a3ab2adc6ef24619ebb268f5542e215c0}{\+\_\+partida}}
+\begin{DoxyCompactList}\small\item\em Objecte partida que controla la situacó de la partida. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Versió d\textquotesingle{}un joc d\textquotesingle{}escacs amb peces personalitzables i taulells de mida variable, en mode text. 
+
+Definition at line 13 of file Partida\+Text.\+java.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classpartida_1_1_partida_text_a76de348bed138fc03b9dbe1378c2199e}\label{classpartida_1_1_partida_text_a76de348bed138fc03b9dbe1378c2199e}} 
+\index{partida.PartidaText@{partida.PartidaText}!demanarNjugadors@{demanarNjugadors}}
+\index{demanarNjugadors@{demanarNjugadors}!partida.PartidaText@{partida.PartidaText}}
+\doxysubsubsection{\texorpdfstring{demanarNjugadors()}{demanarNjugadors()}}
+{\footnotesize\ttfamily static int partida.\+Partida\+Text.\+demanar\+Njugadors (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Crea un ombre de jugadors. 
+
+\begin{DoxyPrecond}{Precondition}
+-- 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+retorna el nombre de jugadors que entra l\textquotesingle{}usuari 
+\end{DoxyPostcond}
+
+
+Definition at line 73 of file Partida\+Text.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_partida_text_a12ed85c23fb61a3ec26464c52bb93798}\label{classpartida_1_1_partida_text_a12ed85c23fb61a3ec26464c52bb93798}} 
+\index{partida.PartidaText@{partida.PartidaText}!esEnter@{esEnter}}
+\index{esEnter@{esEnter}!partida.PartidaText@{partida.PartidaText}}
+\doxysubsubsection{\texorpdfstring{esEnter()}{esEnter()}}
+{\footnotesize\ttfamily static boolean partida.\+Partida\+Text.\+es\+Enter (\begin{DoxyParamCaption}\item[{String}]{s }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\begin{DoxyPrecond}{Precondition}
+-- 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+True si s és un enter, false altrament. 
+\end{DoxyPostcond}
+
+
+Definition at line 86 of file Partida\+Text.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_partida_text_a02c8b096e88ca947f3956566b3fd4145}\label{classpartida_1_1_partida_text_a02c8b096e88ca947f3956566b3fd4145}} 
+\index{partida.PartidaText@{partida.PartidaText}!iniciaAplicacio@{iniciaAplicacio}}
+\index{iniciaAplicacio@{iniciaAplicacio}!partida.PartidaText@{partida.PartidaText}}
+\doxysubsubsection{\texorpdfstring{iniciaAplicacio()}{iniciaAplicacio()}}
+{\footnotesize\ttfamily static void partida.\+Partida\+Text.\+inicia\+Aplicacio (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) throws Exception\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Inicia el joc. 
+
+\begin{DoxyPrecond}{Precondition}
+-- 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+Iniciador del joc, intordueixes les dades basiques i aquest crida els metodes necessaris. 
+\end{DoxyPostcond}
+
+
+Definition at line 21 of file Partida\+Text.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_partida_text_a879caed244bc5c974313cd31faa75c6d}\label{classpartida_1_1_partida_text_a879caed244bc5c974313cd31faa75c6d}} 
+\index{partida.PartidaText@{partida.PartidaText}!jugar@{jugar}}
+\index{jugar@{jugar}!partida.PartidaText@{partida.PartidaText}}
+\doxysubsubsection{\texorpdfstring{jugar()}{jugar()}}
+{\footnotesize\ttfamily static void partida.\+Partida\+Text.\+jugar (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) throws Exception\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Gestiona la partida. 
+
+\begin{DoxyPrecond}{Precondition}
+-- 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+S\textquotesingle{}ha jugat una partida 
+\end{DoxyPostcond}
+
+
+Definition at line 101 of file Partida\+Text.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_partida_text_abcb4c014d1fe80e93ed0b803dadcf301}\label{classpartida_1_1_partida_text_abcb4c014d1fe80e93ed0b803dadcf301}} 
+\index{partida.PartidaText@{partida.PartidaText}!llegirPosicioDesti@{llegirPosicioDesti}}
+\index{llegirPosicioDesti@{llegirPosicioDesti}!partida.PartidaText@{partida.PartidaText}}
+\doxysubsubsection{\texorpdfstring{llegirPosicioDesti()}{llegirPosicioDesti()}}
+{\footnotesize\ttfamily static String partida.\+Partida\+Text.\+llegir\+Posicio\+Desti (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) throws Exception\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Llegeix la posició destí que demana l\textquotesingle{}usuari i la processa. 
+
+\begin{DoxyPrecond}{Precondition}
+-- 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+Retorna un avís amb el resultat de la posició destí que ha seleccionat l\textquotesingle{}usuari 
+\end{DoxyPostcond}
+
+
+Definition at line 422 of file Partida\+Text.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_partida_text_a9a8d898034dc8795d70b36fa11366ef1}\label{classpartida_1_1_partida_text_a9a8d898034dc8795d70b36fa11366ef1}} 
+\index{partida.PartidaText@{partida.PartidaText}!llegirPosicioInici@{llegirPosicioInici}}
+\index{llegirPosicioInici@{llegirPosicioInici}!partida.PartidaText@{partida.PartidaText}}
+\doxysubsubsection{\texorpdfstring{llegirPosicioInici()}{llegirPosicioInici()}}
+{\footnotesize\ttfamily static String partida.\+Partida\+Text.\+llegir\+Posicio\+Inici (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) throws Exception\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Llegeix la posició inicial que demana l\textquotesingle{}usuari i la processa. 
+
+\begin{DoxyPrecond}{Precondition}
+-- 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+Retorna un avís amb el resultat de la posició inicial que ha seleccionat l\textquotesingle{}usuari 
+\end{DoxyPostcond}
+
+
+Definition at line 397 of file Partida\+Text.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_partida_text_a8340b21f5d6b624d1c4d93588f6da2b3}\label{classpartida_1_1_partida_text_a8340b21f5d6b624d1c4d93588f6da2b3}} 
+\index{partida.PartidaText@{partida.PartidaText}!menuPromocio@{menuPromocio}}
+\index{menuPromocio@{menuPromocio}!partida.PartidaText@{partida.PartidaText}}
+\doxysubsubsection{\texorpdfstring{menuPromocio()}{menuPromocio()}}
+{\footnotesize\ttfamily static void partida.\+Partida\+Text.\+menu\+Promocio (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\begin{DoxyPrecond}{Precondition}
+-- 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+S\textquotesingle{}ha triat una Peça per a convertir la Peça promocionada. 
+\end{DoxyPostcond}
+
+
+Definition at line 242 of file Partida\+Text.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_partida_text_afa934916041dfb52ff98d12a69dc9b49}\label{classpartida_1_1_partida_text_afa934916041dfb52ff98d12a69dc9b49}} 
+\index{partida.PartidaText@{partida.PartidaText}!posicioCorrecteDesti@{posicioCorrecteDesti}}
+\index{posicioCorrecteDesti@{posicioCorrecteDesti}!partida.PartidaText@{partida.PartidaText}}
+\doxysubsubsection{\texorpdfstring{posicioCorrecteDesti()}{posicioCorrecteDesti()}}
+{\footnotesize\ttfamily static String partida.\+Partida\+Text.\+posicio\+Correcte\+Desti (\begin{DoxyParamCaption}\item[{String}]{s }\end{DoxyParamCaption}) throws Exception\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Calcula si es correcte la posició destí que ha seleccionat l\textquotesingle{}usuari. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & valor de la posició destí \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+-- 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+retorna si la posició destí és vàlida, false altrament. 
+\end{DoxyPostcond}
+
+
+Definition at line 470 of file Partida\+Text.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_partida_text_a8753b7fa27818b9ff1bc5368c1893aac}\label{classpartida_1_1_partida_text_a8753b7fa27818b9ff1bc5368c1893aac}} 
+\index{partida.PartidaText@{partida.PartidaText}!posicioCorrecteOrigen@{posicioCorrecteOrigen}}
+\index{posicioCorrecteOrigen@{posicioCorrecteOrigen}!partida.PartidaText@{partida.PartidaText}}
+\doxysubsubsection{\texorpdfstring{posicioCorrecteOrigen()}{posicioCorrecteOrigen()}}
+{\footnotesize\ttfamily static boolean partida.\+Partida\+Text.\+posicio\+Correcte\+Origen (\begin{DoxyParamCaption}\item[{String}]{s }\end{DoxyParamCaption}) throws Exception\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Calcula si es correcte la posició d\textquotesingle{}origen que ha seleccionat l\textquotesingle{}usuari. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & valor de la posició origen \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+-- 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+retorna si la posició origen és vàlida, false altrament. 
+\end{DoxyPostcond}
+
+
+Definition at line 446 of file Partida\+Text.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_partida_text_a12713c55bfb589e4bb9cfd35653677b6}\label{classpartida_1_1_partida_text_a12713c55bfb589e4bb9cfd35653677b6}} 
+\index{partida.PartidaText@{partida.PartidaText}!processarRes@{processarRes}}
+\index{processarRes@{processarRes}!partida.PartidaText@{partida.PartidaText}}
+\doxysubsubsection{\texorpdfstring{processarRes()}{processarRes()}}
+{\footnotesize\ttfamily static boolean partida.\+Partida\+Text.\+processar\+Res (\begin{DoxyParamCaption}\item[{String\+Builder}]{res,  }\item[{String\+Builder}]{color\+Torn }\end{DoxyParamCaption}) throws Exception\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Processa un resultat d\textquotesingle{}una tirada. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em res} & Resultat de la tirada \\
+\hline
+{\em color\+Torn} & color del euqip actual \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+-- 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+retorna true si s\textquotesingle{}ha realitzat la tirada, false altrament. 
+\end{DoxyPostcond}
+
+
+Definition at line 277 of file Partida\+Text.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_partida_text_a12815e3ba7061f1a1958d37317825f09}\label{classpartida_1_1_partida_text_a12815e3ba7061f1a1958d37317825f09}} 
+\index{partida.PartidaText@{partida.PartidaText}!promocio@{promocio}}
+\index{promocio@{promocio}!partida.PartidaText@{partida.PartidaText}}
+\doxysubsubsection{\texorpdfstring{promocio()}{promocio()}}
+{\footnotesize\ttfamily static String partida.\+Partida\+Text.\+promocio (\begin{DoxyParamCaption}\item[{String\+Builder}]{pos\+Inici,  }\item[{String\+Builder}]{pos\+Final }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Gestiona una promocio. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pos\+Inici} & Posició inicial de la tirada \\
+\hline
+{\em pos\+Final} & Posició final de la tirada \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+-- 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+retorna un missatge donant informació del resultat de la promoció 
+\end{DoxyPostcond}
+
+
+Definition at line 215 of file Partida\+Text.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_partida_text_a49ac1a2ebeb7f125501a5ef2209c75ac}\label{classpartida_1_1_partida_text_a49ac1a2ebeb7f125501a5ef2209c75ac}} 
+\index{partida.PartidaText@{partida.PartidaText}!taules@{taules}}
+\index{taules@{taules}!partida.PartidaText@{partida.PartidaText}}
+\doxysubsubsection{\texorpdfstring{taules()}{taules()}}
+{\footnotesize\ttfamily static boolean partida.\+Partida\+Text.\+taules (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\begin{DoxyPrecond}{Precondition}
+-- 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+S\textquotesingle{}ha guardat una partida que ha acabat amb taules 
+\end{DoxyPostcond}
+
+
+Definition at line 255 of file Partida\+Text.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_partida_text_acc995d318d946fd2b8e0f16366797ded}\label{classpartida_1_1_partida_text_acc995d318d946fd2b8e0f16366797ded}} 
+\index{partida.PartidaText@{partida.PartidaText}!tirada@{tirada}}
+\index{tirada@{tirada}!partida.PartidaText@{partida.PartidaText}}
+\doxysubsubsection{\texorpdfstring{tirada()}{tirada()}}
+{\footnotesize\ttfamily static boolean partida.\+Partida\+Text.\+tirada (\begin{DoxyParamCaption}\item[{String\+Builder}]{res,  }\item[{String\+Builder}]{pos\+Inici,  }\item[{String\+Builder}]{pos\+Final,  }\item[{String\+Builder}]{color\+Torn }\end{DoxyParamCaption}) throws Exception\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Gestiona la tirada. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em res} & Resultat de la tirada \\
+\hline
+{\em pos\+Inici} & Posició inicial de la tirada \\
+\hline
+{\em pos\+Final} & Posició final de la tirada \\
+\hline
+{\em color\+Torn} & color del equip que fa la tirada \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+-- 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+retorna true si s\textquotesingle{}ha realitzat la tirada, false altrament 
+\end{DoxyPostcond}
+
+
+Definition at line 139 of file Partida\+Text.\+java.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classpartida_1_1_partida_text_a3ab2adc6ef24619ebb268f5542e215c0}\label{classpartida_1_1_partida_text_a3ab2adc6ef24619ebb268f5542e215c0}} 
+\index{partida.PartidaText@{partida.PartidaText}!\_partida@{\_partida}}
+\index{\_partida@{\_partida}!partida.PartidaText@{partida.PartidaText}}
+\doxysubsubsection{\texorpdfstring{\_partida}{\_partida}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classpartida_1_1_partida}{Partida}} partida.\+Partida\+Text.\+\_\+partida\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Objecte partida que controla la situacó de la partida. 
+
+
+
+Definition at line 15 of file Partida\+Text.\+java.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_partida_text_8java}{Partida\+Text.\+java}}\end{DoxyCompactItemize}

@@ -1,0 +1,48 @@
+digraph "partida.Taulell.hihaJaque"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="partida.Taulell.hihaJaque",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Comprova si hi ha un jaque. Si hi ha jaque retorna la tirada que el fa."];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="partida.Taulell.buscaRei",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_taulell.html#ae4e1f946511fa8ea8618b17d455eb96a",tooltip="Busca al rei del equip \"equip\" i retorna la seva posicio."];
+  Node2 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="partida.Peca.esRei",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_peca.html#aea07d3883c4cbe04b3d8228d69b1ee26",tooltip="Valida si la Peça actual és el REI."];
+  Node3 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="partida.TipusPeca.get_nom",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_tipus_peca.html#a4d5a3d6a5f26c4167a4a7e2b4a9f0015",tooltip="Nom del tipus de Peça."];
+  Node1 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="partida.Peca.get_equip",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_peca.html#acf746f82f289a4a6b9c13f518df1fe6b",tooltip="Equip."];
+  Node1 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="partida.Peca.movimentValid",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_peca.html#a00c836ce784c43093c86c54ce7ad7754",tooltip="Validació de la validesa d'una tirada."];
+  Node6 -> Node7 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="partida.TiradaSimple.canviar\lSigneDesplacament",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_tirada_simple.html#a9b6b26d161cf537452ce59894d0e8f80",tooltip="Canvia el signe de desplaçament X i Y."];
+  Node6 -> Node8 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="partida.TipusPeca.tipusPeca\lValida",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_tipus_peca.html#a8d39abf24f8d3dbb1517060b83c1f728",tooltip="Mira si un tipus de Peça és vàlid."];
+  Node1 -> Node9 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="partida.Taulell.validMatar",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_taulell.html#a1b94de082c83ef2c7af322795c4daafd",tooltip="Comprova que les habilitats de matar de la peça amb les que vol fer a la tirada."];
+  Node9 -> Node10 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 [label="partida.TiradaSimple.get\l_matar",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_tirada_simple.html#aeb2264788f917ed9349f9b6399554f37",tooltip="Matar."];
+  Node1 -> Node11 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node11 [label="partida.Taulell.validVolar",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_taulell.html#ab808f90adb948b95af87138809d0dd96",tooltip="Comprova que les habilitats de volar de la peça amb les que vol fer a la tirada."];
+  Node11 -> Node12 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node12 [label="partida.TiradaSimple.get\l_volar",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_tirada_simple.html#a221e50d1eb171eb9b69d2d20eb77d404",tooltip="Volar."];
+  Node11 -> Node13 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node13 [label="partida.Taulell.hiHaPeces\lEntremig",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_taulell.html#adf258c45e95084068e09fe1d14e46fef",tooltip="Comprova si hi ha peces entremig de la tirada que es vol executar."];
+  Node13 -> Node14 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node14 [label="partida.Posicio.equals",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_posicio.html#aa01891d16f82607364885f2a26c8a41e",tooltip="Comparació de dues Posicions."];
+  Node14 -> Node15 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node15 [label="partida.Posicio.Posicio",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_posicio.html#a80733d48f01e4df99ab0606af0721a0a",tooltip="Genera una Posicó"];
+  Node13 -> Node16 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node16 [label="partida.Posicio.get\l_columna",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_posicio.html#a267f9e1db4052bbdf4cbdf15afde97e7",tooltip="Columna."];
+  Node13 -> Node17 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node17 [label="partida.TiradaSimple.get\l_desplacamentY",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_tirada_simple.html#a43de35c8d09caf5ac372ae579a369625",tooltip="Desplaçament en l'eix de les Y."];
+  Node13 -> Node18 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node18 [label="partida.TiradaSimple.get\l_desplaçamentX",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_tirada_simple.html#a77438dc75b40c3c578ebfe0f41c85d7a",tooltip="Desplaçament en l'eix de les X."];
+  Node13 -> Node19 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node19 [label="partida.TiradaSimple.get\l_desti",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_tirada_simple.html#aaa98451448fe6aca2bf914e36fead1e6",tooltip="Destí"];
+  Node13 -> Node20 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node20 [label="partida.Posicio.get_fila",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_posicio.html#afd3e4dfc10d7a4ce1587ebc641cbbee5",tooltip="Fila."];
+  Node13 -> Node21 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node21 [label="partida.TiradaSimple.get\l_origen",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_tirada_simple.html#ac67b65ec5021b314961fc232949bc680",tooltip="Origen."];
+}

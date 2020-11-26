@@ -1,0 +1,26 @@
+digraph "partida.PartidaText.processarRes"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="partida.PartidaText.processarRes",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Processa un resultat d'una tirada."];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="partida.Partida.ajornar",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_partida.html#a23c1af22e4f7d02004d2e68809728666",tooltip="Acció d'ajornar la partida."];
+  Node2 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="partida.Historial.guardar\lPartida",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_historial.html#a3c33d507e2b7939e293d2e31ca69b6ed",tooltip="Partida guardad en un Fitxer i el valor del Resultat."];
+  Node1 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="partida.Partida.escacIMat",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_partida.html#ac3b4f9a977f152e41acaaaa4eb92d626",tooltip="Acció de guanyar la partida."];
+  Node4 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="partida.Partida.getProperTorn",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_partida.html#a09df5b78e01c3687f8ee7c2d05c8f0a7",tooltip="Torn del proper jugador, BLANQUES o NEGRES."];
+  Node1 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="partida.Partida.rendirse",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_partida.html#ab55cd7eec6506a4b68e2e4382e17f96f",tooltip="Acció de perdre la partida, cada jugador ho pot decidir en el seu torn."];
+  Node6 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node7 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="partida.Partida.taulesEscacs\lSeguits",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_partida.html#a212ecf36067cf2dfb2682f4e37185b8f",tooltip="Acció de empatar la partida, han passat una quantitat de torns amb escacs seguits."];
+  Node7 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node8 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="partida.Partida.taulesTorns\lInaccio",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_partida.html#a407b9505ea10023fb8c17e02c5f560ad",tooltip="Acció de empatar la partida, han passat una quantitat de torns sense que es mati cap peça."];
+  Node8 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+}

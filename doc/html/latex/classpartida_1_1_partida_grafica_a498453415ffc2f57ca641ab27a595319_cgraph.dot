@@ -1,0 +1,12 @@
+digraph "partida.PartidaGrafica.passarTorn"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="partida.PartidaGrafica.passarTorn",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Es passa de torn."];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid"];
+  Node2 [label="partida.Partida.canviarTorn",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_partida.html#ac108efb5ae0738ca71b8638267cd137e",tooltip="Canvia de torn."];
+  Node1 -> Node3 [color="midnightblue",fontsize="10",style="solid"];
+  Node3 [label="partida.Partida.getProperTorn",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_partida.html#a09df5b78e01c3687f8ee7c2d05c8f0a7",tooltip="Torn del proper jugador, BLANQUES o NEGRES."];
+}

@@ -1,0 +1,24 @@
+digraph "partida.PartidaGrafica.eliminarPeces"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="partida.PartidaGrafica.eliminar\lPeces",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="S'eliminen les peces que han mort en la tirada."];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="partida.Posicio.get\l_columna",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_posicio.html#a267f9e1db4052bbdf4cbdf15afde97e7",tooltip="Columna."];
+  Node1 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="partida.Posicio.get_fila",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_posicio.html#afd3e4dfc10d7a4ce1587ebc641cbbee5",tooltip="Fila."];
+  Node1 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="partida.PecaGrafica.get_oldX",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_peca_grafica.html#a1584b799e9fa415ca81e6de6b2a96f5c",tooltip="Posició x de la Peça."];
+  Node1 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="partida.PecaGrafica.get_oldY",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_peca_grafica.html#a000a86424d3a4ed7a2bf1ff63b18e74d",tooltip="Posició y de la Peça."];
+  Node1 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="partida.Taulell.getEliminats",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_taulell.html#acf90f9d6e091e7d8114b63f2bd1862fd",tooltip="Llista de Peces eliminades."];
+  Node1 -> Node7 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="partida.Partida.getTaulell",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_partida.html#a5ceb0c9a529cf7b271c0764d62bd6400",tooltip="Taulell."];
+  Node1 -> Node8 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="partida.PartidaGrafica.modificar\lLblAvisos",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_partida_grafica.html#ad83e144e7d5ba795b7fb3f4f594370e4",tooltip="Modifica els avisos per l'usuari."];
+  Node1 -> Node9 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="partida.PartidaGrafica.pos\lTauler",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_partida_grafica.html#ac2e4eeec65c2ed97c1906157e4f8cdb2",tooltip="Calcula la posició al taulell gràfic."];
+}

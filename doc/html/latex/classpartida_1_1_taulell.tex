@@ -1,0 +1,975 @@
+\hypertarget{classpartida_1_1_taulell}{}\doxysection{partida.\+Taulell Class Reference}
+\label{classpartida_1_1_taulell}\index{partida.Taulell@{partida.Taulell}}
+
+
+Modul que representa el taulell d\textquotesingle{}escacs el qual pot ser modificable.  
+
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classpartida_1_1_taulell_a91a498d98a4d21a44da38caf12ed0430}{Taulell}} (int c, int f)
+\begin{DoxyCompactList}\small\item\em Genera un \mbox{\hyperlink{classpartida_1_1_taulell}{Taulell}} amb els atributs definits. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classpartida_1_1_taulell_a1b48b7386a78790ba4340c71574b1b14}{get\+Files}} ()
+\begin{DoxyCompactList}\small\item\em Nombre de files. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classpartida_1_1_taulell_a8d2fde063ab0243cad4dd814e8222728}{get\+Columnes}} ()
+\begin{DoxyCompactList}\small\item\em Nombre de columnes. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classpartida_1_1_taulell_a76081c673e786c344ebc30e49bf3897e}{afegir\+Peca}} (\mbox{\hyperlink{classpartida_1_1_peca}{Peca}} b, \mbox{\hyperlink{classpartida_1_1_peca}{Peca}} n)
+\begin{DoxyCompactList}\small\item\em Assigna les peces entrades al seu lloc a mesura que li van entran. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classpartida_1_1_taulell_a70b3aa633072b83c3f1b6c778f8c6afc}{assignar\+Peca\+Tauler}} (\mbox{\hyperlink{classpartida_1_1_peca}{Peca}} peca, \mbox{\hyperlink{classpartida_1_1_posicio}{Posicio}} pos)
+\begin{DoxyCompactList}\small\item\em Assigna la peca al taulell a la posicio determinada. \end{DoxyCompactList}\item 
+boolean \mbox{\hyperlink{classpartida_1_1_taulell_a378c7b029e0e64c33ecaa952fa584a31}{tirada\+Valida}} (\mbox{\hyperlink{classpartida_1_1_tirada_simple}{Tirada\+Simple}} t)
+\begin{DoxyCompactList}\small\item\em Fa totes les comprovacions per veure si la tirada entrada es valida o no. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classpartida_1_1_posicio}{Posicio}} \mbox{\hyperlink{classpartida_1_1_taulell_a407c3a8bf1362c72c9b4ac0c6c289cdb}{escollir\+Pos\+Peca}} (boolean equip)
+\begin{DoxyCompactList}\small\item\em Metode que escull una posició aleatoria amb una peça d\textquotesingle{}un equip. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classpartida_1_1_tirada_simple}{Tirada\+Simple}} \mbox{\hyperlink{classpartida_1_1_taulell_a242f8a083cf4e0811c89fe5d18f1f7d5}{hiha\+Jaque}} (boolean equip)
+\begin{DoxyCompactList}\small\item\em Comprova si hi ha un jaque. Si hi ha jaque retorna la tirada que el fa. \end{DoxyCompactList}\item 
+boolean \mbox{\hyperlink{classpartida_1_1_taulell_a99a87caebeda6c8a7ed34599ca917987}{hi\+Ha\+Jaque\+Mate}} (\mbox{\hyperlink{classpartida_1_1_tirada_simple}{Tirada\+Simple}} t)
+\begin{DoxyCompactList}\small\item\em Comprova si hi ha un jaque mate. Si hi ha jaque mate retorna true. \end{DoxyCompactList}\item 
+boolean \mbox{\hyperlink{classpartida_1_1_taulell_ac2a28921896a06e4a6177a0333501047}{pot\+Ficarse\+Mig}} (\mbox{\hyperlink{classpartida_1_1_tirada_simple}{Tirada\+Simple}} t)
+\begin{DoxyCompactList}\small\item\em Comprova si hi ha alguna peça que es pot ficar entre mig del recorregut de la tirada de jaque. \end{DoxyCompactList}\item 
+boolean \mbox{\hyperlink{classpartida_1_1_taulell_a499a69ce14f1afabde9c661e2947752c}{pot\+Matar\+Peça}} (\mbox{\hyperlink{classpartida_1_1_tirada_simple}{Tirada\+Simple}} t)
+\begin{DoxyCompactList}\small\item\em Mira si es pot matar la peça que està amenaçan el rei. \end{DoxyCompactList}\item 
+boolean \mbox{\hyperlink{classpartida_1_1_taulell_aea22c2fa511f0451076bfb16e29ff3e3}{pot\+Tirar\+Rei}} (\mbox{\hyperlink{classpartida_1_1_tirada_simple}{Tirada\+Simple}} t)
+\begin{DoxyCompactList}\small\item\em Mira si el rei pot tirar a algun lloc estant amençat. \end{DoxyCompactList}\item 
+boolean \mbox{\hyperlink{classpartida_1_1_taulell_adf258c45e95084068e09fe1d14e46fef}{hi\+Ha\+Peces\+Entremig}} (\mbox{\hyperlink{classpartida_1_1_tirada_simple}{Tirada\+Simple}} t)
+\begin{DoxyCompactList}\small\item\em Comprova si hi ha peces entremig de la tirada que es vol executar. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classpartida_1_1_taulell_a09ac50dfdb6fefaf8accdcb61fe0e3cc}{realitzar\+Tirada}} (\mbox{\hyperlink{classpartida_1_1_tirada_simple}{Tirada\+Simple}} t)
+\begin{DoxyCompactList}\small\item\em Realitza la tirada t al taulell. Retorna un enter que s\textquotesingle{}incrementara si es maten peces enemigues. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classpartida_1_1_posicio}{Posicio}} \mbox{\hyperlink{classpartida_1_1_taulell_ae4e1f946511fa8ea8618b17d455eb96a}{busca\+Rei}} (boolean equip)
+\begin{DoxyCompactList}\small\item\em Busca al rei del equip \char`\"{}equip\char`\"{} i retorna la seva posicio. \end{DoxyCompactList}\item 
+Tree\+Map$<$ \mbox{\hyperlink{classpartida_1_1_posicio}{Posicio}}, \mbox{\hyperlink{classpartida_1_1_peca}{Peca}} $>$ \mbox{\hyperlink{classpartida_1_1_taulell_acf90f9d6e091e7d8114b63f2bd1862fd}{get\+Eliminats}} ()
+\begin{DoxyCompactList}\small\item\em Llista de Peces eliminades. \end{DoxyCompactList}\item 
+boolean \mbox{\hyperlink{classpartida_1_1_taulell_ab97649ea10570712b3e5fc5fc0b1a575}{validar\+Enrroc}} (\mbox{\hyperlink{classpartida_1_1_enrroc}{Enrroc}} e)
+\begin{DoxyCompactList}\small\item\em Fa totes les comprovacions per veure si l\textquotesingle{}enroc entrat es valid o no. \end{DoxyCompactList}\item 
+boolean \mbox{\hyperlink{classpartida_1_1_taulell_a92e92d8c4846fda13d15a0393019faaf}{conte\+Peça\+Casella}} (\mbox{\hyperlink{classpartida_1_1_posicio}{Posicio}} p)
+\begin{DoxyCompactList}\small\item\em Comprova si a la posicio entrada hi ha un peça al taulell. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classpartida_1_1_peca}{Peca}} \mbox{\hyperlink{classpartida_1_1_taulell_a4b161ff5085972632d42fd39a6404af9}{get\+Peca}} (\mbox{\hyperlink{classpartida_1_1_posicio}{Posicio}} p)
+\begin{DoxyCompactList}\small\item\em retorna la peça que hi ha a la posicio p \end{DoxyCompactList}\item 
+boolean \mbox{\hyperlink{classpartida_1_1_taulell_a2efbfdb115a747d849c5501cc1e0f56c}{hi\+Ha\+Promocio}} (\mbox{\hyperlink{classpartida_1_1_posicio}{Posicio}} p, boolean \+\_\+equip)
+\begin{DoxyCompactList}\small\item\em Comprova si a la posicio entrada es pot fer una promocio. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classpartida_1_1_taulell_a84b5921cba85b75d27521543cdf2179d}{realitzar\+Promocio}} (\mbox{\hyperlink{classpartida_1_1_posicio}{Posicio}} pos, \mbox{\hyperlink{classpartida_1_1_peca}{Peca}} pec)
+\begin{DoxyCompactList}\small\item\em canvia la peça que hi ha a la posicio pos per la peça pec \end{DoxyCompactList}\item 
+boolean \mbox{\hyperlink{classpartida_1_1_taulell_ad829d49fc3d544d94144f6ad4e8e700b}{esta\+Buida\+Refer}} ()
+\begin{DoxyCompactList}\small\item\em boolea que et diu si el \+\_\+tirades\+Refer esta buit o no \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classpartida_1_1_taulell_a3bc601f4d7f92cee6d09926e05c01c99}{carregar\+Tirades}} (\mbox{\hyperlink{classpartida_1_1_tirada_simple}{Tirada\+Simple}} t, String resultat, Tree\+Map$<$ String, \mbox{\hyperlink{classpartida_1_1_tipus_peca}{Tipus\+Peca}} $>$ map\+Tipus, String Torn)
+\begin{DoxyCompactList}\small\item\em Carrega les tirades realitzades en una partida anterior. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classpartida_1_1_tirada_simple}{Tirada\+Simple}} \mbox{\hyperlink{classpartida_1_1_taulell_a48a9253f10ef386042de713c540c842d}{desfer\+Tirada}} (\mbox{\hyperlink{classpartida_1_1_tirada_simple}{Tirada\+Simple}} t, String resultat, Tree\+Map$<$ String, \mbox{\hyperlink{classpartida_1_1_tipus_peca}{Tipus\+Peca}} $>$ map\+Tipus)
+\begin{DoxyCompactList}\small\item\em desfa la tirada que li entren \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classpartida_1_1_taulell_ab874d91f57b5207e3abbe0c37d97a63e}{reinicia\+Tirades\+Refer}} ()
+\begin{DoxyCompactList}\small\item\em reinicia l\textquotesingle{}array de tirades que s\textquotesingle{}han desfet \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classpartida_1_1_tirada_simple}{Tirada\+Simple}} \mbox{\hyperlink{classpartida_1_1_taulell_a2adc26a7b1a5c1270710251eef03e356}{refer\+Tirada}} (String\+Builder resultat)
+\begin{DoxyCompactList}\small\item\em refem l\textquotesingle{}ultima jugada desfeta i guardem el resultat \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classpartida_1_1_tirada_simple}{Tirada\+Simple}} \mbox{\hyperlink{classpartida_1_1_taulell_af3c2b8715da3e8dfe2fab6baa7b37fa1}{hi\+Ha\+Alguna\+Amenaça}} (boolean equip)
+\begin{DoxyCompactList}\small\item\em Mira si les peces del equip contrari estan amenaçades. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classpartida_1_1_tirada_simple}{Tirada\+Simple}} \mbox{\hyperlink{classpartida_1_1_taulell_a2a9e48e57503dab760f4a4510c143535}{pos\+Amenaçada}} (\mbox{\hyperlink{classpartida_1_1_posicio}{Posicio}} p, \mbox{\hyperlink{classpartida_1_1_peca}{Peca}} p\+Observada, boolean equip, String rei)
+\begin{DoxyCompactList}\small\item\em Mira si la posició esta amenaçada una posició a partir d\textquotesingle{}una Peça. \end{DoxyCompactList}\item 
+String \mbox{\hyperlink{classpartida_1_1_taulell_a48826b0831de243dac33ec043d009cb2}{mostra}} ()
+\begin{DoxyCompactList}\small\item\em mostra el taulell amb les seves peces \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+boolean \mbox{\hyperlink{classpartida_1_1_taulell_a1b94de082c83ef2c7af322795c4daafd}{valid\+Matar}} (\mbox{\hyperlink{classpartida_1_1_tirada_simple}{Tirada\+Simple}} t, \mbox{\hyperlink{classpartida_1_1_peca}{Peca}} p)
+\begin{DoxyCompactList}\small\item\em Comprova que les habilitats de matar de la peça amb les que vol fer a la tirada. \end{DoxyCompactList}\item 
+boolean \mbox{\hyperlink{classpartida_1_1_taulell_ab808f90adb948b95af87138809d0dd96}{valid\+Volar}} (\mbox{\hyperlink{classpartida_1_1_tirada_simple}{Tirada\+Simple}} t)
+\begin{DoxyCompactList}\small\item\em Comprova que les habilitats de volar de la peça amb les que vol fer a la tirada. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classpartida_1_1_taulell_a9d656cbe63061fc7f477f31cfde9def3}{eliminar\+Peces\+Entremig}} (\mbox{\hyperlink{classpartida_1_1_tirada_simple}{Tirada\+Simple}} t, Tree\+Map$<$ \mbox{\hyperlink{classpartida_1_1_posicio}{Posicio}}, \mbox{\hyperlink{classpartida_1_1_peca}{Peca}} $>$ eli)
+\begin{DoxyCompactList}\small\item\em Comprova si hi ha peces entremig de la tirada i si n\textquotesingle{}hi ha les mata. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{classpartida_1_1_taulell_a8e655c3eac46a45e41cb9ed7a322c52f}{\+\_\+fila}}
+\item 
+int \mbox{\hyperlink{classpartida_1_1_taulell_a603afc5f55b40d03ebe1a1d6aba07c4e}{\+\_\+columna}}
+\item 
+Sorted\+Map$<$ \mbox{\hyperlink{classpartida_1_1_posicio}{Posicio}}, \mbox{\hyperlink{classpartida_1_1_peca}{Peca}} $>$ \mbox{\hyperlink{classpartida_1_1_taulell_a5623edbbfd655b3b5ef28e478d9a7e59}{\+\_\+tauler}}
+\item 
+Tree\+Map$<$ Integer, Tree\+Map$<$ \mbox{\hyperlink{classpartida_1_1_posicio}{Posicio}}, \mbox{\hyperlink{classpartida_1_1_peca}{Peca}} $>$ $>$ \mbox{\hyperlink{classpartida_1_1_taulell_a917b57439c397a1af12618a10b2aed2a}{\+\_\+eliminats}}
+\item 
+Array\+List$<$ \mbox{\hyperlink{classpartida_1_1_peca}{Peca}} $>$ \mbox{\hyperlink{classpartida_1_1_taulell_a667a9c111259e3c4fdd0ad8f6b1cb9ac}{\+\_\+promocio}}
+\item 
+int \mbox{\hyperlink{classpartida_1_1_taulell_aeff0e4d94df6deb42f8d4c413b0d56c8}{n\+\_\+peces}}
+\item 
+Integer \mbox{\hyperlink{classpartida_1_1_taulell_ae031e869e12045f621a033826cdc5c12}{n\+Torns}}
+\item 
+Array\+List$<$ \mbox{\hyperlink{classpartida_1_1_tirada_simple}{Tirada\+Simple}} $>$ \mbox{\hyperlink{classpartida_1_1_taulell_a8fecf285c23eac48b83111bbf9b3cf00}{\+\_\+tirades\+Refer}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Modul que representa el taulell d\textquotesingle{}escacs el qual pot ser modificable. 
+
+Definition at line 13 of file Taulell.\+java.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classpartida_1_1_taulell_a91a498d98a4d21a44da38caf12ed0430}\label{classpartida_1_1_taulell_a91a498d98a4d21a44da38caf12ed0430}} 
+\index{partida.Taulell@{partida.Taulell}!Taulell@{Taulell}}
+\index{Taulell@{Taulell}!partida.Taulell@{partida.Taulell}}
+\doxysubsubsection{\texorpdfstring{Taulell()}{Taulell()}}
+{\footnotesize\ttfamily partida.\+Taulell.\+Taulell (\begin{DoxyParamCaption}\item[{int}]{c,  }\item[{int}]{f }\end{DoxyParamCaption})}
+
+
+
+Genera un \mbox{\hyperlink{classpartida_1_1_taulell}{Taulell}} amb els atributs definits. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em c} & nombre de columnes del taulell \\
+\hline
+{\em f} & nombre de files del taulell \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+c i f nombres enters entre 4 i 16 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+\mbox{\hyperlink{classpartida_1_1_taulell}{Taulell}} creat de dimensio f x c 
+\end{DoxyPostcond}
+
+
+Definition at line 31 of file Taulell.\+java.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classpartida_1_1_taulell_a76081c673e786c344ebc30e49bf3897e}\label{classpartida_1_1_taulell_a76081c673e786c344ebc30e49bf3897e}} 
+\index{partida.Taulell@{partida.Taulell}!afegirPeca@{afegirPeca}}
+\index{afegirPeca@{afegirPeca}!partida.Taulell@{partida.Taulell}}
+\doxysubsubsection{\texorpdfstring{afegirPeca()}{afegirPeca()}}
+{\footnotesize\ttfamily void partida.\+Taulell.\+afegir\+Peca (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classpartida_1_1_peca}{Peca}}}]{b,  }\item[{\mbox{\hyperlink{classpartida_1_1_peca}{Peca}}}]{n }\end{DoxyParamCaption})}
+
+
+
+Assigna les peces entrades al seu lloc a mesura que li van entran. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em b} & peca blanca \\
+\hline
+{\em n} & peca nerga \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+b i n diferent de null 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+peces afegides al taulell 
+\end{DoxyPostcond}
+
+
+Definition at line 62 of file Taulell.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_taulell_a70b3aa633072b83c3f1b6c778f8c6afc}\label{classpartida_1_1_taulell_a70b3aa633072b83c3f1b6c778f8c6afc}} 
+\index{partida.Taulell@{partida.Taulell}!assignarPecaTauler@{assignarPecaTauler}}
+\index{assignarPecaTauler@{assignarPecaTauler}!partida.Taulell@{partida.Taulell}}
+\doxysubsubsection{\texorpdfstring{assignarPecaTauler()}{assignarPecaTauler()}}
+{\footnotesize\ttfamily void partida.\+Taulell.\+assignar\+Peca\+Tauler (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classpartida_1_1_peca}{Peca}}}]{peca,  }\item[{\mbox{\hyperlink{classpartida_1_1_posicio}{Posicio}}}]{pos }\end{DoxyParamCaption})}
+
+
+
+Assigna la peca al taulell a la posicio determinada. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em peca} & peça \\
+\hline
+{\em pos} & una posicio del taulell \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+peca i pos diferents de null 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+peca afegides al taulell a la posicio pos 
+\end{DoxyPostcond}
+
+
+Definition at line 96 of file Taulell.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_taulell_ae4e1f946511fa8ea8618b17d455eb96a}\label{classpartida_1_1_taulell_ae4e1f946511fa8ea8618b17d455eb96a}} 
+\index{partida.Taulell@{partida.Taulell}!buscaRei@{buscaRei}}
+\index{buscaRei@{buscaRei}!partida.Taulell@{partida.Taulell}}
+\doxysubsubsection{\texorpdfstring{buscaRei()}{buscaRei()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classpartida_1_1_posicio}{Posicio}} partida.\+Taulell.\+busca\+Rei (\begin{DoxyParamCaption}\item[{boolean}]{equip }\end{DoxyParamCaption})}
+
+
+
+Busca al rei del equip \char`\"{}equip\char`\"{} i retorna la seva posicio. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em equip} & boolea que indica l\textquotesingle{}equip del rei buscat \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+cert 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+posicio del rei trobada 
+\end{DoxyPostcond}
+
+
+Definition at line 462 of file Taulell.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_taulell_a3bc601f4d7f92cee6d09926e05c01c99}\label{classpartida_1_1_taulell_a3bc601f4d7f92cee6d09926e05c01c99}} 
+\index{partida.Taulell@{partida.Taulell}!carregarTirades@{carregarTirades}}
+\index{carregarTirades@{carregarTirades}!partida.Taulell@{partida.Taulell}}
+\doxysubsubsection{\texorpdfstring{carregarTirades()}{carregarTirades()}}
+{\footnotesize\ttfamily void partida.\+Taulell.\+carregar\+Tirades (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classpartida_1_1_tirada_simple}{Tirada\+Simple}}}]{t,  }\item[{String}]{resultat,  }\item[{Tree\+Map$<$ String, \mbox{\hyperlink{classpartida_1_1_tipus_peca}{Tipus\+Peca}} $>$}]{map\+Tipus,  }\item[{String}]{Torn }\end{DoxyParamCaption})}
+
+
+
+Carrega les tirades realitzades en una partida anterior. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & tirada a carregar \\
+\hline
+{\em resultat} & resultat de la partida a carregar \\
+\hline
+{\em map\+Tipus} & estructura on es guarden els tipus de peces \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+-- 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+Refa les tirades a partir d\textquotesingle{}una partida anterior per a que es pugui seguir. 
+\end{DoxyPostcond}
+
+
+Definition at line 570 of file Taulell.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_taulell_a92e92d8c4846fda13d15a0393019faaf}\label{classpartida_1_1_taulell_a92e92d8c4846fda13d15a0393019faaf}} 
+\index{partida.Taulell@{partida.Taulell}!contePeçaCasella@{contePeçaCasella}}
+\index{contePeçaCasella@{contePeçaCasella}!partida.Taulell@{partida.Taulell}}
+\doxysubsubsection{\texorpdfstring{contePeçaCasella()}{contePeçaCasella()}}
+{\footnotesize\ttfamily boolean partida.\+Taulell.\+conte\+Peça\+Casella (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classpartida_1_1_posicio}{Posicio}}}]{p }\end{DoxyParamCaption})}
+
+
+
+Comprova si a la posicio entrada hi ha un peça al taulell. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p} & posicio que es vol mirar si conte un peça \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+cert 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+mira si el taulell te una peça a la posicio p 
+\end{DoxyPostcond}
+
+
+Definition at line 512 of file Taulell.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_taulell_a48a9253f10ef386042de713c540c842d}\label{classpartida_1_1_taulell_a48a9253f10ef386042de713c540c842d}} 
+\index{partida.Taulell@{partida.Taulell}!desferTirada@{desferTirada}}
+\index{desferTirada@{desferTirada}!partida.Taulell@{partida.Taulell}}
+\doxysubsubsection{\texorpdfstring{desferTirada()}{desferTirada()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classpartida_1_1_tirada_simple}{Tirada\+Simple}} partida.\+Taulell.\+desfer\+Tirada (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classpartida_1_1_tirada_simple}{Tirada\+Simple}}}]{t,  }\item[{String}]{resultat,  }\item[{Tree\+Map$<$ String, \mbox{\hyperlink{classpartida_1_1_tipus_peca}{Tipus\+Peca}} $>$}]{map\+Tipus }\end{DoxyParamCaption})}
+
+
+
+desfa la tirada que li entren 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & tirada a desfer \\
+\hline
+{\em resultat} & resultat de la partida a refer \\
+\hline
+{\em map\+Tipus} & estructura on es guarden els tipus de peces \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+-- 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+tirada desfeta 
+\end{DoxyPostcond}
+
+
+Definition at line 612 of file Taulell.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_taulell_a9d656cbe63061fc7f477f31cfde9def3}\label{classpartida_1_1_taulell_a9d656cbe63061fc7f477f31cfde9def3}} 
+\index{partida.Taulell@{partida.Taulell}!eliminarPecesEntremig@{eliminarPecesEntremig}}
+\index{eliminarPecesEntremig@{eliminarPecesEntremig}!partida.Taulell@{partida.Taulell}}
+\doxysubsubsection{\texorpdfstring{eliminarPecesEntremig()}{eliminarPecesEntremig()}}
+{\footnotesize\ttfamily int partida.\+Taulell.\+eliminar\+Peces\+Entremig (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classpartida_1_1_tirada_simple}{Tirada\+Simple}}}]{t,  }\item[{Tree\+Map$<$ \mbox{\hyperlink{classpartida_1_1_posicio}{Posicio}}, \mbox{\hyperlink{classpartida_1_1_peca}{Peca}} $>$}]{eli }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Comprova si hi ha peces entremig de la tirada i si n\textquotesingle{}hi ha les mata. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & tirada que es vol fer \\
+\hline
+{\em eli} & map on es guardaran les peces mortes i la posicio on han mort \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+t diferent de null 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+mira si hi ha peces entremig de t o no i les mata si n\textquotesingle{}hi ha 
+\end{DoxyPostcond}
+
+
+Definition at line 417 of file Taulell.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_taulell_a407c3a8bf1362c72c9b4ac0c6c289cdb}\label{classpartida_1_1_taulell_a407c3a8bf1362c72c9b4ac0c6c289cdb}} 
+\index{partida.Taulell@{partida.Taulell}!escollirPosPeca@{escollirPosPeca}}
+\index{escollirPosPeca@{escollirPosPeca}!partida.Taulell@{partida.Taulell}}
+\doxysubsubsection{\texorpdfstring{escollirPosPeca()}{escollirPosPeca()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classpartida_1_1_posicio}{Posicio}} partida.\+Taulell.\+escollir\+Pos\+Peca (\begin{DoxyParamCaption}\item[{boolean}]{equip }\end{DoxyParamCaption})}
+
+
+
+Metode que escull una posició aleatoria amb una peça d\textquotesingle{}un equip. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em equip} & Equip que ha de tenir la Peça trida. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+-- 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+Retorna una Posició amb una Peça del equip demanat. 
+\end{DoxyPostcond}
+
+
+Definition at line 143 of file Taulell.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_taulell_ad829d49fc3d544d94144f6ad4e8e700b}\label{classpartida_1_1_taulell_ad829d49fc3d544d94144f6ad4e8e700b}} 
+\index{partida.Taulell@{partida.Taulell}!estaBuidaRefer@{estaBuidaRefer}}
+\index{estaBuidaRefer@{estaBuidaRefer}!partida.Taulell@{partida.Taulell}}
+\doxysubsubsection{\texorpdfstring{estaBuidaRefer()}{estaBuidaRefer()}}
+{\footnotesize\ttfamily boolean partida.\+Taulell.\+esta\+Buida\+Refer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+boolea que et diu si el \+\_\+tirades\+Refer esta buit o no 
+
+\begin{DoxyPrecond}{Precondition}
+cert 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+mira si \+\_\+tirades\+Refer esta buit o no 
+\end{DoxyPostcond}
+
+
+Definition at line 559 of file Taulell.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_taulell_a8d2fde063ab0243cad4dd814e8222728}\label{classpartida_1_1_taulell_a8d2fde063ab0243cad4dd814e8222728}} 
+\index{partida.Taulell@{partida.Taulell}!getColumnes@{getColumnes}}
+\index{getColumnes@{getColumnes}!partida.Taulell@{partida.Taulell}}
+\doxysubsubsection{\texorpdfstring{getColumnes()}{getColumnes()}}
+{\footnotesize\ttfamily int partida.\+Taulell.\+get\+Columnes (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Nombre de columnes. 
+
+
+
+Definition at line 51 of file Taulell.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_taulell_acf90f9d6e091e7d8114b63f2bd1862fd}\label{classpartida_1_1_taulell_acf90f9d6e091e7d8114b63f2bd1862fd}} 
+\index{partida.Taulell@{partida.Taulell}!getEliminats@{getEliminats}}
+\index{getEliminats@{getEliminats}!partida.Taulell@{partida.Taulell}}
+\doxysubsubsection{\texorpdfstring{getEliminats()}{getEliminats()}}
+{\footnotesize\ttfamily Tree\+Map$<$\mbox{\hyperlink{classpartida_1_1_posicio}{Posicio}},\mbox{\hyperlink{classpartida_1_1_peca}{Peca}}$>$ partida.\+Taulell.\+get\+Eliminats (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Llista de Peces eliminades. 
+
+
+
+Definition at line 479 of file Taulell.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_taulell_a1b48b7386a78790ba4340c71574b1b14}\label{classpartida_1_1_taulell_a1b48b7386a78790ba4340c71574b1b14}} 
+\index{partida.Taulell@{partida.Taulell}!getFiles@{getFiles}}
+\index{getFiles@{getFiles}!partida.Taulell@{partida.Taulell}}
+\doxysubsubsection{\texorpdfstring{getFiles()}{getFiles()}}
+{\footnotesize\ttfamily int partida.\+Taulell.\+get\+Files (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Nombre de files. 
+
+
+
+Definition at line 45 of file Taulell.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_taulell_a4b161ff5085972632d42fd39a6404af9}\label{classpartida_1_1_taulell_a4b161ff5085972632d42fd39a6404af9}} 
+\index{partida.Taulell@{partida.Taulell}!getPeca@{getPeca}}
+\index{getPeca@{getPeca}!partida.Taulell@{partida.Taulell}}
+\doxysubsubsection{\texorpdfstring{getPeca()}{getPeca()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classpartida_1_1_peca}{Peca}} partida.\+Taulell.\+get\+Peca (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classpartida_1_1_posicio}{Posicio}}}]{p }\end{DoxyParamCaption})}
+
+
+
+retorna la peça que hi ha a la posicio p 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p} & posicio on esta la peça que es vol retornar \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+cert 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+retorna la peça del taulell que esta a la poscio p 
+\end{DoxyPostcond}
+
+
+Definition at line 522 of file Taulell.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_taulell_af3c2b8715da3e8dfe2fab6baa7b37fa1}\label{classpartida_1_1_taulell_af3c2b8715da3e8dfe2fab6baa7b37fa1}} 
+\index{partida.Taulell@{partida.Taulell}!hiHaAlgunaAmenaça@{hiHaAlgunaAmenaça}}
+\index{hiHaAlgunaAmenaça@{hiHaAlgunaAmenaça}!partida.Taulell@{partida.Taulell}}
+\doxysubsubsection{\texorpdfstring{hiHaAlgunaAmenaça()}{hiHaAlgunaAmenaça()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classpartida_1_1_tirada_simple}{Tirada\+Simple}} partida.\+Taulell.\+hi\+Ha\+Alguna\+Amenaça (\begin{DoxyParamCaption}\item[{boolean}]{equip }\end{DoxyParamCaption})}
+
+
+
+Mira si les peces del equip contrari estan amenaçades. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em equip} & Blanc o Negre \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+-- 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+moviments retorna la Tirada que s\textquotesingle{}ha de fer per a matar la Peça amenaçada 
+\end{DoxyPostcond}
+
+
+Definition at line 749 of file Taulell.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_taulell_a242f8a083cf4e0811c89fe5d18f1f7d5}\label{classpartida_1_1_taulell_a242f8a083cf4e0811c89fe5d18f1f7d5}} 
+\index{partida.Taulell@{partida.Taulell}!hihaJaque@{hihaJaque}}
+\index{hihaJaque@{hihaJaque}!partida.Taulell@{partida.Taulell}}
+\doxysubsubsection{\texorpdfstring{hihaJaque()}{hihaJaque()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classpartida_1_1_tirada_simple}{Tirada\+Simple}} partida.\+Taulell.\+hiha\+Jaque (\begin{DoxyParamCaption}\item[{boolean}]{equip }\end{DoxyParamCaption})}
+
+
+
+Comprova si hi ha un jaque. Si hi ha jaque retorna la tirada que el fa. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em equip} & indica l\textquotesingle{}equip que vol mirar si esta fent E\+S\+C\+AC \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+-- 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+mira si hi ha escac o no 
+\end{DoxyPostcond}
+
+
+Definition at line 163 of file Taulell.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_taulell_a99a87caebeda6c8a7ed34599ca917987}\label{classpartida_1_1_taulell_a99a87caebeda6c8a7ed34599ca917987}} 
+\index{partida.Taulell@{partida.Taulell}!hiHaJaqueMate@{hiHaJaqueMate}}
+\index{hiHaJaqueMate@{hiHaJaqueMate}!partida.Taulell@{partida.Taulell}}
+\doxysubsubsection{\texorpdfstring{hiHaJaqueMate()}{hiHaJaqueMate()}}
+{\footnotesize\ttfamily boolean partida.\+Taulell.\+hi\+Ha\+Jaque\+Mate (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classpartida_1_1_tirada_simple}{Tirada\+Simple}}}]{t }\end{DoxyParamCaption})}
+
+
+
+Comprova si hi ha un jaque mate. Si hi ha jaque mate retorna true. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & tirada de fa jaque \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+-- 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+mira si hi ha escac i mat o no 
+\end{DoxyPostcond}
+
+
+Definition at line 191 of file Taulell.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_taulell_adf258c45e95084068e09fe1d14e46fef}\label{classpartida_1_1_taulell_adf258c45e95084068e09fe1d14e46fef}} 
+\index{partida.Taulell@{partida.Taulell}!hiHaPecesEntremig@{hiHaPecesEntremig}}
+\index{hiHaPecesEntremig@{hiHaPecesEntremig}!partida.Taulell@{partida.Taulell}}
+\doxysubsubsection{\texorpdfstring{hiHaPecesEntremig()}{hiHaPecesEntremig()}}
+{\footnotesize\ttfamily boolean partida.\+Taulell.\+hi\+Ha\+Peces\+Entremig (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classpartida_1_1_tirada_simple}{Tirada\+Simple}}}]{t }\end{DoxyParamCaption})}
+
+
+
+Comprova si hi ha peces entremig de la tirada que es vol executar. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & tirada que es vol fer \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+t diferent de null 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+mira si hi ha peces entremig de t o no 
+\end{DoxyPostcond}
+
+
+Definition at line 341 of file Taulell.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_taulell_a2efbfdb115a747d849c5501cc1e0f56c}\label{classpartida_1_1_taulell_a2efbfdb115a747d849c5501cc1e0f56c}} 
+\index{partida.Taulell@{partida.Taulell}!hiHaPromocio@{hiHaPromocio}}
+\index{hiHaPromocio@{hiHaPromocio}!partida.Taulell@{partida.Taulell}}
+\doxysubsubsection{\texorpdfstring{hiHaPromocio()}{hiHaPromocio()}}
+{\footnotesize\ttfamily boolean partida.\+Taulell.\+hi\+Ha\+Promocio (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classpartida_1_1_posicio}{Posicio}}}]{p,  }\item[{boolean}]{\+\_\+equip }\end{DoxyParamCaption})}
+
+
+
+Comprova si a la posicio entrada es pot fer una promocio. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p} & posicio que es vol mirar si es pot fer la promocio \\
+\hline
+{\em \+\_\+equip} & equip de la peça que vols fer promocio \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+cert 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+mira si es pot fer promocio o no 
+\end{DoxyPostcond}
+
+
+Definition at line 532 of file Taulell.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_taulell_a48826b0831de243dac33ec043d009cb2}\label{classpartida_1_1_taulell_a48826b0831de243dac33ec043d009cb2}} 
+\index{partida.Taulell@{partida.Taulell}!mostra@{mostra}}
+\index{mostra@{mostra}!partida.Taulell@{partida.Taulell}}
+\doxysubsubsection{\texorpdfstring{mostra()}{mostra()}}
+{\footnotesize\ttfamily String partida.\+Taulell.\+mostra (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+mostra el taulell amb les seves peces 
+
+\begin{DoxyPrecond}{Precondition}
+taulell creat 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+mostra el taulell 
+\end{DoxyPostcond}
+
+
+Definition at line 805 of file Taulell.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_taulell_a2a9e48e57503dab760f4a4510c143535}\label{classpartida_1_1_taulell_a2a9e48e57503dab760f4a4510c143535}} 
+\index{partida.Taulell@{partida.Taulell}!posAmenaçada@{posAmenaçada}}
+\index{posAmenaçada@{posAmenaçada}!partida.Taulell@{partida.Taulell}}
+\doxysubsubsection{\texorpdfstring{posAmenaçada()}{posAmenaçada()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classpartida_1_1_tirada_simple}{Tirada\+Simple}} partida.\+Taulell.\+pos\+Amenaçada (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classpartida_1_1_posicio}{Posicio}}}]{p,  }\item[{\mbox{\hyperlink{classpartida_1_1_peca}{Peca}}}]{p\+Observada,  }\item[{boolean}]{equip,  }\item[{String}]{rei }\end{DoxyParamCaption})}
+
+
+
+Mira si la posició esta amenaçada una posició a partir d\textquotesingle{}una Peça. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p} & Posició observada \\
+\hline
+{\em p\+Observada} & Peça Observada \\
+\hline
+{\em equip} & Blanc o Negre \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+Posició dins el \mbox{\hyperlink{classpartida_1_1_taulell}{Taulell}}, Peça != null 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+Retorna la Tirada que amenaça a la Peça 
+\end{DoxyPostcond}
+
+
+Definition at line 774 of file Taulell.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_taulell_ac2a28921896a06e4a6177a0333501047}\label{classpartida_1_1_taulell_ac2a28921896a06e4a6177a0333501047}} 
+\index{partida.Taulell@{partida.Taulell}!potFicarseMig@{potFicarseMig}}
+\index{potFicarseMig@{potFicarseMig}!partida.Taulell@{partida.Taulell}}
+\doxysubsubsection{\texorpdfstring{potFicarseMig()}{potFicarseMig()}}
+{\footnotesize\ttfamily boolean partida.\+Taulell.\+pot\+Ficarse\+Mig (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classpartida_1_1_tirada_simple}{Tirada\+Simple}}}]{t }\end{DoxyParamCaption})}
+
+
+
+Comprova si hi ha alguna peça que es pot ficar entre mig del recorregut de la tirada de jaque. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & tirada de fa jaque \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+-- 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+mira si alguna peça pot ficarse en mig la tirada o no 
+\end{DoxyPostcond}
+
+
+Definition at line 209 of file Taulell.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_taulell_a499a69ce14f1afabde9c661e2947752c}\label{classpartida_1_1_taulell_a499a69ce14f1afabde9c661e2947752c}} 
+\index{partida.Taulell@{partida.Taulell}!potMatarPeça@{potMatarPeça}}
+\index{potMatarPeça@{potMatarPeça}!partida.Taulell@{partida.Taulell}}
+\doxysubsubsection{\texorpdfstring{potMatarPeça()}{potMatarPeça()}}
+{\footnotesize\ttfamily boolean partida.\+Taulell.\+pot\+Matar\+Peça (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classpartida_1_1_tirada_simple}{Tirada\+Simple}}}]{t }\end{DoxyParamCaption})}
+
+
+
+Mira si es pot matar la peça que està amenaçan el rei. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & tirada de fa jaque \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+-- 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+mira si se pot matar a la peça amenaçant o no 
+\end{DoxyPostcond}
+
+
+Definition at line 259 of file Taulell.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_taulell_aea22c2fa511f0451076bfb16e29ff3e3}\label{classpartida_1_1_taulell_aea22c2fa511f0451076bfb16e29ff3e3}} 
+\index{partida.Taulell@{partida.Taulell}!potTirarRei@{potTirarRei}}
+\index{potTirarRei@{potTirarRei}!partida.Taulell@{partida.Taulell}}
+\doxysubsubsection{\texorpdfstring{potTirarRei()}{potTirarRei()}}
+{\footnotesize\ttfamily boolean partida.\+Taulell.\+pot\+Tirar\+Rei (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classpartida_1_1_tirada_simple}{Tirada\+Simple}}}]{t }\end{DoxyParamCaption})}
+
+
+
+Mira si el rei pot tirar a algun lloc estant amençat. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & tirada de fa jaque \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+-- 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+mira si el rei pot tirar o no 
+\end{DoxyPostcond}
+
+
+Definition at line 271 of file Taulell.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_taulell_a84b5921cba85b75d27521543cdf2179d}\label{classpartida_1_1_taulell_a84b5921cba85b75d27521543cdf2179d}} 
+\index{partida.Taulell@{partida.Taulell}!realitzarPromocio@{realitzarPromocio}}
+\index{realitzarPromocio@{realitzarPromocio}!partida.Taulell@{partida.Taulell}}
+\doxysubsubsection{\texorpdfstring{realitzarPromocio()}{realitzarPromocio()}}
+{\footnotesize\ttfamily void partida.\+Taulell.\+realitzar\+Promocio (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classpartida_1_1_posicio}{Posicio}}}]{pos,  }\item[{\mbox{\hyperlink{classpartida_1_1_peca}{Peca}}}]{pec }\end{DoxyParamCaption})}
+
+
+
+canvia la peça que hi ha a la posicio pos per la peça pec 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pec} & nova peça que es ficara al taulell \\
+\hline
+{\em pos} & posicio on se canviara la peça \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+peça i pos existeixen 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+promocio feta 
+\end{DoxyPostcond}
+
+
+Definition at line 550 of file Taulell.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_taulell_a09ac50dfdb6fefaf8accdcb61fe0e3cc}\label{classpartida_1_1_taulell_a09ac50dfdb6fefaf8accdcb61fe0e3cc}} 
+\index{partida.Taulell@{partida.Taulell}!realitzarTirada@{realitzarTirada}}
+\index{realitzarTirada@{realitzarTirada}!partida.Taulell@{partida.Taulell}}
+\doxysubsubsection{\texorpdfstring{realitzarTirada()}{realitzarTirada()}}
+{\footnotesize\ttfamily int partida.\+Taulell.\+realitzar\+Tirada (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classpartida_1_1_tirada_simple}{Tirada\+Simple}}}]{t }\end{DoxyParamCaption})}
+
+
+
+Realitza la tirada t al taulell. Retorna un enter que s\textquotesingle{}incrementara si es maten peces enemigues. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & tirada que es vol fer \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+t diferent de null 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+tirada feta i taulell modificat 
+\end{DoxyPostcond}
+
+
+Definition at line 388 of file Taulell.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_taulell_a2adc26a7b1a5c1270710251eef03e356}\label{classpartida_1_1_taulell_a2adc26a7b1a5c1270710251eef03e356}} 
+\index{partida.Taulell@{partida.Taulell}!referTirada@{referTirada}}
+\index{referTirada@{referTirada}!partida.Taulell@{partida.Taulell}}
+\doxysubsubsection{\texorpdfstring{referTirada()}{referTirada()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classpartida_1_1_tirada_simple}{Tirada\+Simple}} partida.\+Taulell.\+refer\+Tirada (\begin{DoxyParamCaption}\item[{String\+Builder}]{resultat }\end{DoxyParamCaption})}
+
+
+
+refem l\textquotesingle{}ultima jugada desfeta i guardem el resultat 
+
+
+\begin{DoxyParams}{Parameters}
+{\em resultat} & resultat del refer que farem \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+s\textquotesingle{}ha fet minim un desfer previament 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+tirada refeta 
+\end{DoxyPostcond}
+
+
+Definition at line 705 of file Taulell.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_taulell_ab874d91f57b5207e3abbe0c37d97a63e}\label{classpartida_1_1_taulell_ab874d91f57b5207e3abbe0c37d97a63e}} 
+\index{partida.Taulell@{partida.Taulell}!reiniciaTiradesRefer@{reiniciaTiradesRefer}}
+\index{reiniciaTiradesRefer@{reiniciaTiradesRefer}!partida.Taulell@{partida.Taulell}}
+\doxysubsubsection{\texorpdfstring{reiniciaTiradesRefer()}{reiniciaTiradesRefer()}}
+{\footnotesize\ttfamily void partida.\+Taulell.\+reinicia\+Tirades\+Refer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+reinicia l\textquotesingle{}array de tirades que s\textquotesingle{}han desfet 
+
+\begin{DoxyPrecond}{Precondition}
+-- 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+tirades\+Refer reiniciat 
+\end{DoxyPostcond}
+
+
+Definition at line 696 of file Taulell.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_taulell_a378c7b029e0e64c33ecaa952fa584a31}\label{classpartida_1_1_taulell_a378c7b029e0e64c33ecaa952fa584a31}} 
+\index{partida.Taulell@{partida.Taulell}!tiradaValida@{tiradaValida}}
+\index{tiradaValida@{tiradaValida}!partida.Taulell@{partida.Taulell}}
+\doxysubsubsection{\texorpdfstring{tiradaValida()}{tiradaValida()}}
+{\footnotesize\ttfamily boolean partida.\+Taulell.\+tirada\+Valida (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classpartida_1_1_tirada_simple}{Tirada\+Simple}}}]{t }\end{DoxyParamCaption})}
+
+
+
+Fa totes les comprovacions per veure si la tirada entrada es valida o no. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & tirada que es vol validar \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+t diferent de null 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+mira si la tirada es valida o no 
+\end{DoxyPostcond}
+
+
+Definition at line 105 of file Taulell.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_taulell_ab97649ea10570712b3e5fc5fc0b1a575}\label{classpartida_1_1_taulell_ab97649ea10570712b3e5fc5fc0b1a575}} 
+\index{partida.Taulell@{partida.Taulell}!validarEnrroc@{validarEnrroc}}
+\index{validarEnrroc@{validarEnrroc}!partida.Taulell@{partida.Taulell}}
+\doxysubsubsection{\texorpdfstring{validarEnrroc()}{validarEnrroc()}}
+{\footnotesize\ttfamily boolean partida.\+Taulell.\+validar\+Enrroc (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classpartida_1_1_enrroc}{Enrroc}}}]{e }\end{DoxyParamCaption})}
+
+
+
+Fa totes les comprovacions per veure si l\textquotesingle{}enroc entrat es valid o no. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & enroc que es vol validar \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+e diferent de null 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+mira si l\textquotesingle{}enroc es valid o no 
+\end{DoxyPostcond}
+
+
+Definition at line 488 of file Taulell.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_taulell_a1b94de082c83ef2c7af322795c4daafd}\label{classpartida_1_1_taulell_a1b94de082c83ef2c7af322795c4daafd}} 
+\index{partida.Taulell@{partida.Taulell}!validMatar@{validMatar}}
+\index{validMatar@{validMatar}!partida.Taulell@{partida.Taulell}}
+\doxysubsubsection{\texorpdfstring{validMatar()}{validMatar()}}
+{\footnotesize\ttfamily boolean partida.\+Taulell.\+valid\+Matar (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classpartida_1_1_tirada_simple}{Tirada\+Simple}}}]{t,  }\item[{\mbox{\hyperlink{classpartida_1_1_peca}{Peca}}}]{p }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Comprova que les habilitats de matar de la peça amb les que vol fer a la tirada. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & tirada que es vol fer \\
+\hline
+{\em p} & peça que si existeix, es voldria matar \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+t diferent de null 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+mira si es pot fer l\textquotesingle{}habilitat de matar que s\textquotesingle{}executa en la tirada 
+\end{DoxyPostcond}
+
+
+Definition at line 303 of file Taulell.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_taulell_ab808f90adb948b95af87138809d0dd96}\label{classpartida_1_1_taulell_ab808f90adb948b95af87138809d0dd96}} 
+\index{partida.Taulell@{partida.Taulell}!validVolar@{validVolar}}
+\index{validVolar@{validVolar}!partida.Taulell@{partida.Taulell}}
+\doxysubsubsection{\texorpdfstring{validVolar()}{validVolar()}}
+{\footnotesize\ttfamily boolean partida.\+Taulell.\+valid\+Volar (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classpartida_1_1_tirada_simple}{Tirada\+Simple}}}]{t }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Comprova que les habilitats de volar de la peça amb les que vol fer a la tirada. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & tirada que es vol fer \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+t diferent de null 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+mira si es pot fer l\textquotesingle{}habilitat de volar que s\textquotesingle{}executa en la tirada 
+\end{DoxyPostcond}
+
+
+Definition at line 324 of file Taulell.\+java.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classpartida_1_1_taulell_a603afc5f55b40d03ebe1a1d6aba07c4e}\label{classpartida_1_1_taulell_a603afc5f55b40d03ebe1a1d6aba07c4e}} 
+\index{partida.Taulell@{partida.Taulell}!\_columna@{\_columna}}
+\index{\_columna@{\_columna}!partida.Taulell@{partida.Taulell}}
+\doxysubsubsection{\texorpdfstring{\_columna}{\_columna}}
+{\footnotesize\ttfamily int partida.\+Taulell.\+\_\+columna\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 16 of file Taulell.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_taulell_a917b57439c397a1af12618a10b2aed2a}\label{classpartida_1_1_taulell_a917b57439c397a1af12618a10b2aed2a}} 
+\index{partida.Taulell@{partida.Taulell}!\_eliminats@{\_eliminats}}
+\index{\_eliminats@{\_eliminats}!partida.Taulell@{partida.Taulell}}
+\doxysubsubsection{\texorpdfstring{\_eliminats}{\_eliminats}}
+{\footnotesize\ttfamily Tree\+Map$<$Integer,Tree\+Map$<$\mbox{\hyperlink{classpartida_1_1_posicio}{Posicio}}, \mbox{\hyperlink{classpartida_1_1_peca}{Peca}}$>$ $>$ partida.\+Taulell.\+\_\+eliminats\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 18 of file Taulell.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_taulell_a8e655c3eac46a45e41cb9ed7a322c52f}\label{classpartida_1_1_taulell_a8e655c3eac46a45e41cb9ed7a322c52f}} 
+\index{partida.Taulell@{partida.Taulell}!\_fila@{\_fila}}
+\index{\_fila@{\_fila}!partida.Taulell@{partida.Taulell}}
+\doxysubsubsection{\texorpdfstring{\_fila}{\_fila}}
+{\footnotesize\ttfamily int partida.\+Taulell.\+\_\+fila\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 15 of file Taulell.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_taulell_a667a9c111259e3c4fdd0ad8f6b1cb9ac}\label{classpartida_1_1_taulell_a667a9c111259e3c4fdd0ad8f6b1cb9ac}} 
+\index{partida.Taulell@{partida.Taulell}!\_promocio@{\_promocio}}
+\index{\_promocio@{\_promocio}!partida.Taulell@{partida.Taulell}}
+\doxysubsubsection{\texorpdfstring{\_promocio}{\_promocio}}
+{\footnotesize\ttfamily Array\+List$<$\mbox{\hyperlink{classpartida_1_1_peca}{Peca}}$>$ partida.\+Taulell.\+\_\+promocio\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 19 of file Taulell.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_taulell_a5623edbbfd655b3b5ef28e478d9a7e59}\label{classpartida_1_1_taulell_a5623edbbfd655b3b5ef28e478d9a7e59}} 
+\index{partida.Taulell@{partida.Taulell}!\_tauler@{\_tauler}}
+\index{\_tauler@{\_tauler}!partida.Taulell@{partida.Taulell}}
+\doxysubsubsection{\texorpdfstring{\_tauler}{\_tauler}}
+{\footnotesize\ttfamily Sorted\+Map$<$\mbox{\hyperlink{classpartida_1_1_posicio}{Posicio}}, \mbox{\hyperlink{classpartida_1_1_peca}{Peca}}$>$ partida.\+Taulell.\+\_\+tauler\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 17 of file Taulell.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_taulell_a8fecf285c23eac48b83111bbf9b3cf00}\label{classpartida_1_1_taulell_a8fecf285c23eac48b83111bbf9b3cf00}} 
+\index{partida.Taulell@{partida.Taulell}!\_tiradesRefer@{\_tiradesRefer}}
+\index{\_tiradesRefer@{\_tiradesRefer}!partida.Taulell@{partida.Taulell}}
+\doxysubsubsection{\texorpdfstring{\_tiradesRefer}{\_tiradesRefer}}
+{\footnotesize\ttfamily Array\+List$<$\mbox{\hyperlink{classpartida_1_1_tirada_simple}{Tirada\+Simple}}$>$ partida.\+Taulell.\+\_\+tirades\+Refer\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 22 of file Taulell.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_taulell_aeff0e4d94df6deb42f8d4c413b0d56c8}\label{classpartida_1_1_taulell_aeff0e4d94df6deb42f8d4c413b0d56c8}} 
+\index{partida.Taulell@{partida.Taulell}!n\_peces@{n\_peces}}
+\index{n\_peces@{n\_peces}!partida.Taulell@{partida.Taulell}}
+\doxysubsubsection{\texorpdfstring{n\_peces}{n\_peces}}
+{\footnotesize\ttfamily int partida.\+Taulell.\+n\+\_\+peces\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 20 of file Taulell.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_taulell_ae031e869e12045f621a033826cdc5c12}\label{classpartida_1_1_taulell_ae031e869e12045f621a033826cdc5c12}} 
+\index{partida.Taulell@{partida.Taulell}!nTorns@{nTorns}}
+\index{nTorns@{nTorns}!partida.Taulell@{partida.Taulell}}
+\doxysubsubsection{\texorpdfstring{nTorns}{nTorns}}
+{\footnotesize\ttfamily Integer partida.\+Taulell.\+n\+Torns\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 21 of file Taulell.\+java.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_taulell_8java}{Taulell.\+java}}\end{DoxyCompactItemize}

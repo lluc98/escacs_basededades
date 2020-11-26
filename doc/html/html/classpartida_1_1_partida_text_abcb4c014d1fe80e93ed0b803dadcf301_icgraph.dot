@@ -1,0 +1,16 @@
+digraph "partida.PartidaText.llegirPosicioDesti"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node1 [label="partida.PartidaText.llegir\lPosicioDesti",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Llegeix la posició destí que demana l'usuari i la processa."];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="partida.PartidaText.tirada",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_partida_text.html#acc995d318d946fd2b8e0f16366797ded",tooltip="Gestiona la tirada."];
+  Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="partida.PartidaText.jugar",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_partida_text.html#a879caed244bc5c974313cd31faa75c6d",tooltip="Gestiona la partida."];
+  Node3 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="partida.PartidaText.inicia\lAplicacio",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_partida_text.html#a02c8b096e88ca947f3956566b3fd4145",tooltip="Inicia el joc."];
+  Node4 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="partida.JocEscacs.main",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_joc_escacs.html#a61412703510b43d5067b1aa19d45a85f",tooltip=" "];
+}

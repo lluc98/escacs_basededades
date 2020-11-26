@@ -1,0 +1,275 @@
+\hypertarget{classpartida_1_1_peca_grafica}{}\doxysection{partida.\+Peca\+Grafica Class Reference}
+\label{classpartida_1_1_peca_grafica}\index{partida.PecaGrafica@{partida.PecaGrafica}}
+
+
+Elment del taulell que ens mostra l\textquotesingle{}aspecte de la Peça.  
+
+
+Inheritance diagram for partida.\+Peca\+Grafica\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classpartida_1_1_peca_grafica}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classpartida_1_1_peca_grafica_ac4e482c495216d3829f336c6aca8d45a}{Peca\+Grafica}} (\mbox{\hyperlink{classpartida_1_1_peca}{Peca}} fitxa, int pixels, int x, int y)
+\begin{DoxyCompactList}\small\item\em Genera una Peça en mode gràfic. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classpartida_1_1_peca_grafica_ad9a2e9ef23ef6266f923622059f1c1e9}{move}} (int x, int y)
+\item 
+void \mbox{\hyperlink{classpartida_1_1_peca_grafica_adaaca69f97c7dbd1a8e7c7f8c0c977a8}{abort\+Move}} ()
+\begin{DoxyCompactList}\small\item\em Cancela un moviment, recoloca les posicions inicials de la Peça gràfica. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classpartida_1_1_peca}{Peca}} \mbox{\hyperlink{classpartida_1_1_peca_grafica_a14f010df978af3a4329b17b9129716ab}{get\+Tipus}} ()
+\begin{DoxyCompactList}\small\item\em Peça de Peça\+Grafica. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classpartida_1_1_peca_grafica_a1584b799e9fa415ca81e6de6b2a96f5c}{get\+\_\+oldX}} ()
+\begin{DoxyCompactList}\small\item\em Posició x de la Peça. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classpartida_1_1_peca_grafica_a000a86424d3a4ed7a2bf1ff63b18e74d}{get\+\_\+oldY}} ()
+\begin{DoxyCompactList}\small\item\em Posició y de la Peça. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classpartida_1_1_peca_grafica_aeb1eedd2318125eee1d9461227966429}{set\+OldX}} (int x)
+\begin{DoxyCompactList}\small\item\em Setteja la posició x de la Peça. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classpartida_1_1_peca_grafica_af1f3c9470a1ea9ed1ca52af39e50d068}{set\+OldY}} (int y)
+\begin{DoxyCompactList}\small\item\em Setteja la posició y de la Peça. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+Stack\+Pane \mbox{\hyperlink{classpartida_1_1_peca_grafica_a15f3c022a3f1efd5786a42c3e9a1ab4b}{crear\+Fitxa}} (double ample, double alt)
+\begin{DoxyCompactList}\small\item\em Crea una fitxa en el mmode gràfic. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{classpartida_1_1_peca_grafica_aa2abe85d669f3ec7cffa5d04cc96ffe9}{\+\_\+pixels}}
+\begin{DoxyCompactList}\small\item\em Tamany de la Peça. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classpartida_1_1_peca}{Peca}} \mbox{\hyperlink{classpartida_1_1_peca_grafica_a0855cbfbb57e0f964c0a526538f98842}{\+\_\+fitxa}}
+\begin{DoxyCompactList}\small\item\em Objecte que ens defineix els atributs de la Peça. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classpartida_1_1_peca_grafica_a2055f14fd35797878c56c9dd89adb60c}{\+\_\+mouseX}}
+\item 
+double \mbox{\hyperlink{classpartida_1_1_peca_grafica_a222de4a15c3bd1112b712e751b46e48b}{\+\_\+oldX}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Elment del taulell que ens mostra l\textquotesingle{}aspecte de la Peça. 
+
+Definition at line 17 of file Peca\+Grafica.\+java.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classpartida_1_1_peca_grafica_ac4e482c495216d3829f336c6aca8d45a}\label{classpartida_1_1_peca_grafica_ac4e482c495216d3829f336c6aca8d45a}} 
+\index{partida.PecaGrafica@{partida.PecaGrafica}!PecaGrafica@{PecaGrafica}}
+\index{PecaGrafica@{PecaGrafica}!partida.PecaGrafica@{partida.PecaGrafica}}
+\doxysubsubsection{\texorpdfstring{PecaGrafica()}{PecaGrafica()}}
+{\footnotesize\ttfamily partida.\+Peca\+Grafica.\+Peca\+Grafica (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classpartida_1_1_peca}{Peca}}}]{fitxa,  }\item[{int}]{pixels,  }\item[{int}]{x,  }\item[{int}]{y }\end{DoxyParamCaption})}
+
+
+
+Genera una Peça en mode gràfic. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fitxa} & Peça \\
+\hline
+{\em pixels} & Tamany de la Peça \\
+\hline
+{\em x} & Posició x on volem moure la Peça \\
+\hline
+{\em y} & Posició y on volem moure la Peça \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+Peça existent 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+tots els atributs de la Peça\+Grafica estan settejats 
+\end{DoxyPostcond}
+
+
+Definition at line 32 of file Peca\+Grafica.\+java.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classpartida_1_1_peca_grafica_adaaca69f97c7dbd1a8e7c7f8c0c977a8}\label{classpartida_1_1_peca_grafica_adaaca69f97c7dbd1a8e7c7f8c0c977a8}} 
+\index{partida.PecaGrafica@{partida.PecaGrafica}!abortMove@{abortMove}}
+\index{abortMove@{abortMove}!partida.PecaGrafica@{partida.PecaGrafica}}
+\doxysubsubsection{\texorpdfstring{abortMove()}{abortMove()}}
+{\footnotesize\ttfamily void partida.\+Peca\+Grafica.\+abort\+Move (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Cancela un moviment, recoloca les posicions inicials de la Peça gràfica. 
+
+
+
+Definition at line 110 of file Peca\+Grafica.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_peca_grafica_a15f3c022a3f1efd5786a42c3e9a1ab4b}\label{classpartida_1_1_peca_grafica_a15f3c022a3f1efd5786a42c3e9a1ab4b}} 
+\index{partida.PecaGrafica@{partida.PecaGrafica}!crearFitxa@{crearFitxa}}
+\index{crearFitxa@{crearFitxa}!partida.PecaGrafica@{partida.PecaGrafica}}
+\doxysubsubsection{\texorpdfstring{crearFitxa()}{crearFitxa()}}
+{\footnotesize\ttfamily Stack\+Pane partida.\+Peca\+Grafica.\+crear\+Fitxa (\begin{DoxyParamCaption}\item[{double}]{ample,  }\item[{double}]{alt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Crea una fitxa en el mmode gràfic. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ample} & Tamany d\textquotesingle{}amplada \\
+\hline
+{\em alt} & Tamany d\textquotesingle{}altura \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+-- 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+Retorna una Peça gràfica 
+\end{DoxyPostcond}
+
+
+Definition at line 60 of file Peca\+Grafica.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_peca_grafica_a1584b799e9fa415ca81e6de6b2a96f5c}\label{classpartida_1_1_peca_grafica_a1584b799e9fa415ca81e6de6b2a96f5c}} 
+\index{partida.PecaGrafica@{partida.PecaGrafica}!get\_oldX@{get\_oldX}}
+\index{get\_oldX@{get\_oldX}!partida.PecaGrafica@{partida.PecaGrafica}}
+\doxysubsubsection{\texorpdfstring{get\_oldX()}{get\_oldX()}}
+{\footnotesize\ttfamily double partida.\+Peca\+Grafica.\+get\+\_\+oldX (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Posició x de la Peça. 
+
+
+
+Definition at line 120 of file Peca\+Grafica.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_peca_grafica_a000a86424d3a4ed7a2bf1ff63b18e74d}\label{classpartida_1_1_peca_grafica_a000a86424d3a4ed7a2bf1ff63b18e74d}} 
+\index{partida.PecaGrafica@{partida.PecaGrafica}!get\_oldY@{get\_oldY}}
+\index{get\_oldY@{get\_oldY}!partida.PecaGrafica@{partida.PecaGrafica}}
+\doxysubsubsection{\texorpdfstring{get\_oldY()}{get\_oldY()}}
+{\footnotesize\ttfamily double partida.\+Peca\+Grafica.\+get\+\_\+oldY (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Posició y de la Peça. 
+
+
+
+Definition at line 125 of file Peca\+Grafica.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_peca_grafica_a14f010df978af3a4329b17b9129716ab}\label{classpartida_1_1_peca_grafica_a14f010df978af3a4329b17b9129716ab}} 
+\index{partida.PecaGrafica@{partida.PecaGrafica}!getTipus@{getTipus}}
+\index{getTipus@{getTipus}!partida.PecaGrafica@{partida.PecaGrafica}}
+\doxysubsubsection{\texorpdfstring{getTipus()}{getTipus()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classpartida_1_1_peca}{Peca}} partida.\+Peca\+Grafica.\+get\+Tipus (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Peça de Peça\+Grafica. 
+
+
+
+Definition at line 115 of file Peca\+Grafica.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_peca_grafica_ad9a2e9ef23ef6266f923622059f1c1e9}\label{classpartida_1_1_peca_grafica_ad9a2e9ef23ef6266f923622059f1c1e9}} 
+\index{partida.PecaGrafica@{partida.PecaGrafica}!move@{move}}
+\index{move@{move}!partida.PecaGrafica@{partida.PecaGrafica}}
+\doxysubsubsection{\texorpdfstring{move()}{move()}}
+{\footnotesize\ttfamily void partida.\+Peca\+Grafica.\+move (\begin{DoxyParamCaption}\item[{int}]{x,  }\item[{int}]{y }\end{DoxyParamCaption})}
+
+\begin{DoxyPrecond}{Precondition}
+-- 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+Cambia la posició de la Peça 
+\end{DoxyPostcond}
+
+
+Definition at line 103 of file Peca\+Grafica.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_peca_grafica_aeb1eedd2318125eee1d9461227966429}\label{classpartida_1_1_peca_grafica_aeb1eedd2318125eee1d9461227966429}} 
+\index{partida.PecaGrafica@{partida.PecaGrafica}!setOldX@{setOldX}}
+\index{setOldX@{setOldX}!partida.PecaGrafica@{partida.PecaGrafica}}
+\doxysubsubsection{\texorpdfstring{setOldX()}{setOldX()}}
+{\footnotesize\ttfamily void partida.\+Peca\+Grafica.\+set\+OldX (\begin{DoxyParamCaption}\item[{int}]{x }\end{DoxyParamCaption})}
+
+
+
+Setteja la posició x de la Peça. 
+
+
+
+Definition at line 130 of file Peca\+Grafica.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_peca_grafica_af1f3c9470a1ea9ed1ca52af39e50d068}\label{classpartida_1_1_peca_grafica_af1f3c9470a1ea9ed1ca52af39e50d068}} 
+\index{partida.PecaGrafica@{partida.PecaGrafica}!setOldY@{setOldY}}
+\index{setOldY@{setOldY}!partida.PecaGrafica@{partida.PecaGrafica}}
+\doxysubsubsection{\texorpdfstring{setOldY()}{setOldY()}}
+{\footnotesize\ttfamily void partida.\+Peca\+Grafica.\+set\+OldY (\begin{DoxyParamCaption}\item[{int}]{y }\end{DoxyParamCaption})}
+
+
+
+Setteja la posició y de la Peça. 
+
+
+
+Definition at line 135 of file Peca\+Grafica.\+java.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classpartida_1_1_peca_grafica_a0855cbfbb57e0f964c0a526538f98842}\label{classpartida_1_1_peca_grafica_a0855cbfbb57e0f964c0a526538f98842}} 
+\index{partida.PecaGrafica@{partida.PecaGrafica}!\_fitxa@{\_fitxa}}
+\index{\_fitxa@{\_fitxa}!partida.PecaGrafica@{partida.PecaGrafica}}
+\doxysubsubsection{\texorpdfstring{\_fitxa}{\_fitxa}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classpartida_1_1_peca}{Peca}} partida.\+Peca\+Grafica.\+\_\+fitxa\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Objecte que ens defineix els atributs de la Peça. 
+
+
+
+Definition at line 19 of file Peca\+Grafica.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_peca_grafica_a2055f14fd35797878c56c9dd89adb60c}\label{classpartida_1_1_peca_grafica_a2055f14fd35797878c56c9dd89adb60c}} 
+\index{partida.PecaGrafica@{partida.PecaGrafica}!\_mouseX@{\_mouseX}}
+\index{\_mouseX@{\_mouseX}!partida.PecaGrafica@{partida.PecaGrafica}}
+\doxysubsubsection{\texorpdfstring{\_mouseX}{\_mouseX}}
+{\footnotesize\ttfamily double partida.\+Peca\+Grafica.\+\_\+mouseX\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 20 of file Peca\+Grafica.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_peca_grafica_a222de4a15c3bd1112b712e751b46e48b}\label{classpartida_1_1_peca_grafica_a222de4a15c3bd1112b712e751b46e48b}} 
+\index{partida.PecaGrafica@{partida.PecaGrafica}!\_oldX@{\_oldX}}
+\index{\_oldX@{\_oldX}!partida.PecaGrafica@{partida.PecaGrafica}}
+\doxysubsubsection{\texorpdfstring{\_oldX}{\_oldX}}
+{\footnotesize\ttfamily double partida.\+Peca\+Grafica.\+\_\+oldX\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 21 of file Peca\+Grafica.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_peca_grafica_aa2abe85d669f3ec7cffa5d04cc96ffe9}\label{classpartida_1_1_peca_grafica_aa2abe85d669f3ec7cffa5d04cc96ffe9}} 
+\index{partida.PecaGrafica@{partida.PecaGrafica}!\_pixels@{\_pixels}}
+\index{\_pixels@{\_pixels}!partida.PecaGrafica@{partida.PecaGrafica}}
+\doxysubsubsection{\texorpdfstring{\_pixels}{\_pixels}}
+{\footnotesize\ttfamily int partida.\+Peca\+Grafica.\+\_\+pixels\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Tamany de la Peça. 
+
+
+
+Definition at line 18 of file Peca\+Grafica.\+java.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_peca_grafica_8java}{Peca\+Grafica.\+java}}\end{DoxyCompactItemize}

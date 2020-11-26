@@ -1,0 +1,481 @@
+\hypertarget{classpartida_1_1_peca}{}\doxysection{partida.\+Peca Class Reference}
+\label{classpartida_1_1_peca}\index{partida.Peca@{partida.Peca}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classpartida_1_1_peca_af97319ec02941a4da8b66dff9c7b5da3}{Peca}} ()
+\begin{DoxyCompactList}\small\item\em Genera una peça buida. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classpartida_1_1_peca_a766c07bbf25720a9273876e80f87b2c4}{Peca}} (String s, boolean equip, Tree\+Map$<$ String, \mbox{\hyperlink{classpartida_1_1_tipus_peca}{Tipus\+Peca}} $>$ m)
+\begin{DoxyCompactList}\small\item\em Genera una Peça amb els atributs definits. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classpartida_1_1_peca_a0a19a8105540b0a050962e18a8c4f80d}{Peca}} (String s, boolean equip, Tree\+Map$<$ String, \mbox{\hyperlink{classpartida_1_1_tipus_peca}{Tipus\+Peca}} $>$ m, boolean moguda)
+\begin{DoxyCompactList}\small\item\em Genera una Peça amb els atributs definits. \end{DoxyCompactList}\item 
+boolean \mbox{\hyperlink{classpartida_1_1_peca_a00c836ce784c43093c86c54ce7ad7754}{moviment\+Valid}} (\mbox{\hyperlink{classpartida_1_1_tirada_simple}{Tirada\+Simple}} t)
+\begin{DoxyCompactList}\small\item\em Validació de la validesa d\textquotesingle{}una tirada. \end{DoxyCompactList}\item 
+boolean \mbox{\hyperlink{classpartida_1_1_peca_acf746f82f289a4a6b9c13f518df1fe6b}{get\+\_\+equip}} ()
+\begin{DoxyCompactList}\small\item\em Equip. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classpartida_1_1_peca_afddc0a60f1817a3f9e61d9ecaa6ba9df}{primer\+Mov\+Fet}} ()
+\begin{DoxyCompactList}\small\item\em Mètode per a canviar Primer \mbox{\hyperlink{classpartida_1_1_moviment}{Moviment}}. \end{DoxyCompactList}\item 
+boolean \mbox{\hyperlink{classpartida_1_1_peca_aea07d3883c4cbe04b3d8228d69b1ee26}{es\+Rei}} (boolean equip)
+\begin{DoxyCompactList}\small\item\em Valida si la Peça actual és el R\+EI. \end{DoxyCompactList}\item 
+boolean \mbox{\hyperlink{classpartida_1_1_peca_a8b258f6875773e0981f1b7c768adbb25}{enrroc\+Valid}} (\mbox{\hyperlink{classpartida_1_1_enrroc}{Enrroc}} e, \mbox{\hyperlink{classpartida_1_1_peca}{Peca}} b)
+\begin{DoxyCompactList}\small\item\em Validació del \mbox{\hyperlink{classpartida_1_1_enrroc}{Enrroc}} mirant si és el primer \mbox{\hyperlink{classpartida_1_1_moviment}{Moviment}}. \end{DoxyCompactList}\item 
+boolean \mbox{\hyperlink{classpartida_1_1_peca_a7cd12e2b9992a9f92d8bd5b4ace9f7ef}{es\+Peca\+Nom}} (String nom)
+\begin{DoxyCompactList}\small\item\em Comparació del nom de dues Peces. \end{DoxyCompactList}\item 
+String \mbox{\hyperlink{classpartida_1_1_peca_a4961f25a80f488fd2c5c97ff15ceddeb}{get\+Nom}} ()
+\begin{DoxyCompactList}\small\item\em Nom de la Peça. \end{DoxyCompactList}\item 
+boolean \mbox{\hyperlink{classpartida_1_1_peca_adf2f180435ec4a34c687f5a58904d6c8}{es\+Invulnerable}} ()
+\begin{DoxyCompactList}\small\item\em Invulnerabilitat. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classpartida_1_1_tipus_peca}{Tipus\+Peca}} \mbox{\hyperlink{classpartida_1_1_peca_a8db1539316c423a1045050027ff1ec4a}{get\+\_\+tipus}} ()
+\begin{DoxyCompactList}\small\item\em Tipus. \end{DoxyCompactList}\item 
+String \mbox{\hyperlink{classpartida_1_1_peca_a61596e557c984bef4e35ff69aaa30bb9}{to\+String}} ()
+\begin{DoxyCompactList}\small\item\em Converteix la Peça actual en la seva primera lletra, en majuscula o minscula en funció de quin equip sigui (N\+E\+G\+R\+ES minuscula, B\+L\+A\+N\+Q\+U\+ES majuscula ) \end{DoxyCompactList}\item 
+boolean \mbox{\hyperlink{classpartida_1_1_peca_a64b99e9643e839418cf1942d2812e553}{get\+Promocio}} ()
+\begin{DoxyCompactList}\small\item\em Promocio. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classpartida_1_1_peca_a14606aca0160587c25a6525f435e5ad1}{incrementar\+Mov}} ()
+\begin{DoxyCompactList}\small\item\em Incrementa el contador de moviments fet per aquesta peça. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classpartida_1_1_peca_a282bada04cb73037a8ca03d4af277967}{decrementar\+Mov}} ()
+\begin{DoxyCompactList}\small\item\em Incrementa el contador de moviments fet per aquesta peça. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classpartida_1_1_peca_ae0f551213e2f6e4e9ab7e8b32aacfc8a}{get\+N\+Movs}} ()
+\begin{DoxyCompactList}\small\item\em get\+N\+Movs \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classpartida_1_1_peca_aa9bc3c1b79fbb69930d2da3d97f30911}{restaurar\+Mov}} ()
+\begin{DoxyCompactList}\small\item\em Ficar que la peça no ha fet cap moviment. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classpartida_1_1_tipus_peca}{Tipus\+Peca}} \mbox{\hyperlink{classpartida_1_1_peca_a93eeca4d00e528bc7b8ab7a326e7121b}{\+\_\+tipus}}
+\begin{DoxyCompactList}\small\item\em Conjunt d\textquotesingle{}atributs que defineixen la Peça. \end{DoxyCompactList}\item 
+boolean \mbox{\hyperlink{classpartida_1_1_peca_abf7c0320e4b5e3802ff38e6d04861b53}{\+\_\+primer\+Moviment}}
+\begin{DoxyCompactList}\small\item\em Controlador de si s\textquotesingle{}ha fet el primer moviment. \end{DoxyCompactList}\item 
+boolean \mbox{\hyperlink{classpartida_1_1_peca_adac259ff130f0431b15927d8093a863b}{\+\_\+equip}}
+\begin{DoxyCompactList}\small\item\em Controlador del equip al que pertany la Peça. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classpartida_1_1_peca_ad53e163ff2eabd4166d9c2d8458f5419}{\+\_\+n\+Mov}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line 11 of file Peca.\+java.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classpartida_1_1_peca_af97319ec02941a4da8b66dff9c7b5da3}\label{classpartida_1_1_peca_af97319ec02941a4da8b66dff9c7b5da3}} 
+\index{partida.Peca@{partida.Peca}!Peca@{Peca}}
+\index{Peca@{Peca}!partida.Peca@{partida.Peca}}
+\doxysubsubsection{\texorpdfstring{Peca()}{Peca()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily partida.\+Peca.\+Peca (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Genera una peça buida. 
+
+\begin{DoxyPrecond}{Precondition}
+-- 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+Peça buida generada 
+\end{DoxyPostcond}
+
+
+Definition at line 21 of file Peca.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_peca_a766c07bbf25720a9273876e80f87b2c4}\label{classpartida_1_1_peca_a766c07bbf25720a9273876e80f87b2c4}} 
+\index{partida.Peca@{partida.Peca}!Peca@{Peca}}
+\index{Peca@{Peca}!partida.Peca@{partida.Peca}}
+\doxysubsubsection{\texorpdfstring{Peca()}{Peca()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily partida.\+Peca.\+Peca (\begin{DoxyParamCaption}\item[{String}]{s,  }\item[{boolean}]{equip,  }\item[{Tree\+Map$<$ String, \mbox{\hyperlink{classpartida_1_1_tipus_peca}{Tipus\+Peca}} $>$}]{m }\end{DoxyParamCaption})}
+
+
+
+Genera una Peça amb els atributs definits. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & Nom de la Peça \\
+\hline
+{\em equip} & Equip de la Peça \\
+\hline
+{\em m} & Atributs de la Peça \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+m té mapejat un Tipus de Peça amb el nom s 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+Peça nova generada 
+\end{DoxyPostcond}
+
+
+Definition at line 34 of file Peca.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_peca_a0a19a8105540b0a050962e18a8c4f80d}\label{classpartida_1_1_peca_a0a19a8105540b0a050962e18a8c4f80d}} 
+\index{partida.Peca@{partida.Peca}!Peca@{Peca}}
+\index{Peca@{Peca}!partida.Peca@{partida.Peca}}
+\doxysubsubsection{\texorpdfstring{Peca()}{Peca()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily partida.\+Peca.\+Peca (\begin{DoxyParamCaption}\item[{String}]{s,  }\item[{boolean}]{equip,  }\item[{Tree\+Map$<$ String, \mbox{\hyperlink{classpartida_1_1_tipus_peca}{Tipus\+Peca}} $>$}]{m,  }\item[{boolean}]{moguda }\end{DoxyParamCaption})}
+
+
+
+Genera una Peça amb els atributs definits. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & Nom de la Peça \\
+\hline
+{\em equip} & Equip de la Peça \\
+\hline
+{\em m} & Atributs de la Peça \\
+\hline
+{\em moguda} & Booleà que avisa si s\textquotesingle{}ha mogut ja la Peça \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+m té mapejat un Tipus de Peça amb el nom s 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+Peça nova generada amb atribut moguda definit 
+\end{DoxyPostcond}
+
+
+Definition at line 54 of file Peca.\+java.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classpartida_1_1_peca_a282bada04cb73037a8ca03d4af277967}\label{classpartida_1_1_peca_a282bada04cb73037a8ca03d4af277967}} 
+\index{partida.Peca@{partida.Peca}!decrementarMov@{decrementarMov}}
+\index{decrementarMov@{decrementarMov}!partida.Peca@{partida.Peca}}
+\doxysubsubsection{\texorpdfstring{decrementarMov()}{decrementarMov()}}
+{\footnotesize\ttfamily void partida.\+Peca.\+decrementar\+Mov (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Incrementa el contador de moviments fet per aquesta peça. 
+
+\begin{DoxyPrecond}{Precondition}
+-- 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+\+\_\+n\+Mov incrementat 
+\end{DoxyPostcond}
+
+
+Definition at line 190 of file Peca.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_peca_a8b258f6875773e0981f1b7c768adbb25}\label{classpartida_1_1_peca_a8b258f6875773e0981f1b7c768adbb25}} 
+\index{partida.Peca@{partida.Peca}!enrrocValid@{enrrocValid}}
+\index{enrrocValid@{enrrocValid}!partida.Peca@{partida.Peca}}
+\doxysubsubsection{\texorpdfstring{enrrocValid()}{enrrocValid()}}
+{\footnotesize\ttfamily boolean partida.\+Peca.\+enrroc\+Valid (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classpartida_1_1_enrroc}{Enrroc}}}]{e,  }\item[{\mbox{\hyperlink{classpartida_1_1_peca}{Peca}}}]{b }\end{DoxyParamCaption})}
+
+
+
+Validació del \mbox{\hyperlink{classpartida_1_1_enrroc}{Enrroc}} mirant si és el primer \mbox{\hyperlink{classpartida_1_1_moviment}{Moviment}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & \mbox{\hyperlink{classpartida_1_1_enrroc}{Enrroc}} que es vol realitzar \\
+\hline
+{\em b} & Peça amb la que es vol fer l\textquotesingle{}\mbox{\hyperlink{classpartida_1_1_enrroc}{Enrroc}} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+-- 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+S\textquotesingle{}ha vàlidat si les dues Peces no han fet el primer \mbox{\hyperlink{classpartida_1_1_moviment}{Moviment}} 
+\end{DoxyPostcond}
+
+
+Definition at line 119 of file Peca.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_peca_adf2f180435ec4a34c687f5a58904d6c8}\label{classpartida_1_1_peca_adf2f180435ec4a34c687f5a58904d6c8}} 
+\index{partida.Peca@{partida.Peca}!esInvulnerable@{esInvulnerable}}
+\index{esInvulnerable@{esInvulnerable}!partida.Peca@{partida.Peca}}
+\doxysubsubsection{\texorpdfstring{esInvulnerable()}{esInvulnerable()}}
+{\footnotesize\ttfamily boolean partida.\+Peca.\+es\+Invulnerable (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Invulnerabilitat. 
+
+
+
+Definition at line 149 of file Peca.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_peca_a7cd12e2b9992a9f92d8bd5b4ace9f7ef}\label{classpartida_1_1_peca_a7cd12e2b9992a9f92d8bd5b4ace9f7ef}} 
+\index{partida.Peca@{partida.Peca}!esPecaNom@{esPecaNom}}
+\index{esPecaNom@{esPecaNom}!partida.Peca@{partida.Peca}}
+\doxysubsubsection{\texorpdfstring{esPecaNom()}{esPecaNom()}}
+{\footnotesize\ttfamily boolean partida.\+Peca.\+es\+Peca\+Nom (\begin{DoxyParamCaption}\item[{String}]{nom }\end{DoxyParamCaption})}
+
+
+
+Comparació del nom de dues Peces. 
+
+\begin{DoxyPrecond}{Precondition}
+-- 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+true es diuen igual, false altrament. 
+\end{DoxyPostcond}
+
+
+Definition at line 139 of file Peca.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_peca_aea07d3883c4cbe04b3d8228d69b1ee26}\label{classpartida_1_1_peca_aea07d3883c4cbe04b3d8228d69b1ee26}} 
+\index{partida.Peca@{partida.Peca}!esRei@{esRei}}
+\index{esRei@{esRei}!partida.Peca@{partida.Peca}}
+\doxysubsubsection{\texorpdfstring{esRei()}{esRei()}}
+{\footnotesize\ttfamily boolean partida.\+Peca.\+es\+Rei (\begin{DoxyParamCaption}\item[{boolean}]{equip }\end{DoxyParamCaption})}
+
+
+
+Valida si la Peça actual és el R\+EI. 
+
+\begin{DoxyPrecond}{Precondition}
+-- 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+true si la Peça actual és el R\+EI, fals altrament 
+\end{DoxyPostcond}
+
+
+Definition at line 109 of file Peca.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_peca_acf746f82f289a4a6b9c13f518df1fe6b}\label{classpartida_1_1_peca_acf746f82f289a4a6b9c13f518df1fe6b}} 
+\index{partida.Peca@{partida.Peca}!get\_equip@{get\_equip}}
+\index{get\_equip@{get\_equip}!partida.Peca@{partida.Peca}}
+\doxysubsubsection{\texorpdfstring{get\_equip()}{get\_equip()}}
+{\footnotesize\ttfamily boolean partida.\+Peca.\+get\+\_\+equip (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Equip. 
+
+
+
+Definition at line 91 of file Peca.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_peca_a8db1539316c423a1045050027ff1ec4a}\label{classpartida_1_1_peca_a8db1539316c423a1045050027ff1ec4a}} 
+\index{partida.Peca@{partida.Peca}!get\_tipus@{get\_tipus}}
+\index{get\_tipus@{get\_tipus}!partida.Peca@{partida.Peca}}
+\doxysubsubsection{\texorpdfstring{get\_tipus()}{get\_tipus()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classpartida_1_1_tipus_peca}{Tipus\+Peca}} partida.\+Peca.\+get\+\_\+tipus (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Tipus. 
+
+
+
+Definition at line 152 of file Peca.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_peca_ae0f551213e2f6e4e9ab7e8b32aacfc8a}\label{classpartida_1_1_peca_ae0f551213e2f6e4e9ab7e8b32aacfc8a}} 
+\index{partida.Peca@{partida.Peca}!getNMovs@{getNMovs}}
+\index{getNMovs@{getNMovs}!partida.Peca@{partida.Peca}}
+\doxysubsubsection{\texorpdfstring{getNMovs()}{getNMovs()}}
+{\footnotesize\ttfamily int partida.\+Peca.\+get\+N\+Movs (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+get\+N\+Movs 
+
+
+
+Definition at line 195 of file Peca.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_peca_a4961f25a80f488fd2c5c97ff15ceddeb}\label{classpartida_1_1_peca_a4961f25a80f488fd2c5c97ff15ceddeb}} 
+\index{partida.Peca@{partida.Peca}!getNom@{getNom}}
+\index{getNom@{getNom}!partida.Peca@{partida.Peca}}
+\doxysubsubsection{\texorpdfstring{getNom()}{getNom()}}
+{\footnotesize\ttfamily String partida.\+Peca.\+get\+Nom (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Nom de la Peça. 
+
+
+
+Definition at line 144 of file Peca.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_peca_a64b99e9643e839418cf1942d2812e553}\label{classpartida_1_1_peca_a64b99e9643e839418cf1942d2812e553}} 
+\index{partida.Peca@{partida.Peca}!getPromocio@{getPromocio}}
+\index{getPromocio@{getPromocio}!partida.Peca@{partida.Peca}}
+\doxysubsubsection{\texorpdfstring{getPromocio()}{getPromocio()}}
+{\footnotesize\ttfamily boolean partida.\+Peca.\+get\+Promocio (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Promocio. 
+
+
+
+Definition at line 174 of file Peca.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_peca_a14606aca0160587c25a6525f435e5ad1}\label{classpartida_1_1_peca_a14606aca0160587c25a6525f435e5ad1}} 
+\index{partida.Peca@{partida.Peca}!incrementarMov@{incrementarMov}}
+\index{incrementarMov@{incrementarMov}!partida.Peca@{partida.Peca}}
+\doxysubsubsection{\texorpdfstring{incrementarMov()}{incrementarMov()}}
+{\footnotesize\ttfamily void partida.\+Peca.\+incrementar\+Mov (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Incrementa el contador de moviments fet per aquesta peça. 
+
+\begin{DoxyPrecond}{Precondition}
+-- 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+\+\_\+n\+Mov incrementat 
+\end{DoxyPostcond}
+
+
+Definition at line 182 of file Peca.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_peca_a00c836ce784c43093c86c54ce7ad7754}\label{classpartida_1_1_peca_a00c836ce784c43093c86c54ce7ad7754}} 
+\index{partida.Peca@{partida.Peca}!movimentValid@{movimentValid}}
+\index{movimentValid@{movimentValid}!partida.Peca@{partida.Peca}}
+\doxysubsubsection{\texorpdfstring{movimentValid()}{movimentValid()}}
+{\footnotesize\ttfamily boolean partida.\+Peca.\+moviment\+Valid (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classpartida_1_1_tirada_simple}{Tirada\+Simple}}}]{t }\end{DoxyParamCaption})}
+
+
+
+Validació de la validesa d\textquotesingle{}una tirada. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & Tirada Simple \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+-- 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+S\textquotesingle{}ha vàlidat la tirada 
+\end{DoxyPostcond}
+
+
+Definition at line 70 of file Peca.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_peca_afddc0a60f1817a3f9e61d9ecaa6ba9df}\label{classpartida_1_1_peca_afddc0a60f1817a3f9e61d9ecaa6ba9df}} 
+\index{partida.Peca@{partida.Peca}!primerMovFet@{primerMovFet}}
+\index{primerMovFet@{primerMovFet}!partida.Peca@{partida.Peca}}
+\doxysubsubsection{\texorpdfstring{primerMovFet()}{primerMovFet()}}
+{\footnotesize\ttfamily void partida.\+Peca.\+primer\+Mov\+Fet (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Mètode per a canviar Primer \mbox{\hyperlink{classpartida_1_1_moviment}{Moviment}}. 
+
+\begin{DoxyPrecond}{Precondition}
+-- 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+Atribut \+\_\+primer\+Moviment canviat 
+\end{DoxyPostcond}
+
+
+Definition at line 99 of file Peca.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_peca_aa9bc3c1b79fbb69930d2da3d97f30911}\label{classpartida_1_1_peca_aa9bc3c1b79fbb69930d2da3d97f30911}} 
+\index{partida.Peca@{partida.Peca}!restaurarMov@{restaurarMov}}
+\index{restaurarMov@{restaurarMov}!partida.Peca@{partida.Peca}}
+\doxysubsubsection{\texorpdfstring{restaurarMov()}{restaurarMov()}}
+{\footnotesize\ttfamily void partida.\+Peca.\+restaurar\+Mov (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Ficar que la peça no ha fet cap moviment. 
+
+\begin{DoxyPrecond}{Precondition}
+-- 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+moviments restaurats 
+\end{DoxyPostcond}
+
+
+Definition at line 203 of file Peca.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_peca_a61596e557c984bef4e35ff69aaa30bb9}\label{classpartida_1_1_peca_a61596e557c984bef4e35ff69aaa30bb9}} 
+\index{partida.Peca@{partida.Peca}!toString@{toString}}
+\index{toString@{toString}!partida.Peca@{partida.Peca}}
+\doxysubsubsection{\texorpdfstring{toString()}{toString()}}
+{\footnotesize\ttfamily String partida.\+Peca.\+to\+String (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Converteix la Peça actual en la seva primera lletra, en majuscula o minscula en funció de quin equip sigui (N\+E\+G\+R\+ES minuscula, B\+L\+A\+N\+Q\+U\+ES majuscula ) 
+
+\begin{DoxyPrecond}{Precondition}
+-- 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+Retorna una lletra que és la primera del nom de la Peça, en majuscula o minuscula. 
+\end{DoxyPostcond}
+
+
+Definition at line 159 of file Peca.\+java.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classpartida_1_1_peca_adac259ff130f0431b15927d8093a863b}\label{classpartida_1_1_peca_adac259ff130f0431b15927d8093a863b}} 
+\index{partida.Peca@{partida.Peca}!\_equip@{\_equip}}
+\index{\_equip@{\_equip}!partida.Peca@{partida.Peca}}
+\doxysubsubsection{\texorpdfstring{\_equip}{\_equip}}
+{\footnotesize\ttfamily boolean partida.\+Peca.\+\_\+equip\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Controlador del equip al que pertany la Peça. 
+
+
+
+Definition at line 14 of file Peca.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_peca_ad53e163ff2eabd4166d9c2d8458f5419}\label{classpartida_1_1_peca_ad53e163ff2eabd4166d9c2d8458f5419}} 
+\index{partida.Peca@{partida.Peca}!\_nMov@{\_nMov}}
+\index{\_nMov@{\_nMov}!partida.Peca@{partida.Peca}}
+\doxysubsubsection{\texorpdfstring{\_nMov}{\_nMov}}
+{\footnotesize\ttfamily int partida.\+Peca.\+\_\+n\+Mov\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 15 of file Peca.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_peca_abf7c0320e4b5e3802ff38e6d04861b53}\label{classpartida_1_1_peca_abf7c0320e4b5e3802ff38e6d04861b53}} 
+\index{partida.Peca@{partida.Peca}!\_primerMoviment@{\_primerMoviment}}
+\index{\_primerMoviment@{\_primerMoviment}!partida.Peca@{partida.Peca}}
+\doxysubsubsection{\texorpdfstring{\_primerMoviment}{\_primerMoviment}}
+{\footnotesize\ttfamily boolean partida.\+Peca.\+\_\+primer\+Moviment\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Controlador de si s\textquotesingle{}ha fet el primer moviment. 
+
+
+
+Definition at line 13 of file Peca.\+java.
+
+\mbox{\Hypertarget{classpartida_1_1_peca_a93eeca4d00e528bc7b8ab7a326e7121b}\label{classpartida_1_1_peca_a93eeca4d00e528bc7b8ab7a326e7121b}} 
+\index{partida.Peca@{partida.Peca}!\_tipus@{\_tipus}}
+\index{\_tipus@{\_tipus}!partida.Peca@{partida.Peca}}
+\doxysubsubsection{\texorpdfstring{\_tipus}{\_tipus}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classpartida_1_1_tipus_peca}{Tipus\+Peca}} partida.\+Peca.\+\_\+tipus\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Conjunt d\textquotesingle{}atributs que defineixen la Peça. 
+
+
+
+Definition at line 12 of file Peca.\+java.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_peca_8java}{Peca.\+java}}\end{DoxyCompactItemize}

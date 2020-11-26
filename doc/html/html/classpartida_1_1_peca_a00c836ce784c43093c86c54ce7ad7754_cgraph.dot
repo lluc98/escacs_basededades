@@ -1,0 +1,12 @@
+digraph "partida.Peca.movimentValid"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="partida.Peca.movimentValid",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Validació de la validesa d'una tirada."];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="partida.TiradaSimple.canviar\lSigneDesplacament",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_tirada_simple.html#a9b6b26d161cf537452ce59894d0e8f80",tooltip="Canvia el signe de desplaçament X i Y."];
+  Node1 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="partida.TipusPeca.tipusPeca\lValida",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpartida_1_1_tipus_peca.html#a8d39abf24f8d3dbb1517060b83c1f728",tooltip="Mira si un tipus de Peça és vàlid."];
+}

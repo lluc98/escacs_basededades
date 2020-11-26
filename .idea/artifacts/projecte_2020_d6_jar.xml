@@ -6,7 +6,7 @@
         <element id="file-copy" path="$PROJECT_DIR$/jar/META-INF/MANIFEST.MF" />
       </element>
       <element id="module-output" name="projecte-2020-d6" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/src/json-20140107.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/src/main/java/json-20140107.jar" path-in-jar="/" />
     </root>
   </artifact>
 </component>

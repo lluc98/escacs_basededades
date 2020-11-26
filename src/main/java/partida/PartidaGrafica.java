@@ -31,6 +31,7 @@ import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import redis.clients.jedis.Jedis;
 
 import java.io.IOException;
 import java.util.Iterator;
@@ -57,6 +58,7 @@ public class PartidaGrafica extends Application{
      * @post s'executa una aplicació per poder jugar a escacs
      */
     public static void main(){
+        Jedis jedis = new Jedis("localhost");
         launch(); //crida init+start
     }
 

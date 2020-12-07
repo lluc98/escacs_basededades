@@ -86,11 +86,13 @@ public class PartidaGrafica extends Application{
         }
         username.setMaxWidth(200);
         username.setStyle("-fx-background-color: transparent; -fx-font-weight: bold; -fx-border-style: dotted; -fx-border-insets: 1 1 1 1; -fx-text-fill: white; -fx-border-color: white;");
+        String id = username.getText();
 
         TextField nom = new TextField();
         nom.setMaxWidth(200);
         nom.setPromptText("Nom");
         nom.setStyle("-fx-background-color: transparent; -fx-font-weight: bold; -fx-border-style: dotted; -fx-border-insets: 1 1 1 1; -fx-text-fill: white; -fx-border-color: white;");
+
 
         TextField cognoms = new TextField();
         cognoms.setMaxWidth(200);
@@ -118,15 +120,19 @@ public class PartidaGrafica extends Application{
 
         Label lblInfo = new Label();
 
+        Jedis jedis = new Jedis("localhost", 6379);
+
+
         registrarse.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 String nick = username.getText();
-                if(/*usuari trobat*/true){
+                if(jedis.exists("user:"+id)){
                     //s'ha trobat l'usuari i no es pot registrar
                     lblInfo.setText("S'ha trobat un usuari amb el mateix nom");
                 }
                 else{//s'ha registrat l'usuari
+                    jedis.hset("user:"+id, "nom", );
                     lblInfo.setText("S'ha registrat l'usuari, ara podras accedir al joc");
                 }
             }

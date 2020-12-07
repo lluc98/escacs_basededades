@@ -21,10 +21,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
@@ -47,6 +44,7 @@ public class PartidaGrafica extends Application{
     private static Scene escenaCrearCarregarPartida; ///< Escena per crear o carregar una partida
     private static Scene escenaSec;                  ///< Escena per triar fitxers i si fes falta, el nombre de jugadors
     private static Scene escenaPartida;              ///< Escena per jugar la partida
+    private static Scene escenaRegistre;
     private static Stage window;                     ///< Finestra de l'aplicació
     private static Partida _partida;                 ///< Joc d'escacs
     private static Group _rajoles = new Group();     ///< Grup de rajoles
@@ -69,6 +67,83 @@ public class PartidaGrafica extends Application{
         window.setScene(escenaPrincipal);
         window.setTitle("Joc Escacs");
         window.show();
+    }
+
+    private void crearEscenaRegistre(String user, String contrasenya){
+        BorderPane root = new BorderPane();
+
+        VBox campsPerEmplanar = new VBox(10);
+        campsPerEmplanar.setAlignment(Pos.CENTER);
+
+        TextField username;
+        if(user.equals("a")){
+            username = new TextField();
+            username.setText(user);
+        }
+        else{
+            username = new TextField();
+            username.setPromptText("Nom Usuari");
+        }
+        username.setMaxWidth(200);
+        username.setStyle("-fx-background-color: transparent; -fx-font-weight: bold; -fx-border-style: dotted; -fx-border-insets: 1 1 1 1; -fx-text-fill: white; -fx-border-color: white;");
+
+        TextField nom = new TextField();
+        nom.setMaxWidth(200);
+        nom.setPromptText("Nom");
+        nom.setStyle("-fx-background-color: transparent; -fx-font-weight: bold; -fx-border-style: dotted; -fx-border-insets: 1 1 1 1; -fx-text-fill: white; -fx-border-color: white;");
+
+        TextField cognoms = new TextField();
+        cognoms.setMaxWidth(200);
+        cognoms.setPromptText("Cognom");
+        cognoms.setStyle("-fx-background-color: transparent; -fx-font-weight: bold; -fx-border-style: dotted; -fx-border-insets: 1 1 1 1; -fx-text-fill: white; -fx-border-color: white;");
+
+        TextField contra;
+        if(contrasenya.equals("a")){
+            contra = new TextField();
+            contra.setText(contrasenya);
+        }
+        else{
+            contra = new TextField();
+            contra.setPromptText("Contrasenya");
+        }
+        contra.setMaxWidth(200);
+        contra.setStyle("-fx-background-color: transparent; -fx-font-weight: bold; -fx-border-style: dotted; -fx-border-insets: 1 1 1 1; -fx-text-fill: white; -fx-border-color: white;");
+
+        TextField pais = new TextField();
+        pais.setMaxWidth(200);
+        pais.setPromptText("Pais");
+        pais.setStyle("-fx-background-color: transparent; -fx-font-weight: bold; -fx-border-style: dotted; -fx-border-insets: 1 1 1 1; -fx-text-fill: white; -fx-border-color: white;");
+
+        Button registrarse = new Button("Registrar-se");
+
+        Label lblInfo = new Label();
+
+        registrarse.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                String nick = username.getText();
+                if(/*usuari trobat*/true){
+                    //s'ha trobat l'usuari i no es pot registrar
+                    lblInfo.setText("S'ha trobat un usuari amb el mateix nom");
+                }
+                else{//s'ha registrat l'usuari
+                    lblInfo.setText("S'ha registrat l'usuari, ara podras accedir al joc");
+                }
+            }
+        });
+
+        campsPerEmplanar.getChildren().addAll(username, nom, cognoms, contra, pais, registrarse);
+
+        registrarse.setStyle("-fx-background-image: url(" + "/Images/woodTexture.png" + "); -fx-font-weight: bold");
+
+        root.setStyle("-fx-background-image: url("+ "/Images/darkWoodTexture.png" + ");-fx-background-size: stretch;");
+        root.setCenter(campsPerEmplanar);
+
+        root.setBottom(botoInferior("Cancelar registre"));
+
+
+        escenaRegistre = new Scene(root, 500d, 500d);
+
     }
 
     private void crearEscenaPrincipal(){
@@ -107,28 +182,10 @@ public class PartidaGrafica extends Application{
         btnSig.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                /*
-                Quan es cliqui aquest botó, es mirarà a la bdd si existeix un usuari amb aquest nom, si existeix no es deixara registrar
-                si no existeix es registrarà l'usuari. Un cop hagi sortit que l'usuari s'ha registrat, se li demanarà que fagi el login.
-                */
-
-                //variables per demanar a la bdd.
-                String nom;
-                nom = usuari.getText();
-                String contra;
-                contra = contrasenya.getText();
-
-
-
-                if(/* s'ha trobat l'usuari */true){
-                    lblInfo.setText("No et pots registrar, hi ha un usuari amb el mateix nom");
-                }
-                else{
-                    /* es posarà l'usuari a la bdd amb la contrasenya que ha posat */
-                    lblInfo.setText("T'has registrat. Ara pots fer el login");
-                    usuari.clear();
-                    contrasenya.clear();
-                }
+                String nomUser = usuari.getText();
+                String contra = contrasenya.getText();
+                crearEscenaRegistre(nomUser, contra);
+                window.setScene(escenaRegistre);
 
             }
         });
@@ -159,14 +216,6 @@ public class PartidaGrafica extends Application{
             }
         });
 
-        /*showPassword.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-
-            }
-        });*/
-
-        root.setStyle("-fx-background-image: url("+ "/Images/darkWoodTexture.png" + ");-fx-background-size: stretch;");
 
         paswrd.getChildren().add(contrasenya);
         /*paswrd.getChildren().add(showPassword);*/
@@ -183,6 +232,8 @@ public class PartidaGrafica extends Application{
 
         root.setCenter(opcions);
         root.setBottom(botoInferior("Exit"));
+
+        root.setStyle("-fx-background-image: url("+ "/Images/darkWoodTexture.png" + ");-fx-background-size: stretch;");
 
         escenaPrincipal = new Scene(root, 500d, 500d);
 
@@ -261,18 +312,13 @@ public class PartidaGrafica extends Application{
      */
     private Node prepararCentre(int opcio) {
         TextField nomFitxer = new TextField();
-        nomFitxer.setPromptText("Ex: nomFitxer.json");
-        nomFitxer.setStyle("-fx-background-color: transparent; -fx-font-weight: bold; -fx-border-style: dotted; -fx-border-insets: 1 1 1 1; -fx-text-fill: white; -fx-border-color: white;");
 
-        Label lbl = new Label("Nom fitxer:");
-        lbl.setStyle("-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 15;");
+        Label lbl;
 
         Label missatge = new Label();
         missatge.setStyle("-fx-text-fill: white; -fx-font-weight: bold");
 
         HBox hb = new HBox(10);
-        hb.getChildren().addAll(lbl, nomFitxer);
-        hb.setAlignment(Pos.CENTER);
 
         VBox vb = new VBox(10);
 
@@ -281,15 +327,22 @@ public class PartidaGrafica extends Application{
 
         vb.getChildren().add(hb);
         ListView<String> llistaPartides = new ListView<>();
+        ObservableList<String> nomPartides = FXCollections.observableArrayList();
 
+        if(opcio == 2){
 
-        if(opcio == 0){
-            ObservableList<String> nomPartides = FXCollections.observableArrayList();
             /*
             Posar tots els noms de partides a l'observableList
              */
 
             llistaPartides.setItems(nomPartides);
+        }else{
+            nomFitxer.setPromptText("Ex: Partida1");
+            nomFitxer.setStyle("-fx-background-color: transparent; -fx-font-weight: bold; -fx-border-style: dotted; -fx-border-insets: 1 1 1 1; -fx-text-fill: white; -fx-border-color: white;");
+            lbl = new Label("Nom fitxer:");
+            lbl.setStyle("-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 15;");
+            hb.getChildren().addAll(lbl, nomFitxer);
+            hb.setAlignment(Pos.CENTER);
         }
 
 
@@ -361,6 +414,9 @@ public class PartidaGrafica extends Application{
         btnInf.setStyle("-fx-background-image: url(" + "/Images/woodTexture.png" + "); -fx-font-weight: bold");
         if(s.equals("Exit")){
             btnInf.setOnAction(e -> Platform.exit());
+        }
+        else if (s.equals("Cancelar registre")){
+            btnInf.setOnAction(e -> window.setScene(escenaPrincipal));
         }
         else {
             btnInf.setOnAction(e -> window.setScene(escenaCrearCarregarPartida));

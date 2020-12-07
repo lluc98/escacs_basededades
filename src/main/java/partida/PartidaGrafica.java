@@ -27,11 +27,14 @@ import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import javafx.util.Pair;
 import redis.clients.jedis.Jedis;
+import redis.clients.jedis.Tuple;
 
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Set;
 import java.util.TreeMap;
 
 /** @class PartidaGrafica
@@ -151,7 +154,7 @@ public class PartidaGrafica extends Application{
                     jedis.hset("user:"+id, "cognom", subname);
                     jedis.hset("user:"+id, "contrasenya", password);
                     jedis.hset("user:"+id, "pais", country);
-                    jedis.hset("user:"+id, "punts", "0");
+                    jedis.zadd("ranking",0,id);
                     lblInfo.setText("S'ha registrat l'usuari, ara podras accedir al joc");
                     window.setScene(escenaPrincipal);
                 }
@@ -317,6 +320,7 @@ public class PartidaGrafica extends Application{
 
         opcions.getChildren().add(btnCom);
         opcions.getChildren().add(btnCar);
+        opcions.getChildren().add(btnRank);
 
         root.setCenter(opcions);
         root.setBottom(botoInferior("Exit"));
@@ -329,7 +333,13 @@ public class PartidaGrafica extends Application{
 
         ListView<String> ranking = new ListView<>();
 
-
+        Jedis jedis = new Jedis("localhost", 6379);
+        Pair<String,String> tupla;
+        Set<Tuple> rank;
+        rank = jedis.zrevrangeWithScores("puntuacio",0,-1);
+        for(Tuple tuple: rank){
+            System.out.println(tuple.getElement() + "-" + tuple.getScore());
+        }
     }
 
 

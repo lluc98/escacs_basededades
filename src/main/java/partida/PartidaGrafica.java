@@ -86,7 +86,7 @@ public class PartidaGrafica extends Application{
         }
         username.setMaxWidth(200);
         username.setStyle("-fx-background-color: transparent; -fx-font-weight: bold; -fx-border-style: dotted; -fx-border-insets: 1 1 1 1; -fx-text-fill: white; -fx-border-color: white;");
-        String id = username.getText();
+
 
         TextField nom = new TextField();
         nom.setMaxWidth(200);
@@ -98,6 +98,7 @@ public class PartidaGrafica extends Application{
         cognoms.setMaxWidth(200);
         cognoms.setPromptText("Cognom");
         cognoms.setStyle("-fx-background-color: transparent; -fx-font-weight: bold; -fx-border-style: dotted; -fx-border-insets: 1 1 1 1; -fx-text-fill: white; -fx-border-color: white;");
+
 
         TextField contra;
         if(contrasenya.equals("a")){
@@ -111,10 +112,12 @@ public class PartidaGrafica extends Application{
         contra.setMaxWidth(200);
         contra.setStyle("-fx-background-color: transparent; -fx-font-weight: bold; -fx-border-style: dotted; -fx-border-insets: 1 1 1 1; -fx-text-fill: white; -fx-border-color: white;");
 
+
         TextField pais = new TextField();
         pais.setMaxWidth(200);
         pais.setPromptText("Pais");
         pais.setStyle("-fx-background-color: transparent; -fx-font-weight: bold; -fx-border-style: dotted; -fx-border-insets: 1 1 1 1; -fx-text-fill: white; -fx-border-color: white;");
+
 
         Button registrarse = new Button("Registrar-se");
 
@@ -126,19 +129,28 @@ public class PartidaGrafica extends Application{
         registrarse.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                String nick = username.getText();
+                String id = username.getText();
+                String name = nom.getText();
+                String subname = cognoms.getText();
+                String password = contra.getText();
+                String country = pais.getText();
                 if(jedis.exists("user:"+id)){
                     //s'ha trobat l'usuari i no es pot registrar
                     lblInfo.setText("S'ha trobat un usuari amb el mateix nom");
                 }
                 else{//s'ha registrat l'usuari
-                    jedis.hset("user:"+id, "nom", );
+                    jedis.hset("user:"+id, "nom", name);
+                    jedis.hset("user:"+id, "cognom", subname);
+                    jedis.hset("user:"+id, "contrasenya", password);
+                    jedis.hset("user:"+id, "pais", country);
                     lblInfo.setText("S'ha registrat l'usuari, ara podras accedir al joc");
+                    window.setScene(escenaPrincipal);
                 }
             }
         });
 
-        campsPerEmplanar.getChildren().addAll(username, nom, cognoms, contra, pais, registrarse);
+
+        campsPerEmplanar.getChildren().addAll(username, nom, cognoms, contra, pais, registrarse, lblInfo);
 
         registrarse.setStyle("-fx-background-image: url(" + "/Images/woodTexture.png" + "); -fx-font-weight: bold");
 

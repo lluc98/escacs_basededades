@@ -45,6 +45,7 @@ public class PartidaGrafica extends Application{
     private static Scene escenaSec;                  ///< Escena per triar fitxers i si fes falta, el nombre de jugadors
     private static Scene escenaPartida;              ///< Escena per jugar la partida
     private static Scene escenaRegistre;
+    private static Scene escenaRanking;
     private static Stage window;                     ///< Finestra de l'aplicació
     private static Partida _partida;                 ///< Joc d'escacs
     private static Group _rajoles = new Group();     ///< Grup de rajoles
@@ -122,6 +123,7 @@ public class PartidaGrafica extends Application{
         Button registrarse = new Button("Registrar-se");
 
         Label lblInfo = new Label();
+        lblInfo.setStyle("-fx-text-fill: white; -fx-font-weight: bold");
 
         Jedis jedis = new Jedis("localhost", 6379);
 
@@ -273,9 +275,11 @@ public class PartidaGrafica extends Application{
 
         Button btnCom = new Button("Començar nova partida");
         Button btnCar = new Button("Carregar una partida");
+        Button btnRank = new Button("Mostrar ranking");
 
         btnCom.setStyle("-fx-background-image: url(" + "/Images/woodTexture.png" + "); -fx-font-weight: bold");
         btnCar.setStyle("-fx-background-image: url(" + "/Images/woodTexture.png" + "); -fx-font-weight: bold");
+        btnRank.setStyle("-fx-background-image: url(" + "/Images/woodTexture.png" + "); -fx-font-weight: bold");
         btnCom.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -292,6 +296,14 @@ public class PartidaGrafica extends Application{
                 window.setScene(escenaSec);
             }
         });
+        btnRank.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                crearEscenaRanking();
+                window.setScene(escenaRanking);
+            }
+        });
+
         root.setStyle("-fx-background-image: url("+ "/Images/darkWoodTexture.png" + ");-fx-background-size: stretch;");
         opcions.setAlignment(Pos.CENTER);
 
@@ -303,6 +315,16 @@ public class PartidaGrafica extends Application{
 
         escenaCrearCarregarPartida = new Scene(root, 500d, 500d);
     }
+
+    private void crearEscenaRanking(){
+        BorderPane root = new BorderPane();
+
+        ListView<String> ranking = new ListView<>();
+
+
+    }
+
+
 
     /** @brief  Crea l'escena secundaria
      * @pre \p opcio si igual a 1 indica que es comença una partida, si val 2 es carrega una partida
@@ -361,7 +383,7 @@ public class PartidaGrafica extends Application{
         }else{
             nomFitxer.setPromptText("Ex: Partida1");
             nomFitxer.setStyle("-fx-background-color: transparent; -fx-font-weight: bold; -fx-border-style: dotted; -fx-border-insets: 1 1 1 1; -fx-text-fill: white; -fx-border-color: white;");
-            lbl = new Label("Nom fitxer:");
+            lbl = new Label("Posa un nom a la partida: ");
             lbl.setStyle("-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 15;");
             hb.getChildren().addAll(lbl, nomFitxer);
             hb.setAlignment(Pos.CENTER);
@@ -371,38 +393,34 @@ public class PartidaGrafica extends Application{
         subBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                String s = llistaPartides.getSelectionModel().getSelectedItem();
-                if(s.isEmpty() || s == null){
-                    missatge.setText("Entre un fitxer.");
+                if(opcio == 1){
+                    try {
+                        String s = nomFitxer.getText();
+                        _partida = new Partida(s, 2);
+                        crearEscenaPartida();
+                        window.setScene(escenaPartida);
+                    } catch (IOException e) {
+                        missatge.setText("No s'ha trobat el fitxer de regles, entra'n un altre de correcte.");
+                        System.out.println(e);
+                        System.out.println("No s'ha trobat el fitxer de regles");
+                    } catch (Exception e){
+                        System.out.println(e);
+                        System.out.println("Hi ha hagut un error");
+                    }
                 }
                 else{
-                    if(opcio == 1){
-                        try {
-                            _partida = new Partida(s, 2);
-                            crearEscenaPartida();
-                            window.setScene(escenaPartida);
-                        } catch (IOException e) {
-                            missatge.setText("No s'ha trobat el fitxer de regles, entra'n un altre de correcte.");
-                            System.out.println(e);
-                            System.out.println("No s'ha trobat el fitxer de regles");
-                        } catch (Exception e){
-                            System.out.println(e);
-                            System.out.println("Hi ha hagut un error");
-                        }
-                    }
-                    else{
-                        try {
-                            _partida = new Partida(s);
-                            crearEscenaPartida();
-                            window.setScene(escenaPartida);
-                        } catch (IOException e) {
-                            missatge.setText("No s'ha trobat el fitxer de la partida, entra'n un altre de correcte");
-                            System.out.println(e);
-                            System.out.println("No s'ha trobat el fitxer de la partida");
-                        } catch (Exception e){
-                            System.out.println(e);
-                            System.out.println("Hi ha hagut un error");
-                        }
+                    try {
+                        String s = llistaPartides.getSelectionModel().getSelectedItem();
+                        _partida = new Partida(s);
+                        crearEscenaPartida();
+                        window.setScene(escenaPartida);
+                    } catch (IOException e) {
+                        missatge.setText("No s'ha trobat el fitxer de la partida, entra'n un altre de correcte");
+                        System.out.println(e);
+                        System.out.println("No s'ha trobat el fitxer de la partida");
+                    } catch (Exception e){
+                        System.out.println(e);
+                        System.out.println("Hi ha hagut un error");
                     }
                 }
             }

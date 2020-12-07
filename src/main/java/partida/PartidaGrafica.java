@@ -46,6 +46,8 @@ public class PartidaGrafica extends Application{
     private static String usuarLogejat;
     private static String blanques;
     private static String negres;
+    private static int scoreBlanques;
+    private static int scoreNegres;
 
     private static Scene escenaPrincipal;            ///< Primera escena de l'aplicació
     private static Scene escenaCrearCarregarPartida; ///< Escena per crear o carregar una partida
@@ -756,17 +758,9 @@ public class PartidaGrafica extends Application{
                 root.setStyle("-fx-background-image: url(" + "/Images/darkWoodTexture.png" + "); -fx-background-size: stretch; -fx-padding: 50 0 0 0;");
                 Label accept = new Label("El jugador " + _partida.getProperTorn() + " s'ha rendit.");
                 if (_partida.getProperTorn().equals("BLANQUES")) {
-                    String punts = jedis.hget("user:"+blanques, "punts");
-                    int nPunts = Integer.valueOf(punts);
-                    nPunts++;
-                    punts = String.valueOf(nPunts);
-                    jedis.hset("user:"+blanques,"punts", punts);
+                    jedis.zincrby("ranking",3,blanques);
                 } else if (_partida.getProperTorn().equals("NEGRES")) {
-                    String punts = jedis.hget("user:"+negres, "punts");
-                    int nPunts = Integer.valueOf(punts);
-                    nPunts++;
-                    punts = String.valueOf(nPunts);
-                    jedis.hset("user:"+negres,"punts", punts);
+                    jedis.zincrby("ranking",3,negres);
                 }
                 accept.setStyle("-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 18;");
                 Label gg = new Label("Bona partida, fins la pròxima");
@@ -902,6 +896,8 @@ public class PartidaGrafica extends Application{
                 VBox root = new VBox(30);
                 root.setStyle("-fx-background-image: url(" + "/Images/darkWoodTexture.png" + "); -fx-backbround-size: stretch;");
                 Label accept = new Label("El jugador " + _partida.getProperTorn() + " ha acceptat les taules");
+                jedis.zincrby("ranking",1,blanques);
+                jedis.zincrby("ranking",1,negres);
                 accept.setStyle("-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 18;");
                 accept.setWrapText(true);
                 Label gg = new Label("Fins la pròxima!");
@@ -1109,17 +1105,9 @@ public class PartidaGrafica extends Application{
 
         Label accept = new Label("El jugador " + _partida.getProperTorn() + " ha GUANYAT!");
         if (_partida.getProperTorn().equals("BLANQUES")) {
-            String punts = jedis.hget("user:"+blanques, "punts");
-            int nPunts = Integer.valueOf(punts);
-            nPunts++;
-            punts = String.valueOf(nPunts);
-            jedis.hset("user:"+blanques,"punts", punts);
+            jedis.zincrby("ranking",3,blanques);
         } else if (_partida.getProperTorn().equals("NEGRES")) {
-            String punts = jedis.hget("user:"+negres, "punts");
-            int nPunts = Integer.valueOf(punts);
-            nPunts++;
-            punts = String.valueOf(nPunts);
-            jedis.hset("user:"+negres,"punts", punts);
+            jedis.zincrby("ranking",3,negres);
         }
         accept.setStyle("-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 18;");
         accept.setWrapText(true);

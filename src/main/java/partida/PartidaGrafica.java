@@ -40,6 +40,10 @@ import java.util.TreeMap;
 
 public class PartidaGrafica extends Application{
 
+    private static String usuarLogejat;
+    private static String blanques;
+    private static String negres;
+
     private static Scene escenaPrincipal;            ///< Primera escena de l'aplicació
     private static Scene escenaCrearCarregarPartida; ///< Escena per crear o carregar una partida
     private static Scene escenaSec;                  ///< Escena per triar fitxers i si fes falta, el nombre de jugadors
@@ -52,6 +56,8 @@ public class PartidaGrafica extends Application{
     private static Group _peces = new Group();       ///< Grup de peces
     private static int _pixelsRajola;                ///< Pixels d'un costat de la rajola
     private static String usuari1, usuari2;         ///< Usuaris que hauran de fer el login per jugar.
+
+    public static Jedis jedis = new Jedis("localhost", 6379);
 
     /** @brief  Inicia l'aplicació d'escacs
      * @pre --
@@ -125,7 +131,7 @@ public class PartidaGrafica extends Application{
         Label lblInfo = new Label();
         lblInfo.setStyle("-fx-text-fill: white; -fx-font-weight: bold");
 
-        Jedis jedis = new Jedis("localhost", 6379);
+
 
 
         registrarse.setOnAction(new EventHandler<ActionEvent>() {
@@ -145,6 +151,7 @@ public class PartidaGrafica extends Application{
                     jedis.hset("user:"+id, "cognom", subname);
                     jedis.hset("user:"+id, "contrasenya", password);
                     jedis.hset("user:"+id, "pais", country);
+                    jedis.hset("user:"+id, "punts", "0");
                     lblInfo.setText("S'ha registrat l'usuari, ara podras accedir al joc");
                     window.setScene(escenaPrincipal);
                 }
@@ -224,6 +231,7 @@ public class PartidaGrafica extends Application{
                 String userName = jedis.hget("user:"+nom, "nom");
                 String password = jedis.hget("user:"+nom, "contrasenya");
                 System.out.println("HOLA " + userName);
+                usuarLogejat = userName;
 
                 if(userName != null && password.equals(contra)){
                     crearCrearCarregarPartida();
@@ -393,10 +401,14 @@ public class PartidaGrafica extends Application{
         subBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                if(opcio == 1){
+                if(opcio == 1) {
                     try {
                         String s = nomFitxer.getText();
-                        _partida = new Partida(s, 2);
+                        jedis.hset("partides:" + s, "blanques", usuarLogejat);
+                        blanques = usuarLogejat;
+                        jedis.hset("partides:" + s, "negres", "a");
+                        negres = "a";
+                        _partida = new Partida("Regles.json", 2);
                         crearEscenaPartida();
                         window.setScene(escenaPartida);
                     } catch (IOException e) {
@@ -733,6 +745,19 @@ public class PartidaGrafica extends Application{
                 VBox root = new VBox(30);
                 root.setStyle("-fx-background-image: url(" + "/Images/darkWoodTexture.png" + "); -fx-background-size: stretch; -fx-padding: 50 0 0 0;");
                 Label accept = new Label("El jugador " + _partida.getProperTorn() + " s'ha rendit.");
+                if (_partida.getProperTorn().equals("BLANQUES")) {
+                    String punts = jedis.hget("user:"+blanques, "punts");
+                    int nPunts = Integer.valueOf(punts);
+                    nPunts++;
+                    punts = String.valueOf(nPunts);
+                    jedis.hset("user:"+blanques,"punts", punts);
+                } else if (_partida.getProperTorn().equals("NEGRES")) {
+                    String punts = jedis.hget("user:"+negres, "punts");
+                    int nPunts = Integer.valueOf(punts);
+                    nPunts++;
+                    punts = String.valueOf(nPunts);
+                    jedis.hset("user:"+negres,"punts", punts);
+                }
                 accept.setStyle("-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 18;");
                 Label gg = new Label("Bona partida, fins la pròxima");
                 gg.setStyle("-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 18;");
@@ -1073,6 +1098,19 @@ public class PartidaGrafica extends Application{
         root.setStyle("-fx-background-image: url(" + "/Images/darkWoodTexture.png" + "); -fx-backbround-size: stretch;");
 
         Label accept = new Label("El jugador " + _partida.getProperTorn() + " ha GUANYAT!");
+        if (_partida.getProperTorn().equals("BLANQUES")) {
+            String punts = jedis.hget("user:"+blanques, "punts");
+            int nPunts = Integer.valueOf(punts);
+            nPunts++;
+            punts = String.valueOf(nPunts);
+            jedis.hset("user:"+blanques,"punts", punts);
+        } else if (_partida.getProperTorn().equals("NEGRES")) {
+            String punts = jedis.hget("user:"+negres, "punts");
+            int nPunts = Integer.valueOf(punts);
+            nPunts++;
+            punts = String.valueOf(nPunts);
+            jedis.hset("user:"+negres,"punts", punts);
+        }
         accept.setStyle("-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 18;");
         accept.setWrapText(true);
 

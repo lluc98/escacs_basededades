@@ -143,13 +143,17 @@ public class PartidaGrafica extends Application{
                 String nom = usuari.getText();
                 String contra = contrasenya.getText();
 
+                Jedis jedis = new Jedis("localhost", 6379);
+                String userName = jedis.hget("user:"+nom, "nom");
+                String password = jedis.hget("user:"+nom, "contrasenya");
+                System.out.println("HOLA " + userName);
 
-                if(/* usuari registrat */true){
+                if(userName != null && password.equals(contra)){
                     crearCrearCarregarPartida();
 
                     window.setScene(escenaCrearCarregarPartida);
                 }
-                else if(/*usuari no registrat*/false){ //Usuari no registrat
+                else if(userName == null){ //Usuari no registrat
                     lblInfo.setText("No s'ha trobat l'usuari");
                 }
                 else{ //usuari registrat, contrasenya incorrecte

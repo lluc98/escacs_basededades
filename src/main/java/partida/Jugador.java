@@ -20,6 +20,8 @@ public class Jugador {
         _equip = equip;
     }
 
+
+
     /** @brief Equip */
     public boolean get_equip() {
         return _equip;

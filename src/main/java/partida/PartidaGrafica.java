@@ -7,6 +7,8 @@ package partida;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.beans.property.ReadOnlyDoubleProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -15,10 +17,7 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -45,6 +44,7 @@ import java.util.TreeMap;
 public class PartidaGrafica extends Application{
 
     private static Scene escenaPrincipal;            ///< Primera escena de l'aplicació
+    private static Scene escenaCrearCarregarPartida; ///< Escena per crear o carregar una partida
     private static Scene escenaSec;                  ///< Escena per triar fitxers i si fes falta, el nombre de jugadors
     private static Scene escenaPartida;              ///< Escena per jugar la partida
     private static Stage window;                     ///< Finestra de l'aplicació
@@ -52,13 +52,13 @@ public class PartidaGrafica extends Application{
     private static Group _rajoles = new Group();     ///< Grup de rajoles
     private static Group _peces = new Group();       ///< Grup de peces
     private static int _pixelsRajola;                ///< Pixels d'un costat de la rajola
+    private static String usuari1, usuari2;         ///< Usuaris que hauran de fer el login per jugar.
 
     /** @brief  Inicia l'aplicació d'escacs
      * @pre --
      * @post s'executa una aplicació per poder jugar a escacs
      */
     public static void main(){
-        Jedis jedis = new Jedis("localhost");
         launch(); //crida init+start
     }
 
@@ -71,11 +71,129 @@ public class PartidaGrafica extends Application{
         window.show();
     }
 
+    private void crearEscenaPrincipal(){
+        VBox opcions = new VBox(10);
+        opcions.setAlignment(Pos.CENTER);
+
+        HBox paswrd = new HBox(10);
+        paswrd.setAlignment(Pos.CENTER);
+
+        HBox btns = new HBox(10);
+        btns.setAlignment(Pos.CENTER);
+
+        BorderPane root = new BorderPane();
+
+        Button btnSig = new Button("Sign in");
+        Button btnLog = new Button("Log in");
+
+        btnSig.setStyle("-fx-background-image: url(" + "/Images/woodTexture.png" + "); -fx-font-weight: bold");
+        btnLog.setStyle("-fx-background-image: url(" + "/Images/woodTexture.png" + "); -fx-font-weight: bold");
+
+        TextField usuari = new TextField();
+        usuari.setMaxWidth(200);
+        usuari.setPromptText("Username");
+        usuari.setStyle("-fx-background-color: transparent; -fx-font-weight: bold; -fx-border-style: dotted; -fx-border-insets: 1 1 1 1; -fx-text-fill: white; -fx-border-color: white;");
+
+        /*Button showPassword = new Button("Show password");
+        showPassword.setStyle("-fx-background-image: url(" + "/Images/woodTexture.png" + "); -fx-font-weight: bold");*/
+
+        PasswordField contrasenya = new PasswordField();
+        contrasenya.setPromptText("Password");
+        contrasenya.setStyle("-fx-background-color: transparent; -fx-font-weight: bold; -fx-border-style: dotted; -fx-border-insets: 1 1 1 1; -fx-text-fill: white; -fx-border-color: white;");
+
+        Label lblInfo = new Label();
+        lblInfo.setStyle("-fx-text-fill: white; -fx-font-weight: bold");
+
+        btnSig.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                /*
+                Quan es cliqui aquest botó, es mirarà a la bdd si existeix un usuari amb aquest nom, si existeix no es deixara registrar
+                si no existeix es registrarà l'usuari. Un cop hagi sortit que l'usuari s'ha registrat, se li demanarà que fagi el login.
+                */
+
+                //variables per demanar a la bdd.
+                String nom;
+                nom = usuari.getText();
+                String contra;
+                contra = contrasenya.getText();
+
+
+
+                if(/* s'ha trobat l'usuari */true){
+                    lblInfo.setText("No et pots registrar, hi ha un usuari amb el mateix nom");
+                }
+                else{
+                    /* es posarà l'usuari a la bdd amb la contrasenya que ha posat */
+                    lblInfo.setText("T'has registrat. Ara pots fer el login");
+                    usuari.clear();
+                    contrasenya.clear();
+                }
+
+            }
+        });
+        btnLog.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                //System.out.println("Es carregarà una partida");
+                /*
+                Quan es cliqui aquest boto es mirarà si l'usuari existeix, si l'usuari existeix, entrarà i anirà a la escena de començar/carregar partida,
+                sinò, sortirà un error i es demanara que es torni a entrar l'usuari i contrasenya
+                */
+                String nom = usuari.getText();
+                String contra = contrasenya.getText();
+
+
+                if(/* usuari registrat */true){
+                    crearCrearCarregarPartida();
+
+                    window.setScene(escenaCrearCarregarPartida);
+                }
+                else if(/*usuari no registrat*/false){ //Usuari no registrat
+                    lblInfo.setText("No s'ha trobat l'usuari");
+                }
+                else{ //usuari registrat, contrasenya incorrecte
+                    lblInfo.setText("Contrasenya incorrecte");
+                    contrasenya.clear();
+                }
+            }
+        });
+
+        /*showPassword.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+
+            }
+        });*/
+
+        root.setStyle("-fx-background-image: url("+ "/Images/darkWoodTexture.png" + ");-fx-background-size: stretch;");
+
+        paswrd.getChildren().add(contrasenya);
+        /*paswrd.getChildren().add(showPassword);*/
+
+        btns.getChildren().add(btnSig);
+        btns.getChildren().add(btnLog);
+
+        opcions.setAlignment(Pos.CENTER);
+
+        opcions.getChildren().add(usuari);
+        opcions.getChildren().add(paswrd);
+        opcions.getChildren().add(btns);
+        opcions.getChildren().add(lblInfo);
+
+        root.setCenter(opcions);
+        root.setBottom(botoInferior("Exit"));
+
+        escenaPrincipal = new Scene(root, 500d, 500d);
+
+    }
+
+
     /** @brief  Crea l'escena principal
      * @pre --
      * @post Escena principal on l'usuari pot triar si començar una partida nova o carregar-ne una de començada o sortir.
      */
-    private void crearEscenaPrincipal(){
+    private void crearCrearCarregarPartida(){
         VBox opcions = new VBox(10);
 
         BorderPane root = new BorderPane();
@@ -88,7 +206,7 @@ public class PartidaGrafica extends Application{
         btnCom.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                System.out.println("Es començarà una nova partida");
+                //System.out.println("Es començarà una nova partida");
                 escenaSecundaria(1);
                 window.setScene(escenaSec);
             }
@@ -96,7 +214,7 @@ public class PartidaGrafica extends Application{
         btnCar.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                System.out.println("Es carregarà una partida");
+                //System.out.println("Es carregarà una partida");
                 escenaSecundaria(2);
                 window.setScene(escenaSec);
             }
@@ -110,7 +228,7 @@ public class PartidaGrafica extends Application{
         root.setCenter(opcions);
         root.setBottom(botoInferior("Exit"));
 
-        escenaPrincipal = new Scene(root, 500d, 500d);
+        escenaCrearCarregarPartida = new Scene(root, 500d, 500d);
     }
 
     /** @brief  Crea l'escena secundaria
@@ -121,13 +239,12 @@ public class PartidaGrafica extends Application{
     private void escenaSecundaria(int opcio){
         BorderPane root = new BorderPane();
 
-        //no poso excepció per si no troba la imatge, perquè si no la troba posa un fons gris per defecte
         root.setStyle("-fx-background-image: url("+ "/Images/darkWoodTexture.png" + ");-fx-background-size: stretch;");
-        if(opcio == 1){
-            root.setTop(topLabel("Entra el fitxer de regles que vols carregar", root.widthProperty()));
+        if(opcio == 1){ //un cop es sapiga quina estructura fem, s'haura de fer una llista de les regles que hi ha ((((si fem aixo de les regles al final))))
+            root.setTop(topLabel("Posa un nom a la partida.", root.widthProperty()));
         }
-        else{
-            root.setTop(topLabel("Entra el fitxer de la partida que vols carregar", root.widthProperty()));
+        else{ //un cop es sapiga quina estructura fem, s'haura de fer una llista de les partides que hi ha
+            root.setTop(topLabel("Tria la partida que vols carregar", root.widthProperty()));
         }
         root.setBottom(botoInferior("Cancelar"));
 
@@ -162,27 +279,31 @@ public class PartidaGrafica extends Application{
         Button subBtn = new Button("Submit");
         subBtn.setStyle("-fx-background-image: url(" + "/Images/woodTexture.png" + "); -fx-font-weight: bold");
 
-        ChoiceBox cb = new ChoiceBox();
-        cb.getItems().addAll(0,1,2);
-        cb.setStyle("-fx-background-image: url(" + "/Images/woodTexture.png" + "); -fx-font-weight: bold");
-
         vb.getChildren().add(hb);
+        ListView<String> llistaPartides = new ListView<>();
 
-        if(opcio==1){ vb.getChildren().add(cb); }
+
+        if(opcio == 0){
+            ObservableList<String> nomPartides = FXCollections.observableArrayList();
+            /*
+            Posar tots els noms de partides a l'observableList
+             */
+
+            llistaPartides.setItems(nomPartides);
+        }
+
+
         subBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                String s = nomFitxer.getText();
+                String s = llistaPartides.getSelectionModel().getSelectedItem();
                 if(s.isEmpty() || s == null){
                     missatge.setText("Entre un fitxer.");
-                }
-                else if(opcio == 1 && cb.getValue()==null){
-                    missatge.setText("Entre un nombre de jugadors");
                 }
                 else{
                     if(opcio == 1){
                         try {
-                            _partida = new Partida(s, (int) cb.getValue());
+                            _partida = new Partida(s, 2);
                             crearEscenaPartida();
                             window.setScene(escenaPartida);
                         } catch (IOException e) {
@@ -242,7 +363,7 @@ public class PartidaGrafica extends Application{
             btnInf.setOnAction(e -> Platform.exit());
         }
         else {
-            btnInf.setOnAction(e -> window.setScene(escenaPrincipal));
+            btnInf.setOnAction(e -> window.setScene(escenaCrearCarregarPartida));
         }
         root.setPrefHeight(60);
 

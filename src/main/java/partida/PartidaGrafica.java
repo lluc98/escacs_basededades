@@ -52,8 +52,6 @@ public class PartidaGrafica extends Application{
     private static String usuarLogejat;
     private static String blanques;
     private static String negres;
-    private static int scoreBlanques;
-    private static int scoreNegres;
 
     private static Scene escenaPrincipal;            ///< Primera escena de l'aplicació
     private static Scene escenaCrearCarregarPartida; ///< Escena per crear o carregar una partida
@@ -468,13 +466,18 @@ public class PartidaGrafica extends Application{
                 if(opcio == 1) {
                     try {
                         String s = nomFitxer.getText();
-                        jedis.hset("partides:" + s, "blanques", usuarLogejat);
-                        blanques = usuarLogejat;
-                        jedis.hset("partides:" + s, "negres", "a");
-                        negres = "a";
-                        _partida = new Partida("Regles.json", 2);
-                        crearEscenaPartida();
-                        window.setScene(escenaPartida);
+                        if (!jedis.exists("partides:"+s)) {
+                            jedis.hset("partides:" + s, "blanques", usuarLogejat);
+                            blanques = usuarLogejat;
+                            jedis.hset("partides:" + s, "negres", "a");
+                            negres = "a";
+                            jedis.hset("partides:" + s, "nomPartida", s);
+                            jedis.hset("partides:" + s, "estatPartida", "començada");
+                            _partida = new Partida("Regles.json", 2);
+                            crearEscenaPartida();
+                            window.setScene(escenaPartida);
+                        }
+                        else missatge.setText("Ja existeix aquesta partida");
                     } catch (IOException e) {
                         missatge.setText("No s'ha trobat el fitxer de regles, entra'n un altre de correcte.");
                         System.out.println(e);

@@ -66,6 +66,7 @@ public class PartidaGrafica extends Application{
     private static int _pixelsRajola;                ///< Pixels d'un costat de la rajola
     private static String usuari1, usuari2;         ///< Usuaris que hauran de fer el login per jugar.
     private static String nomPartida;
+    private static String jugBlanques, jugNegres;
 
     public static Jedis jedis = new Jedis("localhost", 6379);
 
@@ -317,11 +318,13 @@ public class PartidaGrafica extends Application{
         Button btnCar = new Button("Carregar una partida");
         Button btnRank = new Button("Mostrar ranking");
         Button btnBaixaUser = new Button("Borrar Usuari");
+        Button btnLogOut = new Button("Log out");
 
         btnCom.setStyle("-fx-background-image: url(" + "/Images/woodTexture.png" + "); -fx-font-weight: bold");
         btnCar.setStyle("-fx-background-image: url(" + "/Images/woodTexture.png" + "); -fx-font-weight: bold");
         btnRank.setStyle("-fx-background-image: url(" + "/Images/woodTexture.png" + "); -fx-font-weight: bold");
         btnBaixaUser.setStyle("-fx-background-image: url(" + "/Images/woodTexture.png" + "); -fx-font-weight: bold");
+        btnLogOut.setStyle("-fx-background-image: url(" + "/Images/woodTexture.png" + "); -fx-font-weight: bold");
         btnCom.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -382,6 +385,13 @@ public class PartidaGrafica extends Application{
                 window.setScene(escenaSeguretatBorrar);
             }
         });
+        btnLogOut.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                usuari1 = "";
+                window.setScene(escenaPrincipal);
+            }
+        });
 
         root.setStyle("-fx-background-image: url("+ "/Images/darkWoodTexture.png" + ");-fx-background-size: stretch;");
         opcions.setAlignment(Pos.CENTER);
@@ -390,6 +400,7 @@ public class PartidaGrafica extends Application{
         opcions.getChildren().add(btnCar);
         opcions.getChildren().add(btnRank);
         opcions.getChildren().add(btnBaixaUser);
+        opcions.getChildren().add(btnLogOut);
 
         root.setCenter(opcions);
         root.setBottom(botoInferior("Exit"));
@@ -557,6 +568,8 @@ public class PartidaGrafica extends Application{
                                 jedis.hset("partides:" + nomPartida, "estatPartida", "començada");
                                 _partida = new Partida("Regles.json", 2);
                                 jedis.hset("partides:" + nomPartida, "contingutPartida", Partida.getPartida());
+                                jugBlanques = usuari1;
+                                jugNegres = usuari2;
                                 crearEscenaPartida();
                                 window.setScene(escenaPartida);
                             }catch (IOException e) {
@@ -714,8 +727,16 @@ public class PartidaGrafica extends Application{
                             if(password.equals(contra)){
                                 try{
                                     usuari2 = u2;
-                                    if (blanques == usuari1) negres = usuari2;
-                                    else blanques = usuari2;
+                                    if (blanques == usuari1) {
+                                        negres = usuari2;
+                                        jugNegres = usuari2;
+                                        jugBlanques = usuari1;
+                                    }
+                                    else {
+                                        blanques = usuari2;
+                                        jugNegres = usuari1;
+                                        jugBlanques = usuari2;
+                                    }
                                     _partida = new Partida(jedis.hget("partides:"+nomPartida, "contingutPartida"));
                                     crearEscenaPartida();
                                     window.setScene(escenaPartida);
@@ -833,7 +854,15 @@ public class PartidaGrafica extends Application{
         tie.setStyle("-fx-background-color: transparent; -fx-font-weight: bold; -fx-border-style: dotted; -fx-border-insets: 1 1 1 1;");
         exit.setStyle("-fx-background-color: transparent; -fx-font-weight: bold; -fx-border-style: dotted; -fx-border-insets: 1 1 1 1; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 1, 1;");
 
-        Label lbl = new Label("Torn de " + _partida.getProperTorn());
+        Label lbl = new Label();
+        String missatge = "Torn de ";
+        if(_partida.getProperTorn().equals("BLANQUES")){
+            missatge = missatge + "BLANQUES " + "( " + jugBlanques + " )";
+        }
+        else{
+            missatge = missatge + "NEGRES " + "( " + jugNegres + " )";
+        }
+        lbl.setText(missatge);
         lbl.setStyle("-fx-font-weight: bold;");
         redo.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -870,7 +899,14 @@ public class PartidaGrafica extends Application{
                         modificarLblAvisos("Enroc refet i escac al rei enemic", p);
                     }
                     _partida.canviarTorn();
-                    lbl.setText("Torn de " + _partida.getProperTorn());
+                    String missatge = "Torn de ";
+                    if(_partida.getProperTorn().equals("BLANQUES")){
+                        missatge = missatge + "BLANQUES " + "( " + jugBlanques + " )";
+                    }
+                    else{
+                        missatge = missatge + "NEGRES " + "( " + jugNegres + " )";
+                    }
+                    lbl.setText(missatge);
                 }else if(tokens[0].equalsIgnoreCase("promoció:")){ //ha fet promoció
                     int x = tirada.get_origen().get_columna()-1;
                     int y = tirada.get_origen().get_fila()-1;
@@ -909,7 +945,14 @@ public class PartidaGrafica extends Application{
                     }
 
                     _partida.canviarTorn();
-                    lbl.setText("Torn de " + _partida.getProperTorn());
+                    String missatge = "Torn de ";
+                    if(_partida.getProperTorn().equals("BLANQUES")){
+                        missatge = missatge + "BLANQUES " + "( " + jugBlanques + " )";
+                    }
+                    else{
+                        missatge = missatge + "NEGRES " + "( " + jugNegres + " )";
+                    }
+                    lbl.setText(missatge);
 
                 }else if(tirada != null){ //tirada normal
                     //mirem si hi s'havia eliminat alguna peça a la tirada que volem refer.
@@ -944,7 +987,14 @@ public class PartidaGrafica extends Application{
                     }
                     pGraf.move(tirada.get_desti().get_columna()-1, tirada.get_desti().get_fila()-1);
                     _partida.canviarTorn();
-                    lbl.setText("Torn de " + _partida.getProperTorn());
+                    String missatge = "Torn de ";
+                    if(_partida.getProperTorn().equals("BLANQUES")){
+                        missatge = missatge + "BLANQUES " + "( " + jugBlanques + " )";
+                    }
+                    else{
+                        missatge = missatge + "NEGRES " + "( " + jugNegres + " )";
+                    }
+                    lbl.setText(missatge);
                 }else{
                     modificarLblAvisos("No hi ha tirades per refer. Fes alguna altre acció", p);
                 }
@@ -982,7 +1032,14 @@ public class PartidaGrafica extends Application{
                         modificarLblAvisos("Enroc desfet i escac al rei enemic", p);
                     }
                     _partida.canviarTorn();
-                    lbl.setText("Torn de " + _partida.getProperTorn());
+                    String missatge = "Torn de ";
+                    if(_partida.getProperTorn().equals("BLANQUES")){
+                        missatge = missatge + "BLANQUES " + "( " + jugBlanques + " )";
+                    }
+                    else{
+                        missatge = missatge + "NEGRES " + "( " + jugNegres + " )";
+                    }
+                    lbl.setText(missatge);
                 }else if(tokens[0].equalsIgnoreCase("promoció:")){//ha fet promoció
                     int x = tirada.get_origen().get_columna();
                     int y = tirada.get_origen().get_fila();
@@ -1013,7 +1070,14 @@ public class PartidaGrafica extends Application{
                         modificarLblAvisos("Promoció desfeta", p);
                     }
                     _partida.canviarTorn();
-                    lbl.setText("Torn de " + _partida.getProperTorn());
+                    String missatge = "Torn de ";
+                    if(_partida.getProperTorn().equals("BLANQUES")){
+                        missatge = missatge + "BLANQUES " + "( " + jugBlanques + " )";
+                    }
+                    else{
+                        missatge = missatge + "NEGRES " + "( " + jugNegres + " )";
+                    }
+                    lbl.setText(missatge);
                 }
                 else if(tirada != null){ //no hi ha hagut enrroc ni promoció: tirada normal
                     while(itr.hasNext()){
@@ -1043,7 +1107,14 @@ public class PartidaGrafica extends Application{
                         modificarLblAvisos("Tirada desfeta", p);
                     }
                     _partida.canviarTorn();
-                    lbl.setText("Torn de " + _partida.getProperTorn());
+                    String missatge = "Torn de ";
+                    if(_partida.getProperTorn().equals("BLANQUES")){
+                        missatge = missatge + "BLANQUES " + "( " + jugBlanques + " )";
+                    }
+                    else{
+                        missatge = missatge + "NEGRES " + "( " + jugNegres + " )";
+                    }
+                    lbl.setText(missatge);
                 }else{
                     modificarLblAvisos("No hi ha tirades per desfer. Fes alguna altre acció", p);
                 }
@@ -1074,7 +1145,10 @@ public class PartidaGrafica extends Application{
                 i.setOnMouseClicked(new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent event) {
-                        Platform.exit();
+                        usuari2 = "";
+                        jugBlanques = "";
+                        jugNegres = "";
+                        window.setScene(escenaCrearCarregarPartida);
                     }
                 });
                 root.getChildren().addAll(accept, gg, avisSortir, i);
@@ -1102,7 +1176,10 @@ public class PartidaGrafica extends Application{
                 i.setOnMouseClicked(new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent event) {
-                        Platform.exit();
+                        usuari2 = "";
+                        jugBlanques = "";
+                        jugNegres = "";
+                        window.setScene(escenaCrearCarregarPartida);
                     }
                 });
                 root.getChildren().addAll(accept, gg, avisSortir, i);
@@ -1134,7 +1211,10 @@ public class PartidaGrafica extends Application{
                 i.setOnMouseClicked(new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent event) {
-                        Platform.exit();
+                        usuari2 = "";
+                        jugBlanques = "";
+                        jugNegres = "";
+                        window.setScene(escenaCrearCarregarPartida);
                     }
                 });
                 root.getChildren().addAll(accept, gg, avisSortir, i);
@@ -1214,7 +1294,10 @@ public class PartidaGrafica extends Application{
                 i.setOnMouseClicked(new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent event) {
-                        Platform.exit();
+                        usuari2 = "";
+                        jugBlanques = "";
+                        jugNegres = "";
+                        window.setScene(escenaCrearCarregarPartida);
                     }
                 });
                 root.getChildren().addAll(accept, gg, avisSortir, i);
@@ -1434,7 +1517,10 @@ public class PartidaGrafica extends Application{
         i.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                Platform.exit();
+                usuari2 = "";
+                jugBlanques = "";
+                jugNegres = "";
+                window.setScene(escenaCrearCarregarPartida);
             }
         });
         root.getChildren().addAll(accept, gg, avisSortir, i);
@@ -1554,7 +1640,14 @@ public class PartidaGrafica extends Application{
         BorderPane dreta = (BorderPane) p.getRight();
         VBox opcions = (VBox) dreta.getCenter();
         Label lbl = (Label) opcions.getChildren().get(0);
-        lbl.setText("Torn de " + _partida.getProperTorn());
+        String missatge = "Torn de ";
+        if(_partida.getProperTorn().equals("BLANQUES")){
+            missatge = missatge + "BLANQUES " + "( " + jugBlanques + " )";
+        }
+        else{
+            missatge = missatge + "NEGRES " + "( " + jugNegres + " )";
+        }
+        lbl.setText(missatge);
     }
 
     /** @brief  S'elimina una peça gràfica del taulell

@@ -7,6 +7,8 @@ package partida;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.beans.property.ReadOnlyDoubleProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -25,8 +27,12 @@ import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 import javafx.util.Pair;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.Tuple;
@@ -332,16 +338,62 @@ public class PartidaGrafica extends Application{
 
     private void crearEscenaRanking(){
         BorderPane root = new BorderPane();
+        root.setStyle("-fx-background-image: url("+ "/Images/darkWoodTexture.png" + ");-fx-background-size: stretch;");
 
-        ListView<String> ranking = new ListView<>();
+        VBox t = new VBox(20);
+        t.setAlignment(Pos.CENTER);
 
-        Jedis jedis = new Jedis("localhost", 6379);
-        Pair<String,String> tupla;
+        String[][] classi;
+
         Set<Tuple> rank;
-        rank = jedis.zrevrangeWithScores("puntuacio",0,-1);
+        rank = jedis.zrevrangeWithScores("ranking",0,-1);
+        Integer fila = 1;
+
+        Integer mida = rank.size()+1;
+
+        classi = new String[mida][2];
+        classi[0][0] = "USUARI";
+        classi[0][1] = "PUNTUACIO";
+
+        ObservableList<String[]> ranking = FXCollections.observableArrayList();
+
         for(Tuple tuple: rank){
-            System.out.println(tuple.getElement() + "-" + tuple.getScore());
+            classi[fila][0] = tuple.getElement();
+            classi[fila][1] = Integer.toString((int)tuple.getScore());
+
+            fila++;
+
         }
+
+        ranking.addAll(classi);
+        ranking.remove(0);
+        TableView<String[]> table = new TableView<>();
+        table.setStyle("-fx-alignment: CENTER; -fx-background-color: transparent; -fx-padding: 0 0 5px 0; -fx-text-fill: white; -fx-font-weight: bold");
+        table.setMaxSize(300, 300);
+        for(int i = 0; i<2; i++){
+            TableColumn tc = new TableColumn(classi[0][i]);
+            tc.setStyle("-fx-alignment: CENTER; -fx-padding: 0 0 5px 0; -fx-font-weight: bold");
+            final int colNo = i;
+            tc.setCellValueFactory(new Callback<CellDataFeatures<String[], String>, ObservableValue<String>>() {
+                @Override
+                public ObservableValue<String> call(CellDataFeatures<String[], String> param) {
+                    return new SimpleStringProperty((param.getValue()[colNo]));
+                }
+            });
+            tc.setPrefWidth(150);
+            table.getColumns().add(tc);
+        }
+
+        table.setItems(ranking);
+
+        t.getChildren().add(table);
+
+        root.setCenter(t);
+
+        root.setBottom(botoInferior("Enrrera"));
+
+        escenaRanking = new Scene(root, 500d, 500d);
+
     }
 
 

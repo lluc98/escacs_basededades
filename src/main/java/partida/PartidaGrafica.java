@@ -688,9 +688,11 @@ public class PartidaGrafica extends Application{
                     String u2;
                     if(bl.equals(usuari1)){
                         u2 = ne;
+                        blanques = usuari1;
                     }
                     else{
                         u2 = bl;
+                        negres = usuari1;
                     }
                     TextField username = new TextField(u2);
                     username.setStyle("-fx-background-color: transparent; -fx-font-weight: bold; -fx-border-style: dotted; -fx-border-insets: 1 1 1 1; -fx-text-fill: white; -fx-border-color: white;");
@@ -712,6 +714,8 @@ public class PartidaGrafica extends Application{
                             if(password.equals(contra)){
                                 try{
                                     usuari2 = u2;
+                                    if (blanques == usuari1) negres = usuari2;
+                                    else blanques = usuari2;
                                     _partida = new Partida(jedis.hget("partides:"+nomPartida, "contingutPartida"));
                                     crearEscenaPartida();
                                     window.setScene(escenaPartida);
@@ -1057,9 +1061,9 @@ public class PartidaGrafica extends Application{
                 jedis.hset("partides:" + nomPartida, "contingutPartida", Partida.getPartida());
                 jedis.hset("partides:" + nomPartida, "estatPartida", "acabada");
                 if (_partida.getProperTorn().equals("BLANQUES")) {
-                    jedis.zincrby("ranking",3,blanques);
-                } else if (_partida.getProperTorn().equals("NEGRES")) {
                     jedis.zincrby("ranking",3,negres);
+                } else if (_partida.getProperTorn().equals("NEGRES")) {
+                    jedis.zincrby("ranking",3,blanques);
                 }
                 accept.setStyle("-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 18;");
                 Label gg = new Label("Bona partida, fins la pròxima");
@@ -1384,6 +1388,11 @@ public class PartidaGrafica extends Application{
         else if(res.equalsIgnoreCase("escacmat")){
             p.move(newX, newY);
             res = "Escac i mat. S'acaba la partida. Ha guanyat el jugador " + _partida.getProperTorn();
+            if (_partida.getProperTorn().equals("BLANQUES")) {
+                jedis.zincrby("ranking",3,negres);
+            } else if (_partida.getProperTorn().equals("NEGRES")) {
+                jedis.zincrby("ranking",3,blanques);
+            }
             _partida.escacIMat();
             crearEscenaFinal();
 

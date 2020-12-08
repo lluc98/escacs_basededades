@@ -88,7 +88,7 @@ public class Historial {
 
         partida.put("tirades", fitxerEntradaPartida.getTirades());
 
-        fitxerPartida = new FileWriter(path);
+        fitxerPartida = new FileWriter("random.json");
     }
 
     /** @pre --
@@ -198,7 +198,7 @@ public class Historial {
 
         String a = partida.toString();
         try {
-            fitxerPartida.write(a);
+//            fitxerPartida.write(a);
             fitxerPartida.close();
         } catch (IOException e) {
             e.printStackTrace();

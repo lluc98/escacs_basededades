@@ -39,10 +39,7 @@ import redis.clients.jedis.Jedis;
 import redis.clients.jedis.Tuple;
 
 import java.io.IOException;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Set;
-import java.util.TreeMap;
+import java.util.*;
 
 /** @class PartidaGrafica
  * @brief Partida gàfica, extensió de la classe Application de la API de java
@@ -157,6 +154,8 @@ public class PartidaGrafica extends Application{
                 if(jedis.exists("user:"+id)){
                     //s'ha trobat l'usuari i no es pot registrar
                     lblInfo.setText("S'ha trobat un usuari amb el mateix nom");
+                }else if(id.isEmpty() || name.isEmpty() || subname.isEmpty() || password.isEmpty() || country.isEmpty()){
+                    lblInfo.setText("Hi ha algun camp que no has omplert");
                 }
                 else{//s'ha registrat l'usuari
                     jedis.hset("user:"+id, "nom", name);
@@ -473,11 +472,21 @@ public class PartidaGrafica extends Application{
         llistaJugadors.setMaxSize(250,350);
 
         Set<String> set = jedis.keys("*user*");
-
+        List<String> usuaris;
+        usuaris = new ArrayList<>();
+        for (String item: set) {
+            String us = item;
+            String[] ident = us.split(":");
+            us = ident[1];
+            usuaris.add(us);
+        }
+        for (String item2: usuaris){
+            System.out.println(item2);
+        }
         int mida = 0;
 
-        for(String s: set){
-            if(!s.equals("user:"+usuari1)){
+        for(String s: usuaris){
+            if(!s.equals(usuari1)){
                 llistaJugadors.getItems().add(s);
             }
 
@@ -516,9 +525,27 @@ public class PartidaGrafica extends Application{
                         String password = jedis.hget("user:"+s, "contrasenya");
 
                         if(password.equals(contra)){
-                            usuari2= "user:"+s;
-                            crearCrearCarregarPartida();
-                            window.setScene(escenaCrearCarregarPartida);
+                            try{
+                                usuari2 = s;
+                                jedis.hset("partides:" + nomPartida, "blanques", usuari1);
+                                blanques = usuari1;
+                                jedis.hset("partides:" + nomPartida, "negres", usuari2);
+                                negres = usuari2;
+                                jedis.hset("partides:" + nomPartida, "nomPartida", nomPartida);
+                                jedis.hset("partides:" + nomPartida, "estatPartida", "començada");
+                                _partida = new Partida("Regles.json", 2);
+                                jedis.hset("partides:" + nomPartida, "contingutPartida", Partida.getPartida());
+                                crearEscenaPartida();
+                                window.setScene(escenaPartida);
+                            }catch (IOException e) {
+                                missatge.setText("No s'ha trobat el fitxer de regles, entra'n un altre de correcte.");
+                                System.out.println(e);
+                                System.out.println("No s'ha trobat el fitxer de regles");
+                            } catch (Exception e) {
+                                System.out.println(e);
+                                System.out.println("Hi ha hagut un error");
+                            }
+
                         }
                         else{ //usuari registrat, contrasenya incorrecte
                             missatge.setText("Contrasenya incorrecte");
@@ -599,22 +626,10 @@ public class PartidaGrafica extends Application{
                     try {
                         nomPartida = nomFitxer.getText();
                         if (!jedis.exists("partides:"+nomPartida)) {
-                            jedis.hset("partides:" + nomPartida, "blanques", usuarLogejat);
-                            blanques = usuarLogejat;
-                            jedis.hset("partides:" + nomPartida, "negres", "a");
-                            negres = "a";
-                            jedis.hset("partides:" + nomPartida, "nomPartida", nomPartida);
-                            jedis.hset("partides:" + nomPartida, "estatPartida", "començada");
-                            _partida = new Partida("Regles.json", 2);
-                            jedis.hset("partides:" + nomPartida, "contingutPartida", Partida.getPartida());
                             crearTriarJuadorContrari();
                             window.setScene(escenaTriarEnemic);
                         }
                         else missatge.setText("Ja existeix aquesta partida");
-                    } catch (IOException e) {
-                        missatge.setText("No s'ha trobat el fitxer de regles, entra'n un altre de correcte.");
-                        System.out.println(e);
-                        System.out.println("No s'ha trobat el fitxer de regles");
                     } catch (Exception e){
                         System.out.println(e);
                         System.out.println("Hi ha hagut un error");

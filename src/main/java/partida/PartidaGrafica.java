@@ -642,10 +642,10 @@ public class PartidaGrafica extends Application{
                     String b = jedis.hget("partides:"+item2, "blanques");
                     String n = jedis.hget("partides:"+item2, "negres");
                     if(b.equals(usuari1)){
-                        llistaPartides.getItems().add(item2);
+                        if (jedis.exists("user:"+n)) llistaPartides.getItems().add(item2);
                     }
                     else if(n.equals(usuari1)){
-                        llistaPartides.getItems().add(item2);
+                        if (jedis.exists("user:"+b)) llistaPartides.getItems().add(item2);
                     }
                 }
             }

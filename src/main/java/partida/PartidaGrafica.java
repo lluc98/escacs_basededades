@@ -157,6 +157,9 @@ public class PartidaGrafica extends Application{
                 }else if(id.isEmpty() || name.isEmpty() || subname.isEmpty() || password.isEmpty() || country.isEmpty()){
                     lblInfo.setText("Hi ha algun camp que no has omplert");
                 }
+                else if(id.isEmpty() || name.isEmpty() || subname.isEmpty() || password.isEmpty() || country.isEmpty()){
+                    lblInfo.setText("Hi ha algun camp que no has omplert");
+                }
                 else{//s'ha registrat l'usuari
                     jedis.hset("user:"+id, "nom", name);
                     jedis.hset("user:"+id, "cognom", subname);
@@ -165,6 +168,8 @@ public class PartidaGrafica extends Application{
                     jedis.zadd("ranking",0,id);
                     lblInfo.setText("S'ha registrat l'usuari, ara podras accedir al joc");
                     window.setScene(escenaPrincipal);
+                    
+
                 }
             }
         });
@@ -247,8 +252,21 @@ public class PartidaGrafica extends Application{
                     usuari.clear();
                     contrasenya.clear();
                     crearCrearCarregarPartida();
-
+                    usuari1 = userName;
                     window.setScene(escenaCrearCarregarPartida);
+
+                    Set<String> set = jedis.keys("*user*");
+                    List<String> usuaris;
+                    usuaris = new ArrayList<>();
+                    for (String item: set) {
+                        String us = item;
+                        String[] ident = us.split(":");
+                        us = ident[1];
+                        usuaris.add(us);
+                    }
+                    for (String item2: usuaris){
+                        System.out.println(item2);
+                    }
                 }
                 else if(userName == null){ //Usuari no registrat
                     lblInfo.setText("No s'ha trobat l'usuari");
@@ -257,6 +275,7 @@ public class PartidaGrafica extends Application{
                     lblInfo.setText("Contrasenya incorrecte");
                     contrasenya.clear();
                 }
+
             }
         });
 
@@ -435,6 +454,8 @@ public class PartidaGrafica extends Application{
 
         escenaRanking = new Scene(root, 500d, 500d);
 
+
+
     }
 
 
@@ -604,9 +625,27 @@ public class PartidaGrafica extends Application{
 
         if(opcio == 2){
 
-            /*
-            Posar tots els noms de partides a l'observableList
-             */
+            Set<String> set = jedis.keys("*partides*");
+            List<String> usuaris;
+            usuaris = new ArrayList<>();
+            for (String item: set) {
+                String us = item;
+                String[] ident = us.split(":");
+                us = ident[1];
+                usuaris.add(us);
+            }
+            ListView<String> llistaP = new ListView<>();
+            for (String item2: usuaris){
+                String estat = jedis.hget("partides:"+item2, "estatPartida");
+                if(estat.equals("començada")){
+                    String b = jedis.hget("partides:"+item2, "blanques");
+                    String n = jedis.hget("partides:"+item2, "negres");
+                    if(b.equals(usuari1) || n.equals(usuari1)){
+                        llistaP.getItems().add(item2);
+                    }
+                }
+            }
+
 
             llistaPartides.setItems(nomPartides);
         }else{

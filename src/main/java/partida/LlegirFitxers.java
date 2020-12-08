@@ -239,8 +239,8 @@ public class LlegirFitxers {
      * @pre path és vàlid
      * @post totes les variables del fitxer de Partida estan assignades. La Partida no està acabada.
      */
-    public String llegirPartidaComencada (String path, boolean comencada) throws Exception {
-        contingut = new String((Files.readAllBytes(Paths.get(path))));
+    public String llegirPartidaComencada (String contingutFitxer, boolean comencada) throws Exception {
+        contingut = contingutFitxer;
         JSONObject partidaN =  new JSONObject(contingut);
         fitxerRegles = partidaN.getString("fitxerRegles");
 

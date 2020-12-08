@@ -12,6 +12,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -58,6 +59,7 @@ public class PartidaGrafica extends Application{
     private static Scene escenaSec;                  ///< Escena per triar fitxers i si fes falta, el nombre de jugadors
     private static Scene escenaPartida;              ///< Escena per jugar la partida
     private static Scene escenaRegistre;
+    private static Scene escenaTriarEnemic;
     private static Scene escenaRanking;
     private static Stage window;                     ///< Finestra de l'aplicació
     private static Partida _partida;                 ///< Joc d'escacs
@@ -93,7 +95,7 @@ public class PartidaGrafica extends Application{
         campsPerEmplanar.setAlignment(Pos.CENTER);
 
         TextField username;
-        if(user.equals("a")){
+        if(!user.equals("")){
             username = new TextField();
             username.setText(user);
         }
@@ -118,7 +120,7 @@ public class PartidaGrafica extends Application{
 
 
         TextField contra;
-        if(contrasenya.equals("a")){
+        if(!contrasenya.equals("")){
             contra = new TextField();
             contra.setText(contrasenya);
         }
@@ -237,13 +239,14 @@ public class PartidaGrafica extends Application{
                 String nom = usuari.getText();
                 String contra = contrasenya.getText();
 
-                Jedis jedis = new Jedis("localhost", 6379);
                 String userName = jedis.hget("user:"+nom, "nom");
                 String password = jedis.hget("user:"+nom, "contrasenya");
-                System.out.println("HOLA " + userName);
                 usuarLogejat = userName;
 
                 if(userName != null && password.equals(contra)){
+                    usuari1 = userName;
+                    usuari.clear();
+                    contrasenya.clear();
                     crearCrearCarregarPartida();
 
                     window.setScene(escenaCrearCarregarPartida);
@@ -294,10 +297,12 @@ public class PartidaGrafica extends Application{
         Button btnCom = new Button("Començar nova partida");
         Button btnCar = new Button("Carregar una partida");
         Button btnRank = new Button("Mostrar ranking");
+        Button btnBaixaUser = new Button("Borrar Usuari");
 
         btnCom.setStyle("-fx-background-image: url(" + "/Images/woodTexture.png" + "); -fx-font-weight: bold");
         btnCar.setStyle("-fx-background-image: url(" + "/Images/woodTexture.png" + "); -fx-font-weight: bold");
         btnRank.setStyle("-fx-background-image: url(" + "/Images/woodTexture.png" + "); -fx-font-weight: bold");
+        btnBaixaUser.setStyle("-fx-background-image: url(" + "/Images/woodTexture.png" + "); -fx-font-weight: bold");
         btnCom.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -321,6 +326,43 @@ public class PartidaGrafica extends Application{
                 window.setScene(escenaRanking);
             }
         });
+        btnBaixaUser.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+
+                VBox opcions = new VBox(10);
+                opcions.setAlignment(Pos.CENTER);
+
+                BorderPane root = new BorderPane();
+
+                Button btnSi = new Button("Si");
+                Button btnNo = new Button("No");
+
+                btnSi.setStyle("-fx-background-image: url(" + "/Images/woodTexture.png" + "); -fx-font-weight: bold");
+                btnNo.setStyle("-fx-background-image: url(" + "/Images/woodTexture.png" + "); -fx-font-weight: bold");
+
+                root.setStyle("-fx-background-image: url("+ "/Images/darkWoodTexture.png" + ");-fx-background-size: stretch;");
+
+                btnSi.setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent event) {
+                        jedis.del("user:"+usuari1);
+                        window.setScene(escenaPrincipal);
+                    }
+                });
+                btnNo.setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent event) {
+                        window.setScene(escenaPrincipal);
+                    }
+                });
+                opcions.getChildren().addAll(btnSi, btnNo);
+                root.setCenter(opcions);
+                Scene escenaSeguretatBorrar;
+                escenaSeguretatBorrar = new Scene(root, 500d, 500d);
+                window.setScene(escenaSeguretatBorrar);
+            }
+        });
 
         root.setStyle("-fx-background-image: url("+ "/Images/darkWoodTexture.png" + ");-fx-background-size: stretch;");
         opcions.setAlignment(Pos.CENTER);
@@ -328,6 +370,7 @@ public class PartidaGrafica extends Application{
         opcions.getChildren().add(btnCom);
         opcions.getChildren().add(btnCar);
         opcions.getChildren().add(btnRank);
+        opcions.getChildren().add(btnBaixaUser);
 
         root.setCenter(opcions);
         root.setBottom(botoInferior("Exit"));
@@ -420,6 +463,94 @@ public class PartidaGrafica extends Application{
 
     }
 
+
+    private void crearTriarJuadorContrari(){
+        BorderPane root = new BorderPane();
+        root.setStyle("-fx-background-image: url("+ "/Images/darkWoodTexture.png" + ");-fx-background-size: stretch;");
+        /*demanar a la bdd els jugadors que pots jugar en contra*/
+
+        ListView<String> llistaJugadors = new ListView<>();
+        llistaJugadors.setMaxSize(250,350);
+
+        Set<String> set = jedis.keys("*user*");
+
+        int mida = 0;
+
+        for(String s: set){
+            if(!s.equals("user:"+usuari1)){
+                llistaJugadors.getItems().add(s);
+            }
+
+        }
+
+        HBox list = new HBox(20);
+        list.getChildren().add(llistaJugadors);
+        list.setAlignment(Pos.CENTER);
+
+        HBox bot = new HBox(20);
+
+        Button triarJug = new Button("Triar aquest jugador");
+        triarJug.setStyle("-fx-background-image: url(" + "/Images/woodTexture.png" + "); -fx-font-weight: bold");
+        triarJug.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                String s = llistaJugadors.getSelectionModel().getSelectedItem();
+                BorderPane root = new BorderPane();
+                root.setStyle("-fx-background-image: url("+ "/Images/darkWoodTexture.png" + ");-fx-background-size: stretch;");
+                VBox login = new VBox(20);
+                TextField username = new TextField(s);
+                username.setStyle("-fx-background-color: transparent; -fx-font-weight: bold; -fx-border-style: dotted; -fx-border-insets: 1 1 1 1; -fx-text-fill: white; -fx-border-color: white;");
+                username.setMaxWidth(200);
+                username.setEditable(false);
+                PasswordField psw = new PasswordField();
+                psw.setStyle("-fx-background-color: transparent; -fx-font-weight: bold; -fx-border-style: dotted; -fx-border-insets: 1 1 1 1; -fx-text-fill: white; -fx-border-color: white;");
+                psw.setMaxWidth(200);
+                psw.setPromptText("Contrasenya");
+                Button log = new Button("Log in");
+                log.setStyle("-fx-background-image: url(" + "/Images/woodTexture.png" + "); -fx-font-weight: bold");
+                Label missatge = new Label();
+                log.setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent event) {
+                        String contra = psw.getText();
+                        String password = jedis.hget("user:"+s, "contrasenya");
+
+                        if(password.equals(contra)){
+                            usuari2= "user:"+s;
+                            crearCrearCarregarPartida();
+                            window.setScene(escenaCrearCarregarPartida);
+                        }
+                        else{ //usuari registrat, contrasenya incorrecte
+                            missatge.setText("Contrasenya incorrecte");
+                        }
+                    }
+                });
+
+                login.getChildren().addAll(username, psw, log);
+                login.setAlignment(Pos.CENTER);
+
+                root.setCenter(login);
+
+                root.setBottom(botoInferior("Cancelar"));
+
+                Scene login2 = new Scene(root, 500d, 500d);
+                window.setScene(login2);
+            }
+        });
+
+
+        bot.getChildren().addAll(botoInferior("Enrrera"), triarJug);
+        list.setPrefSize(200, 300);
+
+        root.setCenter(list);
+        root.setBottom(bot);
+
+        escenaTriarEnemic = new Scene(root, 500d, 500d);
+
+
+    }
+
+
     /** @brief  Es prepara el centre per l'escena secundaria
      * @pre \p opcio si igual a 1 indica que es comença una partida, si val 2 es carrega una partida
      * @return Un node on hi haurà un TextField perquè l'usuari hi entri el nom del fitxer, si \p opcio igual a 1, també hi haurà un CheckBox
@@ -476,8 +607,8 @@ public class PartidaGrafica extends Application{
                             jedis.hset("partides:" + nomPartida, "estatPartida", "començada");
                             _partida = new Partida("Regles.json", 2);
                             jedis.hset("partides:" + nomPartida, "contingutPartida", Partida.getPartida());
-                            crearEscenaPartida();
-                            window.setScene(escenaPartida);
+                            crearTriarJuadorContrari();
+                            window.setScene(escenaTriarEnemic);
                         }
                         else missatge.setText("Ja existeix aquesta partida");
                     } catch (IOException e) {
@@ -538,6 +669,9 @@ public class PartidaGrafica extends Application{
         }
         else if (s.equals("Cancelar registre")){
             btnInf.setOnAction(e -> window.setScene(escenaPrincipal));
+        }
+        else if(s.equals("Enrrera")){
+            btnInf.setOnAction(e -> window.setScene(escenaSec));
         }
         else {
             btnInf.setOnAction(e -> window.setScene(escenaCrearCarregarPartida));

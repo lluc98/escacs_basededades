@@ -31,6 +31,9 @@ public class Partida {
     private int EscacsSeguitsNegres = 0;                                 ///< Contador d'escacs seguits actual del equip de Negres
 
 
+    public static String getPartida() { return contingutPartida();}
+
+
     /** @brief  Genera una partida carregada
      * @param fitxerPartida nom del fitxer d'entrada
      * @pre fitxerPartida existeix i esta en un format correcte

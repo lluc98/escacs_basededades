@@ -65,6 +65,7 @@ public class PartidaGrafica extends Application{
     private static Group _peces = new Group();       ///< Grup de peces
     private static int _pixelsRajola;                ///< Pixels d'un costat de la rajola
     private static String usuari1, usuari2;         ///< Usuaris que hauran de fer el login per jugar.
+    private static String nomPartida;
 
     public static Jedis jedis = new Jedis("localhost", 6379);
 
@@ -465,15 +466,16 @@ public class PartidaGrafica extends Application{
             public void handle(ActionEvent event) {
                 if(opcio == 1) {
                     try {
-                        String s = nomFitxer.getText();
-                        if (!jedis.exists("partides:"+s)) {
-                            jedis.hset("partides:" + s, "blanques", usuarLogejat);
+                        nomPartida = nomFitxer.getText();
+                        if (!jedis.exists("partides:"+nomPartida)) {
+                            jedis.hset("partides:" + nomPartida, "blanques", usuarLogejat);
                             blanques = usuarLogejat;
-                            jedis.hset("partides:" + s, "negres", "a");
+                            jedis.hset("partides:" + nomPartida, "negres", "a");
                             negres = "a";
-                            jedis.hset("partides:" + s, "nomPartida", s);
-                            jedis.hset("partides:" + s, "estatPartida", "començada");
+                            jedis.hset("partides:" + nomPartida, "nomPartida", nomPartida);
+                            jedis.hset("partides:" + nomPartida, "estatPartida", "començada");
                             _partida = new Partida("Regles.json", 2);
+                            jedis.hset("partides:" + nomPartida, "contingutPartida", Partida.getPartida());
                             crearEscenaPartida();
                             window.setScene(escenaPartida);
                         }
@@ -489,8 +491,8 @@ public class PartidaGrafica extends Application{
                 }
                 else{
                     try {
-                        String s = llistaPartides.getSelectionModel().getSelectedItem();
-                        _partida = new Partida(s);
+                        nomPartida = llistaPartides.getSelectionModel().getSelectedItem();
+                        _partida = new Partida(nomPartida);
                         crearEscenaPartida();
                         window.setScene(escenaPartida);
                     } catch (IOException e) {
@@ -812,6 +814,8 @@ public class PartidaGrafica extends Application{
                 VBox root = new VBox(30);
                 root.setStyle("-fx-background-image: url(" + "/Images/darkWoodTexture.png" + "); -fx-background-size: stretch; -fx-padding: 50 0 0 0;");
                 Label accept = new Label("El jugador " + _partida.getProperTorn() + " s'ha rendit.");
+                jedis.hset("partides:" + nomPartida, "contingutPartida", Partida.getPartida());
+                jedis.hset("partides:" + nomPartida, "estatPartida", "acabada");
                 if (_partida.getProperTorn().equals("BLANQUES")) {
                     jedis.zincrby("ranking",3,blanques);
                 } else if (_partida.getProperTorn().equals("NEGRES")) {
@@ -844,6 +848,7 @@ public class PartidaGrafica extends Application{
                 VBox root = new VBox(30);
                 root.setStyle("-fx-background-image: url(" + "/Images/darkWoodTexture.png" + "); -fx-backbround-size: stretch; -fx-padding: 50 0 0 0;");
                 Label accept = new Label("El jugador " + _partida.getProperTorn() + " ha ajornat la partida.");
+                jedis.hset("partides:" + nomPartida, "contingutPartida", Partida.getPartida());
                 accept.setStyle("-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 18;");
                 Label gg = new Label("Fins la pròxima!!");
                 gg.setStyle("-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 18;");
@@ -953,6 +958,8 @@ public class PartidaGrafica extends Application{
                 Label accept = new Label("El jugador " + _partida.getProperTorn() + " ha acceptat les taules");
                 jedis.zincrby("ranking",1,blanques);
                 jedis.zincrby("ranking",1,negres);
+                jedis.hset("partides:" + nomPartida, "contingutPartida", Partida.getPartida());
+                jedis.hset("partides:" + nomPartida, "estatPartida", "acabada");
                 accept.setStyle("-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 18;");
                 accept.setWrapText(true);
                 Label gg = new Label("Fins la pròxima!");
@@ -1159,6 +1166,7 @@ public class PartidaGrafica extends Application{
         root.setStyle("-fx-background-image: url(" + "/Images/darkWoodTexture.png" + "); -fx-backbround-size: stretch;");
 
         Label accept = new Label("El jugador " + _partida.getProperTorn() + " ha GUANYAT!");
+        jedis.hset("partides:" + nomPartida, "contingutPartida", Partida.getPartida());
         if (_partida.getProperTorn().equals("BLANQUES")) {
             jedis.zincrby("ranking",3,blanques);
         } else if (_partida.getProperTorn().equals("NEGRES")) {

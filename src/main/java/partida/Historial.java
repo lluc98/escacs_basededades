@@ -19,6 +19,8 @@ public class Historial {
 
     public static JSONObject partida = new JSONObject();    ///< Objecte JSON on guardarem les dades de la Partida
 
+    public static String contingutPartida() {return partida.toString();}
+
     /** @brief  Inicialitzador de l'objecte JSON que guardarem
      * @pre --
      * @post Totes les variables estan inicialitzades

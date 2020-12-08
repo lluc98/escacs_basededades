@@ -169,7 +169,7 @@ public class PartidaGrafica extends Application{
                     jedis.zadd("ranking",0,id);
                     lblInfo.setText("S'ha registrat l'usuari, ara podras accedir al joc");
                     window.setScene(escenaPrincipal);
-                    
+
 
                 }
             }
@@ -678,81 +678,68 @@ public class PartidaGrafica extends Application{
                     }
                 }
                 else{
-                    try {
-                        nomPartida = llistaPartides.getSelectionModel().getSelectedItem();
-                        String bl = jedis.hget("partides:"+nomPartida, "blanques");
-                        String ne = jedis.hget("partides:"+nomPartida, "negres");
+                    nomPartida = llistaPartides.getSelectionModel().getSelectedItem();
+                    String bl = jedis.hget("partides:"+nomPartida, "blanques");
+                    String ne = jedis.hget("partides:"+nomPartida, "negres");
 
-                        BorderPane root = new BorderPane();
-                        root.setStyle("-fx-background-image: url("+ "/Images/darkWoodTexture.png" + ");-fx-background-size: stretch;");
-                        VBox login = new VBox(20);
-                        String u2;
-                        if(bl.equals(usuari1)){
-                            u2 = ne;
-                        }
-                        else{
-                            u2 = bl;
-                        }
-                        TextField username = new TextField(usuari2);
-                        username.setStyle("-fx-background-color: transparent; -fx-font-weight: bold; -fx-border-style: dotted; -fx-border-insets: 1 1 1 1; -fx-text-fill: white; -fx-border-color: white;");
-                        username.setMaxWidth(200);
-                        username.setEditable(false);
-                        PasswordField psw = new PasswordField();
-                        psw.setStyle("-fx-background-color: transparent; -fx-font-weight: bold; -fx-border-style: dotted; -fx-border-insets: 1 1 1 1; -fx-text-fill: white; -fx-border-color: white;");
-                        psw.setMaxWidth(200);
-                        psw.setPromptText("Contrasenya");
-                        Button log = new Button("Log in");
-                        log.setStyle("-fx-background-image: url(" + "/Images/woodTexture.png" + "); -fx-font-weight: bold");
-                        Label missatge = new Label();
-                        log.setOnAction(new EventHandler<ActionEvent>() {
-                            @Override
-                            public void handle(ActionEvent event) {
-                                String contra = psw.getText();
-                                String password = jedis.hget("user:"+u2, "contrasenya");
-
-                                if(password.equals(contra)){
-                                    try{
-                                        usuari2 = u2;
-                                        _partida = new Partida(jedis.hget("partides:"+nomPartida, "contingutPartida"));
-                                        crearEscenaPartida();
-                                        window.setScene(escenaPartida);
-                                    }catch (IOException e) {
-                                        missatge.setText("No s'ha trobat el fitxer de regles, entra'n un altre de correcte.");
-                                        System.out.println(e);
-                                        System.out.println("No s'ha trobat el fitxer de regles");
-                                    } catch (Exception e) {
-                                        System.out.println(e);
-                                        System.out.println("Hi ha hagut un error");
-                                    }
-
-                                }
-                                else{ //usuari registrat, contrasenya incorrecte
-                                    missatge.setText("Contrasenya incorrecte");
-                                }
-                            }
-                        });
-
-                        login.getChildren().addAll(username, psw, log);
-                        login.setAlignment(Pos.CENTER);
-
-                        root.setCenter(login);
-
-                        root.setBottom(botoInferior("Cancelar"));
-
-                        Scene login2 = new Scene(root, 500d, 500d);
-
-                        window.setScene(login2);
-                        _partida = new Partida(nomPartida);
-                        crearEscenaPartida();
-                        window.setScene(escenaPartida);
-                    } catch (IOException e) {
-                        missatge.setText("No s'ha trobat el fitxer de la partida, entra'n un altre de correcte");
-                        System.out.println(e);
-                        System.out.println("No s'ha trobat el fitxer de la partida");
-                    } catch (Exception e){
-                        System.out.println(e);
-                        System.out.println("Hi ha hagut un error");
+                    BorderPane root = new BorderPane();
+                    root.setStyle("-fx-background-image: url("+ "/Images/darkWoodTexture.png" + ");-fx-background-size: stretch;");
+                    VBox login = new VBox(20);
+                    String u2;
+                    if(bl.equals(usuari1)){
+                        u2 = ne;
                     }
+                    else{
+                        u2 = bl;
+                    }
+                    TextField username = new TextField(u2);
+                    username.setStyle("-fx-background-color: transparent; -fx-font-weight: bold; -fx-border-style: dotted; -fx-border-insets: 1 1 1 1; -fx-text-fill: white; -fx-border-color: white;");
+                    username.setMaxWidth(200);
+                    username.setEditable(false);
+                    PasswordField psw = new PasswordField();
+                    psw.setStyle("-fx-background-color: transparent; -fx-font-weight: bold; -fx-border-style: dotted; -fx-border-insets: 1 1 1 1; -fx-text-fill: white; -fx-border-color: white;");
+                    psw.setMaxWidth(200);
+                    psw.setPromptText("Contrasenya");
+                    Button log = new Button("Log in");
+                    log.setStyle("-fx-background-image: url(" + "/Images/woodTexture.png" + "); -fx-font-weight: bold");
+                    Label missatge = new Label();
+                    log.setOnAction(new EventHandler<ActionEvent>() {
+                        @Override
+                        public void handle(ActionEvent event) {
+                            String contra = psw.getText();
+                            String password = jedis.hget("user:"+u2, "contrasenya");
+
+                            if(password.equals(contra)){
+                                try{
+                                    usuari2 = u2;
+                                    _partida = new Partida(jedis.hget("partides:"+nomPartida, "contingutPartida"));
+                                    crearEscenaPartida();
+                                    window.setScene(escenaPartida);
+                                }catch (IOException e) {
+                                    missatge.setText("No s'ha trobat el fitxer de regles, entra'n un altre de correcte.");
+                                    System.out.println(e);
+                                    System.out.println("No s'ha trobat el fitxer de regles");
+                                } catch (Exception e) {
+                                    System.out.println(e);
+                                    System.out.println("Hi ha hagut un error");
+                                }
+
+                            }
+                            else{ //usuari registrat, contrasenya incorrecte
+                                missatge.setText("Contrasenya incorrecte");
+                            }
+                        }
+                    });
+
+                    login.getChildren().addAll(username, psw, log);
+                    login.setAlignment(Pos.CENTER);
+
+                    root.setCenter(login);
+
+                    root.setBottom(botoInferior("Cancelar"));
+
+                    Scene login2 = new Scene(root, 500d, 500d);
+                    window.setScene(login2);
                 }
             }
         });

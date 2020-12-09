@@ -461,8 +461,13 @@ public class PartidaGrafica extends Application{
         t.getChildren().add(table);
 
         root.setCenter(t);
-
-        root.setBottom(botoInferior("Enrrera"));
+        Button btnInf = new Button("Enrere");
+        btnInf.setOnAction(e -> window.setScene(escenaCrearCarregarPartida));
+        btnInf.setStyle("-fx-background-image: url(" + "/Images/woodTexture.png" + "); -fx-font-weight: bold");
+        btnInf.setLayoutX(30);
+        btnInf.setLayoutY(5);
+        root.setPrefHeight(60);
+        root.setBottom(btnInf);
 
         escenaRanking = new Scene(root, 500d, 500d);
 

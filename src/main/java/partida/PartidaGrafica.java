@@ -68,7 +68,7 @@ public class PartidaGrafica extends Application{
     private static String nomPartida;
     private static String jugBlanques, jugNegres;
 
-    public static Jedis jedis = new Jedis("localhost", 6379);
+    private static Jedis jedis = new Jedis("localhost", 6379);
 
     /** @brief  Inicia l'aplicació d'escacs
      * @pre --
@@ -159,16 +159,12 @@ public class PartidaGrafica extends Application{
                 }else if(id.isEmpty() || name.isEmpty() || subname.isEmpty() || password.isEmpty() || country.isEmpty()){
                     lblInfo.setText("Hi ha algun camp que no has omplert");
                 }
-                else if(id.isEmpty() || name.isEmpty() || subname.isEmpty() || password.isEmpty() || country.isEmpty()){
-                    lblInfo.setText("Hi ha algun camp que no has omplert");
-                }
                 else{//s'ha registrat l'usuari
                     jedis.hset("user:"+id, "nom", name);
                     jedis.hset("user:"+id, "cognom", subname);
                     jedis.hset("user:"+id, "contrasenya", password);
                     jedis.hset("user:"+id, "pais", country);
                     jedis.zadd("ranking",0,id);
-                    lblInfo.setText("S'ha registrat l'usuari, ara podras accedir al joc");
                     window.setScene(escenaPrincipal);
 
 
@@ -461,13 +457,18 @@ public class PartidaGrafica extends Application{
         t.getChildren().add(table);
 
         root.setCenter(t);
-        Button btnInf = new Button("Enrere");
-        btnInf.setOnAction(e -> window.setScene(escenaCrearCarregarPartida));
+        Button btnInf = new Button();
+        btnInf.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                 window.setScene(escenaCrearCarregarPartida);
+            }
+        });
         btnInf.setStyle("-fx-background-image: url(" + "/Images/woodTexture.png" + "); -fx-font-weight: bold");
         btnInf.setLayoutX(30);
         btnInf.setLayoutY(5);
         root.setPrefHeight(60);
-        root.setBottom(btnInf);
+        root.setBottom(botoInferior("Sortir ranking"));
 
         escenaRanking = new Scene(root, 500d, 500d);
 
@@ -606,7 +607,7 @@ public class PartidaGrafica extends Application{
         });
 
 
-        bot.getChildren().addAll(botoInferior("Enrrera"), triarJug);
+        bot.getChildren().addAll(botoInferior("Enrere"), triarJug);
         list.setPrefSize(200, 300);
 
         root.setCenter(list);
@@ -806,7 +807,7 @@ public class PartidaGrafica extends Application{
         else if (s.equals("Cancelar registre")){
             btnInf.setOnAction(e -> window.setScene(escenaPrincipal));
         }
-        else if(s.equals("Enrrera")){
+        else if(s.equals("Enrere")){
             btnInf.setOnAction(e -> window.setScene(escenaSec));
         }
         else {
@@ -1153,6 +1154,7 @@ public class PartidaGrafica extends Application{
                         usuari2 = "";
                         jugBlanques = "";
                         jugNegres = "";
+                        netejarTauler();
                         window.setScene(escenaCrearCarregarPartida);
                     }
                 });
@@ -1184,6 +1186,7 @@ public class PartidaGrafica extends Application{
                         usuari2 = "";
                         jugBlanques = "";
                         jugNegres = "";
+                        netejarTauler();
                         window.setScene(escenaCrearCarregarPartida);
                     }
                 });
@@ -1219,6 +1222,7 @@ public class PartidaGrafica extends Application{
                         usuari2 = "";
                         jugBlanques = "";
                         jugNegres = "";
+                        netejarTauler();
                         window.setScene(escenaCrearCarregarPartida);
                     }
                 });
@@ -1302,6 +1306,7 @@ public class PartidaGrafica extends Application{
                         usuari2 = "";
                         jugBlanques = "";
                         jugNegres = "";
+                        netejarTauler();
                         window.setScene(escenaCrearCarregarPartida);
                     }
                 });
@@ -1525,6 +1530,7 @@ public class PartidaGrafica extends Application{
                 usuari2 = "";
                 jugBlanques = "";
                 jugNegres = "";
+                netejarTauler();
                 window.setScene(escenaCrearCarregarPartida);
             }
         });
@@ -1678,6 +1684,13 @@ public class PartidaGrafica extends Application{
      */
     private static int posTauler(double p){
         return (int)(p+_pixelsRajola/2)/_pixelsRajola;
+    }
+
+    private static void netejarTauler(){
+        _rajoles.getChildren().clear();
+        _peces.getChildren().clear();
+        /*Pane p = new Pane();
+        escenaPartida = new Scene(p);*/
     }
 
 }

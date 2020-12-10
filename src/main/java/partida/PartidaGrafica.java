@@ -246,11 +246,10 @@ public class PartidaGrafica extends Application{
                 usuarLogejat = userName;
 
                 if(userName != null && password.equals(contra)){
-                    usuari1 = userName;
                     usuari.clear();
                     contrasenya.clear();
                     crearCrearCarregarPartida();
-                    usuari1 = userName;
+                    usuari1 = nom;
                     window.setScene(escenaCrearCarregarPartida);
 
                     Set<String> set = jedis.keys("*user*");

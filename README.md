@@ -1,8 +1,8 @@
-# Projecte de Programació (GEINF - UdG)
+# Sistemes de gestó de bases de dades (GEINF - UdG)
 
-## Primavera 2020
+## Hivern 2020
 
-> Trobareu l'enunciat i la normativa al [Moodle](https://moodle2.udg.edu/course/view.php?id=23855)
+> En aquest document implementarem una Base de dades de Redis a un joc de escacs per a que guardi, elimini i modifiqui: partides, jugadors i un ranking.
 
 **Directoris**
 
